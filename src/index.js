@@ -10,6 +10,7 @@ import { theme } from 'constants/theme';
 import App from 'components/App';
 
 import 'index.css';
+import 'fonts.css';
 
 const rootElement = document.getElementById('root');
 
