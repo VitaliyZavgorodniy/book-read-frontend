@@ -13,10 +13,19 @@ const App = () => {
 
   return (
     <Wrapper>
-      <DateInput value={date} onChange={setDate} />
+      <Item>
+        <DateInput value={date} onChange={setDate} />
+      </Item>
 
-      <CountdownPanel title="Year countdown" date={getCurrentEndYearDate()} />
-      <CountdownPanel title="Goals countdown" date={timeFormatToString(date)} />
+      <Item>
+        <CountdownPanel title="Year countdown" date={getCurrentEndYearDate()} />
+      </Item>
+      <Item>
+        <CountdownPanel
+          title="Goals countdown"
+          date={timeFormatToString(date)}
+        />
+      </Item>
     </Wrapper>
   );
 };
@@ -31,6 +40,10 @@ const Wrapper = styled.section`
   @media ${breakpoints.desktop} {
     max-width: 1024px;
   }
+`;
+
+const Item = styled.div`
+  margin: 40px;
 `;
 
 export default App;

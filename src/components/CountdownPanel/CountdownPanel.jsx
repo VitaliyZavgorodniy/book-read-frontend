@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
-import { DateTime as dt } from 'luxon';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { breakpoints } from 'constants/breakpoints';
+import { DateTime as dt } from 'luxon';
 
 import { fromNumberPadStart } from 'utils/fromNumberPadStart';
 
@@ -56,17 +57,31 @@ const CountdownPanel = ({ title, date }) => {
 
     return (
       <Timer>
-        <Value>{fromNumberPadStart(days)}</Value>
-        <Description>days</Description>
+        <ValueColumn>
+          <Value>{fromNumberPadStart(days)}</Value>
+          <Description>days</Description>
+        </ValueColumn>
 
-        <Value>{fromNumberPadStart(hours)}</Value>
-        <Description>HRS</Description>
+        <DoubleDots>:</DoubleDots>
 
-        <Value>{fromNumberPadStart(minutes)}</Value>
-        <Description>mins</Description>
+        <ValueColumn>
+          <Value>{fromNumberPadStart(hours)}</Value>
+          <Description>HRS</Description>
+        </ValueColumn>
 
-        <Value>{fromNumberPadStart(seconds)}</Value>
-        <Description>secs</Description>
+        <DoubleDots>:</DoubleDots>
+
+        <ValueColumn>
+          <Value>{fromNumberPadStart(minutes)}</Value>
+          <Description>mins</Description>
+        </ValueColumn>
+
+        <DoubleDots>:</DoubleDots>
+
+        <ValueColumn>
+          <Value>{fromNumberPadStart(seconds)}</Value>
+          <Description>secs</Description>
+        </ValueColumn>
       </Timer>
     );
   };
@@ -80,15 +95,37 @@ const CountdownPanel = ({ title, date }) => {
 };
 
 const Wrapper = styled.div`
-  margin-top: 40px;
-  max-width: 290px; // console.log(
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 280px;
+
+  @media ${breakpoints.tablet} {
+    width: 290px;
+  }
 `;
 
-const Title = styled.h4``;
+const Title = styled.h4`
+  margin-bottom: 8px;
+  color: ${(p) => p.theme.colors.tertiary};
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+`;
 
 const Timer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 8px 44px;
   background-color: ${(p) => p.theme.colors.bgSecondary};
   box-shadow: ${(p) => p.theme.shadows.primary};
+`;
+
+const ValueColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-width: 35px;
 `;
 
 const Value = styled.p`
@@ -96,7 +133,10 @@ const Value = styled.p`
   font-weight: 700;
   font-size: 25px;
   line-height: 38px;
+  text-align: center;
 `;
+
+const DoubleDots = styled(Value)``;
 
 const Description = styled.p`
   color: ${(p) => p.theme.colors.tertiary};
@@ -104,6 +144,7 @@ const Description = styled.p`
   font-size: 10px;
   line-height: 12px;
   text-transform: uppercase;
+  text-align: center;
 `;
 
 CountdownPanel.propTypes = {
