@@ -1,26 +1,49 @@
+import { useState } from 'react';
 import styled from 'styled-components';
+import { breakpoints } from 'constants/breakpoints';
 
-const App = () => (
-  <Wrapper>
-    <Heading>Hello app!</Heading>
-    <Description>
-      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam a magnam
-      laudantium nisi, soluta eos optio. Ipsa suscipit culpa adipisci cupiditate
-      enim. Veniam asperiores et provident. Quaerat modi veniam nemo.
-    </Description>
-  </Wrapper>
-);
+import CountdownPanel from 'components/CountdownPanel';
+import DateInput from 'components/UI-kit/inputs/DateInput';
+
+import { timeFormatToString } from 'utils/timeFormatToString';
+import { getCurrentEndYearDate } from 'utils/getCurrentEndYearDate';
+
+const App = () => {
+  const [date, setDate] = useState(new Date());
+
+  return (
+    <Wrapper>
+      <Item>
+        <DateInput value={date} onChange={setDate} />
+      </Item>
+
+      <Item>
+        <CountdownPanel title="Year countdown" date={getCurrentEndYearDate()} />
+      </Item>
+      <Item>
+        <CountdownPanel
+          title="Goals countdown"
+          date={timeFormatToString(date)}
+        />
+      </Item>
+    </Wrapper>
+  );
+};
 
 const Wrapper = styled.section`
-  background-color: ${(p) => p.theme.colors.bgPrimary};
+  max-width: 320px;
+
+  @media ${breakpoints.tablet} {
+    max-width: 768px;
+  }
+
+  @media ${breakpoints.desktop} {
+    max-width: 1024px;
+  }
 `;
 
-const Heading = styled.h1`
-  color: ${(p) => p.theme.colors.accent};
-`;
-
-const Description = styled.p`
-  color: ${(p) => p.theme.colors.secondary};
+const Item = styled.div`
+  margin: 40px;
 `;
 
 export default App;
