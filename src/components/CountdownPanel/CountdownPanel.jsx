@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const CountdownPanel = ({ title, date }) => {
-  console.log(date);
+  // console.log(date);
 
   return (
     <Wrapper>
@@ -25,6 +25,7 @@ const CountdownPanel = ({ title, date }) => {
 };
 
 const Wrapper = styled.div`
+  margin-top: 40px;
   max-width: 290px; // console.log(
 `;
 

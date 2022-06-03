@@ -1,116 +1,18 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import FormInput from 'components/UI-kit/inputs/FormInput';
-import CommonInput from 'components/UI-kit/inputs/CommonInput';
 import { breakpoints } from 'constants/breakpoints';
-import UserPanel from 'components/UserPanel';
+
 import CountdownPanel from 'components/CountdownPanel';
+import DateInput from 'components/UI-kit/inputs/DateInput';
 
 const App = () => {
-  const [values, setValue] = useState({
-    name: '',
-    email: '',
-    password: '',
-    confirmpassword: '',
-    hobby: '',
-    mood: '',
-  });
-
-  const handleInput = ({ value, name }) =>
-    setValue((state) => ({ ...state, [name]: value }));
+  const [date, setDate] = useState(new Date());
 
   return (
     <Wrapper>
-      <UserPanel />
+      <DateInput value={date} onChange={setDate} />
 
-      <CountdownPanel
-        title="Goals countdown"
-        date="2022-06-05T00:02:04.801+00:00"
-      />
-
-      <Heading>Hello app!</Heading>
-      <Description>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam a magnam
-        laudantium nisi, soluta eos optio. Ipsa suscipit culpa adipisci
-        cupiditate enim. Veniam asperiores et provident. Quaerat modi veniam
-        nemo.
-      </Description>
-
-      <form>
-        <List>
-          <Item>
-            <FormInput
-              title="Name"
-              id="name"
-              placeholder="Your name"
-              required
-              disabled
-              value={values.name}
-              onChange={handleInput}
-            />
-          </Item>
-          <Item>
-            <FormInput
-              title="Email"
-              id="email"
-              autoComplete="username"
-              placeholder="your@email.com"
-              required
-              value={values.email}
-              onChange={handleInput}
-            />
-          </Item>
-          <Item>
-            <FormInput
-              title="Password"
-              id="password"
-              autoComplete="password"
-              placeholder="*******"
-              required
-              type="password"
-              value={values.password}
-              onChange={handleInput}
-              error="passwords is not match"
-            />
-          </Item>
-          <Item>
-            <FormInput
-              title="Confirm password"
-              id="confirmpassword"
-              autoComplete="password"
-              placeholder="*******"
-              required
-              type="password"
-              value={values.confirmpassword}
-              onChange={handleInput}
-            />
-          </Item>
-        </List>
-      </form>
-
-      <form>
-        <List>
-          <Item>
-            <CommonInput
-              title="Hobby"
-              id="hobby"
-              placeholder="Descripe your hobby"
-              value={values.hobby}
-              onChange={handleInput}
-            />
-          </Item>
-          <Item>
-            <CommonInput
-              title="Mood"
-              id="mood"
-              placeholder="What is your mood today?"
-              disabled
-              value={values.mood}
-              onChange={handleInput}
-            />
-          </Item>
-        </List>
-      </form>
+      <CountdownPanel title="Goals countdown" date={JSON.stringify(date)} />
     </Wrapper>
   );
 };
