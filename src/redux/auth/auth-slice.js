@@ -3,6 +3,8 @@ import authOperations from './auth-operations';
 
 const initialState = {
   token: null,
+  name: '',
+  avatarURL: '',
   isFetching: false,
 };
 

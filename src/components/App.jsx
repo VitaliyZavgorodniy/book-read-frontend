@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import FormInput from 'components/UI-kit/inputs/FormInput';
 import CommonInput from 'components/UI-kit/inputs/CommonInput';
 import { breakpoints } from 'constants/breakpoints';
+import UserPanel from 'components/UserPanel';
 
 const App = () => {
   const [values, setValue] = useState({
@@ -19,6 +20,7 @@ const App = () => {
 
   return (
     <Wrapper>
+      <UserPanel />
       <Heading>Hello app!</Heading>
       <Description>
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam a magnam
@@ -117,7 +119,6 @@ const Item = styled.li`
 `;
 
 const Wrapper = styled.section`
-  background-color: ${(p) => p.theme.colors.bgPrimary};
   max-width: 320px;
 
   @media ${breakpoints.tablet} {
