@@ -45,7 +45,7 @@ const Avatar = styled.img`
 `;
 
 const NamePlate = styled.p`
-  visibility: hidden;
+  display: none;
   color: ${(p) => p.theme.colors.primary};
   margin-left: 12px;
   font-weight: 300;
@@ -53,7 +53,7 @@ const NamePlate = styled.p`
   line-height: 17px;
 
   @media ${breakpoints.tablet} {
-    visibility: visible;
+    display: flex;
   }
 `;
 
