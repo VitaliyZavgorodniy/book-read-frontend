@@ -2,6 +2,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { breakpoints } from 'constants/breakpoints';
 
+import MainLayout from '../layouts/MainLayout';
 import CountdownPanel from 'components/CountdownPanel';
 import DateInput from 'components/UI-kit/inputs/DateInput';
 
@@ -12,21 +13,27 @@ const App = () => {
   const [date, setDate] = useState(new Date());
 
   return (
-    <Wrapper>
-      <Item>
-        <DateInput value={date} onChange={setDate} />
-      </Item>
+    <>
+      <MainLayout />
+      <Wrapper>
+        <Item>
+          <DateInput value={date} onChange={setDate} />
+        </Item>
 
-      <Item>
-        <CountdownPanel title="Year countdown" date={getCurrentEndYearDate()} />
-      </Item>
-      <Item>
-        <CountdownPanel
-          title="Goals countdown"
-          date={timeFormatToString(date)}
-        />
-      </Item>
-    </Wrapper>
+        <Item>
+          <CountdownPanel
+            title="Year countdown"
+            date={getCurrentEndYearDate()}
+          />
+        </Item>
+        <Item>
+          <CountdownPanel
+            title="Goals countdown"
+            date={timeFormatToString(date)}
+          />
+        </Item>
+      </Wrapper>
+    </>
   );
 };
 
