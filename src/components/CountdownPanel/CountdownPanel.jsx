@@ -5,10 +5,9 @@ import { breakpoints } from 'constants/breakpoints';
 import { DateTime as dt } from 'luxon';
 
 import { fromNumberPadStart } from 'utils/fromNumberPadStart';
+import { getTimeDifference } from 'utils/getTimeDifference';
 
-const DIFF_FORMAT = ['days', 'hours', 'minutes', 'seconds'];
-
-const CountdownPanel = ({ title, date }) => {
+const CountdownPanel = ({ title, dateFrom, dateTo }) => {
   const [countdown, setCountdown] = useState({
     days: 0,
     hours: 0,
@@ -17,40 +16,40 @@ const CountdownPanel = ({ title, date }) => {
   });
 
   useEffect(() => {
+    const formattedDateFrom = dt.fromISO(dateFrom ?? dt.now());
+    const formattedDateTo = dt.fromISO(dateTo);
+
+    const difference = getTimeDifference(formattedDateFrom, formattedDateTo);
+
+    if (difference) setCountdown(difference);
+
+    if (difference?.isNegative)
+      setCountdown({
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+      });
+
     const interval = setInterval(() => {
-      const formattedDate = dt.fromISO(date);
-      const currentDate = dt.now();
+      const { isNegative } = getTimeDifference(dt.now(), formattedDateFrom);
 
-      const difference = handleTimeDiff(currentDate, formattedDate);
+      if (isNegative) {
+        const timerExpires = getTimeDifference(dt.now(), formattedDateTo);
 
-      if (!difference) {
-        setCountdown({
-          days: 0,
-          hours: 0,
-          minutes: 0,
-          seconds: 0,
-        });
-
-        return clearInterval(interval);
+        if (!timerExpires?.isNegative) setCountdown(timerExpires);
+        else
+          setCountdown({
+            days: 0,
+            hours: 0,
+            minutes: 0,
+            seconds: 0,
+          });
       }
-
-      setCountdown(difference);
     }, 1000);
 
-    return () => {
-      clearInterval(interval);
-    };
-  }, [date]);
-
-  const handleTimeDiff = (start, end) => {
-    const diffTime = end.diff(start, DIFF_FORMAT);
-
-    if (diffTime.values.seconds < 0) {
-      return false;
-    }
-
-    return diffTime;
-  };
+    return () => clearInterval(interval);
+  }, [dateFrom, dateTo]);
 
   const renderTimer = () => {
     const { days, hours, minutes, seconds } = countdown;
@@ -149,7 +148,8 @@ const Description = styled.p`
 
 CountdownPanel.propTypes = {
   title: PropTypes.string.isRequired,
-  date: PropTypes.string.isRequired,
+  dateTo: PropTypes.string.isRequired,
+  dateFrom: PropTypes.string,
 };
 
 export default CountdownPanel;

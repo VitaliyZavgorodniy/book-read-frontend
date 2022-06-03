@@ -6,17 +6,15 @@ import iconCalendar from 'assets/icons/calendar.svg';
 
 import './DateInput.css';
 
-const CalendarIcon = () => <Icon src={iconCalendar} />;
-
 const DateInput = ({ value, onChange }) => (
   <DateTimePicker
     locale="UA-ua"
-    format="dd.MM.yyyy hh:mm"
+    format="dd.MM.yyyy HH:mm"
     minDate={new Date()}
     disableClock
     className="datetime-picker"
     clearIcon={null}
-    calendarIcon={<CalendarIcon />}
+    calendarIcon={<Icon src={iconCalendar} />}
     value={value}
     onChange={onChange}
   />
@@ -25,5 +23,10 @@ const DateInput = ({ value, onChange }) => (
 const Icon = styled.img`
   padding: 0;
 `;
+
+DateInput.propTypes = {
+  value: PropTypes.object.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
 
 export default DateInput;

@@ -9,21 +9,27 @@ import { timeFormatToString } from 'utils/timeFormatToString';
 import { getCurrentEndYearDate } from 'utils/getCurrentEndYearDate';
 
 const App = () => {
-  const [date, setDate] = useState(new Date());
+  const [dateFrom, setDateFrom] = useState(new Date());
+  const [dateTo, setDateTo] = useState(new Date());
 
   return (
     <Wrapper>
       <Item>
-        <DateInput value={date} onChange={setDate} />
+        <DateInput value={dateFrom} onChange={setDateFrom} />
+        <DateInput value={dateTo} onChange={setDateTo} />
       </Item>
 
       <Item>
-        <CountdownPanel title="Year countdown" date={getCurrentEndYearDate()} />
+        <CountdownPanel
+          title="Year countdown"
+          dateTo={getCurrentEndYearDate()}
+        />
       </Item>
       <Item>
         <CountdownPanel
           title="Goals countdown"
-          date={timeFormatToString(date)}
+          dateFrom={timeFormatToString(dateFrom)}
+          dateTo={timeFormatToString(dateTo)}
         />
       </Item>
     </Wrapper>
