@@ -1,25 +1,80 @@
+import { useState, useEffect } from 'react';
+import { DateTime as dt } from 'luxon';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+import { fromNumberPadStart } from 'utils/fromNumberPadStart';
+
+const DIFF_FORMAT = ['days', 'hours', 'minutes', 'seconds'];
+
 const CountdownPanel = ({ title, date }) => {
-  // console.log(date);
+  const [countdown, setCountdown] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const formattedDate = dt.fromISO(date);
+      const currentDate = dt.now();
+
+      const difference = handleTimeDiff(currentDate, formattedDate);
+
+      if (!difference) {
+        setCountdown({
+          days: 0,
+          hours: 0,
+          minutes: 0,
+          seconds: 0,
+        });
+
+        return clearInterval(interval);
+      }
+
+      setCountdown(difference);
+    }, 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [date]);
+
+  const handleTimeDiff = (start, end) => {
+    const diffTime = end.diff(start, DIFF_FORMAT);
+
+    if (diffTime.values.seconds < 0) {
+      return false;
+    }
+
+    return diffTime;
+  };
+
+  const renderTimer = () => {
+    const { days, hours, minutes, seconds } = countdown;
+
+    return (
+      <Timer>
+        <Value>{fromNumberPadStart(days)}</Value>
+        <Description>days</Description>
+
+        <Value>{fromNumberPadStart(hours)}</Value>
+        <Description>HRS</Description>
+
+        <Value>{fromNumberPadStart(minutes)}</Value>
+        <Description>mins</Description>
+
+        <Value>{fromNumberPadStart(seconds)}</Value>
+        <Description>secs</Description>
+      </Timer>
+    );
+  };
 
   return (
     <Wrapper>
       <Title>{title}</Title>
-      <Timer>
-        <Value>02</Value>
-        <Description>days</Description>
-
-        <Value>15</Value>
-        <Description>HRS</Description>
-
-        <Value>03</Value>
-        <Description>mins</Description>
-
-        <Value>02</Value>
-        <Description>secs</Description>
-      </Timer>
+      {renderTimer()}
     </Wrapper>
   );
 };

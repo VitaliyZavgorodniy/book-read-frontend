@@ -8,22 +8,22 @@ import './DateInput.css';
 
 const CalendarIcon = () => <Icon src={iconCalendar} />;
 
-const DateInput = ({ value, onChange }) => {
-  return (
-    <DateTimePicker
-      locale="UA-ua"
-      format="dd.MM.yyyy hh:mm"
-      minDate={new Date()}
-      disableClock
-      className="datetime-picker"
-      clearIcon={null}
-      calendarIcon={<CalendarIcon />}
-      value={value}
-      onChange={onChange}
-    />
-  );
-};
+const DateInput = ({ value, onChange }) => (
+  <DateTimePicker
+    locale="UA-ua"
+    format="dd.MM.yyyy hh:mm"
+    minDate={new Date()}
+    disableClock
+    className="datetime-picker"
+    clearIcon={null}
+    calendarIcon={<CalendarIcon />}
+    value={value}
+    onChange={onChange}
+  />
+);
 
-const Icon = styled.img``;
+const Icon = styled.img`
+  padding: 0;
+`;
 
 export default DateInput;
