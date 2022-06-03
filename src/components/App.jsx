@@ -4,6 +4,7 @@ import FormInput from 'components/UI-kit/inputs/FormInput';
 import CommonInput from 'components/UI-kit/inputs/CommonInput';
 import { breakpoints } from 'constants/breakpoints';
 import UserPanel from 'components/UserPanel';
+import CountdownPanel from 'components/CountdownPanel';
 
 const App = () => {
   const [values, setValue] = useState({
@@ -21,6 +22,12 @@ const App = () => {
   return (
     <Wrapper>
       <UserPanel />
+
+      <CountdownPanel
+        title="Goals countdown"
+        date="2022-06-05T00:02:04.801+00:00"
+      />
+
       <Heading>Hello app!</Heading>
       <Description>
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam a magnam
