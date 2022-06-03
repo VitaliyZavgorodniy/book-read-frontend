@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { breakpoints } from 'constants/breakpoints';
 
 import CountdownPanel from 'components/CountdownPanel';
+import GoogleButton from 'components/GoogleButton';
 import DateInput from 'components/UI-kit/inputs/DateInput';
 
 import { timeFormatToString } from 'utils/timeFormatToString';
@@ -25,6 +26,9 @@ const App = () => {
           title="Goals countdown"
           date={timeFormatToString(date)}
         />
+      </Item>
+      <Item>
+        <GoogleButton />
       </Item>
     </Wrapper>
   );
