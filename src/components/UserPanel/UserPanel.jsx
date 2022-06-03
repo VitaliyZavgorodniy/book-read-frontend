@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { breakpoints } from 'constants/breakpoints';
 
@@ -56,5 +57,10 @@ const NamePlate = styled.p`
     display: flex;
   }
 `;
+
+UserPanel.propTypes = {
+  name: PropTypes.string,
+  avatar: PropTypes.string,
+};
 
 export default UserPanel;
