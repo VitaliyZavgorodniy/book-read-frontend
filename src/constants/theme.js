@@ -3,6 +3,7 @@ export const theme = {
     primary: '#242A37',
     secondary: '#091E3F',
     tertiary: '#898F9F',
+    btnText: '#707375',
     bgPrimary: '#F6F7FB',
     bgSecondary: '#ffffff',
     bgTertiary: '#B1B5C2',
@@ -11,6 +12,7 @@ export const theme = {
     accent: '#FF6B08',
     heading: '#6D7A8D',
     error: '#F32424',
+    hover: '#D15807',
   },
   shadows: {
     primary: '4px 4px 8px rgba(36, 42, 55, 0.15)',
@@ -20,5 +22,6 @@ export const theme = {
   },
   font: {
     familyPrimary: 'Montserrat, sans-serif',
+    familyLogo: 'Abril Fatface, curcive',
   },
 };

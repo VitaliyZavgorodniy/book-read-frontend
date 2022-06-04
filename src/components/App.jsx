@@ -3,16 +3,17 @@ import styled from 'styled-components';
 import { breakpoints } from 'constants/breakpoints';
 
 import CountdownPanel from 'components/CountdownPanel';
+import GoogleButton from 'components/UI-kit/buttons/GoogleButton';
 import DateInput from 'components/UI-kit/inputs/DateInput';
 import StarRating from 'components/StarRating/StarRating';
 
 import { timeFormatToString } from 'utils/timeFormatToString';
 import { getCurrentEndYearDate } from 'utils/getCurrentEndYearDate';
+import Boooksreading from './Boooksreading';
+
+import Quotes from './Quotes';
 
 const App = () => {
-  const [dateFrom, setDateFrom] = useState(new Date());
-  const [dateTo, setDateTo] = useState(new Date());
-
   return (
     <Wrapper>
       <Item>
@@ -33,7 +34,19 @@ const App = () => {
           dateTo={timeFormatToString(dateTo)}
         />
       </Item>
+
       <StarRating />
+
+
+
+      <Item></Item>
+        <Boooksreading />
+
+      <Item>
+        <GoogleButton />
+
+      </Item>
+
     </Wrapper>
   );
 };
