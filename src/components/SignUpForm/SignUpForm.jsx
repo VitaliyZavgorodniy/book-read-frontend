@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import FormInput from 'components/UI-kit/inputs/FormInput';
@@ -94,5 +95,14 @@ const Form = styled.form`
     }
   }
 `;
+
+SignUpForm.propTypes = {
+  values: PropTypes.object,
+  handleSubmit: PropTypes.func,
+  handleChange: PropTypes.func,
+  handleBlur: PropTypes.func,
+  touched: PropTypes.object,
+  errors: PropTypes.object,
+};
 
 export default SignUpForm;
