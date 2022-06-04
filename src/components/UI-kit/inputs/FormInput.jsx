@@ -1,38 +1,15 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const FormInput = ({
-  id,
-  title,
-  required,
-  type,
-  value,
-  onChange,
-  error,
-  disabled,
-  ...props
-}) => {
-  return (
-    <Wrapper>
-      <Label htmlFor={id} isRequired={required}>
-        {title}
-      </Label>
-      <Input
-        id={id}
-        name={id}
-        required={required}
-        value={value}
-        type={type ?? 'text'}
-        disabled={disabled}
-        onChange={(e) =>
-          onChange({ value: e.target.value, name: e.target.name })
-        }
-        {...props}
-      />
-      <ErrorMessage>{error}</ErrorMessage>
-    </Wrapper>
-  );
-};
+const FormInput = ({ name, required, title, error, field, ...props }) => (
+  <Wrapper>
+    <Label htmlFor={name} isRequired={required}>
+      {title}
+    </Label>
+    <Input name={name} id={name} {...field} {...props} />
+    <ErrorMessage>{error}</ErrorMessage>
+  </Wrapper>
+);
 
 const Wrapper = styled.div`
   display: flex;
@@ -60,7 +37,7 @@ const Label = styled.label`
 
 const Input = styled.input`
   padding: 12px;
-  color: ${(p) => p.theme.colors.textLight};
+  color: ${(p) => p.theme.colors.primary};
   background-color: ${(p) => p.theme.colors.bgLight};
   box-shadow: ${(p) => p.theme.shadows.innerInput};
   border: none;
@@ -89,12 +66,8 @@ const ErrorMessage = styled.p`
 `;
 
 FormInput.propTypes = {
-  id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
   required: PropTypes.bool,
-  disabled: PropTypes.bool,
   error: PropTypes.string,
 };
 

@@ -15,7 +15,7 @@ const UserPanel = ({ name, avatar }) => {
   return (
     <Wrapper>
       <AvatarWrapper>{renderAvatar()}</AvatarWrapper>
-      <NamePlate>{name.length ? name : DEFAULT_USER_NAME}</NamePlate>
+      <NamePlate>{name?.length ? name : DEFAULT_USER_NAME}</NamePlate>
     </Wrapper>
   );
 };
