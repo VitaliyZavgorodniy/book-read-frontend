@@ -41,7 +41,6 @@ const Header = styled.header`
 const HeaderContainer = styled.div`
   display: flex;
   align-items: center;
-  /* width: 100%; */
   max-width: 320px;
   padding: 14px 20px 13px 22px;
 
