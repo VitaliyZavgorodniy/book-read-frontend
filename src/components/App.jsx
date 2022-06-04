@@ -8,6 +8,8 @@ import DateInput from 'components/UI-kit/inputs/DateInput';
 import { timeFormatToString } from 'utils/timeFormatToString';
 import { getCurrentEndYearDate } from 'utils/getCurrentEndYearDate';
 
+import Quotes from './Quotes';
+
 const App = () => {
   const [dateFrom, setDateFrom] = useState(new Date());
   const [dateTo, setDateTo] = useState(new Date());
@@ -31,6 +33,10 @@ const App = () => {
           dateFrom={timeFormatToString(dateFrom)}
           dateTo={timeFormatToString(dateTo)}
         />
+      </Item>
+
+      <Item>
+        <Quotes />
       </Item>
     </Wrapper>
   );
