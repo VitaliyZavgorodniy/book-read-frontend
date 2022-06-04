@@ -5,6 +5,7 @@ import { breakpoints } from 'constants/breakpoints';
 import CountdownPanel from 'components/CountdownPanel';
 import GoogleButton from 'components/UI-kit/buttons/GoogleButton';
 import DateInput from 'components/UI-kit/inputs/DateInput';
+import StarRating from 'components/StarRating/StarRating';
 
 import { timeFormatToString } from 'utils/timeFormatToString';
 import { getCurrentEndYearDate } from 'utils/getCurrentEndYearDate';
@@ -33,15 +34,19 @@ const App = () => {
           dateTo={timeFormatToString(dateTo)}
         />
       </Item>
-<<<<<<< HEAD
+
+      <StarRating />
+
+
+
+      <Item></Item>
+        <Boooksreading />
 
       <Item>
-        <Boooksreading />
-=======
-      <Item>
         <GoogleButton />
->>>>>>> 61b6a4d857209400747992260e56ed15727244fb
+
       </Item>
+
     </Wrapper>
   );
 };
