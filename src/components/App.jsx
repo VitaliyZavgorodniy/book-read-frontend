@@ -8,31 +8,16 @@ import DateInput from 'components/UI-kit/inputs/DateInput';
 import { timeFormatToString } from 'utils/timeFormatToString';
 import { getCurrentEndYearDate } from 'utils/getCurrentEndYearDate';
 
+import TrainingPage from 'pages/TrainingPage';
+
 const App = () => {
   const [dateFrom, setDateFrom] = useState(new Date());
   const [dateTo, setDateTo] = useState(new Date());
 
   return (
-    <Wrapper>
-      <Item>
-        <DateInput value={dateFrom} onChange={setDateFrom} />
-        <DateInput value={dateTo} onChange={setDateTo} />
-      </Item>
-
-      <Item>
-        <CountdownPanel
-          title="Year countdown"
-          dateTo={getCurrentEndYearDate()}
-        />
-      </Item>
-      <Item>
-        <CountdownPanel
-          title="Goals countdown"
-          dateFrom={timeFormatToString(dateFrom)}
-          dateTo={timeFormatToString(dateTo)}
-        />
-      </Item>
-    </Wrapper>
+    <section>
+      <TrainingPage />
+    </section>
   );
 };
 
