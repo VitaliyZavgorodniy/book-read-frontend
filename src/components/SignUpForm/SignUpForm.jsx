@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { breakpoints } from 'constants/breakpoints';
 
 import FormInput from 'components/UI-kit/inputs/FormInput';
 
@@ -89,7 +90,7 @@ const Form = styled.form`
   & div:last-of-type {
     height: 67px;
     margin-bottom: 20px;
-    @media (min-width: 768px) {
+    @media ${breakpoints.tablet} {
       margin-top: 22px;
       margin-bottom: 35px;
     }

@@ -1,5 +1,6 @@
 import { useFormik } from 'formik';
 import styled from 'styled-components';
+import { breakpoints } from 'constants/breakpoints';
 
 import SignUpForm from 'components/SignUpForm';
 import background from 'assets/images/background.jpg';
@@ -81,10 +82,10 @@ const Registration = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  @media (min-width: 768px) {
+  @media ${breakpoints.tablet} {
     padding: 64px 0;
   }
-  @media (min-width: 1024px) {
+  @media ${breakpoints.laptop} {
     width: 50vw;
     max-width: 549px;
     padding: 90px 0;
@@ -96,7 +97,7 @@ const FormBox = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  @media (min-width: 768px) {
+  @media ${breakpoints.tablet} {
     width: 400px;
     padding: 40px;
     margin: 0 auto;
