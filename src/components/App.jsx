@@ -7,6 +7,7 @@ import DateInput from 'components/UI-kit/inputs/DateInput';
 
 import { timeFormatToString } from 'utils/timeFormatToString';
 import { getCurrentEndYearDate } from 'utils/getCurrentEndYearDate';
+import Boooksreading from './Boooksreading';
 
 const App = () => {
   const [dateFrom, setDateFrom] = useState(new Date());
@@ -31,6 +32,10 @@ const App = () => {
           dateFrom={timeFormatToString(dateFrom)}
           dateTo={timeFormatToString(dateTo)}
         />
+      </Item>
+
+      <Item>
+        <Boooksreading />
       </Item>
     </Wrapper>
   );
