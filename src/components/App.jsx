@@ -9,6 +9,8 @@ import DateInput from 'components/UI-kit/inputs/DateInput';
 import { timeFormatToString } from 'utils/timeFormatToString';
 import { getCurrentEndYearDate } from 'utils/getCurrentEndYearDate';
 
+import Quotes from './Quotes';
+
 const App = () => {
   return (
     <Wrapper>
