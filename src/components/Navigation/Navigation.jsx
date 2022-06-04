@@ -24,6 +24,7 @@ const HeaderContainer = styled.div`
   justify-content: space-between;
   max-width: 320px;
   padding: 14px 20px 13px 22px;
+  margin: 0 auto;
 
   @media ${breakpoints.tablet} {
     max-width: 768px;
