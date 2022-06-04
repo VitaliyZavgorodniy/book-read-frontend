@@ -1,8 +1,16 @@
+import { useDispatch } from 'react-redux';
+import { authOperations } from '../../redux/auth';
+
 import styled from 'styled-components';
 
 import { breakpoints } from 'constants/breakpoints';
 
-export const LogoutButton = () => <Logout type="button">Logout</Logout>
+export const LogoutButton = () => {
+  const dispatch = useDispatch();
+  return (
+    <Logout type="button" onClick={() => dispatch(authOperations.logout())}>Logout</Logout>
+  )
+}
 
 const Logout = styled.button`
   margin-left: 14px;

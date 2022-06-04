@@ -6,6 +6,7 @@ const initialState = {
   name: '',
   avatarURL: '',
   isFetching: false,
+  isLoggedIn: false,
 };
 
 const authSlice = createSlice({
@@ -21,6 +22,10 @@ const authSlice = createSlice({
     },
     [authOperations.register.rejected]: (state) => {
       state.isFetching = false;
+    },
+    [authOperations.logout.fulfilled](state, action) {
+      state.token = null;
+      state.isLoggedIn = false;
     },
   },
 });
