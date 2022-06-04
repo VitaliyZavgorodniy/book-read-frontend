@@ -8,36 +8,43 @@ import iconHome from 'assets/icons/home.svg';
 
 const NavIcon = ({ src }) => <Icon src={src} />;
 
-export const NavMenu = ({ src }) => (
-  <Nav>
-    <NavList>
-      <NavItem>
-        <NavLink
-          to="/training"
-          style={({ isActive }) => ({
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            width: '33px',
-            height: '33px',
-            backgroundColor: `${(p) => p.theme.colors.bgLight}`,
-            borderRadius: '50%',
-            // color: isActive ? '#4caf50' : '#ffffff',
-            // borderBottom: isActive ? '1px solid #4caf50' : 'none',
-            // fontWeight: isActive ? '700' : '500',
-          })}
-        >
-          <NavIcon src={iconBook} />
-        </NavLink>
-      </NavItem>
-      <NavItem>
-        <NavLink to="/library">
-          <NavIcon src={iconHome} />
-        </NavLink>
-      </NavItem>
-    </NavList>
-  </Nav>
-);
+export const NavMenu = ({ src }) => {
+  let activeStyle = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '33px',
+    height: '33px',
+    // backgroundColor: `${(p) => p.theme.colors.bgLight}`,
+    backgroundColor: '#F5F7FA',
+    borderRadius: '50%',
+  };
+  return (
+    <Nav>
+      <NavList>
+        <NavItem>
+          <NavLink
+            to="/training"
+            style={({ isActive }) =>
+              isActive ? activeStyle : undefined
+            }
+          >
+            <NavIcon src={iconBook} />
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink to="/library"
+          style={({ isActive }) =>
+              isActive ? activeStyle : undefined
+            }
+          >
+            <NavIcon src={iconHome} />
+          </NavLink>
+        </NavItem>
+      </NavList>
+    </Nav>
+  );
+};
 
 const Nav = styled.nav`
   margin-left: 72px;
