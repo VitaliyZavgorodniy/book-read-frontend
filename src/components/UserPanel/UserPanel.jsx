@@ -26,7 +26,7 @@ const Wrapper = styled.div`
   margin-left: 14px;
 
   @media ${breakpoints.tablet} {
-   order: -1;
+    order: -1;
     margin-left: 0;
   }
 `;
