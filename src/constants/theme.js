@@ -21,5 +21,6 @@ export const theme = {
   },
   font: {
     familyPrimary: 'Montserrat, sans-serif',
+    familyLogo: 'Abril Fatface, curcive',
   },
 };

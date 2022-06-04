@@ -10,9 +10,6 @@ import { timeFormatToString } from 'utils/timeFormatToString';
 import { getCurrentEndYearDate } from 'utils/getCurrentEndYearDate';
 
 const App = () => {
-  const [dateFrom, setDateFrom] = useState(new Date());
-  const [dateTo, setDateTo] = useState(new Date());
-
   return (
     <Wrapper>
       <Item>

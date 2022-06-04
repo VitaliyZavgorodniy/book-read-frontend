@@ -23,6 +23,12 @@ const UserPanel = ({ name, avatar }) => {
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
+  margin-left: 14px;
+
+  @media ${breakpoints.tablet} {
+    order: -1;
+    margin-left: 0;
+  }
 `;
 
 const AvatarWrapper = styled.h3`
