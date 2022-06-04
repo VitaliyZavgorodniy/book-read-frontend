@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { breakpoints } from 'constants/breakpoints';
 
-import iconLibrary from 'assets/icons/library.svg';
+import iconBook from 'assets/icons/book.svg';
 import iconHome from 'assets/icons/home.svg';
 
 const NavIcon = ({ src }) => <Icon src={src} />;
@@ -12,12 +12,12 @@ export const NavMenu = ({ src }) => (
   <Nav>
     <NavList>
       <NavItem>
-        <StyledLink to="/library">
-          <NavIcon src={iconLibrary} />
+        <StyledLink to="/training">
+          <NavIcon src={iconBook} />
         </StyledLink>
       </NavItem>
       <NavItem>
-        <StyledLink to="/home">
+        <StyledLink to="/library">
           <NavIcon src={iconHome} />
         </StyledLink>
       </NavItem>
