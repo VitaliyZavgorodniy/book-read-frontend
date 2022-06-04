@@ -41,7 +41,7 @@ const HeaderContainer = styled.div`
     padding: 14px 32px 13px 32px;
   }
 
-  @media ${breakpoints.laptop} {
+  @media ${breakpoints.desktop} {
     max-width: 1280px;
     padding: 14px 16px 13px 16px;
   }
