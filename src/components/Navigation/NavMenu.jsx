@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { breakpoints } from 'constants/breakpoints';
@@ -12,14 +12,28 @@ export const NavMenu = ({ src }) => (
   <Nav>
     <NavList>
       <NavItem>
-        <StyledLink to="/training">
+        <NavLink
+          to="/training"
+          style={({ isActive }) => ({
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: '33px',
+            height: '33px',
+            backgroundColor: `${(p) => p.theme.colors.bgLight}`,
+            borderRadius: '50%',
+            // color: isActive ? '#4caf50' : '#ffffff',
+            // borderBottom: isActive ? '1px solid #4caf50' : 'none',
+            // fontWeight: isActive ? '700' : '500',
+          })}
+        >
           <NavIcon src={iconBook} />
-        </StyledLink>
+        </NavLink>
       </NavItem>
       <NavItem>
-        <StyledLink to="/library">
+        <NavLink to="/library">
           <NavIcon src={iconHome} />
-        </StyledLink>
+        </NavLink>
       </NavItem>
     </NavList>
   </Nav>
@@ -40,23 +54,22 @@ const NavList = styled.ul`
   border-right: 1px solid ${(p) => p.theme.colors.bgLight};
   align-items: center;
   justify-content: center;
-
 `;
 const NavItem = styled.li`
   display: flex;
   margin-right: 14px;
   width: 33px;
   height: 33px;
-  background-color: ${(p) => p.theme.colors.bgLight};
-  border-radius: 50%;
+  /* background-color: ${(p) => p.theme.colors.bgLight};
+  border-radius: 50%; */
   justify-content: center;
   align-items: center;
 
-@media ${breakpoints.tablet} {
-   margin-right: 8px;
+  @media ${breakpoints.tablet} {
+    margin-right: 8px;
   }
 `;
-const StyledLink = styled(Link)``;
+// const StyledLink = styled(Link)``;
 
 const Icon = styled.img`
   padding: 0;
