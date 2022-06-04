@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+import { breakpoints } from 'constants/breakpoints';
+
 import iconLibrary from 'assets/icons/library.svg';
 import iconHome from 'assets/icons/home.svg';
 
@@ -25,12 +27,20 @@ export const NavMenu = ({ src }) => (
 
 const Nav = styled.nav`
   margin-left: 72px;
+
+  @media ${breakpoints.tablet} {
+    margin-left: 140px;
+  }
+  @media ${breakpoints.desktop} {
+    margin-left: 406px;
+  }
 `;
 const NavList = styled.ul`
   display: flex;
   border-right: 1px solid ${(p) => p.theme.colors.bgLight};
   align-items: center;
   justify-content: center;
+
 `;
 const NavItem = styled.li`
   display: flex;
@@ -41,6 +51,10 @@ const NavItem = styled.li`
   border-radius: 50%;
   justify-content: center;
   align-items: center;
+
+@media ${breakpoints.tablet} {
+   margin-right: 8px;
+  }
 `;
 const StyledLink = styled(Link)``;
 
