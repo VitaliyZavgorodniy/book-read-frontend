@@ -8,6 +8,7 @@ import DateInput from 'components/UI-kit/inputs/DateInput';
 
 import { timeFormatToString } from 'utils/timeFormatToString';
 import { getCurrentEndYearDate } from 'utils/getCurrentEndYearDate';
+import Boooksreading from './Boooksreading';
 
 import Quotes from './Quotes';
 
@@ -32,8 +33,14 @@ const App = () => {
           dateTo={timeFormatToString(dateTo)}
         />
       </Item>
+<<<<<<< HEAD
+
+      <Item>
+        <Boooksreading />
+=======
       <Item>
         <GoogleButton />
+>>>>>>> 61b6a4d857209400747992260e56ed15727244fb
       </Item>
     </Wrapper>
   );
