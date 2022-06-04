@@ -3,6 +3,7 @@ export const theme = {
     primary: '#242A37',
     secondary: '#091E3F',
     tertiary: '#898F9F',
+    btnText: '#707375',
     bgPrimary: '#F6F7FB',
     bgSecondary: '#ffffff',
     bgTertiary: '#B1B5C2',
