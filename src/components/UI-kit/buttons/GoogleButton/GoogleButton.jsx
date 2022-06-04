@@ -3,8 +3,18 @@ import PropTypes from 'prop-types';
 
 import styled from 'styled-components';
 
-const GoogleButton = ({onClick}) => {
-  return <Button><FcGoogle style={{ width: 18, height: 18, marginRight: 17 }}/>Google</Button>;
+const GoogleButton = ({ onClick }) => {
+  return (
+    <Button
+      as="a"
+      href="https://connections-api.herokuapp.com/api/login/google"
+      target="_blank"
+      onClick={onClick}
+    >
+      <FcGoogle style={{ width: 18, height: 18, marginRight: 17 }} />
+      Google
+    </Button>
+  );
 };
 
 const Button = styled.button`
@@ -22,7 +32,7 @@ const Button = styled.button`
 `;
 
 GoogleButton.propTypes = {
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
 };
 
 export default GoogleButton;

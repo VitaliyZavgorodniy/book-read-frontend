@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { breakpoints } from 'constants/breakpoints';
 
 import CountdownPanel from 'components/CountdownPanel';
-import GoogleButton from 'components/GoogleButton';
+import GoogleButton from 'components/UI-kit/buttons/GoogleButton';
 import DateInput from 'components/UI-kit/inputs/DateInput';
 
 import { timeFormatToString } from 'utils/timeFormatToString';
