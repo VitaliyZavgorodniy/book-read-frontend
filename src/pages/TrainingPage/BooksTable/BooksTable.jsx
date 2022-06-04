@@ -1,7 +1,7 @@
 import { MdMenuBook, MdOutlineDeleteOutline } from 'react-icons/md';
 import styled from 'styled-components';
 
-const BooksList = ({ list, handleRemove }) => {
+const BooksTable = ({ list, handleRemove }) => {
   const renderList = () => {
     const elementHTML = list.map(({ id, title, author, year, pages }) => (
       <BodyRow key={id}>
@@ -86,4 +86,4 @@ const Button = styled.button`
   background-color: transparent;
 `;
 
-export default BooksList;
+export default BooksTable;

@@ -5,7 +5,7 @@ import { breakpoints } from 'constants/breakpoints';
 import DateInput from 'components/UI-kit/inputs/DateInput';
 import BlockHeading from 'components/UI-kit/sections/BlockHeading';
 import GoalsBoard from 'components/GoalsBoard';
-import BooksList from './BooksList';
+import BooksTable from './BooksTable';
 
 import { getTimeDifference } from 'utils/getTimeDifference';
 import { timeFormatToDT } from 'utils/timeFormatToDT';
@@ -27,6 +27,34 @@ const TEST_LIST = [
   },
   {
     id: '3',
+    title: '5 Defects of the team.  Proverbs about  ...',
+    author: 'Patrick Lencioni',
+    year: '2011',
+    pages: '125',
+  },
+  {
+    id: '4',
+    title: 'Scrum. A  revolutionary method...',
+    author: 'Jeff Sutherland',
+    year: '2014',
+    pages: '15',
+  },
+  {
+    id: '5',
+    title: 'Deadline. A novel about project  ...',
+    author: 'Tom DeMarko',
+    year: '2006',
+    pages: '188',
+  },
+  {
+    id: '6',
+    title: '5 Defects of the team.  Proverbs about  ...',
+    author: 'Patrick Lencioni',
+    year: '2011',
+    pages: '125',
+  },
+  {
+    id: '7',
     title: '5 Defects of the team.  Proverbs about  ...',
     author: 'Patrick Lencioni',
     year: '2011',
@@ -82,7 +110,7 @@ const TrainingPage = () => {
 
       <GoalsBoard data={[booksGoal, daysGoal]} title="My goals" />
 
-      <BooksList list={booksList} handleRemove={handleRemoveBook} />
+      <BooksTable list={booksList} handleRemove={handleRemoveBook} />
     </div>
   );
 };

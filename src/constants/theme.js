@@ -10,6 +10,7 @@ export const theme = {
     bgLight: '#F5F7FA',
     accent: '#FF6B08',
     heading: '#6D7A8D',
+    border: '#E0E5EB',
     error: '#F32424',
   },
   shadows: {
