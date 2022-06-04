@@ -4,6 +4,7 @@ import { breakpoints } from 'constants/breakpoints';
 
 import CountdownPanel from 'components/CountdownPanel';
 import DateInput from 'components/UI-kit/inputs/DateInput';
+import StarRating from 'components/StarRating/StarRating';
 
 import { timeFormatToString } from 'utils/timeFormatToString';
 import { getCurrentEndYearDate } from 'utils/getCurrentEndYearDate';
@@ -32,6 +33,7 @@ const App = () => {
           dateTo={timeFormatToString(dateTo)}
         />
       </Item>
+      <StarRating />
     </Wrapper>
   );
 };
