@@ -6,7 +6,7 @@ const initialState = {
   name: '',
   avatarURL: '',
   isFetching: false,
-  isLoggedIn: false,
+  isLoggedIn: true,
 };
 
 const authSlice = createSlice({

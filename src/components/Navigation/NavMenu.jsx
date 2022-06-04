@@ -25,18 +25,15 @@ export const NavMenu = ({ src }) => {
         <NavItem>
           <NavLink
             to="/training"
-            style={({ isActive }) =>
-              isActive ? activeStyle : undefined
-            }
+            style={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
             <NavIcon src={iconBook} />
           </NavLink>
         </NavItem>
         <NavItem>
-          <NavLink to="/library"
-          style={({ isActive }) =>
-              isActive ? activeStyle : undefined
-            }
+          <NavLink
+            to="/library"
+            style={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
             <NavIcon src={iconHome} />
           </NavLink>

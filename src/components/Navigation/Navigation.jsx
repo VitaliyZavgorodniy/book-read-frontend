@@ -1,16 +1,26 @@
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+
 import { breakpoints } from 'constants/breakpoints';
+import { authSelectors } from 'redux/auth';
 
 import { LogoLink } from './LogoLink';
 import { UserPanelBlock } from './UserPanelBlock';
 
 const Navigation = ({ src }) => {
+  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   return (
     <Header>
-      <HeaderContainer>
-        <LogoLink />
-        <UserPanelBlock />
-      </HeaderContainer>
+      {isLoggedIn ? (
+        <HeaderContainer>
+          <LogoLink />
+          <UserPanelBlock />
+        </HeaderContainer>
+      ) : (
+        <HeaderContainerNotLoginned>
+          <LogoLink />
+        </HeaderContainerNotLoginned>
+      )}
     </Header>
   );
 };
@@ -34,6 +44,13 @@ const HeaderContainer = styled.div`
   @media ${breakpoints.laptop} {
     max-width: 1280px;
     padding: 14px 16px 13px 16px;
+  }
+`;
+const HeaderContainerNotLoginned = styled(HeaderContainer)`
+  justify-content: center;
+
+  @media ${breakpoints.tablet} {
+    justify-content: start;
   }
 `;
 export default Navigation;
