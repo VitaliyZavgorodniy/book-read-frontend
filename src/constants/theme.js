@@ -12,6 +12,7 @@ export const theme = {
     accent: '#FF6B08',
     heading: '#6D7A8D',
     error: '#F32424',
+    hover: '#D15807',
   },
   shadows: {
     primary: '4px 4px 8px rgba(36, 42, 55, 0.15)',
