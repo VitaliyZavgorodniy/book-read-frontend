@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { breakpoints } from 'constants/breakpoints';
 
-import UserPanel from '../UserPanel/UserPanel';
+import UserPanel from 'components/UserPanel';
 
 import iconLibrary from 'assets/icons/library.svg';
 import iconHome from 'assets/icons/home.svg';
