@@ -2,6 +2,8 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { Notyf } from 'notyf';
 
+import authSelectors from './auth-selectors';
+
 axios.defaults.baseURL = process.env.REACT_APP_BACKEND_LINK;
 
 const notyf = new Notyf();
@@ -45,6 +47,22 @@ const register = createAsyncThunk(
   }
 );
 
+const login = createAsyncThunk(
+  'auth/login',
+  async (credentials, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.post('/users/login', credentials);
+
+      token.set(data.token);
+
+      return data;
+    } catch (err) {
+      notyf.error('Incorrect email or password!');
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+
 const logout = createAsyncThunk('auth/logout', async () => {
   try {
     await axios.post('/logout');
@@ -54,9 +72,30 @@ const logout = createAsyncThunk('auth/logout', async () => {
   }
 });
 
+const refresh = createAsyncThunk(
+  'auth/refresh',
+  async (_, { rejectWithValue, getState }) => {
+    const persistedToken = authSelectors.getToken(getState());
+
+    if (persistedToken === null) return rejectWithValue();
+
+    token.set(persistedToken);
+
+    try {
+      const { data } = await axios.get('/users/current');
+
+      return data;
+    } catch (err) {
+      console.error(err);
+    }
+  }
+);
+
 const operations = {
   register,
   logout,
+  refresh,
+  login,
 };
 
 export default operations;

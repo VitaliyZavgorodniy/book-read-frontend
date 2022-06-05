@@ -1,5 +1,4 @@
-export const validate  = (values) => {
-  console.log(values);
+export const validate = (values) => {
   const errors = {};
   if (!values.name) {
     errors.name = 'Enter your name';

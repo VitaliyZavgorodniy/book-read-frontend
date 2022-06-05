@@ -1,25 +1,71 @@
-import styled from 'styled-components';
-import { breakpoints } from 'constants/breakpoints';
-import RegisterPage from 'pages/RegisterPage';
+import { lazy, Suspense, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Routes, Route } from 'react-router-dom';
+
+import MainLayout from 'layouts/MainLayout';
+import PrivateRoute from 'hoc/PrivateRoute';
+import PublicRoute from 'hoc/PublicRoute';
+
+import { authOperations, authSelectors } from 'redux/auth';
+
+const HomePage = lazy(() => import('pages/HomePage'));
+const RegisterPage = lazy(() => import('pages/RegisterPage'));
+const LoginPage = lazy(() => import('pages/LoginPage'));
 
 const App = () => {
-  return <RegisterPage></RegisterPage>;
+  const dispatch = useDispatch();
+
+  const isFetching = useSelector(authSelectors.getIsFetching);
+
+  useEffect(() => {
+    dispatch(authOperations.refresh());
+  }, [dispatch]);
+
+  if (isFetching) return <div>fetching...</div>;
+
+  return (
+    <Routes>
+      <Route path="/" element={<MainLayout />}>
+        <Route
+          index
+          element={
+            <PrivateRoute
+              component={
+                <Suspense fallback={<div>fetching...</div>}>
+                  <HomePage />
+                </Suspense>
+              }
+            />
+          }
+        />
+
+        <Route
+          path="signup"
+          element={
+            <PublicRoute
+              component={
+                <Suspense fallback={<div>fetching...</div>}>
+                  <RegisterPage />
+                </Suspense>
+              }
+            />
+          }
+        />
+        <Route
+          path="login"
+          element={
+            <PublicRoute
+              component={
+                <Suspense fallback={<div>fetching...</div>}>
+                  <LoginPage />
+                </Suspense>
+              }
+            />
+          }
+        />
+      </Route>
+    </Routes>
+  );
 };
-
-const Wrapper = styled.section`
-  max-width: 320px;
-
-  @media ${breakpoints.tablet} {
-    max-width: 768px;
-  }
-
-  @media ${breakpoints.desktop} {
-    max-width: 1024px;
-  }
-`;
-
-const Item = styled.div`
-  margin: 40px;
-`;
 
 export default App;
