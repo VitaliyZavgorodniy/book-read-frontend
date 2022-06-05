@@ -73,17 +73,7 @@ const LoginForm = ({ onRegister, isFetching }) => {
       </Form>
 
       <ItemWrapper>
-        <Text>
-          Register
-          {/* Already have an account?{' '}
-          <span
-            style={{
-              color: '#FF6B08',
-            }}
-          >
-            Log in
-          </span> */}
-        </Text>
+        <Text>Register</Text>
       </ItemWrapper>
     </Wrapper>
   );
