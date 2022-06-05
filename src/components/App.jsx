@@ -5,6 +5,7 @@ import { Routes, Route } from 'react-router-dom';
 import MainLayout from 'layouts/MainLayout';
 import PrivateRoute from 'hoc/PrivateRoute';
 import PublicRoute from 'hoc/PublicRoute';
+import TokenCheckPage from 'pages/TokenCheckPage';
 
 import { authOperations, authSelectors } from 'redux/auth';
 
@@ -58,6 +59,18 @@ const App = () => {
               component={
                 <Suspense fallback={<div>fetching...</div>}>
                   <LoginPage />
+                </Suspense>
+              }
+            />
+          }
+        />
+        <Route
+          path="login/:token"
+          element={
+            <PublicRoute
+              component={
+                <Suspense fallback={<div>fetching...</div>}>
+                  <TokenCheckPage />
                 </Suspense>
               }
             />

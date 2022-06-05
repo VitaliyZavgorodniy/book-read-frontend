@@ -51,7 +51,7 @@ const login = createAsyncThunk(
   'auth/login',
   async (credentials, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post('/users/login', credentials);
+      const { data } = await axios.post('/login', credentials);
 
       token.set(data.token);
 
@@ -82,7 +82,7 @@ const refresh = createAsyncThunk(
     token.set(persistedToken);
 
     try {
-      const { data } = await axios.get('/users/current');
+      const { data } = await axios.get('/me');
 
       return data;
     } catch (err) {

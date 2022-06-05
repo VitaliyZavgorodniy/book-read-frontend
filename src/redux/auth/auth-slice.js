@@ -12,6 +12,11 @@ const initialState = {
 const authSlice = createSlice({
   name: 'auth',
   initialState,
+  reducers: {
+    refreshToken: (state, { payload }) => {
+      state.token = payload;
+    },
+  },
   extraReducers: {
     [authOperations.register.pending]: (state) => {
       state.isFetching = true;
@@ -36,7 +41,8 @@ const authSlice = createSlice({
       state.isFetching = true;
     },
     [authOperations.refresh.fulfilled]: (state, { payload }) => {
-      state.user = payload;
+      state.name = payload.name;
+      state.avatarURL = payload.avatarURL;
       state.isLoggedIn = true;
       state.isFetching = false;
     },
@@ -46,4 +52,5 @@ const authSlice = createSlice({
   },
 });
 
+export const authActions = authSlice.actions;
 export default authSlice.reducer;
