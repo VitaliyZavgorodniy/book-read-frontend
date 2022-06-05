@@ -1,11 +1,11 @@
 import styled from 'styled-components';
+import { breakpoints } from 'constants/breakpoints';
 
 const Quotes = () => {
   return (
     <Wrapper>
       <Quotestext>
-        Книги — это корабли мысли, странствующие по волнам времени и бережно
-        несущие свой драгоценный груз от поколения к поколению.
+        Books are the ships of thoughts, wandering through the waves of time.
       </Quotestext>
       <AuthorTeg>
         <Author>Бэкон Ф.</Author>
@@ -15,11 +15,16 @@ const Quotes = () => {
 };
 
 const Wrapper = styled.div`
-  background-image: url(/static/media/kovicki.9abb887f.svg);
-  background-repeat: no-repeat;
-  background-position-x: 49%;
-  background-position-y: 25%;
-  padding-top: 70px;
+  width: 447px;
+  height: 127px;
+  @media ${breakpoints.tablet} {
+    width: 477px;
+    height: 127px;
+  }
+  @media ${breakpoints.laptop} {
+    width: 447px;
+    height: 127px;
+  }
 `;
 const Quotestext = styled.h1`
   font-family: Montserrat;
