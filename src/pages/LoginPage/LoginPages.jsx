@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import LoginForm from 'components/LoginForm';
+import LoginForm from './LoginForm';
 
-import Quotes from '../../components/Quotes';
+import Quotes from './Quotes';
 
 const LoginPage = () => {
   return (

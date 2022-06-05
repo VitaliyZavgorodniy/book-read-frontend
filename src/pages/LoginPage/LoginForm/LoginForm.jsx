@@ -1,14 +1,18 @@
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { breakpoints } from 'constants/breakpoints';
 import { useFormik } from 'formik';
 
 import FormInput from 'components/UI-kit/inputs/FormInput';
 import GoogleButton from 'components/UI-kit/buttons/GoogleButton';
+import InlineButton from 'components/UI-kit/buttons/InlineButton';
 
 import { validate } from 'utils/validateForRegistration';
 
-const LoginForm = ({ onRegister, isFetching }) => {
+const LoginForm = ({ onLogin, isFetching }) => {
+  const navigate = useNavigate();
+
   const initialValues = {
     email: '',
     password: '',
@@ -16,19 +20,19 @@ const LoginForm = ({ onRegister, isFetching }) => {
 
   const form = useFormik({
     initialValues,
-    validate,
+    // validate,
     enableReinitialize: true,
     onSubmit: ({ email, password }) => {
-      onRegister({ email, password });
+      onLogin({ email, password });
     },
   });
 
   const { values, handleSubmit, handleChange, handleBlur, touched, errors } =
     form;
 
-  //   const onPasteHandler = (e) => {
-  //     e.preventDefault();
-  //   };
+  const handleLink = () => {
+    navigate('/register');
+  };
 
   return (
     <Wrapper>
@@ -73,7 +77,7 @@ const LoginForm = ({ onRegister, isFetching }) => {
       </Form>
 
       <ItemWrapper>
-        <Text>Register</Text>
+        <InlineButton onClick={handleLink} label="Register" variant="accent" />
       </ItemWrapper>
     </Wrapper>
   );
@@ -118,7 +122,7 @@ const ItemWrapper = styled.ul`
 `;
 
 LoginForm.propTypes = {
-  onRegister: PropTypes.func.isRequired,
+  onLogin: PropTypes.func.isRequired,
   isFetching: PropTypes.bool.isRequired,
 };
 

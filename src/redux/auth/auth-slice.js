@@ -32,6 +32,20 @@ const authSlice = createSlice({
       state.isFetching = false;
     },
 
+    [authOperations.login.pending]: (state) => {
+      state.isFetching = true;
+    },
+    [authOperations.login.fulfilled]: (state, { payload }) => {
+      state.token = payload.token;
+      state.name = payload.name;
+      state.avatarURL = payload.avatarURL;
+      state.isFetching = false;
+      state.isLoggedIn = true;
+    },
+    [authOperations.login.rejected]: (state) => {
+      state.isFetching = false;
+    },
+
     [authOperations.logout.fulfilled](state, action) {
       state.token = null;
       state.isLoggedIn = false;

@@ -50,12 +50,16 @@ const register = createAsyncThunk(
 const login = createAsyncThunk(
   'auth/login',
   async (credentials, { rejectWithValue }) => {
+    console.log(credentials);
     try {
-      const { data } = await axios.post('/login', credentials);
+      const {
+        data: { result },
+      } = await axios.post('/login', credentials);
 
-      token.set(data.token);
+      console.log(result);
+      token.set(result.token);
 
-      return data;
+      return result;
     } catch (err) {
       notyf.error('Incorrect email or password!');
       return rejectWithValue(err.response.data);

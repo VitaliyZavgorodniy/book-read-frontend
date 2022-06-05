@@ -2,7 +2,7 @@ import { current } from '@reduxjs/toolkit';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-const Textaria = (value) => {
+const Textarea = (value) => {
   return (
     <Wrapper>
       <Textariaform>
@@ -27,4 +27,4 @@ Textaria.propTypes = {
   value: PropTypes.string.isRequired,
 };
 
-export default Textaria;
+export default Textarea;

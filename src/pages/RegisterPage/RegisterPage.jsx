@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { breakpoints } from 'constants/breakpoints';
 
-import RegsiterForm from 'components/RegsiterForm';
+import RegsiterForm from './RegsiterForm';
 import InfoBlockAbout from './InfoBlockAbout';
 
 const RegisterPage = () => {

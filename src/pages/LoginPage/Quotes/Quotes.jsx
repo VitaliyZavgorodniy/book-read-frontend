@@ -52,10 +52,10 @@ const Author = styled.p`
   line-height: 2.7%;
   text-align: center;
   color: #898f9f;
-  
-  :before{
-        content: "";
-    background-color: rgba(36,42,55,.5);
+
+  &::before {
+    content: '';
+    background-color: rgba(36, 42, 55, 0.5);
     position: absolute;
     width: 100px;
     height: 1px;
@@ -63,7 +63,6 @@ const Author = styled.p`
     left: 50px;
     opacity: 1;
     margin-bottom: 20px;
-}
   }
 `;
 
