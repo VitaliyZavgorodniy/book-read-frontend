@@ -68,20 +68,21 @@ const LoginForm = ({ onRegister, isFetching }) => {
         </ItemWrapper>
 
         <ItemWrapper>
-          <button type="submit">Submit</button>
+          <button type="submit">Login</button>
         </ItemWrapper>
       </Form>
 
       <ItemWrapper>
         <Text>
-          Already have an account?{' '}
+          Register
+          {/* Already have an account?{' '}
           <span
             style={{
               color: '#FF6B08',
             }}
           >
             Log in
-          </span>
+          </span> */}
         </Text>
       </ItemWrapper>
     </Wrapper>
@@ -114,7 +115,8 @@ const Text = styled.p`
   font-size: 13px;
   line-height: 16px;
   text-align: center;
-  color: ${(p) => p.theme.colors.tertiary};
+  color: ${(p) => p.theme.colors.accent};
+  border-bottom: 1px solid #ff6b08;
 `;
 
 const ItemWrapper = styled.ul`
