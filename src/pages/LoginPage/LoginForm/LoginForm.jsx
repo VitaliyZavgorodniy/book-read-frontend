@@ -7,6 +7,7 @@ import { useFormik } from 'formik';
 import FormInput from 'components/UI-kit/inputs/FormInput';
 import GoogleButton from 'components/UI-kit/buttons/GoogleButton';
 import InlineButton from 'components/UI-kit/buttons/InlineButton';
+import CommonButton from 'components/UI-kit/buttons/CommonButton';
 
 import { validate } from 'utils/validateForRegistration';
 
@@ -72,7 +73,7 @@ const LoginForm = ({ onLogin, isFetching }) => {
         </ItemWrapper>
 
         <ItemWrapper>
-          <button type="submit">Login</button>
+          <CommonButton type="submit" title="Login" variant="accent" />
         </ItemWrapper>
       </Form>
 

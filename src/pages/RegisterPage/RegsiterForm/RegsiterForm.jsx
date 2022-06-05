@@ -7,6 +7,7 @@ import { useFormik } from 'formik';
 import FormInput from 'components/UI-kit/inputs/FormInput';
 import GoogleButton from 'components/UI-kit/buttons/GoogleButton';
 import InlineButton from 'components/UI-kit/buttons/InlineButton';
+import CommonButton from 'components/UI-kit/buttons/CommonButton';
 
 import { validate } from 'utils/validateForRegistration';
 
@@ -109,7 +110,7 @@ const RegsiterForm = ({ onRegister, isFetching }) => {
         </ItemWrapper>
 
         <ItemWrapper>
-          <button type="submit">Submit</button>
+          <CommonButton type="submit" title="Register" variant="accent" />
         </ItemWrapper>
       </Form>
 
