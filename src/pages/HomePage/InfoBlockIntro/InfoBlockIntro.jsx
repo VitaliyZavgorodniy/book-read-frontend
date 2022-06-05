@@ -1,82 +1,97 @@
+import { useState } from 'react';
+import Media from 'react-media';
+import { createPortal } from 'react-dom';
 import styled from 'styled-components';
 import { breakpoints } from 'constants/breakpoints';
 
-import { ReactComponent as Library } from 'assets/icons/library.svg';
-import { ReactComponent as Flag } from 'assets/icons/flag.svg';
-import { ReactComponent as Arrow } from 'assets/icons/arrow.svg';
+import InfoTextIntro from './InfoTextIntro';
 
-const InfoBlockIntro = () => (
-  <StepsList>
-    <Step>
-      <StepNumber>Step 1.</StepNumber>
-      <Title>
-        <Library />
-        LibraryInfo Create your own library
-      </Title>
-      <Text>
-        <Arrow />
-        <span>Add there books which you are going to read.</span>
-      </Text>
-    </Step>
-    <Step>
-      <StepNumber>Step 2.</StepNumber>
-      <Title>
-        <Flag />
-        Create your first training
-      </Title>
-      <Text>
-        <Arrow />
-        Set a goal, choose period, start training.
-      </Text>
-    </Step>
-  </StepsList>
-);
+const modalRoot = document.querySelector('#modal-root');
 
-const StepsList = styled.ul`
-  margin-bottom: 40px;
+const InfoBlockIntro = () => {
+  const [modal, setModal] = useState(true);
+  const toggleModal = () => {
+    setModal(false);
+  };
+  return (
+    <>
+      <Media
+        queries={{
+          small: { maxWidth: 767 },
+        }}
+      >
+        {(matches) =>
+          matches.small &&
+          modal &&
+          createPortal(
+            <Overlay>
+              <Wrapper>
+                <InfoTextIntro />
+                <Button type="button" onClick={toggleModal}>
+                  Ok
+                </Button>
+              </Wrapper>
+            </Overlay>,
+            modalRoot
+          )
+        }
+      </Media>
+      <Media queries={{ medium: { minWidth: 768 } }}>
+        {(matches) =>
+          matches.medium && (
+            <Wrapper>
+              <InfoTextIntro />
+            </Wrapper>
+          )
+        }
+      </Media>
+    </>
+  );
+};
+
+const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 153px 0 70px;
 `;
 
-const Step = styled.li`
-  &:not(:last-child) {
-    margin-bottom: 21px;
-    @media ${breakpoints.tablet} {
-      margin-bottom: 24px;
-    }
-  }
-`;
-
-const StepNumber = styled.h2`
-  margin-bottom: 8px;
-  font-size: 18px;
-  line-height: 22px;
-  color: ${(p) => p.theme.colors.primary};
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 280px;
+  height: 425px;
+  padding: 42px 20px;
+  margin: 0 auto;
+  font-weight: 600;
+  background: ${(p) => p.theme.colors.bgSecondary};
+  box-shadow: ${(p) => p.theme.shadows.block};
   @media ${breakpoints.tablet} {
-    margin-bottom: 16px;
-    font-size: 16px;
-    line-height: 23px;
+    width: 608px;
+    height: 272px;
+    padding: 40px;
   }
 `;
 
-const Title = styled.h3`
-  margin-bottom: 8px;
-  font-size: 16px;
-  line-height: 20px;
-  color: ${(p) => p.theme.colors.primary};
-  & svg {
-    margin-right: 12px;
-  }
-`;
-
-const Text = styled.p`
-  position: relative;
-  padding-left: 52px;
-  font-weight: 400;
+const Button = styled.button`
+  cursor: pointer;
+  width: 127px;
+  height: 40px;
+  font-weight: 500;
   font-size: 14px;
-  line-height: 17px;
-  color: ${(p) => p.theme.colors.tertiary};
-  & svg {
-    position: absolute;
-    left: 34px;
+  line-height: 38px;
+  text-align: center;
+  background: ${(p) => p.theme.colors.accent};
+  color: ${(p) => p.theme.colors.bgSecondary};
+  box-shadow: ${(p) => p.theme.shadows.button};
+  &:hover {
+    background: ${(p) => p.theme.colors.hover};
   }
 `;
 

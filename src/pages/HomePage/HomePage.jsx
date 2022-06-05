@@ -7,9 +7,7 @@ const HomePage = ({ library }) => {
   return (
     <Wrapper>
       <h1>HOME PAGE</h1>
-      <div>
-        <InfoBlockIntro />
-      </div>
+      {!library && <InfoBlockIntro />}
     </Wrapper>
   );
 };
