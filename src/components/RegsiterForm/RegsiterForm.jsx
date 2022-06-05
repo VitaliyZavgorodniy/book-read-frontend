@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { breakpoints } from 'constants/breakpoints';
@@ -5,10 +6,13 @@ import { useFormik } from 'formik';
 
 import FormInput from 'components/UI-kit/inputs/FormInput';
 import GoogleButton from 'components/UI-kit/buttons/GoogleButton';
+import InlineButton from 'components/UI-kit/buttons/InlineButton';
 
 import { validate } from 'utils/validateForRegistration';
 
 const RegsiterForm = ({ onRegister, isFetching }) => {
+  const navigate = useNavigate();
+
   const initialValues = {
     name: '',
     email: '',
@@ -30,6 +34,10 @@ const RegsiterForm = ({ onRegister, isFetching }) => {
 
   const onPasteHandler = (e) => {
     e.preventDefault();
+  };
+
+  const handleLink = () => {
+    navigate('/login');
   };
 
   return (
@@ -108,13 +116,7 @@ const RegsiterForm = ({ onRegister, isFetching }) => {
       <ItemWrapper>
         <Text>
           Already have an account?{' '}
-          <span
-            style={{
-              color: '#FF6B08',
-            }}
-          >
-            Log in
-          </span>
+          <InlineButton label="Log in" variant="accent" onClick={handleLink} />
         </Text>
       </ItemWrapper>
     </Wrapper>
