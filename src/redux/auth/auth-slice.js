@@ -3,8 +3,8 @@ import authOperations from './auth-operations';
 
 const initialState = {
   token: null,
-  name: '',
-  avatarURL: '',
+  name: null,
+  avatarURL: null,
   isFetching: false,
   isLoggedIn: true,
 };
@@ -19,10 +19,13 @@ const authSlice = createSlice({
     [authOperations.register.fulfilled]: (state, { payload }) => {
       state.token = payload.token;
       state.isFetching = false;
+      state.name = payload.name;
+      state.avatarURL = null;
     },
     [authOperations.register.rejected]: (state) => {
       state.isFetching = false;
     },
+
     [authOperations.logout.fulfilled](state, action) {
       state.token = null;
       state.isLoggedIn = false;

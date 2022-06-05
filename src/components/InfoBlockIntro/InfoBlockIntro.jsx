@@ -5,34 +5,32 @@ import { ReactComponent as Library } from 'assets/icons/library.svg';
 import { ReactComponent as Flag } from 'assets/icons/flag.svg';
 import { ReactComponent as Arrow } from 'assets/icons/arrow.svg';
 
-const EmptyInfo = () => {
-  return (
-    <StepsList>
-      <Step>
-        <StepNumber>Step 1.</StepNumber>
-        <Title>
-          <Library />
-          LibraryInfo Create your own library
-        </Title>
-        <Text>
-          <Arrow />
-          <span>Add there books which you are going to read.</span>
-        </Text>
-      </Step>
-      <Step>
-        <StepNumber>Step 2.</StepNumber>
-        <Title>
-          <Flag />
-          Create your first training
-        </Title>
-        <Text>
-          <Arrow />
-          Set a goal, choose period, start training.
-        </Text>
-      </Step>
-    </StepsList>
-  );
-};
+const InfoBlockIntro = () => (
+  <StepsList>
+    <Step>
+      <StepNumber>Step 1.</StepNumber>
+      <Title>
+        <Library />
+        LibraryInfo Create your own library
+      </Title>
+      <Text>
+        <Arrow />
+        <span>Add there books which you are going to read.</span>
+      </Text>
+    </Step>
+    <Step>
+      <StepNumber>Step 2.</StepNumber>
+      <Title>
+        <Flag />
+        Create your first training
+      </Title>
+      <Text>
+        <Arrow />
+        Set a goal, choose period, start training.
+      </Text>
+    </Step>
+  </StepsList>
+);
 
 const StepsList = styled.ul`
   margin-bottom: 40px;
@@ -82,4 +80,4 @@ const Text = styled.p`
   }
 `;
 
-export default EmptyInfo;
+export default InfoBlockIntro;

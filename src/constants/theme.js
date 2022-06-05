@@ -1,8 +1,11 @@
+import bgRegister from 'assets/images/background.jpg';
+
 export const theme = {
   colors: {
     primary: '#242A37',
     secondary: '#091E3F',
     tertiary: '#898F9F',
+    bgAlpha: '#091e3f90',
     btnText: '#707375',
     bgPrimary: '#F6F7FB',
     bgSecondary: '#ffffff',
@@ -10,6 +13,7 @@ export const theme = {
     textLight: '#A6ABB9',
     bgLight: '#F5F7FA',
     accent: '#FF6B08',
+    contrast: '#ffffff',
     heading: '#6D7A8D',
     error: '#F32424',
     hover: '#D15807',
@@ -23,5 +27,12 @@ export const theme = {
   font: {
     familyPrimary: 'Montserrat, sans-serif',
     familyLogo: 'Abril Fatface, curcive',
+    familySecondary: 'Roboto, sans-serif',
+  },
+  backgrounds: {
+    register: bgRegister,
+  },
+  animations: {
+    primary: '250ms ease-in-out',
   },
 };

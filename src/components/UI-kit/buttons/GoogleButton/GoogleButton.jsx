@@ -1,34 +1,44 @@
-import { FcGoogle } from 'react-icons/fc';
 import PropTypes from 'prop-types';
-
 import styled from 'styled-components';
+import { FcGoogle } from 'react-icons/fc';
 
-const GoogleButton = ({ onClick }) => {
-  return (
-    <Button
-      as="a"
-      href="https://connections-api.herokuapp.com/api/login/google"
-      target="_blank"
-      onClick={onClick}
-    >
-      <FcGoogle style={{ width: 18, height: 18, marginRight: 17 }} />
-      Google
-    </Button>
-  );
-};
+const { REACT_APP_BACKEND_LINK } = process.env;
 
-const Button = styled.button`
+const GoogleButton = () => (
+  <Button href={`${REACT_APP_BACKEND_LINK}/login/google`} target="_blank">
+    <Icon />
+    Google
+  </Button>
+);
+
+const Button = styled.a`
   display: flex;
+  justify-content: center;
+  align-items: center;
   width: 150px;
   height: 40px;
   margin: 0 auto;
   padding: 11px 14px;
-  font-family: Roboto;
-  font-weight: 700;
-  color: ${(p) => p.theme.colors.btnText};
   background-color: ${(p) => p.theme.colors.bgLight};
+  color: ${(p) => p.theme.colors.btnText};
+  font-family: ${(p) => p.theme.font.familySecondary};
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 38px;
   box-shadow: ${(p) => p.theme.shadows.button};
-  cursor: pointer;
+  transition: background-color ${(p) => p.theme.animations.primary};
+
+  &:hover {
+    cursor: pointer;
+    color: ${(p) => p.theme.colors.contrast};
+    background-color: ${(p) => p.theme.colors.accent};
+  }
+`;
+
+const Icon = styled(FcGoogle)`
+  width: 18px;
+  height: 18px;
+  margin-right: 17px;
 `;
 
 GoogleButton.propTypes = {
