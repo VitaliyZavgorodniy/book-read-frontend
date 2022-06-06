@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Routes, Route } from 'react-router-dom';
 
 import MainLayout from 'layouts/MainLayout';
-import PublicLayout from 'layouts/PublicLayout';
+import PublicLayout from '../layouts/PublicLayout';
 import PrivateRoute from 'hoc/PrivateRoute';
 import PublicRoute from 'hoc/PublicRoute';
 import TokenCheckPage from 'pages/TokenCheckPage';

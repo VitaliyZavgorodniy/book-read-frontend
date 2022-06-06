@@ -1,8 +1,8 @@
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 import { breakpoints } from 'constants/breakpoints';
-import { authSelectors } from 'redux/auth';
+// import { authSelectors } from 'redux/auth';
 
 import { LogoLink } from './LogoLink';
 import { UserPanelBlock } from './UserPanelBlock';
