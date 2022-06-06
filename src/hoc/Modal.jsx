@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
-import { createPortal } from "react-dom";
+import { createPortal } from 'react-dom';
 import styled from 'styled-components';
+
 
 
 const Modal = ({ children, onClose }) => {
   useEffect(() => {
-    const handleKeyDown = e => {
+    const handleKeyDown = (e) => {
       if (e.code === 'Escape') {
         onClose();
       }
@@ -13,26 +14,22 @@ const Modal = ({ children, onClose }) => {
 
     window.addEventListener('keydown', handleKeyDown);
     document.body.style.overflow = 'hidden';
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-    };
+
+    return () => window.removeEventListener('keydown', handleKeyDown);
   });
-  const handleBackdropClick = e => {
+  const handleBackdropClick = (e) => {
     if (e.currentTarget === e.target) {
       onClose();
     }
   };
 
   return createPortal(
-    <Overlay onClick={handleBackdropClick}>
-      {children}
-    </Overlay>
+    <Overlay onClick={handleBackdropClick}>{children}</Overlay>
   );
 };
 
-
 const Overlay = styled.div`
-z-index: 1200;
+  z-index: 1200;
   position: fixed;
   top: 0;
   left: 0;
@@ -43,6 +40,6 @@ z-index: 1200;
   align-items: center;
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.7);
-`
+`;
 
 export default Modal;
