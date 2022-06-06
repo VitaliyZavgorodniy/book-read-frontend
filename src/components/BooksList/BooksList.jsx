@@ -6,14 +6,14 @@ const BooksList = ({ title, books }) => {
   return (
     <Section>
       <Title>{title}</Title>
+      <Heading>
+        <Cell>Book title</Cell>
+        <Cell>Author</Cell>
+        <Cell>Year</Cell>
+        <Cell>Pages</Cell>
+        {title === 'Already read' && <Cell>Rating</Cell>}
+      </Heading>
       <List>
-        <Heading $mode={title}>
-          <Cell>Book title</Cell>
-          <Cell>Author</Cell>
-          <Cell>Year</Cell>
-          <Cell>Pages</Cell>
-          {title === 'Already read' && <Cell>Rating</Cell>}
-        </Heading>
         {books &&
           books.map((book) => (
             <Item key={book.id}>
@@ -94,7 +94,7 @@ const StarsIcon = styled(MdStarRate)`
   color: orange;
 `;
 
-const Cell = styled.li`
+const Cell = styled.h3`
   font-size: 14px;
   font-weight: 500;
   line-height: 17px;
@@ -118,7 +118,7 @@ const Item = styled.li`
   width: 280px;
   margin-bottom: 16px;
   padding: 20px 46px 28px 54px;
-  box-shadow: ${(p) => p.theme.shadows.bookItem};
+  box-shadow: ${(p) => p.theme.shadows.booksItem};
 
   &:last-child {
     margin-bottom: 0px;
