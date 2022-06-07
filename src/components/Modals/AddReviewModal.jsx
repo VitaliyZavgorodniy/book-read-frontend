@@ -1,7 +1,7 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import styled from 'styled-components';
-import ReactStars from 'react-rating-stars-component';
+import { FaStar } from "react-icons/fa"
 
 const ReviewModal = () => {
   const formik = useFormik({
@@ -18,25 +18,30 @@ const ReviewModal = () => {
   return (
     <Form onSubmit={formik.handleSubmit}>
       <Label>Choose rating of the book</Label>
+      
       <StarsWrapper>
-        <ReactStars
-          name="rating"
-          count={5}
-          value={formik.values.rating}
-          size={24}
-          emptyIcon={
-            <svg width="17" height="17">
-              <use href="../icons/greyStar.svg"></use>
-            </svg>
-          }
-          fullIcon={
-            <svg width="17" height="17">
-              <use href="../icons/orangeFilledStar.svg"></use>
-            </svg>
-          }
-          activeColor="#FF6B08"
-        />
-        ,
+        {[...Array(5)].map((star, i) => {
+                const ratingValue = i + 1;
+
+                return (
+                    <label>
+                        <input
+                            style={{display: "none"}}
+                            type="radio"
+                            name="rating"
+                    value={ratingValue}
+                    onChange={formik.handleChange}
+                            
+                  />
+                               <FaStar
+                            style={{
+                                cursor: "pointer",
+                                transition: "color 200ms" }}
+                      color={ratingValue <= formik.values.rating ? "#FF6B08" : "#808080"}
+                    />
+                    </label>
+                );
+            })} 
       </StarsWrapper>
 
       <Texarea
