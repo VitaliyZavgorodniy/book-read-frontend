@@ -23,19 +23,19 @@ const InfoBlockAbout = () => (
       </Item>
     </List>
 
-    <Label>Will help you to</Label>
+    <Label>You may also</Label>
     <List>
       <Item>
         <Arrow />
-        Create your goal faster and proceed to read
+        Pose your own independent point of view
       </Item>
       <Item>
         <Arrow />
-        Divide process proportionally for each day
+        Improve your professional skills according to new knowledge
       </Item>
       <Item>
         <Arrow />
-        Track your success
+        Become an interesting interlocutor
       </Item>
     </List>
   </Wrapper>
@@ -54,7 +54,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const Title = styled.p`
+const Title = styled.h2`
   color: ${(p) => p.theme.colors.primary};
   font-family: ${(p) => p.theme.font.familyLogo};
   font-weight: 400;
@@ -70,7 +70,7 @@ const Title = styled.p`
   }
 `;
 
-const Label = styled.div`
+const Label = styled.h3`
   margin-bottom: 14px;
   color: ${(div) => div.theme.colors.primary};
   font-weight: 400;
