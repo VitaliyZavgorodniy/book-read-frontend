@@ -11,7 +11,12 @@ const BooksList = ({ title, books }) => {
         <Cell>Author</Cell>
         <Cell>Year</Cell>
         <Cell>Pages</Cell>
-        {title === 'Already read' && <Cell>Rating</Cell>}
+        {title === 'Already read' && (
+          <>
+            <Cell>Rating</Cell>
+            <Cell $mode={title}>Comments</Cell>
+          </>
+        )}
       </Heading>
       <List>
         {books &&
@@ -106,6 +111,41 @@ const Cell = styled.h3`
 
   &:nth-child(2) {
     width: 100px;
+  }
+
+  &:last-child {
+    @media ${breakpoints.tablet} {
+      ${(props) => {
+        switch (props.$mode) {
+          case 'Already read':
+            return `
+              width: 90px;
+              content-visibility: hidden;
+        `;
+          default:
+            return `
+              width: auto;
+              content-visibility: visible;
+        `;
+        }
+      }}
+    }
+    @media ${breakpoints.laptop} {
+      ${(props) => {
+        switch (props.$mode) {
+          case 'Already read':
+            return `
+              width: 150px;
+              content-visibility: hidden;
+        `;
+          default:
+            return `
+              width: auto;
+              content-visibility: visible;
+        `;
+        }
+      }}
+    }
   }
 `;
 
