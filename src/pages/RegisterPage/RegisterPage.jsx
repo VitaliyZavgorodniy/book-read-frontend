@@ -11,13 +11,7 @@ const RegisterPage = () => {
       <RegisterBlock>
         <RegsiterForm />
       </RegisterBlock>
- <Media
-    query="(min-width: 768px)"
-    render={() => (
-        < InfoBlockAbout />
-        )}
-  />
-  
+      <Media query="(min-width: 768px)" render={() => <InfoBlockAbout />} />
     </Wrapper>
   );
 };
@@ -29,7 +23,6 @@ const Wrapper = styled.div`
   @media ${breakpoints.desktop} {
     flex-direction: row;
   }
-
 `;
 
 const RegisterBlock = styled.div`
@@ -43,7 +36,5 @@ const RegisterBlock = styled.div`
     ),
     url(${(p) => p.theme.backgrounds.register});
 `;
-
-
 
 export default RegisterPage;

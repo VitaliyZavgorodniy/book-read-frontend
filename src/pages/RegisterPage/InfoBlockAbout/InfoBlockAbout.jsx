@@ -1,13 +1,9 @@
 import styled from 'styled-components';
-import Media from 'react-media';
 import { breakpoints } from 'constants/breakpoints';
 
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md';
 
 const InfoBlockAbout = () => (
-  // <Media
-  //   query="(min-width: 768px)"
-  //   render={() => (
   <Wrapper>
     <Title>Books Reading</Title>
 
@@ -47,8 +43,6 @@ const InfoBlockAbout = () => (
       </List>
     </BlockLast>
   </Wrapper>
-  //   )}
-  // />
 );
 
 const Wrapper = styled.div`
@@ -102,8 +96,7 @@ const Label = styled.h2`
   font-size: 20px;
   line-height: 1.9;
 `;
-const List = styled.ul`
-`;
+const List = styled.ul``;
 
 const Item = styled.li`
   display: flex;
