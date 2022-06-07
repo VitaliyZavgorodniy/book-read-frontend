@@ -15,12 +15,9 @@ const PublicLayout = () => (
 const Header = styled.header`
   display: flex;
   align-items: center;
-  justify-content: center;
   padding: 0 16px;
   height: 60px;
   box-shadow: ${(p) => p.theme.shadows.block};
-
-
 `;
 
 const Main = styled.main`
