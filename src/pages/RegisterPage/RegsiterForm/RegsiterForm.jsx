@@ -128,7 +128,9 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
+  /* width: 100%; */
+  margin-left: auto;
+  margin-right: auto;
   padding: 32px 20px;
   background-color: transparent;
 
