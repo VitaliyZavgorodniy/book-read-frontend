@@ -6,6 +6,7 @@ const TokenCheckPage = ({ onRefreshToken }) => {
 
   useEffect(() => {
     onRefreshToken(params.token);
+    // eslint-disable-next-line
   }, []);
 
   return <div></div>;

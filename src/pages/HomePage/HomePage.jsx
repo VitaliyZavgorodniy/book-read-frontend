@@ -1,9 +1,8 @@
 import styled from 'styled-components';
-import { breakpoints } from 'constants/breakpoints';
 
 import InfoBlockIntro from './InfoBlockIntro';
 // Экран создания книг
-const HomePage = ({ library }) => {
+const HomePage = () => {
   return (
     <Wrapper>
       <h1>HOME PAGE</h1>
