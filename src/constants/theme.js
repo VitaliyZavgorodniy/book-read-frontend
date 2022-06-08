@@ -17,6 +17,7 @@ export const theme = {
     heading: '#6D7A8D',
     error: '#F32424',
     hover: '#D15807',
+    lineStat: '#E0E5EB'
   },
   shadows: {
     primary: '4px 4px 8px rgba(36, 42, 55, 0.15)',

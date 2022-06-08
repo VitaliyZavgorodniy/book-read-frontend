@@ -2,7 +2,7 @@
   "name": "book-read-frontend",
   "version": "0.0.1",
   "private": true,
-  "homepage": "https://VitaliyZavgorodniy.github.io/book-read-frontend/",
+  
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",

@@ -6,7 +6,7 @@ import MainLayout from 'layouts/MainLayout';
 import PublicLayout from 'layouts/PublicLayout';
 import PrivateRoute from 'hoc/PrivateRoute';
 import PublicRoute from 'hoc/PublicRoute';
-import TokenCheckPage from 'pages/TokenCheckPage';
+import LoginGoogle from 'pages/LoginGoogle';
 
 import { authOperations, authSelectors } from 'redux/auth';
 
@@ -68,12 +68,12 @@ const App = () => {
           }
         />
         <Route
-          path="login/:token"
+          path="login/google"
           element={
             <PublicRoute
               component={
                 <Suspense fallback={<div>fetching...</div>}>
-                  <TokenCheckPage />
+                  <LoginGoogle />
                 </Suspense>
               }
             />
