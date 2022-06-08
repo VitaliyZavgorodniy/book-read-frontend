@@ -21,6 +21,7 @@ const Wrapper = styled.div`
 `;
 
 const LoginBlock = styled.div`
+  height: 100%;
   background-color: ${(p) => p.theme.colors.bgAlpha};
   background-image: linear-gradient(
       to right,

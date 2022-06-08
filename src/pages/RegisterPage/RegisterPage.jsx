@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { breakpoints } from 'constants/breakpoints';
 
 import RegsiterForm from './RegsiterForm';
 import InfoBlockAbout from './InfoBlockAbout';

@@ -1,27 +1,24 @@
-import { current } from '@reduxjs/toolkit';
+// import { current } from '@reduxjs/toolkit';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-const Textarea = (value) => {
-  return (
-    <Wrapper>
-      <Textariaform>
-        <Resume>Резюме</Resume>
-        <textarea value={current.value} />
-      </Textariaform>
-    </Wrapper>
-  );
-};
+const Textarea = ({ title, value, onChange, props }) => (
+  <Wrapper>
+    <Label>{title}</Label>
+    <Input value={value} onChange={onChange} {...props} />
+  </Wrapper>
+);
 
-const Wrapper = styled.div``;
-
-const Textariaform = styled.div`
+const Wrapper = styled.div`
+  display: flex;
   flex-direction: column;
 `;
 
-const Resume = styled.div`
+const Label = styled.label`
   margin-bottom: 12px;
 `;
+
+const Input = styled.textarea``;
 
 Textaria.propTypes = {
   value: PropTypes.string.isRequired,

@@ -5,7 +5,7 @@ import { FcGoogle } from 'react-icons/fc';
 const { REACT_APP_BACKEND_LINK } = process.env;
 
 const GoogleButton = () => (
-  <Button href={`${REACT_APP_BACKEND_LINK}/login/google`} target="_blank">
+  <Button href={`${REACT_APP_BACKEND_LINK}/login/google`}>
     <Icon />
     Google
   </Button>

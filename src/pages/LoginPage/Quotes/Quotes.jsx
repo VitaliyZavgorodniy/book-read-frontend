@@ -8,7 +8,7 @@ const Quotes = () => {
         Books are the ships of thoughts, wandering through the waves of time.
       </Quotestext>
       <AuthorTeg>
-        <Author>Бэкон Ф.</Author>
+        <Author>Francis Bacon</Author>
       </AuthorTeg>
     </Wrapper>
   );
