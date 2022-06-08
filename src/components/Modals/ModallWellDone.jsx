@@ -25,7 +25,7 @@ const ModallWellDone = () => {
 const Item = styled.form`
   width: 394px;
   height: 256px;
-  background-color: ${(form) => form.theme.colors.bgSecondary};
+  background-color: ${(p) => p.theme.colors.bgSecondary};
 `;
 const ItemIcon = styled.div`
   display: flex;
@@ -35,11 +35,11 @@ const ItemIcon = styled.div`
 const Icon = styled(BiLike)`
   width: 50px;
   height: 45px;
-  color: ${(BiLike) => BiLike.theme.colors.accent};
+  color: ${(p) => p.theme.colors.accent};
 `;
 const ItemText = styled.div`
   width: 227px;
-  background-color: ${(div) => div.theme.colors.bgSecondary};
+  background-color: ${(p) => p.theme.colors.bgSecondary};
   margin: 20px auto 24px auto;
 `;
 const Text = styled.p`
