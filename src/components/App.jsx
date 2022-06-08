@@ -13,6 +13,7 @@ import { authOperations, authSelectors } from 'redux/auth';
 const HomePage = lazy(() => import('pages/HomePage'));
 const RegisterPage = lazy(() => import('pages/RegisterPage'));
 const LoginPage = lazy(() => import('pages/LoginPage'));
+const TrainingPage = lazy(() => import('pages/TrainingPage'));
 
 const App = () => {
   const dispatch = useDispatch();
@@ -35,6 +36,18 @@ const App = () => {
               component={
                 <Suspense fallback={<div>fetching...</div>}>
                   <HomePage />
+                </Suspense>
+              }
+            />
+          }
+        />
+        <Route
+          path="training"
+          element={
+            <PrivateRoute
+              component={
+                <Suspense fallback={<div>fetching...</div>}>
+                  <TrainingPage />
                 </Suspense>
               }
             />
