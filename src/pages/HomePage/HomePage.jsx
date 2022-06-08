@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { breakpoints } from 'constants/breakpoints';
 
 import InfoBlockIntro from './InfoBlockIntro';
 import StatisticTable from 'components/StatisticTable';
@@ -11,7 +10,7 @@ const data = [
   { "id": "id-4", "date": "13.10.2019", "time": "11:10:07", "pages": 137 },
   { "id": "id-5", "date": "14.10.2019", "time": "10:10:11", "pages": 10 }
 ];
-const HomePage = ({ library, items }) => {
+const HomePage = () => {
   return (
     <Wrapper>
       <h1>HOME PAGE</h1>
