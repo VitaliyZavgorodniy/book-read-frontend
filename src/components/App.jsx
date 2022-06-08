@@ -66,19 +66,20 @@ const App = () => {
               }
             />
           }
-        />
-        <Route
-          path="login/google"
-          element={
-            <PublicRoute
-              component={
-                <Suspense fallback={<div>fetching...</div>}>
-                  <LoginGoogle />
-                </Suspense>
-              }
-            />
-          }
-        />
+        >
+          <Route
+            path="google"
+            element={
+              <PublicRoute
+                component={
+                  <Suspense fallback={<div>fetching...</div>}>
+                    <LoginGoogle />
+                  </Suspense>
+                }
+              />
+            }
+          />
+        </Route>
       </Route>
     </Routes>
   );
