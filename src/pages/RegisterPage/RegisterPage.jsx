@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 import Media from 'react-media';
 import styled from 'styled-components';
 
@@ -7,6 +9,11 @@ import RegsiterForm from './RegsiterForm';
 import InfoBlockAbout from './InfoBlockAbout';
 import CommonButton from 'components/UI-kit/buttons/CommonButton';
 const RegisterPage = () => {
+  const navigate = useNavigate();
+  const handleLink = () => {
+    navigate('/login');
+  };
+
   return (
     <Wrapper>
 
@@ -25,6 +32,7 @@ const RegisterPage = () => {
                     type="button"
                     title="Login"
                     variant="transparent"
+                    onClick={handleLink}
                   />
                 </ButtonWrapper>
                 <ButtonWrapper>
