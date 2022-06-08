@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import LoginForm from './LoginForm';
+import { breakpoints } from 'constants/breakpoints';
 
 import Quotes from './Quotes';
 
@@ -17,11 +18,14 @@ const LoginPage = () => {
 };
 
 const Wrapper = styled.div`
-  display: flex;
+  @media ${breakpoints.laptop} {
+    display: flex;
+    min-height: 800px;
+  }
 `;
 
 const LoginBlock = styled.div`
-  height: 100%;
+  padding: 90px 75px;
   background-color: ${(p) => p.theme.colors.bgAlpha};
   background-image: linear-gradient(
       to right,
@@ -29,12 +33,29 @@ const LoginBlock = styled.div`
       ${(p) => p.theme.colors.bgAlpha}
     ),
     url(${(p) => p.theme.backgrounds.register});
-  padding: 90px 75px;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  @media ${breakpoints.tablet} {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  @media ${breakpoints.laptop} {
+    padding: 185px 75px;
+  }
 `;
+
 const LoginText = styled.div`
   display: flex;
   justify-content: center;
-  width: 100%;
-  padding-top: 180px;
+  @media ${breakpoints.tablet} {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  @media ${breakpoints.desktop} {
+    margin-left: auto;
+    margin-right: auto;
+  }
 `;
+
 export default LoginPage;

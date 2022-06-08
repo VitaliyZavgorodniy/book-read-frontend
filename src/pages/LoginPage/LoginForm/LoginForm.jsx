@@ -9,7 +9,7 @@ import GoogleButton from 'components/UI-kit/buttons/GoogleButton';
 import InlineButton from 'components/UI-kit/buttons/InlineButton';
 import CommonButton from 'components/UI-kit/buttons/CommonButton';
 
-import { validate } from 'utils/validateForRegistration';
+// import { validate } from 'utils/validateForRegistration';
 
 const LoginForm = ({ onLogin, isFetching }) => {
   const navigate = useNavigate();
@@ -89,11 +89,14 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
+
   padding: 32px 20px;
   background-color: transparent;
 
   @media ${breakpoints.tablet} {
+    margin: 0 auto;
     width: 400px;
+    height: 420px;
     padding: 40px;
     background-color: ${(p) => p.theme.colors.bgSecondary};
   }
@@ -101,17 +104,6 @@ const Wrapper = styled.div`
 
 const Form = styled.form`
   width: 100%;
-`;
-
-const Text = styled.p`
-  font-family: ${(p) => p.theme.font.familyPrimary};
-  font-style: normal;
-  font-weight: 500;
-  font-size: 13px;
-  line-height: 16px;
-  text-align: center;
-  color: ${(p) => p.theme.colors.accent};
-  border-bottom: 1px solid #ff6b08;
 `;
 
 const ItemWrapper = styled.ul`
