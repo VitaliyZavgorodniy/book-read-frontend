@@ -14,10 +14,7 @@ const HomePage = () => {
   return (
     <Wrapper>
       <h1>HOME PAGE</h1>
-      <div>
-        <InfoBlockIntro />
-      </div>
-      <StatisticTable items={ data }/>
+        <StatisticTable items={ data }/>
     </Wrapper>
   );
 };
