@@ -1,6 +1,8 @@
 import Media from 'react-media';
 import styled from 'styled-components';
 
+import { breakpoints } from 'constants/breakpoints';
+
 import RegsiterForm from './RegsiterForm';
 import InfoBlockAbout from './InfoBlockAbout';
 import CommonButton from 'components/UI-kit/buttons/CommonButton';
