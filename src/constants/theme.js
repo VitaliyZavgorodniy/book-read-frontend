@@ -24,6 +24,7 @@ export const theme = {
     block: '0px 2px 3px rgba(9, 30, 63, 0.1)',
     button: '0px 2px 4px rgba(0, 0, 0, 0.25)',
     innerInput: 'inset 0 1px 2px #1D1D1B15;',
+    booksItem: '0px 4px 4px rgba(0, 0, 0, 0.25)',
   },
   font: {
     familyPrimary: 'Montserrat, sans-serif',
