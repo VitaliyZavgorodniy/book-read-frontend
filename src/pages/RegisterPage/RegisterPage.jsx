@@ -4,10 +4,41 @@ import { breakpoints } from 'constants/breakpoints';
 
 import RegsiterForm from './RegsiterForm';
 import InfoBlockAbout from './InfoBlockAbout';
-
+import CommonButton from 'components/UI-kit/buttons/CommonButton';
 const RegisterPage = () => {
   return (
     <Wrapper>
+
+      <Media
+        queries={{
+          small: '(max-width: 767px)',
+        }}
+      >
+        {(matches) =>
+          matches.small && (
+            <>
+              <InfoBlockAbout />
+              <ButtonBlockWrapper>
+                <ButtonWrapper>
+                  <CommonButton
+                    type="button"
+                    title="Login"
+                    variant="transparent"
+                  />
+                </ButtonWrapper>
+                <ButtonWrapper>
+                  <CommonButton
+                    type="button"
+                    title="Register"
+                    variant="accent"
+                  />
+                </ButtonWrapper>
+              </ButtonBlockWrapper>
+            </>
+          )
+        }
+      </Media>
+
       <RegisterBlock>
         <RegsiterForm />
       </RegisterBlock>
@@ -24,7 +55,16 @@ const Wrapper = styled.div`
     flex-direction: row;
   }
 `;
-
+const ButtonBlockWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 275px;
+  margin: 0 auto;
+  margin-bottom: 40px;
+`;
+const ButtonWrapper = styled.div`
+  width: 130px;
+`;
 const RegisterBlock = styled.div`
   margin: 0 auto;
   padding: 90px 75px;

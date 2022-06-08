@@ -121,6 +121,11 @@ const Arrow = styled(MdOutlineKeyboardArrowRight)`
   transform: translateY(-45%);
   color: ${(p) => p.theme.colors.accent};
   font-size: 16px;
+
+   @media ${breakpoints.tablet} {
+  top: 50%;
+  transform: translateY(-50%);
+  }
 `;
 
 export default InfoBlockAbout;
