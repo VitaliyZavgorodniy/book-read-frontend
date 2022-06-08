@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
-const CommonButton = ({ title, onClick, type, variant }) => (
-  <Button onClick={onClick} type={type} variant={variant}>
+const CommonButton = ({ title, onClick, type, variant, size }) => (
+  <Button onClick={onClick} type={type} variant={variant} size={size}>
     {title}
   </Button>
 );
 
 const Button = styled.button`
   width: 100%;
-  padding: 20px 0;
+  padding: ${(p) => (p.size === 'lg' ? '20px' : '10px')};
   background-color: ${(p) =>
     p.variant === 'accent' ? p.theme.colors.accent : 'transparent'};
   color: ${(p) =>
@@ -19,6 +19,10 @@ const Button = styled.button`
   font-weight: 500;
   font-size: 14px;
   line-height: 17px;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export default CommonButton;

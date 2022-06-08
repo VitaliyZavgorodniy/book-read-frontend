@@ -6,13 +6,14 @@ import MainLayout from 'layouts/MainLayout';
 import PublicLayout from 'layouts/PublicLayout';
 import PrivateRoute from 'hoc/PrivateRoute';
 import PublicRoute from 'hoc/PublicRoute';
-import TokenCheckPage from 'pages/TokenCheckPage';
+import LoginGoogle from 'pages/LoginGoogle';
 
 import { authOperations, authSelectors } from 'redux/auth';
 
 const HomePage = lazy(() => import('pages/HomePage'));
 const RegisterPage = lazy(() => import('pages/RegisterPage'));
 const LoginPage = lazy(() => import('pages/LoginPage'));
+const TrainingPage = lazy(() => import('pages/TrainingPage'));
 
 const App = () => {
   const dispatch = useDispatch();
@@ -35,6 +36,18 @@ const App = () => {
               component={
                 <Suspense fallback={<div>fetching...</div>}>
                   <HomePage />
+                </Suspense>
+              }
+            />
+          }
+        />
+        <Route
+          path="training"
+          element={
+            <PrivateRoute
+              component={
+                <Suspense fallback={<div>fetching...</div>}>
+                  <TrainingPage />
                 </Suspense>
               }
             />
@@ -68,12 +81,12 @@ const App = () => {
           }
         />
         <Route
-          path="login/:token"
+          path="login/google"
           element={
             <PublicRoute
               component={
                 <Suspense fallback={<div>fetching...</div>}>
-                  <TokenCheckPage />
+                  <LoginGoogle />
                 </Suspense>
               }
             />
