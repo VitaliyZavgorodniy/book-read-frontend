@@ -30,24 +30,24 @@ const App = () => {
     <Routes>
       <Route path="/" element={<MainLayout />}>
         <Route
-          index
-          element={
-            <PrivateRoute
-              component={
-                <Suspense fallback={<div>fetching...</div>}>
-                  <HomePage />
-                </Suspense>
-              }
-            />
-          }
-        />
-        <Route
           path="training"
           element={
             <PrivateRoute
               component={
                 <Suspense fallback={<div>fetching...</div>}>
                   <TrainingPage />
+                </Suspense>
+              }
+            />
+          }
+        />
+        <Route
+          index
+          element={
+            <PrivateRoute
+              component={
+                <Suspense fallback={<div>fetching...</div>}>
+                  <HomePage />
                 </Suspense>
               }
             />
