@@ -19,9 +19,6 @@ const RegisterPage = () => {
   const hideModal = () => setVisited(true);
 
   const [modal, setModal] = useState(true);
-  // const handleClose = () => {
-  //   setModal(false);
-  // };
 
   const navigate = useNavigate();
   const handleLink = () => {
