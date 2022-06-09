@@ -1,12 +1,12 @@
 import { Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-
+import { Outlet } from 'react-router-dom';
 import { authSelectors } from 'redux/auth';
 
-const PublicRoute = ({ component }) => {
-  const auth = useSelector(authSelectors.getIsLoggedIn);
-
-  return auth ? <Navigate to="/" /> : component;
+const PublicRoute = () => {
+  const auth = useSelector(authSelectors.getToken);
+  
+  return auth ? <Navigate to="/" /> : <Outlet />;
 };
 
 export default PublicRoute;
