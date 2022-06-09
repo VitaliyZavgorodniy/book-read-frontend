@@ -2,7 +2,7 @@ import { MdMenuBook, MdStarRate } from 'react-icons/md';
 import styled from 'styled-components';
 import { breakpoints } from 'constants/breakpoints';
 
-const BooksList = ({ title, books }) => {
+const BooksList = ({ title, list }) => {
   return (
     <Section>
       <Title>{title}</Title>
@@ -19,8 +19,8 @@ const BooksList = ({ title, books }) => {
         )}
       </Heading>
       <List>
-        {books &&
-          books.map((book) => (
+        {list &&
+          list.map((book) => (
             <Item key={book.id}>
               <Icon $mode={title} />
               <Paragraph>{book.title}</Paragraph>

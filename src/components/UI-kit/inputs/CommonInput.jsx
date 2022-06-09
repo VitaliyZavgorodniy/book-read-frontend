@@ -24,12 +24,10 @@ const CommonInput = ({
         value={value}
         type={type ?? 'text'}
         disabled={disabled}
-        onChange={(e) =>
-          onChange({ value: e.target.value, name: e.target.name })
-        }
+        onChange={onChange}
         {...props}
       />
-      <ErrorMessage>{error}</ErrorMessage>
+      {error && <ErrorMessage>{error}</ErrorMessage>}
     </Wrapper>
   );
 };

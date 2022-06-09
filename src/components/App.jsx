@@ -14,6 +14,7 @@ const HomePage = lazy(() => import('pages/HomePage'));
 const RegisterPage = lazy(() => import('pages/RegisterPage'));
 const LoginPage = lazy(() => import('pages/LoginPage'));
 const TrainingPage = lazy(() => import('pages/TrainingPage'));
+const StatisticsPage = lazy(() => import('pages/StatisticsPage'));
 
 const App = () => {
   const dispatch = useDispatch();
@@ -38,11 +39,21 @@ const App = () => {
               </Suspense>
             }
           />
+
           <Route
             path="training"
             element={
               <Suspense fallback={<div>fetching...</div>}>
                 <TrainingPage />
+              </Suspense>
+            }
+          />
+
+          <Route
+            path="statistics"
+            element={
+              <Suspense fallback={<div>fetching...</div>}>
+                <StatisticsPage />
               </Suspense>
             }
           />

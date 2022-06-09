@@ -32,7 +32,7 @@ export const NavMenu = ({ src }) => {
         </NavItem>
         <NavItem>
           <NavLink
-            to="/library"
+            to="/"
             style={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
             <NavIcon src={iconHome} />

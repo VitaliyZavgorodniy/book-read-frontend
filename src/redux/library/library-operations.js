@@ -7,10 +7,27 @@ axios.defaults.baseURL = process.env.REACT_APP_BACKEND_LINK;
 const notyf = new Notyf();
 
 const fetch = createAsyncThunk(
-  'training/fetch',
+  'library/fetch',
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get('/training');
+      const { data } = await axios.get('/library');
+
+      return data.result;
+    } catch (err) {
+      const errorMsg = err?.response?.data?.message;
+
+      if (errorMsg) notyf.error(errorMsg);
+
+      return rejectWithValue(err?.response?.data);
+    }
+  }
+);
+
+const createBook = createAsyncThunk(
+  'library/creatBook',
+  async (book, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.post('/books', book);
 
       return data.result;
     } catch (err) {
@@ -25,6 +42,7 @@ const fetch = createAsyncThunk(
 
 const operations = {
   fetch,
+  createBook
 };
 
 export default operations;

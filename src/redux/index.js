@@ -18,6 +18,8 @@ import thunkMiddleware from 'redux-thunk';
 import storage from 'redux-persist/lib/storage';
 
 import { authReducer } from './auth';
+import { libraryReducer } from './library';
+import { trainingReducer } from './training';
 
 const authPersistConfig = {
   key: 'auth',
@@ -34,6 +36,8 @@ const middleware = [thunk, serializableMiddleware, thunkMiddleware];
 const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
+    library: libraryReducer,
+    training: trainingReducer,
   },
   middleware,
 });

@@ -30,20 +30,25 @@ const BooksTable = ({ list, handleRemove }) => {
   return (
     <Table>
       <TableHead>
-        <HeadColumn>Book title</HeadColumn>
-        <HeadColumn>Author</HeadColumn>
-        <HeadColumn>Year</HeadColumn>
-        <HeadColumn>Pages</HeadColumn>
-        <HeadColumn />
+        <HeadRow>
+          <HeadColumn>Book title</HeadColumn>
+          <HeadColumn>Author</HeadColumn>
+          <HeadColumn>Year</HeadColumn>
+          <HeadColumn>Pages</HeadColumn>
+
+          <HeadColumn />
+        </HeadRow>
       </TableHead>
-      <TableBody>{renderList()}</TableBody>
+      <TableBody>{list?.length > 0 && renderList()}</TableBody>
     </Table>
   );
 };
 
-const Table = styled.div``;
+const Table = styled.table`
+  width: 100%;
+`;
 
-const TableHead = styled.div`
+const TableHead = styled.thead`
   padding: 12px 0;
   border-top: 1px solid ${(p) => p.theme.colors.border};
   border-bottom: 1px solid ${(p) => p.theme.colors.border};
@@ -57,18 +62,20 @@ const HeadColumn = styled.th`
   line-height: 17px;
 `;
 
-const TableBody = styled.ul`
+const HeadRow = styled.tr``;
+
+const TableBody = styled.tbody`
   height: 172px;
   overflow-y: scroll;
 `;
 
-const BodyRow = styled.li`
+const BodyRow = styled.tr`
   display: flex;
   align-items: center;
   padding-top: 20px;
 `;
 
-const BodyColumn = styled.span`
+const BodyColumn = styled.td`
   vertical-align: middle;
   color: ${(p) => p.theme.colors.primary};
   font-weight: 500;

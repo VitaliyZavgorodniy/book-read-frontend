@@ -36,7 +36,7 @@ const BooksList = ({ list, handleRemove }) => {
         <HeadColumn>Pages</HeadColumn>
         <HeadColumn />
       </TableHead>
-      <TableBody>{renderList()}</TableBody>
+      <TableBody>{list.length > 0 && renderList()}</TableBody>
     </Table>
   );
 };
