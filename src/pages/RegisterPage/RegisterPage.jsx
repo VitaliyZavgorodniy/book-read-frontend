@@ -13,51 +13,50 @@ import CommonButton from 'components/UI-kit/buttons/CommonButton';
 const modalRoot = document.querySelector('#modal-root');
 
 const RegisterPage = () => {
-const [modal, setModal] = useState(true);
+  const [modal, setModal] = useState(true);
   const handleClose = () => {
     setModal(false);
   };
 
   const navigate = useNavigate();
   const handleLink = () => {
+    setModal(false);
     navigate('/login');
   };
 
-
   return (
     <Wrapper>
-
       <Media
         queries={{
           small: '(max-width: 767px)',
         }}
       >
         {(matches) =>
-          matches.small && modal &&  createPortal
-          (
+          matches.small &&
+          modal &&
+          createPortal(
             <Overlay>
               <Content>
                 <InfoBlockAbout />
-              <ButtonBlockWrapper>
-                <ButtonWrapper>
-                  <CommonButton
-                    type="button"
-                    title="Login"
-                    variant="transparent"
-                    onClick={handleLink}
-                  />
-                </ButtonWrapper>
-                <ButtonWrapper>
-                  <CommonButton
-                    type="button"
-                    title="Register"
-                    variant="accent"
-                    onClick={handleClose}
-                  />
-                </ButtonWrapper>
-              </ButtonBlockWrapper>
+                <ButtonBlockWrapper>
+                  <ButtonWrapper>
+                    <CommonButton
+                      type="button"
+                      title="Login"
+                      variant="transparent"
+                      onClick={handleLink}
+                    />
+                  </ButtonWrapper>
+                  <ButtonWrapper>
+                    <CommonButton
+                      type="button"
+                      title="Register"
+                      variant="accent"
+                      onClick={handleClose}
+                    />
+                  </ButtonWrapper>
+                </ButtonBlockWrapper>
               </Content>
-              
             </Overlay>,
             modalRoot
           )
@@ -78,19 +77,12 @@ const Overlay = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  /* display: flex;
-  align-items: center;
-  justify-content: center; */
   overflow: auto;
   background-color: white;
 `;
 const Content = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-`
  
+`;
 
 const Wrapper = styled.div`
   display: flex;
