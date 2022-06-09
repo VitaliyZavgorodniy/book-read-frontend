@@ -29,69 +29,55 @@ const App = () => {
   return (
     <Routes>
       <Route path="/" element={<MainLayout />}>
-        <Route
-          path="training"
-          element={
-            <PrivateRoute
-              component={
-                <Suspense fallback={<div>fetching...</div>}>
-                  <TrainingPage />
-                </Suspense>
-              }
-            />
-          }
-        />
-        <Route
-          index
-          element={
-            <PrivateRoute
-              component={
-                <Suspense fallback={<div>fetching...</div>}>
-                  <HomePage />
-                </Suspense>
-              }
-            />
-          }
-        />
+        <Route path="" element={<PrivateRoute />}>
+          <Route
+            index
+            element={
+              <Suspense fallback={<div>fetching...</div>}>
+                <HomePage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="training"
+            element={
+              <Suspense fallback={<div>fetching...</div>}>
+                <TrainingPage />
+              </Suspense>
+            }
+          />
+        </Route>
       </Route>
 
       <Route path="/" element={<PublicLayout />}>
-        <Route
-          path="register"
-          element={
-            <PublicRoute
-              component={
-                <Suspense fallback={<div>fetching...</div>}>
-                  <RegisterPage />
-                </Suspense>
-              }
-            />
-          }
-        />
-        <Route
-          path="login"
-          element={
-            <PublicRoute
-              component={
-                <Suspense fallback={<div>fetching...</div>}>
-                  <LoginPage />
-                </Suspense>
-              }
-            />
-          }
-        />
-        <Route
-          path="login/google"
-          element={
-            <PublicRoute
-              component={
-                <Suspense fallback={<div>fetching...</div>}>
-                  <LoginGoogle />
-                </Suspense>
-              }
-            />
-          }
-        />
+        <Route path="" element={<PublicRoute />}>
+          <Route
+            path="register"
+            element={
+              <Suspense fallback={<div>fetching...</div>}>
+                <RegisterPage />
+              </Suspense>
+            }
+          />
+
+          <Route
+            path="login"
+            element={
+              <Suspense fallback={<div>fetching...</div>}>
+                <LoginPage />
+              </Suspense>
+            }
+          />
+
+          <Route
+            path="login/google"
+            element={
+              <Suspense fallback={<div>fetching...</div>}>
+                <LoginGoogle />
+              </Suspense>
+            }
+          />
+        </Route>
       </Route>
     </Routes>
   );
