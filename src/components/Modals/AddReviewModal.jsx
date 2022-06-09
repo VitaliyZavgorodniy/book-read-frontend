@@ -1,62 +1,46 @@
 import React from 'react';
-import { useFormik } from 'formik';
+import { useState } from 'react';
 import styled from 'styled-components';
-import { FaStar } from "react-icons/fa"
+import CommonButton from 'components/UI-kit/buttons/CommonButton';
+import Textarea from 'components/UI-kit/inputs/Textarea';
+import StarRating from 'components/UI-kit/inputs/StarRating';
 
 const ReviewModal = () => {
-  const formik = useFormik({
-    initialValues: {
-      rating: 0,
-      resume: '',
-    },
+    const [rating, setRating] = useState(null);
+    const [resume, setResume] = useState("");
+    const onFormSubmit = (e) => {
+    e.preventDefault();
+   console.log(`rating: ${rating}, resume: ${resume}`)
 
-    onSubmit: (values) => {
-      console.log(values);
-    },
-  });
+    setRating(null);
+    setResume("");
+  };
 
+const ratingChange = (e) => {
+        const id  = e.currentTarget.id;
+        setRating(id);
+    }
+const onResumeChange = (e) => {
+    const { value } = e.currentTarget;
+        setResume(value);    
+  };
   return (
-    <Form onSubmit={formik.handleSubmit}>
-      <Label>Choose rating of the book</Label>
-      
-      <StarsWrapper>
-        {[...Array(5)].map((star, i) => {
-                const ratingValue = i + 1;
-
-                return (
-                    <label>
-                        <input
-                            style={{display: "none"}}
-                            type="radio"
-                            name="rating"
-                    value={ratingValue}
-                    onChange={formik.handleChange}
-                            
-                  />
-                               <FaStar
-                            style={{
-                                cursor: "pointer",
-                                transition: "color 200ms" }}
-                      color={ratingValue <= formik.values.rating ? "#FF6B08" : "#808080"}
-                    />
-                    </label>
-                );
-            })} 
-      </StarsWrapper>
-
-      <Texarea
+    <Form onSubmit={onFormSubmit}>
+      <Label>Choose rating of the book</Label>    
+      <StarRating value={rating} onChange={ratingChange}/>
+      <Textarea
         name="resume"
         type="text"
         title="Resume"
-        onChange={formik.handleChange}
-        value={formik.values.resume}
+        onChange={onResumeChange}
+        value={resume}
       />
       <ButtonList>
         <ButtonListItem>
-          <button type="button">Back</button>
+          <CommonButton type="button" title="Back" />
         </ButtonListItem>
         <ButtonListItem>
-          <button type="submit">Save</button>
+                  <CommonButton type="submit" title="Save" variant="accent"  />
         </ButtonListItem>
       </ButtonList>
     </Form>
@@ -68,20 +52,14 @@ const Form = styled.form`
   padding: 20px;
 `;
 
-const StarsWrapper = styled.div`
-  margin-bottom: 20px;
-`;
 const Label = styled.label`
   margin-bottom: 12px;
-  color: ${(p) => p.theme.colors.primary};
+  color: "#242A37";
   font-weight: 500;
   font-size: 16px;
   line-height: 20px;
 `;
-const Texarea = styled.textarea`
-  width: 570px;
-  height: 170px;
-`;
+
 const ButtonList = styled.ul`
   list-style: none;
   display: flex;

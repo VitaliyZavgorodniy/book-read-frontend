@@ -5,7 +5,7 @@ import { IoIosStarOutline, IoIosStar } from 'react-icons/io';
 const StarRating = ({ value, onChange }) => {
   const renderRating = () => {
     return [1, 2, 3, 4, 5].map((item, index) => (
-      <Item key={index} onClick={() => onChange(item)}>
+      <Item id={item} type="button" key={index} onClick={(e) => onChange(e)}>
         {value >= item ? <ActiveStar /> : <UnactiveStar />}
       </Item>
     ));
