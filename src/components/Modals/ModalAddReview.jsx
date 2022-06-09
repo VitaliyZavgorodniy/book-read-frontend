@@ -5,7 +5,7 @@ import CommonButton from 'components/UI-kit/buttons/CommonButton';
 import Textarea from 'components/UI-kit/inputs/Textarea';
 import StarRating from 'components/UI-kit/inputs/StarRating';
 
-const ReviewModal = () => {
+const ReviewModal = ({ onClose }) => {
     const [rating, setRating] = useState(0);
     const [resume, setResume] = useState("");
     const onFormSubmit = (e) => {
@@ -13,7 +13,8 @@ const ReviewModal = () => {
    console.log(`rating: ${rating}, resume: ${resume}`)
 
     setRating(0);
-    setResume("");
+      setResume("");
+      onClose();
   };
 
 const onResumeChange = (e) => {
@@ -33,10 +34,10 @@ const onResumeChange = (e) => {
       />
       <ButtonList>
         <ButtonListItem>
-          <CommonButton type="button" title="Back" />
+          <CommonButton type="button" title="Back" onClick={onClose}/>
         </ButtonListItem>
         <ButtonListItem>
-                  <CommonButton type="submit" title="Save" variant="accent"  />
+          <CommonButton type="submit" title="Save" variant="accent"  />
         </ButtonListItem>
       </ButtonList>
     </Form>
