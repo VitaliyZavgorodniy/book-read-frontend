@@ -5,6 +5,7 @@ import Media from 'react-media';
 import styled from 'styled-components';
 
 import { breakpoints } from 'constants/breakpoints';
+import useLocalStorage from 'hooks/useLocalStorage';
 
 import RegsiterForm from './RegsiterForm';
 import InfoBlockAbout from './InfoBlockAbout';
@@ -14,10 +15,13 @@ import Navigation from 'components/Navigation';
 const modalRoot = document.querySelector('#modal-root');
 
 const RegisterPage = () => {
+  const [visited, setVisited] = useLocalStorage('visited', false);
+  const hideModal = () => setVisited(true);
+
   const [modal, setModal] = useState(true);
-  const handleClose = () => {
-    setModal(false);
-  };
+  // const handleClose = () => {
+  //   setModal(false);
+  // };
 
   const navigate = useNavigate();
   const handleLink = () => {
@@ -33,11 +37,11 @@ const RegisterPage = () => {
         }}
       >
         {(matches) =>
-          matches.small &&
+          matches.small && !visited &&
           modal &&
           createPortal(
             <Overlay>
-              <Navigation/>
+              <Navigation />
               <Content>
                 <InfoBlockAbout />
                 <ButtonBlockWrapper>
@@ -54,7 +58,7 @@ const RegisterPage = () => {
                       type="button"
                       title="Register"
                       variant="accent"
-                      onClick={handleClose}
+                      onClick={hideModal}
                     />
                   </ButtonWrapper>
                 </ButtonBlockWrapper>
@@ -82,11 +86,10 @@ const Overlay = styled.div`
   overflow: auto;
   background-color: white;
 `;
-const Content = styled.div`
-`;
+const Content = styled.div``;
 
 const Wrapper = styled.div`
-position: relative;
+  position: relative;
   display: flex;
   flex-direction: column;
 
