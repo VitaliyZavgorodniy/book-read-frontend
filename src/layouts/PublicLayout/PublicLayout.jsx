@@ -21,6 +21,7 @@ const Header = styled.header`
 `;
 
 const Main = styled.main`
+  position: relative;
   min-height: 100vh;
 `;
 

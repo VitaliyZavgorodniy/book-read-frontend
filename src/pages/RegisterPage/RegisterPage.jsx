@@ -9,6 +9,7 @@ import { breakpoints } from 'constants/breakpoints';
 import RegsiterForm from './RegsiterForm';
 import InfoBlockAbout from './InfoBlockAbout';
 import CommonButton from 'components/UI-kit/buttons/CommonButton';
+import Navigation from 'components/Navigation';
 
 const modalRoot = document.querySelector('#modal-root');
 
@@ -36,6 +37,7 @@ const RegisterPage = () => {
           modal &&
           createPortal(
             <Overlay>
+              <Navigation/>
               <Content>
                 <InfoBlockAbout />
                 <ButtonBlockWrapper>
@@ -81,10 +83,10 @@ const Overlay = styled.div`
   background-color: white;
 `;
 const Content = styled.div`
- 
 `;
 
 const Wrapper = styled.div`
+position: relative;
   display: flex;
   flex-direction: column;
 
