@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { Outlet } from 'react-router-dom';
 
+import { breakpoints } from 'constants/breakpoints';
+
 const PublicLayout = () => (
   <>
     <Header>
@@ -15,9 +17,14 @@ const PublicLayout = () => (
 const Header = styled.header`
   display: flex;
   align-items: center;
+  justify-content: center;
   padding: 0 16px;
   height: 60px;
   box-shadow: ${(p) => p.theme.shadows.block};
+
+  @media ${breakpoints.tablet} {
+      justify-content: start;
+  }
 `;
 
 const Main = styled.main`

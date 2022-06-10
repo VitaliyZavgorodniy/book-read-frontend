@@ -39,7 +39,10 @@ const RegisterPage = () => {
           modal &&
           createPortal(
             <Overlay>
-              <Navigation />
+              <Header>
+                <Logo>BR</Logo>
+              </Header>
+              {/* <Navigation /> */}
               <Content>
                 <InfoBlockAbout />
                 <ButtonBlockWrapper>
@@ -84,6 +87,19 @@ const Overlay = styled.div`
   overflow: auto;
   background-color: white;
 `;
+const Header = styled.header`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+  box-shadow: ${(p) => p.theme.shadows.block};
+`;
+const Logo = styled.span`
+  color: ${(p) => p.theme.colors.primary};
+  font-family: ${(p) => p.theme.font.familyLogo};
+  font-size: 20px;
+  line-height: 27px;
+`;
 const Content = styled.div``;
 
 const Wrapper = styled.div`
@@ -107,7 +123,6 @@ const ButtonWrapper = styled.div`
 `;
 const RegisterBlock = styled.div`
   margin: 0 auto;
-  /* padding: 90px 75px; */
   background-color: ${(p) => p.theme.colors.bgAlpha};
   background-image: linear-gradient(
       to right,
