@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import { breakpoints } from 'constants/breakpoints';
 import useLocalStorage from 'hooks/useLocalStorage';
 
-import RegsiterForm from './RegsiterForm';
+import RegsiterForm from './RegisterForm';
 import InfoBlockAbout from './InfoBlockAbout';
 import CommonButton from 'components/UI-kit/buttons/CommonButton';
 import Navigation from 'components/Navigation';
@@ -34,7 +34,8 @@ const RegisterPage = () => {
         }}
       >
         {(matches) =>
-          matches.small && !visited &&
+          matches.small &&
+          !visited &&
           modal &&
           createPortal(
             <Overlay>
@@ -106,7 +107,7 @@ const ButtonWrapper = styled.div`
 `;
 const RegisterBlock = styled.div`
   margin: 0 auto;
-  padding: 90px 75px;
+  /* padding: 90px 75px; */
   background-color: ${(p) => p.theme.colors.bgAlpha};
   background-image: linear-gradient(
       to right,
@@ -114,6 +115,19 @@ const RegisterBlock = styled.div`
       ${(p) => p.theme.colors.bgAlpha}
     ),
     url(${(p) => p.theme.backgrounds.register});
+
+  @media ${breakpoints.tablet} {
+    padding: 64px 184px;
+    background-image: linear-gradient(
+        to right,
+        ${(p) => p.theme.colors.bgAlpha},
+        ${(p) => p.theme.colors.bgAlpha}
+      ),
+      url(${(p) => p.theme.backgrounds.registerTb});
+  }
+  @media ${breakpoints.desktop} {
+    padding: 90px 75px;
+  }
 `;
 
 export default RegisterPage;

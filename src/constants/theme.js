@@ -1,11 +1,12 @@
 import bgRegister from 'assets/images/background.jpg';
+import bgRegisterTb from 'assets/images/backgroundTb.jpg'
 
 export const theme = {
   colors: {
     primary: '#242A37',
     secondary: '#091E3F',
     tertiary: '#898F9F',
-    bgAlpha: '#091e3f90',
+    bgAlpha: 'rgba(9, 30, 63, 0.8)',
     btnText: '#707375',
     bgPrimary: '#F6F7FB',
     bgSecondary: '#ffffff',
@@ -33,6 +34,7 @@ export const theme = {
   },
   backgrounds: {
     register: bgRegister,
+    registerTb: bgRegisterTb,
   },
   animations: {
     primary: '250ms ease-in-out',
