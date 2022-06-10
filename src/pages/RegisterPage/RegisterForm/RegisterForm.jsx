@@ -11,7 +11,7 @@ import CommonButton from 'components/UI-kit/buttons/CommonButton';
 
 import { validate } from 'utils/validateForRegistration';
 
-const RegsiterForm = ({ onRegister, isFetching }) => {
+const RegisterForm = ({ onRegister, isFetching }) => {
   const navigate = useNavigate();
 
   const initialValues = {
@@ -128,10 +128,10 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* width: 100%; */
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
-  padding: 32px 20px;
+  padding: 32px 20px 44px 20px;
   background-color: transparent;
 
   @media ${breakpoints.tablet} {
@@ -143,6 +143,11 @@ const Wrapper = styled.div`
 
 const Form = styled.form`
   width: 100%;
+  width: 280px;
+
+   @media ${breakpoints.tablet} {
+     width: 320px;
+   }
 `;
 
 const Text = styled.p`
@@ -163,9 +168,9 @@ const ItemWrapper = styled.ul`
   }
 `;
 
-RegsiterForm.propTypes = {
+RegisterForm.propTypes = {
   onRegister: PropTypes.func.isRequired,
   isFetching: PropTypes.bool.isRequired,
 };
 
-export default RegsiterForm;
+export default RegisterForm;

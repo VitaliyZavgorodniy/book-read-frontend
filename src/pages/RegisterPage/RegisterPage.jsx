@@ -7,25 +7,24 @@ import styled from 'styled-components';
 import { breakpoints } from 'constants/breakpoints';
 import useLocalStorage from 'hooks/useLocalStorage';
 
-import RegsiterForm from './RegsiterForm';
+import RegsiterForm from './RegisterForm';
 import InfoBlockAbout from './InfoBlockAbout';
 import CommonButton from 'components/UI-kit/buttons/CommonButton';
-import Navigation from 'components/Navigation';
 
 const modalRoot = document.querySelector('#modal-root');
 
 const RegisterPage = () => {
-  const [visited, setVisited] = useLocalStorage('visited', false);
-  const hideModal = () => setVisited(true);
-
   const [modal, setModal] = useState(true);
 
-  const navigate = useNavigate();
-  const handleLink = () => {
-    setModal(false);
-    navigate('/login');
-  };
+  const [visited, setVisited] = useLocalStorage('visited', false);
 
+  const navigate = useNavigate();
+
+  const toggleModal = async (link) => {
+    await setVisited(true);
+    setModal(!modal);
+    navigate(link);
+  };
   return (
     <Wrapper>
       <Media
@@ -34,11 +33,14 @@ const RegisterPage = () => {
         }}
       >
         {(matches) =>
-          matches.small && !visited &&
+          matches.small &&
+          !visited &&
           modal &&
           createPortal(
             <Overlay>
-              <Navigation />
+              <Header>
+                <Logo>BR</Logo>
+              </Header>
               <Content>
                 <InfoBlockAbout />
                 <ButtonBlockWrapper>
@@ -47,7 +49,7 @@ const RegisterPage = () => {
                       type="button"
                       title="Login"
                       variant="transparent"
-                      onClick={handleLink}
+                      onClick={() => toggleModal('/login')}
                     />
                   </ButtonWrapper>
                   <ButtonWrapper>
@@ -55,7 +57,7 @@ const RegisterPage = () => {
                       type="button"
                       title="Register"
                       variant="accent"
-                      onClick={hideModal}
+                      onClick={() => toggleModal('/register')}
                     />
                   </ButtonWrapper>
                 </ButtonBlockWrapper>
@@ -83,6 +85,19 @@ const Overlay = styled.div`
   overflow: auto;
   background-color: white;
 `;
+const Header = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+  box-shadow: ${(p) => p.theme.shadows.block};
+`;
+const Logo = styled.span`
+  color: ${(p) => p.theme.colors.primary};
+  font-family: ${(p) => p.theme.font.familyLogo};
+  font-size: 20px;
+  line-height: 27px;
+`;
 const Content = styled.div``;
 
 const Wrapper = styled.div`
@@ -106,7 +121,6 @@ const ButtonWrapper = styled.div`
 `;
 const RegisterBlock = styled.div`
   margin: 0 auto;
-  padding: 90px 75px;
   background-color: ${(p) => p.theme.colors.bgAlpha};
   background-image: linear-gradient(
       to right,
@@ -114,6 +128,19 @@ const RegisterBlock = styled.div`
       ${(p) => p.theme.colors.bgAlpha}
     ),
     url(${(p) => p.theme.backgrounds.register});
+
+  @media ${breakpoints.tablet} {
+    padding: 64px 184px;
+    background-image: linear-gradient(
+        to right,
+        ${(p) => p.theme.colors.bgAlpha},
+        ${(p) => p.theme.colors.bgAlpha}
+      ),
+      url(${(p) => p.theme.backgrounds.registerTb});
+  }
+  @media ${breakpoints.desktop} {
+    padding: 90px 75px;
+  }
 `;
 
 export default RegisterPage;

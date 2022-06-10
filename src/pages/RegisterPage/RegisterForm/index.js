@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { default as RegsiterForm } from './RegsiterForm';
+import { default as RegsiterForm } from './RegisterForm';
 
 import { authSelectors } from 'redux/auth';
 import { authOperations } from 'redux/auth';
