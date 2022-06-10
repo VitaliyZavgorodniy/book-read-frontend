@@ -20,12 +20,23 @@ ChartJS.register(
   Legend
 );
 
-const Chart = ({ labels, data }) => {
-  const { factData, planData, dayPast } = data;
-  // console.log({ labels, factData, planData });
+const Chart = ({
+  labels,
+  data,
+  pagesAmount,
+  mode,
+  avargeData,
+  overallData,
+}) => {
+  const { factData, planData, dayPast } = mode === 0 ? avargeData : overallData;
 
   const totalPages = factData.reduce((acc, value) => acc + value, 0);
   const avargePages = Math.floor(totalPages / dayPast);
+
+  const text =
+    mode === 0
+      ? `AVARGE PAGES / DAY ${avargePages}`
+      : `PAGES AMOUNT ${pagesAmount}`;
 
   const userData = {
     labels,
@@ -57,7 +68,7 @@ const Chart = ({ labels, data }) => {
       },
       title: {
         display: true,
-        text: `AVARGE PAGES / DAY ${avargePages}`,
+        text,
         align: 'start',
         color: `${(p) => p.theme.colors.primary}`,
         font: {
