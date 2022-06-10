@@ -16,6 +16,8 @@ const StatisticsChart = ({ daysAmount, pagesAmount, stats, startDate }) => {
   const daysArray = Array.from({ length: daysAmount }, (_, i) => i + 1);
 
   const avargeData = () => {
+    const testDate = startDate;
+
     const calculateFact = () => {
       const dtInterval = Interval.fromDateTimes(
         dt.fromISO(startDate),

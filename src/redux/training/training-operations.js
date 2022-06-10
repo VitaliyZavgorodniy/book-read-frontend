@@ -35,7 +35,6 @@ const start = createAsyncThunk(
 const updatePages = createAsyncThunk(
   'training/fetch',
   async (value, { rejectWithValue }) => {
-    console.log(value);
     try {
       const { data } = await axios.post('/training/add-pages', value);
 

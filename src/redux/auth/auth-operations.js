@@ -32,7 +32,6 @@ const register = createAsyncThunk(
 
         token.set(result.token);
 
-        console.log(result);
         return result;
       }
 
@@ -50,13 +49,11 @@ const register = createAsyncThunk(
 const login = createAsyncThunk(
   'auth/login',
   async (credentials, { rejectWithValue }) => {
-    console.log(credentials);
     try {
       const {
         data: { result },
       } = await axios.post('/login', credentials);
 
-      console.log(result);
       token.set(result.token);
 
       return result;

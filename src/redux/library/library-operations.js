@@ -45,7 +45,6 @@ const searchBooks = createAsyncThunk(
   async (query, { rejectWithValue }) => {
     try {
       const { data } = await axios.post('/books/search', query);
-      console.log(data.result);
       return data.result;
     } catch (err) {
       const errorMsg = err?.response?.data?.message;
