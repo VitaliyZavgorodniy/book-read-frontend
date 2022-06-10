@@ -10,20 +10,27 @@ import useLocalStorage from 'hooks/useLocalStorage';
 import RegsiterForm from './RegisterForm';
 import InfoBlockAbout from './InfoBlockAbout';
 import CommonButton from 'components/UI-kit/buttons/CommonButton';
-import Navigation from 'components/Navigation';
 
 const modalRoot = document.querySelector('#modal-root');
 
 const RegisterPage = () => {
-  const [visited, setVisited] = useLocalStorage('visited', false);
-  const hideModal = () => setVisited(true);
-
   const [modal, setModal] = useState(true);
 
+  const [visited, setVisited] = useLocalStorage('visited', false);
+
+  const login = '/login';
+  const register = '/register';
   const navigate = useNavigate();
-  const handleLink = () => {
+
+  const hideModal = async () => {
+    await setVisited(true);
     setModal(false);
-    navigate('/login');
+    navigate(login);
+  };
+  const hideModalReg = async () => {
+    await setVisited(true);
+    setModal(false);
+    navigate(register);
   };
 
   return (
@@ -42,7 +49,6 @@ const RegisterPage = () => {
               <Header>
                 <Logo>BR</Logo>
               </Header>
-              {/* <Navigation /> */}
               <Content>
                 <InfoBlockAbout />
                 <ButtonBlockWrapper>
@@ -51,7 +57,7 @@ const RegisterPage = () => {
                       type="button"
                       title="Login"
                       variant="transparent"
-                      onClick={handleLink}
+                      onClick={hideModal}
                     />
                   </ButtonWrapper>
                   <ButtonWrapper>
@@ -59,7 +65,7 @@ const RegisterPage = () => {
                       type="button"
                       title="Register"
                       variant="accent"
-                      onClick={hideModal}
+                      onClick={hideModalReg}
                     />
                   </ButtonWrapper>
                 </ButtonBlockWrapper>
