@@ -18,21 +18,13 @@ const RegisterPage = () => {
 
   const [visited, setVisited] = useLocalStorage('visited', false);
 
-  const login = '/login';
-  const register = '/register';
   const navigate = useNavigate();
 
-  const hideModal = async () => {
+  const toggleModal = async (link) => {
     await setVisited(true);
-    setModal(false);
-    navigate(login);
+    setModal(!modal);
+    navigate(link);
   };
-  const hideModalReg = async () => {
-    await setVisited(true);
-    setModal(false);
-    navigate(register);
-  };
-
   return (
     <Wrapper>
       <Media
@@ -57,7 +49,7 @@ const RegisterPage = () => {
                       type="button"
                       title="Login"
                       variant="transparent"
-                      onClick={hideModal}
+                      onClick={() => toggleModal('/login')}
                     />
                   </ButtonWrapper>
                   <ButtonWrapper>
@@ -65,7 +57,7 @@ const RegisterPage = () => {
                       type="button"
                       title="Register"
                       variant="accent"
-                      onClick={hideModalReg}
+                      onClick={() => toggleModal('/register')}
                     />
                   </ButtonWrapper>
                 </ButtonBlockWrapper>
@@ -93,7 +85,7 @@ const Overlay = styled.div`
   overflow: auto;
   background-color: white;
 `;
-const Header = styled.header`
+const Header = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
