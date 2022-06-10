@@ -9,7 +9,7 @@ const initialState = {
     reading: [],
     completed: [],
   },
-  isFetching: false,
+  foundBooks: [],
 };
 
 const librarySlice = createSlice({
@@ -35,6 +35,17 @@ const librarySlice = createSlice({
       state.isFetching = false;
     },
     [libraryOperations.createBook.rejected]: (state) => {
+      state.isFetching = false;
+    },
+
+    [libraryOperations.searchBooks.pending]: (state) => {
+      state.isFetching = true;
+    },
+    [libraryOperations.searchBooks.fulfilled]: (state, { payload }) => {
+      state.foundBooks = payload;
+      state.isFetching = false;
+    },
+    [libraryOperations.searchBooks.rejected]: (state) => {
       state.isFetching = false;
     },
   },

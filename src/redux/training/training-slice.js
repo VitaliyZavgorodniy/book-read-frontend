@@ -3,7 +3,9 @@ import trainingOperations from './training-operations';
 
 const initialState = {
   books: [],
+  startDate: '',
   endDate: '',
+  pagesAmount: 0,
   inProgress: false,
   stats: [],
   isFetching: false,
@@ -18,8 +20,10 @@ const trainingSlice = createSlice({
     },
     [trainingOperations.fetch.fulfilled]: (state, { payload }) => {
       state.books = payload.books;
+      state.startDate = payload.startDate;
       state.endDate = payload.endDate;
       state.inProgress = payload.inProgress;
+      state.pagesAmount = payload.pagesAmount;
       state.stats = payload.stats;
       state.isFetching = false;
     },

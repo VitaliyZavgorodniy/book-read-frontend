@@ -1,102 +1,126 @@
 import styled from 'styled-components';
-import Media from 'react-media';
-
 import { breakpoints } from 'constants/breakpoints';
+import { DateTime as dt } from 'luxon';
 
-const StatisticTable = ({ items }) => (
-  <Table>
-    <thead>
-      <Media
-        queries={{
-          medium: '(min-width: 768px) and (max-width: 1279px)',
-        }}
-      >
-        {(matches) =>
-          matches.medium ? (
-            <StatRow>
-              <TableHeader>Statistics</TableHeader>
-              <TableHeaderDecor></TableHeaderDecor>
-              <TableHeaderDecor></TableHeaderDecor>
-            </StatRow>
-          ) : (
-            <StatRow>
-              <TableHeaderDecor></TableHeaderDecor>
-              <TableHeader>Statistics</TableHeader>
-              <TableHeaderDecor></TableHeaderDecor>
-            </StatRow>
-          )
-        }
-      </Media>
-     
-    </thead>
+const StatisticTable = ({ items }) => {
+  const parseDate = (data) => {
+    const parsedDate = dt.fromISO(data);
+    return parsedDate.toFormat('dd.MM.yyyy');
+  };
 
-    <tbody>
-      {items.map((item) => (
-        <StatRowBody key={item.id}>
-          <StatColumn>{item.date}</StatColumn>
-          <StatColumnLight>{item.time}</StatColumnLight>
-          <StatColumnPages>
-            {item.pages}
-            <Pages>&nbsp;pages</Pages>
-          </StatColumnPages>
-        </StatRowBody>
-      ))}
-    </tbody>
-  </Table>
-);
+  const parseTime = (data) => {
+    const parsedDate = dt.fromISO(data);
+    return parsedDate.toFormat('HH:mm:ss');
+  };
+
+  const renderList = () => {
+    const elementHTML = [...items].reverse().map(({ _id, date, pages }) => (
+      <Item key={_id}>
+        <Text>{parseDate(date)}</Text>
+        <Text variant="accent" aligment="center">
+          {parseTime(date)}
+        </Text>
+        <Text aligment="right">
+          {pages} <Text variant="accent">pages</Text>
+        </Text>
+      </Item>
+    ));
+
+    return elementHTML;
+  };
+
+  return (
+    <Wrapper>
+      <Heading>
+        <Title>Statistics</Title>
+      </Heading>
+
+      <List>{items.length ? renderList() : <div>No stats</div>}</List>
+    </Wrapper>
+  );
+};
 
 export default StatisticTable;
 
-const Table = styled.table`
-  width: 240px;
-  margin-left: auto;
-  margin-right: auto;
-  color: ${(p) => p.theme.colors.primary};
-  border-collapse: collapse;
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: ${(p) => p.theme.colors.bgSecondary};
+  margin-top: 40px;
+  padding: 18px 24px 14px;
 `;
 
-const TableHeader = styled.th`
-  position: relative;
-  padding: 0 13px 0 12px;
-  text-transform: uppercase;
+const Heading = styled.div`
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+
+  &::before {
+    content: '';
+    flex: 1 1 auto;
+    border-bottom: solid 1px ${(p) => p.theme.colors.lineStat};
+
+    @media ${breakpoints.tablet} {
+      display: none;
+    }
+
+    @media ${breakpoints.desktop} {
+      display: flex;
+    }
+  }
+
+  &::after {
+    content: '';
+    flex: 1 1 auto;
+    border-bottom: solid 1px ${(p) => p.theme.colors.lineStat};
+  }
+`;
+
+const Title = styled.h4`
+  flex: 0 1 auto;
+  padding: 0 7px;
+  color: ${(p) => p.theme.colors.primary};
   font-weight: 700;
   font-size: 12px;
-  line-height: 1.25;
-  text-align: center;
-  border-collapse: collapse;
+  line-height: 15px;
+  text-transform: uppercase;
 
   @media ${breakpoints.tablet} {
-    padding: 0;
-     text-align: start;
+    padding-left: 0;
+  }
+
+  @media ${breakpoints.desktop} {
+    padding-left: 7px;
   }
 `;
-const TableHeaderDecor = styled(TableHeader)`
-  padding: 0;
-  &:after {
-    content: '';
-    display: block;
-    width: 100%;
-    height: 1px;
-    background-color: ${(p) => p.theme.colors.lineStat};
-    position: absolute;
-    top: 50%;
-  }
+
+const List = styled.ul`
+  width: 100%;
+  margin-top: 11px;
 `;
-const StatRow = styled.tr`
+
+const Item = styled.li`
+  display: flex;
+  justify-content: space-between;
   margin-bottom: 4px;
+
+  &:last-child {
+    margin-bottom: 0px;
+  }
+
+  & > * {
+    flex-basis: calc(100% / 3);
+  }
 `;
-const StatRowBody = styled(StatRow)`
+
+const Text = styled.span`
+  color: ${(p) =>
+    p.variant === 'accent' ? p.theme.colors.tertiary : p.theme.colors.primary};
+  font-weight: 400;
   font-size: 14px;
-  line-height: 1.22;
-`;
-const StatColumn = styled.td``;
-const StatColumnLight = styled(StatColumn)`
-  text-align: center;
-  color: ${(p) => p.theme.colors.tertiary};
-`;
-const StatColumnPages = styled.td`
-  text-align: end;
-`;
-const Pages = styled.span`
-  color: ${(p) => p.theme.colors.tertiary};
+  line-height: 17px;
+  text-align: ${(p) => p.aligment};
 `;

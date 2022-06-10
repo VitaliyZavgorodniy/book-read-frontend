@@ -59,6 +59,7 @@ const BooksList = ({ title, list }) => {
 };
 
 const Section = styled.section`
+  width: 100%;
   margin-bottom: 20px;
 
   @media ${breakpoints.tablet} {

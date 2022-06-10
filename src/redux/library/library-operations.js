@@ -40,9 +40,27 @@ const createBook = createAsyncThunk(
   }
 );
 
+const searchBooks = createAsyncThunk(
+  'library/searchBooks',
+  async (query, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.post('/books/search', query);
+      console.log(data.result);
+      return data.result;
+    } catch (err) {
+      const errorMsg = err?.response?.data?.message;
+
+      if (errorMsg) notyf.error(errorMsg);
+
+      return rejectWithValue(err?.response?.data);
+    }
+  }
+);
+
 const operations = {
   fetch,
-  createBook
+  createBook,
+  searchBooks,
 };
 
 export default operations;

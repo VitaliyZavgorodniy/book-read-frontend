@@ -22,7 +22,11 @@ ChartJS.register(
 
 const Chart = ({ labels, data }) => {
   const { factData, planData, dayPast } = data;
-  const amountPages = factData.reduce((acc, value) => acc + value, 0);
+  // console.log({ labels, factData, planData });
+
+  const totalPages = factData.reduce((acc, value) => acc + value, 0);
+  const avargePages = Math.floor(totalPages / dayPast);
+
   const userData = {
     labels,
     datasets: [
@@ -53,7 +57,7 @@ const Chart = ({ labels, data }) => {
       },
       title: {
         display: true,
-        text: `AMONT OF PAGES / DAY ${amountPages / dayPast}`,
+        text: `AVARGE PAGES / DAY ${avargePages}`,
         align: 'start',
         color: `${(p) => p.theme.colors.primary}`,
         font: {

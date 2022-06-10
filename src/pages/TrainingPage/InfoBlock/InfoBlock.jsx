@@ -5,28 +5,32 @@ import { ReactComponent as Library } from 'assets/icons/library.svg';
 import { ReactComponent as Flag } from 'assets/icons/flag.svg';
 import { ReactComponent as Arrow } from 'assets/icons/arrow.svg';
 
-const InfoBlockIntro = () => (
+const InfoBlock = () => (
   <StepsList>
     <Step>
       <StepNumber>Step 1.</StepNumber>
       <Title>
         <Library />
-        LibraryInfo Create your own library
+        Add one ore more book for training
       </Title>
       <Text>
         <Arrow />
-        Add there books which you are going to read.
+        Use search field to find books from your library
       </Text>
     </Step>
     <Step>
       <StepNumber>Step 2.</StepNumber>
       <Title>
         <Flag />
-        Create your first training
+        Set end date and time of your training
       </Title>
       <Text>
         <Arrow />
-        Set a goal, choose period, start training.
+        Use date and time picker for choose when your training will end
+      </Text>
+      <Text>
+        <Arrow />
+        End date can't be more then 31 day and less then 1 day
       </Text>
     </Step>
   </StepsList>
@@ -80,4 +84,4 @@ const Text = styled.p`
   }
 `;
 
-export default InfoBlockIntro;
+export default InfoBlock;

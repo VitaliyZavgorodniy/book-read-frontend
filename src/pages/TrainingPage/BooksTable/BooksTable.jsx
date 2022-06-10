@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 const BooksTable = ({ list, handleRemove }) => {
   const renderList = () => {
-    const elementHTML = list.map(({ id, title, author, year, pages }) => (
-      <BodyRow key={id}>
+    const elementHTML = list.map(({ _id, title, author, year, pages }) => (
+      <BodyRow key={_id}>
         <BodyColumn>
           <Icon>
             <MdMenuBook />
@@ -15,7 +15,7 @@ const BooksTable = ({ list, handleRemove }) => {
         <BodyColumn>{year}</BodyColumn>
         <BodyColumn>{pages}</BodyColumn>
         <BodyColumn>
-          <Button onClick={() => handleRemove(id)}>
+          <Button onClick={() => handleRemove(_id)}>
             <Icon>
               <MdOutlineDeleteOutline />
             </Icon>

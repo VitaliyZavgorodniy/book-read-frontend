@@ -1,66 +1,71 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { breakpoints } from 'constants/breakpoints';
+import { Interval, DateTime as dt } from 'luxon';
 
 import Chart from './Chart';
 
-// Пример массива данных статистики пользователя
-// const factUserData = [
-//   { id: '1', date: '10.10.2019', time: '08:10:23', pages: 32 },
-//   { id: '2', date: '12.10.2019', time: '23:50:15', pages: 164 },
-//   { id: '3', date: '12.10.2019', time: '13:10:05', pages: 137 },
-//   { id: '4', date: '13.10.2019', time: '18:46:19', pages: 164 },
-//   { id: '5', date: '15.10.2019', time: '19:52:48', pages: 29 },
-// ];
+import { getTimeDifference } from 'utils/getTimeDifference';
+import { timeFormatToDT } from 'utils/timeFormatToDT';
+import { getDaysInterval } from 'utils/getDaysInterval';
 
-// Подсчет общего количества страниц
-const getAmountPages = (booksList) =>
-  booksList
-    .map((item) => item.pages)
-    .reduce((acc, value) => acc + Number(value), 0);
+const StatisticsChart = ({ daysAmount, pagesAmount, stats, startDate }) => {
+  const daysArray = Array.from({ length: daysAmount }, (_, i) => i + 1);
 
-// Определение временных точек для графика
-const getLabels = (amountDate, startDate) => {
-  let labels = [];
-  for (let i = 0; i <= amountDate; i++) {
-    let label = new Date(startDate.setDate(startDate.getDate() + 1));
-    labels.push(label.toISOString().slice(0, 10));
-  }
-  return labels;
-};
+  const calculateFact = () => {
+    const dtInterval = Interval.fromDateTimes(dt.fromISO(startDate), dt.now());
+    const datesInterval = [];
+    for (let date of getDaysInterval(dtInterval)) {
+      datesInterval.push(Number(date.toFormat('yyyyMMdd')));
+    }
 
-// Расчет планового количества страниц в день
-const getPlanData = (amountDate, amountPages) => {
-  let arr = [];
-  for (let i = 0; i <= amountDate; i++) {
-    arr.push(amountPages / amountDate);
-  }
-  return arr;
-};
+    const statsByDay = stats.map((item) => ({
+      date: dt.fromISO(item.date).toFormat('yyyyMMdd'),
+      amount: item.pages,
+    }));
 
-// Необходимые для компонента пропсы:
-// - amountDate - количество дней на тренировку
-// = startDate - начальная дата тренирки
-// - factUserData - фактические данные тренировки пользователя (дата, количество прочитанных книг)
-// - booksList - список книг пользователя
+    const reducedStats = Array.from(
+      statsByDay.reduce(
+        (item, { date, amount }) =>
+          item.set(date, (item.get(date) || 0) + amount),
+        new Map()
+      ),
+      ([date, amount]) => ({ date, amount })
+    );
 
-const StatisticsChart = ({
-  amountDate,
-  startDate,
-  factUserData,
-  booksList,
-}) => {
-  const labels = getLabels(amountDate, startDate);
-  const amountPages = getAmountPages(booksList);
-  const planData = getPlanData(amountDate, amountPages);
-  const factData = factUserData.map((item) => item.pages);
-  const dayPast = factUserData.map((item) => item.date).length;
+    const fact = datesInterval.map((item) => {
+      const value = reducedStats.find(({ date }) => Number(date) === item);
+      if (value) return value.amount;
+      return 0;
+    });
 
-  const data = { factData, planData, dayPast };
+    return fact;
+  };
+
+  const calculatePlan = () => {
+    const avargePages = Math.floor(pagesAmount / daysAmount);
+
+    const plan = daysArray.map((item) => item * avargePages);
+
+    return plan;
+  };
+
+  const calculateDaysPast = () => {
+    const difference = getTimeDifference(timeFormatToDT(startDate));
+
+    return difference?.days;
+  };
 
   return (
     <ChartBlock>
-      <Chart labels={labels} data={data} />
+      <Chart
+        labels={daysArray}
+        data={{
+          factData: calculateFact(),
+          planData: calculatePlan(),
+          dayPast: calculateDaysPast(),
+        }}
+      />
     </ChartBlock>
   );
 };
@@ -84,10 +89,9 @@ const ChartBlock = styled.div`
 `;
 
 StatisticsChart.propTypes = {
-  amountDate: PropTypes.number,
-  startDate: PropTypes.object,
-  factUserData: PropTypes.array,
-  booksList: PropTypes.array,
+  daysAmount: PropTypes.number.isRequired,
+  pagesAmount: PropTypes.number.isRequired,
+  stats: PropTypes.array,
 };
 
 export default StatisticsChart;

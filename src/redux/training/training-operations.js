@@ -14,10 +14,33 @@ const fetch = createAsyncThunk(
 
       return data.result;
     } catch (err) {
-      const errorMsg = err?.response?.data?.message;
+      return rejectWithValue(err?.response?.data);
+    }
+  }
+);
 
-      if (errorMsg) notyf.error(errorMsg);
+const start = createAsyncThunk(
+  'training/fetch',
+  async (training, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.post('/training', training);
 
+      return data.result;
+    } catch (err) {
+      return rejectWithValue(err?.response?.data);
+    }
+  }
+);
+
+const updatePages = createAsyncThunk(
+  'training/fetch',
+  async (value, { rejectWithValue }) => {
+    console.log(value);
+    try {
+      const { data } = await axios.post('/training/add-pages', value);
+
+      return data.result;
+    } catch (err) {
       return rejectWithValue(err?.response?.data);
     }
   }
@@ -25,6 +48,8 @@ const fetch = createAsyncThunk(
 
 const operations = {
   fetch,
+  start,
+  updatePages,
 };
 
 export default operations;

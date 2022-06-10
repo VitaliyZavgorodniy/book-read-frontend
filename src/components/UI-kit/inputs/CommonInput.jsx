@@ -11,26 +11,24 @@ const CommonInput = ({
   error,
   disabled,
   ...props
-}) => {
-  return (
-    <Wrapper>
-      <Label htmlFor={id} isRequired={required}>
-        {title}
-      </Label>
-      <Input
-        id={id}
-        name={id}
-        required={required}
-        value={value}
-        type={type ?? 'text'}
-        disabled={disabled}
-        onChange={onChange}
-        {...props}
-      />
-      {error && <ErrorMessage>{error}</ErrorMessage>}
-    </Wrapper>
-  );
-};
+}) => (
+  <Wrapper>
+    <Label htmlFor={id} isRequired={required}>
+      {title}
+    </Label>
+    <Input
+      id={id}
+      name={id}
+      required={required}
+      value={value}
+      type={type ?? 'text'}
+      disabled={disabled}
+      onChange={onChange}
+      {...props}
+    />
+    {error && <ErrorMessage>{error}</ErrorMessage>}
+  </Wrapper>
+);
 
 const Wrapper = styled.div`
   display: flex;
@@ -89,8 +87,8 @@ const ErrorMessage = styled.p`
 `;
 
 CommonInput.propTypes = {
-  id: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
+  id: PropTypes.string,
+  title: PropTypes.string,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   required: PropTypes.bool,

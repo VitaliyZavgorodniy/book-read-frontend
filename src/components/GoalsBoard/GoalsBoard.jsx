@@ -25,19 +25,20 @@ const GoalsBoard = ({ data }) => {
 
 const Wrapper = styled.div`
   width: 280px;
+  background-color: ${(p) => p.theme.colors.bgSecondary};
 
   @media ${breakpoints.tablet} {
-    max-width: 704px;
+    width: 704px;
   }
 
-  @media ${breakpoints.desktop} {
-    max-width: 288px;
+  @media ${breakpoints.laptop} {
+    width: 288px;
   }
 `;
 
 const List = styled.ul`
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   padding: 48px 0;
 `;
 
@@ -45,11 +46,6 @@ const Item = styled.li`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-right: 20px;
-
-  &:last-child {
-    margin-right: 0px;
-  }
 `;
 
 const Value = styled.p`
@@ -65,16 +61,36 @@ const Value = styled.p`
   font-size: 45px;
   line-height: 38px;
   box-shadow: ${(p) => p.theme.shadows.primary};
+
+  @media ${breakpoints.tablet} {
+    width: 704px;
+  }
+
+  @media ${breakpoints.laptop} {
+    width: 66px;
+    height: 66px;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 38px;
+  }
 `;
 
 const Label = styled.p`
   width: 100px;
-  padding: 14px;
+  padding: 14px 0;
   color: ${(p) => p.theme.colors.tertiary};
   font-weight: 500;
   font-size: 14px;
   line-height: 17px;
   text-align: center;
+
+  @media ${breakpoints.tablet} {
+    width: 704px;
+  }
+
+  @media ${breakpoints.laptop} {
+    width: 66px;
+  }
 `;
 
 export default GoalsBoard;
