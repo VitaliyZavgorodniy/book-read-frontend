@@ -5,7 +5,7 @@ import { breakpoints } from 'constants/breakpoints';
 
 import GoalsBoard from 'components/GoalsBoard';
 import CountdownPanel from 'components/CountdownPanel';
-import StatisticsChart from 'components/StatisticsChart';
+// import StatisticsChart from 'components/StatisticsChart';
 import StatisticTable from 'components/StatisticTable';
 import BooksList from './BooksList';
 
@@ -54,14 +54,14 @@ const StatisticsPage = ({ status, training, stats, onLoadTraining }) => {
 
         <BooksList />
 
-        {status && (
+        {/* {status && (
           <StatisticsChart
             startDate={training.startDate}
             daysAmount={handleDaysDifference(training.startDate)}
             pagesAmount={training.pagesAmount}
             stats={stats}
           />
-        )}
+        )} */}
       </WrapperLeft>
 
       <WrapperRight>

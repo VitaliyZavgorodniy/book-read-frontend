@@ -1,5 +1,9 @@
-import bgRegister from 'assets/images/background.jpg';
-import bgRegisterTb from 'assets/images/backgroundTb.jpg'
+import bgLogMb from 'assets/images/bgLogMb.jpg'
+import bgRegMb from 'assets/images/bgRegMb.jpg'
+import bgLogTb from 'assets/images/bgLogTb.jpg'
+import bgRegTb from 'assets/images/bgRegTb.jpg'
+import bgLogDs from 'assets/images/bgLogDs.jpg';
+import bgRegDs from 'assets/images/bgRegDs.jpg';
 
 export const theme = {
   colors: {
@@ -33,8 +37,12 @@ export const theme = {
     familySecondary: 'Roboto, sans-serif',
   },
   backgrounds: {
-    register: bgRegister,
-    registerTb: bgRegisterTb,
+    logMb: bgLogMb,
+    logTb: bgLogTb,
+    logDs: bgLogDs,
+    regMb: bgRegMb,
+    regTb: bgRegTb,
+    regDs: bgRegDs,
   },
   animations: {
     primary: '250ms ease-in-out',

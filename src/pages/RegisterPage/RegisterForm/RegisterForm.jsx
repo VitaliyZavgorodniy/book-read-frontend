@@ -43,7 +43,8 @@ const RegisterForm = ({ onRegister, isFetching }) => {
 
   return (
     <Wrapper>
-      <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit}>
+      <ItemList>
         <ItemWrapper>
           <GoogleButton />
         </ItemWrapper>
@@ -110,16 +111,19 @@ const RegisterForm = ({ onRegister, isFetching }) => {
         </ItemWrapper>
 
         <ItemWrapper>
-          <CommonButton type="submit" title="Register" variant="accent" />
+          <CommonButton type="submit" title="Register" variant="accent" size="lg" />
         </ItemWrapper>
+      </ItemList>
       </Form>
 
-      <ItemWrapper>
+      
+
+      <TextWrapper>
         <Text>
           Already have an account?{' '}
           <InlineButton label="Log in" variant="accent" onClick={handleLink} />
         </Text>
-      </ItemWrapper>
+      </TextWrapper>
     </Wrapper>
   );
 };
@@ -159,15 +163,27 @@ const Text = styled.p`
   text-align: center;
   color: ${(p) => p.theme.colors.tertiary};
 `;
+const ItemList = styled.ul`
+`;
 
-const ItemWrapper = styled.ul`
+const ItemWrapper = styled.li`
   margin-top: 20px;
 
   &:first-child {
     margin-top: 0;
   }
+  &:nth-child(2) {
+    margin-top: 28px;
+  }
+  @media ${breakpoints.tablet} {
+    &:last-child {
+    margin-top: 35px;
+  }
+}
 `;
-
+const TextWrapper = styled.div`
+  margin-top: 20px;
+`
 RegisterForm.propTypes = {
   onRegister: PropTypes.func.isRequired,
   isFetching: PropTypes.bool.isRequired,
