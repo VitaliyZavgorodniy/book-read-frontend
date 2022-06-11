@@ -58,7 +58,7 @@ const Input = styled.input`
 `;
 
 const ErrorMessage = styled.p`
-  /* margin-top: 5px; */
+  margin-top: 5px;
   color: ${(p) => p.theme.colors.error};
   font-weight: 400;
   font-size: 12px;

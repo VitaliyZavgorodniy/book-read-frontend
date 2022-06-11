@@ -39,44 +39,51 @@ const LoginForm = ({ onLogin, isFetching }) => {
     <Wrapper>
       <Form onSubmit={handleSubmit}>
         <ItemList>
-        <ItemWrapper>
-          <GoogleButton />
-        </ItemWrapper>
-
-        <ItemWrapper>
-          <FormInput
-            required
-            title="Email"
-            placeholder="your@email.com"
-            name="email"
-            type="text"
-            disabled={isFetching}
-            value={values.email}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            error={touched.email && errors.email ? errors.email : null}
-          />
-        </ItemWrapper>
-
-        <ItemWrapper>
-          <FormInput
-            required
-            title="Password"
-            placeholder="********"
-            name="password"
-            type="password"
-            disabled={isFetching}
-            value={values.password.slice(0, 30)}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            error={touched.password && errors.password ? errors.password : null}
-          />
-        </ItemWrapper>
-
-        <ItemWrapper>
-          <CommonButton type="submit" title="Login" variant="accent" size="lg"/>
+          <ItemWrapper>
+            <GoogleButton />
           </ItemWrapper>
-            </ItemList> 
+
+          <ItemWrapper>
+            <FormInput
+              required
+              title="Email"
+              placeholder="your@email.com"
+              name="email"
+              type="text"
+              disabled={isFetching}
+              value={values.email}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={touched.email && errors.email ? errors.email : null}
+            />
+          </ItemWrapper>
+
+          <ItemWrapper>
+            <FormInput
+              required
+              title="Password"
+              placeholder="********"
+              name="password"
+              type="password"
+              disabled={isFetching}
+              value={values.password.slice(0, 30)}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={
+                touched.password && errors.password ? errors.password : null
+              }
+            />
+          </ItemWrapper>
+
+          <ItemWrapper>
+            <CommonButton
+              type="submit"
+              title="Login"
+              variant="accent"
+              size="lg"
+            />
+          </ItemWrapper>
+        </ItemList>
       </Form>
 
       <TextWrapper>
@@ -102,17 +109,15 @@ const Wrapper = styled.div`
     background-color: ${(p) => p.theme.colors.bgSecondary};
   }
 `;
-
 const Form = styled.form`
   width: 100%;
   width: 280px;
 
-   @media ${breakpoints.tablet} {
-     width: 320px;
-   }
+  @media ${breakpoints.tablet} {
+    width: 320px;
+  }
 `;
-const ItemList = styled.ul`
-`;
+const ItemList = styled.ul``;
 
 const ItemWrapper = styled.li`
   margin-top: 20px;
@@ -125,16 +130,15 @@ const ItemWrapper = styled.li`
   }
   @media ${breakpoints.tablet} {
     &:last-child {
-    margin-top: 32px;
+      margin-top: 32px;
+    }
   }
-}
 `;
 const TextWrapper = styled.div`
   margin-top: 20px;
-`
+`;
 LoginForm.propTypes = {
   onLogin: PropTypes.func.isRequired,
   isFetching: PropTypes.bool.isRequired,
 };
-
 export default LoginForm;
