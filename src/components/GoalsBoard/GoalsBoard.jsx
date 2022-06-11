@@ -17,7 +17,9 @@ const GoalsBoard = ({ data }) => {
 
   return (
     <Wrapper>
-      <BlockHeading title="My goals" />
+      <Heading>
+        <BlockHeading title="My goals" />
+      </Heading>
       <List>{renderScores()}</List>
     </Wrapper>
   );
@@ -29,17 +31,42 @@ const Wrapper = styled.div`
 
   @media ${breakpoints.tablet} {
     width: 704px;
+    display: flex;
+    padding: 22px;
   }
 
-  @media ${breakpoints.laptop} {
+  @media ${breakpoints.desktop} {
     width: 288px;
+    display: block;
+    padding: 0;
+  }
+`;
+
+const Heading = styled.div`
+  @media ${breakpoints.tablet} {
+    width: 275px;
+    margin-right: 100px;
+  }
+  @media ${breakpoints.desktop} {
+    width: 100%;
+    margin-right: 0;
   }
 `;
 
 const List = styled.ul`
   display: flex;
+  padding: 44px 0;
   justify-content: space-evenly;
-  padding: 48px 0;
+  @media ${breakpoints.tablet} {
+    width: 240px;
+    justify-content: space-between;
+    padding: 0;
+  }
+  @media ${breakpoints.desktop} {
+    width: 100%;
+    padding: 48px 0;
+    justify-content: space-evenly;
+  }
 `;
 
 const Item = styled.li`
@@ -63,15 +90,13 @@ const Value = styled.p`
   box-shadow: ${(p) => p.theme.shadows.primary};
 
   @media ${breakpoints.tablet} {
-    width: 704px;
+    height: 60px;
+    font-size: 40px;
   }
 
-  @media ${breakpoints.laptop} {
-    width: 66px;
-    height: 66px;
-    font-weight: 700;
-    font-size: 36px;
-    line-height: 38px;
+  @media ${breakpoints.desktop} {
+    height: 100px;
+    font-size: 45px;
   }
 `;
 
@@ -85,11 +110,15 @@ const Label = styled.p`
   text-align: center;
 
   @media ${breakpoints.tablet} {
-    width: 704px;
+    padding: 4px 0;
+    font-size: 11px;
+    line-height: 13px;
   }
-
-  @media ${breakpoints.laptop} {
+  @media ${breakpoints.desktop} {
     width: 66px;
+    padding: 14px 0;
+    font-size: 14px;
+    line-height: 17px;
   }
 `;
 

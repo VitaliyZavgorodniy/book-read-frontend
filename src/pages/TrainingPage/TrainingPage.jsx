@@ -7,7 +7,7 @@ import { Notyf } from 'notyf';
 import DateInput from 'components/UI-kit/inputs/DateInput';
 import BlockHeading from 'components/UI-kit/containers/BlockHeading';
 import GoalsBoard from 'components/GoalsBoard';
-import BooksTable from './BooksTable';
+import BooksList from './BooksList';
 import InfoBlock from './InfoBlock';
 
 import { getTimeDifference } from 'utils/getTimeDifference';
@@ -99,7 +99,7 @@ const TrainingPage = ({
 
         <ListWrapper>
           {listedBooks.length ? (
-            <BooksTable list={listedBooks} handleRemove={handleRemoveBook} />
+            <BooksList list={listedBooks} handleRemove={handleRemoveBook} />
           ) : (
             <InfoBlock />
           )}
@@ -118,52 +118,84 @@ const TrainingPage = ({
         </ButtonWrapper>
       </OptionsBlock>
 
-      <GoalsBoard
-        title="My goals"
-        data={[
-          {
-            id: 'books',
-            label: 'Amount of books',
-            value: goalBooks,
-          },
-          {
-            id: 'days',
-            label: 'Amount of days',
-            value: goalDays,
-          },
-        ]}
-      />
+      <BoardWrapper>
+        <GoalsBoard
+          title="My goals"
+          data={[
+            {
+              id: 'books',
+              label: 'Amount of books',
+              value: goalBooks,
+            },
+            {
+              id: 'days',
+              label: 'Amount of days',
+              value: goalDays,
+            },
+          ]}
+        />
+      </BoardWrapper>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
+  max-width: 280px;
   display: flex;
+  flex-direction: column-reverse;
   justify-content: space-between;
+  margin: 0 auto;
+
+  @media ${breakpoints.tablet} {
+    max-width: 704px;
+  }
+
+  @media ${breakpoints.desktop} {
+    max-width: 1280px;
+    flex-direction: row;
+  }
 `;
 
 const OptionsBlock = styled.div`
   display: flex;
   flex-direction: column;
-  width: 928px;
+  @media ${breakpoints.desktop} {
+    width: 928px;
+  }
 `;
 
 const Block = styled.div`
   display: flex;
-  align-items: flex-end;
+  flex-direction: column-reverse;
   padding: 10px 0;
+  margin-top: 20px;
+
+  @media ${breakpoints.tablet} {
+    flex-direction: row;
+    align-items: flex-end;
+    margin-top: 28px;
+  }
+
+  @media ${breakpoints.desktop} {
+    margin-top: 24px;
+  }
 `;
 
 const ButtonWrapper = styled.div`
   width: 200px;
-  margin: 0 auto;
+  margin: 0 auto 32px auto;
 `;
 
 const ElementWrapper = styled.div`
-  margin-left: 10px;
+  margin-bottom: 10px;
 
-  &:first-child {
-    margin-left: 0;
+  @media ${breakpoints.tablet} {
+    margin-bottom: 0;
+    margin-left: 10px;
+
+    &:first-child {
+      margin-left: 0;
+    }
   }
 `;
 
@@ -171,7 +203,30 @@ const ListWrapper = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  margin-top: 25px;
+  margin-top: 20px;
+  margin-bottom: 32px;
+
+  @media ${breakpoints.tablet} {
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+
+  @media ${breakpoints.desktop} {
+    margin-top: 25px;
+  }
+`;
+
+const BoardWrapper = styled.div`
+  display: block;
+  margin-bottom: 32px;
+
+  @media ${breakpoints.tablet} {
+    margin-bottom: 40px;
+  }
+
+  @media ${breakpoints.desktop} {
+    margin-bottom: 0;
+  }
 `;
 
 export default TrainingPage;
