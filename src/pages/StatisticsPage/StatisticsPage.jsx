@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { breakpoints } from 'constants/breakpoints';
 
@@ -7,6 +6,7 @@ import GoalsBoard from 'components/GoalsBoard';
 import CountdownPanel from 'components/CountdownPanel';
 import StatisticsChart from 'components/StatisticsChart';
 import StatisticTable from 'components/StatisticTable';
+import BooksTable from './BooksTable';
 import BooksList from './BooksList';
 
 import { getCurrentEndYearDate } from 'utils/getCurrentEndYearDate';
@@ -52,7 +52,10 @@ const StatisticsPage = ({ status, training, stats, onLoadTraining }) => {
           <CountdownPanel title="Goals countdown" dateTo={training.endDate} />
         </Counters>
 
-        <BooksList />
+        <BooksListWrapper>
+          <BooksTable />
+          <BooksList />
+        </BooksListWrapper>
 
         {status && (
           <StatisticsChart
@@ -81,9 +84,7 @@ const StatisticsPage = ({ status, training, stats, onLoadTraining }) => {
               accent: true,
               id: 'leftbooks',
               label: 'Books left',
-              value: training.books.filter(
-                (book) => book.status !== 'completed'
-              ).length,
+              value: training.books.filter((book) => !book.isCompleted).length,
             },
           ]}
         />
@@ -96,6 +97,7 @@ const StatisticsPage = ({ status, training, stats, onLoadTraining }) => {
 
 const Wrapper = styled.div`
   display: flex;
+  justify-content: space-between;
 `;
 
 const Counters = styled.div`
@@ -111,6 +113,11 @@ const WrapperLeft = styled.div`
 const WrapperRight = styled.div`
   display: flex;
   flex-direction: column;
+`;
+
+const BooksListWrapper = styled.div`
+  margin-top: 44px;
+  width: 928px;
 `;
 
 export default StatisticsPage;

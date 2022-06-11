@@ -14,17 +14,20 @@ const StatisticTable = ({ items }) => {
   };
 
   const renderList = () => {
-    const elementHTML = [...items].reverse().map(({ _id, date, pages }) => (
-      <Item key={_id}>
-        <Text>{parseDate(date)}</Text>
-        <Text variant="accent" aligment="center">
-          {parseTime(date)}
-        </Text>
-        <Text aligment="right">
-          {pages} <Text variant="accent">pages</Text>
-        </Text>
-      </Item>
-    ));
+    const elementHTML = [...items]
+      .reverse()
+      .splice(0, 10)
+      .map(({ _id, date, pages }) => (
+        <Item key={_id}>
+          <Text>{parseDate(date)}</Text>
+          <Text variant="accent" aligment="center">
+            {parseTime(date)}
+          </Text>
+          <Text aligment="right">
+            {pages} <Text variant="accent">pages</Text>
+          </Text>
+        </Item>
+      ));
 
     return elementHTML;
   };

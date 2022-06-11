@@ -14,7 +14,7 @@ import IconButton from 'components/UI-kit/buttons/IconButton';
 
 import { timeFormatToString } from 'utils/timeFormatToString';
 
-const BooksList = ({ books, onUpdateStats }) => {
+const BooksTable = ({ books, onUpdateStats }) => {
   const [isOpenModal, setOpenModal] = useState(false);
   const [statsBook, setStatsBook] = useState(null);
   const [statsPages, setStatsPages] = useState('');
@@ -167,4 +167,4 @@ const ItemWrapper = styled.div`
   }
 `;
 
-export default BooksList;
+export default BooksTable;
