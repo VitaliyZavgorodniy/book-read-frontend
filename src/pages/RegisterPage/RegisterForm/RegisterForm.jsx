@@ -43,80 +43,85 @@ const RegisterForm = ({ onRegister, isFetching }) => {
 
   return (
     <Wrapper>
-        <Form onSubmit={handleSubmit}>
-      <ItemList>
-        <ItemWrapper>
-          <GoogleButton />
-        </ItemWrapper>
+      <Form onSubmit={handleSubmit}>
+        <ItemList>
+          <ItemWrapper>
+            <GoogleButton />
+          </ItemWrapper>
 
-        <ItemWrapper>
-          <FormInput
-            required
-            title="Name"
-            placeholder="User Name"
-            name="name"
-            type="text"
-            disabled={isFetching}
-            value={values.name}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            error={touched.name && errors.name ? errors.name : null}
-          />
-        </ItemWrapper>
+          <ItemWrapper>
+            <FormInput
+              required
+              title="Name"
+              placeholder="User Name"
+              name="name"
+              type="text"
+              disabled={isFetching}
+              value={values.name}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={touched.name && errors.name ? errors.name : null}
+            />
+          </ItemWrapper>
 
-        <ItemWrapper>
-          <FormInput
-            required
-            title="Email"
-            placeholder="your@email.com"
-            name="email"
-            type="text"
-            disabled={isFetching}
-            value={values.email}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            error={touched.email && errors.email ? errors.email : null}
-          />
-        </ItemWrapper>
+          <ItemWrapper>
+            <FormInput
+              required
+              title="Email"
+              placeholder="your@email.com"
+              name="email"
+              type="text"
+              disabled={isFetching}
+              value={values.email}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={touched.email && errors.email ? errors.email : null}
+            />
+          </ItemWrapper>
 
-        <ItemWrapper>
-          <FormInput
-            required
-            title="Password"
-            placeholder="********"
-            name="password"
-            type="password"
-            disabled={isFetching}
-            value={values.password.slice(0, 30)}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            error={touched.password && errors.password ? errors.password : null}
-          />
-        </ItemWrapper>
+          <ItemWrapper>
+            <FormInput
+              required
+              title="Password"
+              placeholder="********"
+              name="password"
+              type="password"
+              disabled={isFetching}
+              value={values.password.slice(0, 30)}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={
+                touched.password && errors.password ? errors.password : null
+              }
+            />
+          </ItemWrapper>
 
-        <ItemWrapper>
-          <FormInput
-            required
-            title="Confirm password"
-            placeholder="********"
-            name="confirm"
-            type="password"
-            disabled={isFetching}
-            value={values.confirm.slice(0, 30)}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            error={touched.confirm && errors.confirm ? errors.confirm : null}
-            onPaste={onPasteHandler}
-          />
-        </ItemWrapper>
+          <ItemWrapper>
+            <FormInput
+              required
+              title="Confirm password"
+              placeholder="********"
+              name="confirm"
+              type="password"
+              disabled={isFetching}
+              value={values.confirm.slice(0, 30)}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={touched.confirm && errors.confirm ? errors.confirm : null}
+              onPaste={onPasteHandler}
+            />
+          </ItemWrapper>
 
-        <ItemWrapper>
-          <CommonButton type="submit" title="Register" variant="accent" size="lg" />
-        </ItemWrapper>
-      </ItemList>
+          <ItemWrapper>
+            <CommonButton
+              type="submit"
+              title="Register"
+              variant="accent"
+              size="lg"
+            />
+          </ItemWrapper>
+        </ItemList>
       </Form>
-
-      
 
       <TextWrapper>
         <Text>
@@ -144,16 +149,14 @@ const Wrapper = styled.div`
     background-color: ${(p) => p.theme.colors.bgSecondary};
   }
 `;
-
 const Form = styled.form`
   width: 100%;
   width: 280px;
 
-   @media ${breakpoints.tablet} {
-     width: 320px;
-   }
+  @media ${breakpoints.tablet} {
+    width: 320px;
+  }
 `;
-
 const Text = styled.p`
   font-family: ${(p) => p.theme.font.familyPrimary};
   font-style: normal;
@@ -163,8 +166,7 @@ const Text = styled.p`
   text-align: center;
   color: ${(p) => p.theme.colors.tertiary};
 `;
-const ItemList = styled.ul`
-`;
+const ItemList = styled.ul``;
 
 const ItemWrapper = styled.li`
   margin-top: 20px;
@@ -177,16 +179,15 @@ const ItemWrapper = styled.li`
   }
   @media ${breakpoints.tablet} {
     &:last-child {
-    margin-top: 35px;
+      margin-top: 35px;
+    }
   }
-}
 `;
 const TextWrapper = styled.div`
   margin-top: 20px;
-`
+`;
 RegisterForm.propTypes = {
   onRegister: PropTypes.func.isRequired,
   isFetching: PropTypes.bool.isRequired,
 };
-
 export default RegisterForm;

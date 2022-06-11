@@ -10,6 +10,7 @@ export const theme = {
     primary: '#242A37',
     secondary: '#091E3F',
     tertiary: '#898F9F',
+    authorLine: 'rgba(36, 42, 55, 0.5)',
     bgAlpha: 'rgba(9, 30, 63, 0.8)',
     btnText: '#707375',
     bgPrimary: '#F6F7FB',
