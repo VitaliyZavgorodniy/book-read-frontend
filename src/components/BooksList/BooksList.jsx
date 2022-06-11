@@ -1,23 +1,22 @@
 import { MdMenuBook, MdStarRate } from 'react-icons/md';
 import styled from 'styled-components';
+import Media from 'react-media';
+
 import { breakpoints } from 'constants/breakpoints';
+
+import Heading from './Heading';
 
 const BooksList = ({ title, list }) => {
   return (
     <Section>
       <Title>{title}</Title>
-      <Heading>
-        <Cell>Book title</Cell>
-        <Cell>Author</Cell>
-        <Cell>Year</Cell>
-        <Cell>Pages</Cell>
-        {title === 'Already read' && (
-          <>
-            <Cell>Rating</Cell>
-            <Cell $mode={title}>Comments</Cell>
-          </>
+      <Media
+        query="(min-width: 768px)"
+        render={() => (
+          <Heading />
         )}
-      </Heading>
+      />
+
       <List>
         {list &&
           list.map((book) => (
@@ -58,8 +57,7 @@ const BooksList = ({ title, list }) => {
   );
 };
 
-const Section = styled.section`
-  width: 100%;
+const Section = styled.div`
   margin-bottom: 20px;
 
   @media ${breakpoints.tablet} {
@@ -74,23 +72,8 @@ const Title = styled.h2`
   line-height: 23px;
   color: ${(p) => p.theme.colors.primary};
 
-  @media ${breakpoints.laptop} {
+  @media ${breakpoints.desktop} {
     margin-bottom: 24px;
-  }
-`;
-
-const Heading = styled.div`
-  display: none;
-
-  @media ${breakpoints.tablet} {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 8px;
-    padding: 0 12px 0 54px;
-  }
-
-  @media ${breakpoints.laptop} {
-    padding: 0 77px 0 54px;
   }
 `;
 
@@ -98,56 +81,6 @@ const StarsIcon = styled(MdStarRate)`
   width: 17px;
   height: 17px;
   color: orange;
-`;
-
-const Cell = styled.h3`
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 17px;
-  color: ${(p) => p.theme.colors.tertiary};
-
-  &:first-child {
-    width: 250px;
-  }
-
-  &:nth-child(2) {
-    width: 100px;
-  }
-
-  &:last-child {
-    @media ${breakpoints.tablet} {
-      ${(props) => {
-        switch (props.$mode) {
-          case 'Already read':
-            return `
-              width: 90px;
-              content-visibility: hidden;
-        `;
-          default:
-            return `
-              width: auto;
-              content-visibility: visible;
-        `;
-        }
-      }}
-    }
-    @media ${breakpoints.laptop} {
-      ${(props) => {
-        switch (props.$mode) {
-          case 'Already read':
-            return `
-              width: 150px;
-              content-visibility: hidden;
-        `;
-          default:
-            return `
-              width: auto;
-              content-visibility: visible;
-        `;
-        }
-      }}
-    }
-  }
 `;
 
 const List = styled.ul`
@@ -175,7 +108,7 @@ const Item = styled.li`
     padding: 11px 12px 11px 54px;
   }
 
-  @media ${breakpoints.laptop} {
+  @media ${breakpoints.desktop} {
     padding: 11px 77px 11px 54px;
   }
 `;
@@ -245,7 +178,7 @@ const Button = styled.button`
     width: 80px;
   }
 
-  @media ${breakpoints.laptop} {
+  @media ${breakpoints.desktop} {
     width: 127px;
   }
 `;

@@ -26,13 +26,13 @@ const HomePage = ({
 const [modal, setModal] = useState(false);
   return (
     <Wrapper>
-      <SectionWrapper>
+      <FormWrapper>
         <FormAddBook />
-      </SectionWrapper>
+      </FormWrapper>
       
 
       {totalBooks ? (
-        <>
+        <LibraryWrapper>
           {completedBooks.length ? (
             <BooksList title="Already read" list={completedBooks} />
           ) : null}
@@ -42,7 +42,7 @@ const [modal, setModal] = useState(false);
           {pendingBooks.length ? (
             <BooksList title="Going to read" list={pendingBooks} />
           ) : null}
-        </>
+        </LibraryWrapper>
       ) : (modal &&
           createPortal(
         <InfoBlockIntro />, modalRoot)
@@ -51,15 +51,18 @@ const [modal, setModal] = useState(false);
   );
 };
 
-const Wrapper = styled.section``;
-const SectionWrapper = styled.div`
-  margin-bottom: 110px;
-  @media ${breakpoints.tablet} {
-    margin-bottom: 40px;
+const Wrapper = styled.div``;
+
+const FormWrapper = styled.div`
+padding-bottom: 110px;
+@media ${breakpoints.tablet} {
+    padding-bottom: 40px;
   }
   @media ${breakpoints.desktop} {
-    margin-bottom: 80px;
+    padding-bottom: 80px;
   }
 `
-
+const LibraryWrapper = styled.div`
+  
+`
 export default HomePage;

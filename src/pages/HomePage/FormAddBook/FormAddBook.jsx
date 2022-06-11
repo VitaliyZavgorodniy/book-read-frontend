@@ -131,7 +131,6 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
   @media ${breakpoints.tablet} {
     width: 704px;
   }
@@ -160,12 +159,10 @@ const InputList = styled.ul`
 `;
 const InputWrapper = styled.li`
   &:not(:last-child) {
-   margin-bottom: 20px;
+    margin-bottom: 20px;
   }
-
   @media ${breakpoints.tablet} {
     margin-bottom: 0;
-
     &:first-child {
       width: 100%;
       margin-bottom: 24px;
@@ -181,7 +178,6 @@ const InputWrapper = styled.li`
     &:nth-child(4) {
       width: 152px;
     }
-
     @media ${breakpoints.desktop} {
       margin-bottom: 0;
       &:not(:last-child) {
@@ -204,9 +200,9 @@ const InputWrapper = styled.li`
 `;
 const ButtonWrapper = styled.div`
   width: 171px;
-   @media ${breakpoints.desktop} {
-     width: 181px;
-   }
+  @media ${breakpoints.desktop} {
+    width: 181px;
+  }
 `;
 const Prediction = styled.ul`
   z-index: 10;
@@ -224,12 +220,10 @@ const Prediction = styled.ul`
 
 const Item = styled.li`
   margin-bottom: 10px;
-
   &:hover {
     cursor: pointer;
     color: ${(p) => p.theme.colors.accent};
   }
-
   &:last-child {
     margin-bottom: 0;
   }
