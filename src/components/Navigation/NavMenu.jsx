@@ -15,7 +15,6 @@ export const NavMenu = ({ src }) => {
     alignItems: 'center',
     width: '33px',
     height: '33px',
-    // backgroundColor: `${(p) => p.theme.colors.bgLight}`,
     backgroundColor: '#F5F7FA',
     borderRadius: '50%',
   };
@@ -44,7 +43,7 @@ export const NavMenu = ({ src }) => {
 };
 
 const Nav = styled.nav`
-  margin-left: 72px;
+  margin-left: 57px;
 
   @media ${breakpoints.tablet} {
     margin-left: 140px;
@@ -60,12 +59,10 @@ const NavList = styled.ul`
   justify-content: center;
 `;
 const NavItem = styled.li`
-  display: flex;
-  margin-right: 14px;
   width: 33px;
   height: 33px;
-  /* background-color: ${(p) => p.theme.colors.bgLight};
-  border-radius: 50%; */
+  margin-right: 8px;
+  display: flex;
   justify-content: center;
   align-items: center;
 
