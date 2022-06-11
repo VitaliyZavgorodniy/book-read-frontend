@@ -90,7 +90,7 @@ const FormAddBook = ({ prediction, onSearch, onCreate }) => {
       />
       <CommonButton title="Add" type="submit" onClick={handleSubmit} />
 
-      {prediction.length && !id ? (
+      {prediction.length && title.length >= 3 && !id ? (
         <Prediction>{renderPrediction()}</Prediction>
       ) : null}
     </Wrapper>

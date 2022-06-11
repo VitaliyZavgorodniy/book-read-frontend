@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import styled from 'styled-components';
 import { breakpoints } from 'constants/breakpoints';
+import Media from 'react-media';
 
 import GoalsBoard from 'components/GoalsBoard';
 import CountdownPanel from 'components/CountdownPanel';
@@ -54,7 +55,7 @@ const StatisticsPage = ({ status, training, stats, onLoadTraining }) => {
 
         <BooksListWrapper>
           <BooksTable />
-          <BooksList />
+          {/* <BooksList /> */}
         </BooksListWrapper>
 
         {status && (
