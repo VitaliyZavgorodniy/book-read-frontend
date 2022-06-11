@@ -7,6 +7,7 @@ import PublicLayout from 'layouts/PublicLayout';
 import PrivateRoute from 'hoc/PrivateRoute';
 import PublicRoute from 'hoc/PublicRoute';
 import LoginGoogle from 'pages/LoginGoogle';
+import * as Spinner from 'components/UI-kit/Spinner/Spinner';
 
 import { authOperations, authSelectors } from 'redux/auth';
 
@@ -24,7 +25,8 @@ const App = () => {
     dispatch(authOperations.refresh());
   }, [dispatch]);
 
-  if (isFetching) return <div>fetching...</div>;
+  if (isFetching) return <Spinner />;
+  // if (isFetching) return <div>fetching...</div>;
 
   return (
     <Routes>
