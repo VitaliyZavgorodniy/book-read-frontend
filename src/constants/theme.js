@@ -1,11 +1,16 @@
-import bgRegister from 'assets/images/background.jpg';
-import bgRegisterTb from 'assets/images/backgroundTb.jpg'
+import bgLogMb from 'assets/images/bgLogMb.jpg'
+import bgRegMb from 'assets/images/bgRegMb.jpg'
+import bgLogTb from 'assets/images/bgLogTb.jpg'
+import bgRegTb from 'assets/images/bgRegTb.jpg'
+import bgLogDs from 'assets/images/bgLogDs.jpg';
+import bgRegDs from 'assets/images/bgRegDs.jpg';
 
 export const theme = {
   colors: {
     primary: '#242A37',
     secondary: '#091E3F',
     tertiary: '#898F9F',
+    authorLine: 'rgba(36, 42, 55, 0.5)',
     bgAlpha: 'rgba(9, 30, 63, 0.8)',
     btnText: '#707375',
     bgPrimary: '#F6F7FB',
@@ -33,8 +38,12 @@ export const theme = {
     familySecondary: 'Roboto, sans-serif',
   },
   backgrounds: {
-    register: bgRegister,
-    registerTb: bgRegisterTb,
+    logMb: bgLogMb,
+    logTb: bgLogTb,
+    logDs: bgLogDs,
+    regMb: bgRegMb,
+    regTb: bgRegTb,
+    regDs: bgRegDs,
   },
   animations: {
     primary: '250ms ease-in-out',

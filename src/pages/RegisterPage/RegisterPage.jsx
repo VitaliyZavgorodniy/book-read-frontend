@@ -127,7 +127,9 @@ const RegisterBlock = styled.div`
       ${(p) => p.theme.colors.bgAlpha},
       ${(p) => p.theme.colors.bgAlpha}
     ),
-    url(${(p) => p.theme.backgrounds.register});
+    url(${(p) => p.theme.backgrounds.regMb});
+  background-size: contain;
+  background-position: center;
 
   @media ${breakpoints.tablet} {
     padding: 64px 184px;
@@ -136,10 +138,16 @@ const RegisterBlock = styled.div`
         ${(p) => p.theme.colors.bgAlpha},
         ${(p) => p.theme.colors.bgAlpha}
       ),
-      url(${(p) => p.theme.backgrounds.registerTb});
+      url(${(p) => p.theme.backgrounds.regTb});
   }
   @media ${breakpoints.desktop} {
     padding: 90px 75px;
+    background-image: linear-gradient(
+        to right,
+        ${(p) => p.theme.colors.bgAlpha},
+        ${(p) => p.theme.colors.bgAlpha}
+      ),
+      url(${(p) => p.theme.backgrounds.regDs});
   }
 `;
 

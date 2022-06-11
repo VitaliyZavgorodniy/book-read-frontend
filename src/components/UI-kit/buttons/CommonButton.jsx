@@ -8,7 +8,7 @@ const CommonButton = ({ title, onClick, type, variant, size }) => (
 
 const Button = styled.button`
   width: 100%;
-  height: 40px;
+  height: ${(p) => (p.size === 'lg' ? '60px' : '40px')};
   padding: ${(p) => (p.size === 'lg' ? '20px' : '10px')};
   background-color: ${(p) =>
     p.variant === 'accent' ? p.theme.colors.accent : 'transparent'};
