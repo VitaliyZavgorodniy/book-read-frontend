@@ -9,7 +9,7 @@ import GoogleButton from 'components/UI-kit/buttons/GoogleButton';
 import InlineButton from 'components/UI-kit/buttons/InlineButton';
 import CommonButton from 'components/UI-kit/buttons/CommonButton';
 
-import { validate } from 'utils/validateForRegistration';
+import { validateRegister } from 'utils/validateForms';
 
 const RegisterForm = ({ onRegister, isFetching }) => {
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ const RegisterForm = ({ onRegister, isFetching }) => {
 
   const form = useFormik({
     initialValues,
-    validate,
+    validate: validateRegister,
     enableReinitialize: true,
     onSubmit: ({ name, email, password }) => {
       onRegister({ name, email, password });

@@ -9,7 +9,7 @@ import GoogleButton from 'components/UI-kit/buttons/GoogleButton';
 import InlineButton from 'components/UI-kit/buttons/InlineButton';
 import CommonButton from 'components/UI-kit/buttons/CommonButton';
 
-import { validate } from 'utils/validateForRegistration';
+import { validateLogin } from 'utils/validateForms';
 
 const LoginForm = ({ onLogin, isFetching }) => {
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ const LoginForm = ({ onLogin, isFetching }) => {
 
   const form = useFormik({
     initialValues,
-    validate,
+    validate: validateLogin,
     enableReinitialize: true,
     onSubmit: ({ email, password }) => {
       onLogin({ email, password });
@@ -30,6 +30,8 @@ const LoginForm = ({ onLogin, isFetching }) => {
 
   const { values, handleSubmit, handleChange, handleBlur, touched, errors } =
     form;
+
+  console.log(values);
 
   const handleLink = () => {
     navigate('/register');

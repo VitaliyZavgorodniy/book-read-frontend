@@ -55,7 +55,7 @@ const StatisticsPage = ({ status, training, stats, onLoadTraining }) => {
 
         <BooksListWrapper>
           <BooksTable />
-          {/* <BooksList /> */}
+          <BooksList />
         </BooksListWrapper>
 
         {status && (

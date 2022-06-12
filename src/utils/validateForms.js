@@ -1,4 +1,4 @@
-export const validate = (values) => {
+export const validateRegister = (values) => {
   const errors = {};
   if (!values.name) {
     errors.name = 'Enter your name';
@@ -37,5 +37,27 @@ export const validate = (values) => {
   } else if (values.confirm !== values.password) {
     errors.confirm = 'The data is different from the password field data';
   }
+  return errors;
+};
+
+export const validateLogin = (values) => {
+  const errors = {};
+
+  if (!values.email) {
+    errors.email = 'Enter your email';
+  } else if (
+    !/^([a-z0-9._%+-]{2,})+@[a-z0-9.-]+\.[a-z]{2,}$/i.test(values.email)
+  ) {
+    errors.email = 'Invalid email address';
+  }
+
+  if (!values.password) {
+    errors.password = 'Enter your password';
+  } else if (values.password.length > 30) {
+    errors.password = 'Must be 30 characters or less';
+  } else if (values.password.length < 5) {
+    errors.password = 'Must be 5 characters or more';
+  }
+
   return errors;
 };
