@@ -21,9 +21,9 @@ const LoginPage = () => {
 
 const Wrapper = styled.div`
   display: flex;
-   flex-direction: column;
+  flex-direction: column;
 
-    @media ${breakpoints.desktop} {
+  @media ${breakpoints.desktop} {
     flex-direction: row;
   }
 `;
@@ -66,9 +66,9 @@ const LoginText = styled.div`
   padding-bottom: 48px;
 
   @media ${breakpoints.tablet} {
-   width: 397px;
-   padding-top: 64px;
-   padding-bottom: 109px;
+    width: 397px;
+    padding-top: 64px;
+    padding-bottom: 109px;
   }
   @media ${breakpoints.desktop} {
     padding-top: 206px;
