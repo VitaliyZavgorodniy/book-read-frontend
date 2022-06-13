@@ -28,6 +28,7 @@ const GoalsBoard = ({ data }) => {
 const Wrapper = styled.div`
   width: 280px;
   background-color: ${(p) => p.theme.colors.bgSecondary};
+  margin: 0 auto;
 
   @media ${breakpoints.tablet} {
     width: 704px;
@@ -56,12 +57,14 @@ const Heading = styled.div`
 const List = styled.ul`
   display: flex;
   padding: 44px 0;
-  justify-content: space-evenly;
+  justify-content: space-around;
+
   @media ${breakpoints.tablet} {
     width: 240px;
     justify-content: space-between;
     padding: 0;
   }
+
   @media ${breakpoints.desktop} {
     width: 100%;
     padding: 48px 0;
@@ -79,33 +82,35 @@ const Value = styled.p`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100px;
-  height: 100px;
+  width: 60px;
+  height: 60px;
   background-color: ${(p) => p.theme.colors.bgLight};
   color: ${(p) =>
     p.accent ? p.theme.colors.accent : p.theme.colors.secondary};
   font-weight: 700;
-  font-size: 45px;
+  font-size: 35px;
   line-height: 38px;
   box-shadow: ${(p) => p.theme.shadows.primary};
 
   @media ${breakpoints.tablet} {
+    width: 100px;
     height: 60px;
     font-size: 40px;
   }
 
   @media ${breakpoints.desktop} {
-    height: 100px;
+    width: 66px;
+    height: 66px;
     font-size: 45px;
   }
 `;
 
 const Label = styled.p`
-  width: 100px;
+  width: 60px;
   padding: 14px 0;
   color: ${(p) => p.theme.colors.tertiary};
   font-weight: 500;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 17px;
   text-align: center;
 

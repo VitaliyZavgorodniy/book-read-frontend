@@ -43,7 +43,7 @@ export const NavMenu = ({ src }) => {
 };
 
 const Nav = styled.nav`
-  margin-left: 57px;
+  margin-left: 2px;
 
   @media ${breakpoints.tablet} {
     margin-left: 140px;

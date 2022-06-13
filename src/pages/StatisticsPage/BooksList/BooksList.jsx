@@ -39,20 +39,38 @@ const BooksList = ({ books, onUpdateStats }) => {
   const renderList = () => {
     const elementHTML = books.map(
       ({ _id, isCompleted, title, author, year, pagesRead, pages }) => (
-        <BodyRow key={_id}>
-          <BodyCell>{isCompleted ? <IconCompleted /> : <Icon />}</BodyCell>
-          <BodyCell>{title}</BodyCell>
-          <BodyCell>{author}</BodyCell>
-          <BodyCell align="right">{year}</BodyCell>
-          <BodyCell>{isCompleted ? null : `${pagesRead} / ${pages}`}</BodyCell>
-          <BodyCell>
-            {isCompleted ? null : (
+        <Item key={_id}>
+          {isCompleted ? <IconCompleted /> : <Icon />}
+          {isCompleted ? null : (
+            <ButtonWrapper>
               <IconButton onClick={() => handleOpenModal(_id)}>
                 <AiOutlinePlus />
               </IconButton>
-            )}
-          </BodyCell>
-        </BodyRow>
+            </ButtonWrapper>
+          )}
+
+          <BookTitle>{title}</BookTitle>
+
+          <Row>
+            <Heading>Author</Heading>
+            <Text>{author}</Text>
+          </Row>
+
+          <Row>
+            <Heading>Year</Heading>
+            <Text>{year}</Text>
+          </Row>
+
+          <Row>
+            <Heading>Pages</Heading>
+            <Text>{pages}</Text>
+          </Row>
+
+          <Row>
+            <Heading>Read</Heading>
+            <Text>{pagesRead}</Text>
+          </Row>
+        </Item>
       )
     );
 
@@ -83,65 +101,80 @@ const BooksList = ({ books, onUpdateStats }) => {
         </Modal>
       )}
 
-      <Table>
-        <TableHead>
-          <HeadRow>
-            <HeadCell colSpan={2}>Book title</HeadCell>
-            <HeadCell>Author</HeadCell>
-            <HeadCell align="right">Year</HeadCell>
-            <HeadCell colSpan={2}>Progress</HeadCell>
-          </HeadRow>
-        </TableHead>
-        <TableBody>{books.length ? renderList() : null}</TableBody>
-      </Table>
+      <List>{books.length ? renderList() : null}</List>
     </Wrapper>
   );
 };
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  width: 280px;
+  margin: 0 auto;
+`;
 
-const Table = styled.table`
+const List = styled.ul`
   width: 100%;
+  margin: 0 auto;
 `;
 
-const TableHead = styled.thead`
-  width: 100%;
-`;
-
-const HeadRow = styled.tr`
-  border-top: 1px solid ${(p) => p.theme.colors.error};
-`;
-
-const HeadCell = styled.th`
-  text-align: left;
+const Item = styled.li`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  padding-left: 34px;
   border-top: 1px solid ${(p) => p.theme.colors.lineStat};
-  border-bottom: 1px solid ${(p) => p.theme.colors.lineStat};
-  padding: 12px 0;
-  color: ${(p) => p.theme.colors.tertiary};
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 17px;
+
+  &:last-child {
+    border-bottom: 1px solid ${(p) => p.theme.colors.lineStat};
+  }
 `;
 
-const TableBody = styled.tbody``;
-
-const BodyRow = styled.tr``;
-
-const BodyCell = styled.td`
-  vertical-align: middle;
-  padding: 10px 0;
-  color: ${(p) => p.theme.colors.primary};
+const BookTitle = styled.h3`
   font-weight: 500;
-  font-size: 14px;
-  line-height: 17px;
+  font-size: 12px;
+  line-height: 15px;
+  margin-bottom: 12px;
+`;
+
+const Row = styled.p`
+  display: flex;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  margin-bottom: 14px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+`;
+
+const Heading = styled.div`
+  width: 80px;
+  color: ${(p) => p.theme.colors.tertiary};
+`;
+
+const Text = styled.span`
+  color: ${(p) => p.theme.colors.primary};
+`;
+
+const ButtonWrapper = styled.div`
+  position: absolute;
+  bottom: 20px;
+  right: 0;
 `;
 
 const Icon = styled(MdOutlineCheckBoxOutlineBlank)`
+  position: absolute;
+  top: 20px;
+  left: 0px;
   color: ${(p) => p.theme.colors.textLight};
   font-size: 24px;
 `;
 
 const IconCompleted = styled(MdOutlineCheckBox)`
+  position: absolute;
+  top: 20px;
+  left: 0px;
   color: ${(p) => p.theme.colors.accent};
   font-size: 24px;
 `;
