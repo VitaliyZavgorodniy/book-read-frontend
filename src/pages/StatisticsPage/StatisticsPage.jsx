@@ -5,7 +5,7 @@ import Media from 'react-media';
 
 import GoalsBoard from 'components/GoalsBoard';
 import CountdownPanel from 'components/CountdownPanel';
-import StatisticsChart from 'components/StatisticsChart';
+// import StatisticsChart from 'components/StatisticsChart';
 import StatisticTable from 'components/StatisticTable';
 import BooksTable from './BooksTable';
 import BooksList from './BooksList';
@@ -58,14 +58,14 @@ const StatisticsPage = ({ status, training, stats, onLoadTraining }) => {
           <BooksList />
         </BooksListWrapper>
 
-        {status && (
+        {/* {status && (
           <StatisticsChart
             startDate={training.startDate}
             daysAmount={handleDaysDifference(training.startDate)}
             pagesAmount={training.pagesAmount}
             stats={stats}
           />
-        )}
+        )} */}
       </WrapperLeft>
 
       <WrapperRight>

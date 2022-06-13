@@ -1,27 +1,20 @@
 import { MdMenuBook, MdStarRate } from 'react-icons/md';
 import styled from 'styled-components';
+import Media from 'react-media';
+
 import { breakpoints } from 'constants/breakpoints';
+
+import { Heading } from './Heading';
 
 const BooksList = ({ title, list }) => {
   return (
     <Section>
       <Title>{title}</Title>
-      <Heading>
-        <Cell>Book title</Cell>
-        <Cell>Author</Cell>
-        <Cell>Year</Cell>
-        <Cell>Pages</Cell>
-        {title === 'Already read' && (
-          <>
-            <Cell>Rating</Cell>
-            <Cell $mode={title}>Comments</Cell>
-          </>
-        )}
-      </Heading>
+      <Media query="(min-width: 768px)" render={() => <Heading />} />
       <List>
         {list &&
           list.map((book) => (
-            <Item key={book.id}>
+            <Item key={book._id}>
               <Icon $mode={title} />
               <Paragraph>{book.title}</Paragraph>
               <Paragraph>
@@ -58,12 +51,18 @@ const BooksList = ({ title, list }) => {
   );
 };
 
-const Section = styled.section`
-  width: 100%;
-  margin-bottom: 20px;
+const Section = styled.div`
+  width: 280px;
+  margin: 0 auto;
+  padding-top: 20px;
 
   @media ${breakpoints.tablet} {
-    margin-bottom: 40px;
+    width: 704px;
+    padding-top: 40px;
+  }
+  @media ${breakpoints.desktop} {
+    width: 1248px;
+    padding-top: 32px;
   }
 `;
 
@@ -74,80 +73,14 @@ const Title = styled.h2`
   line-height: 23px;
   color: ${(p) => p.theme.colors.primary};
 
-  @media ${breakpoints.laptop} {
+  @media ${breakpoints.desktop} {
     margin-bottom: 24px;
   }
 `;
-
-const Heading = styled.div`
-  display: none;
-
-  @media ${breakpoints.tablet} {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 8px;
-    padding: 0 12px 0 54px;
-  }
-
-  @media ${breakpoints.laptop} {
-    padding: 0 77px 0 54px;
-  }
-`;
-
 const StarsIcon = styled(MdStarRate)`
   width: 17px;
   height: 17px;
   color: orange;
-`;
-
-const Cell = styled.h3`
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 17px;
-  color: ${(p) => p.theme.colors.tertiary};
-
-  &:first-child {
-    width: 250px;
-  }
-
-  &:nth-child(2) {
-    width: 100px;
-  }
-
-  &:last-child {
-    @media ${breakpoints.tablet} {
-      ${(props) => {
-        switch (props.$mode) {
-          case 'Already read':
-            return `
-              width: 90px;
-              content-visibility: hidden;
-        `;
-          default:
-            return `
-              width: auto;
-              content-visibility: visible;
-        `;
-        }
-      }}
-    }
-    @media ${breakpoints.laptop} {
-      ${(props) => {
-        switch (props.$mode) {
-          case 'Already read':
-            return `
-              width: 150px;
-              content-visibility: hidden;
-        `;
-          default:
-            return `
-              width: auto;
-              content-visibility: visible;
-        `;
-        }
-      }}
-    }
-  }
 `;
 
 const List = styled.ul`
@@ -156,9 +89,9 @@ const List = styled.ul`
 
 const Item = styled.li`
   position: relative;
-  width: 280px;
   margin-bottom: 16px;
-  padding: 20px 46px 28px 54px;
+  padding: 20px 20px 28px 54px;
+  background-color: ${(p) => p.theme.colors.bgSecondary};
   box-shadow: ${(p) => p.theme.shadows.booksItem};
 
   &:last-child {
@@ -166,16 +99,22 @@ const Item = styled.li`
   }
 
   @media ${breakpoints.tablet} {
+    margin-bottom: 8px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    /* justify-content: start; */
     align-items: center;
     width: auto;
     height: 62px;
-    padding: 11px 12px 11px 54px;
+    padding: 11px 20px 11px 60px;
+
+    &:last-child {
+      margin-bottom: 0px;
+    }
   }
 
-  @media ${breakpoints.laptop} {
+  @media ${breakpoints.desktop} {
     padding: 11px 77px 11px 54px;
   }
 `;
@@ -194,7 +133,7 @@ const Icon = styled(MdMenuBook)`
         `;
       default:
         return `
-          color: grey;
+          color: #A6ABB9;
         `;
     }
   }}
@@ -204,9 +143,9 @@ const Paragraph = styled.p`
   display: flex;
   align-items: center;
   margin-bottom: 14px;
-  font-size: 12px;
   font-weight: 500;
-  line-height: 15px;
+  font-size: 12px;
+  line-height: 1.22;
 
   &:last-child {
     margin-bottom: 0px;
@@ -216,6 +155,23 @@ const Paragraph = styled.p`
     max-width: 228px;
     margin-bottom: 0px;
     font-size: 14px;
+
+    &:first-child {
+      ${(props) => {
+        switch (props.$mode) {
+          case 'Already read':
+            return `
+              width: 124px;
+              margin-right: 32px;
+        `;
+          default:
+            return `
+              width: 276px;
+              margin-right: 32px;
+        `;
+        }
+      }}
+    }
   }
 `;
 
@@ -245,7 +201,7 @@ const Button = styled.button`
     width: 80px;
   }
 
-  @media ${breakpoints.laptop} {
+  @media ${breakpoints.desktop} {
     width: 127px;
   }
 `;
