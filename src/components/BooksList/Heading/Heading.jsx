@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { breakpoints } from 'constants/breakpoints';
 
-const Heading = ({title}) => {
+export const Heading = ({title}) => {
     return (
         <BookListHeading>
             <Cell>Book title</Cell>
@@ -178,4 +178,3 @@ const Cell = styled.h3`
     }
   }
 `;
-export default Heading;

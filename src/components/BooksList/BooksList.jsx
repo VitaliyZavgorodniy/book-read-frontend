@@ -4,7 +4,7 @@ import Media from 'react-media';
 
 import { breakpoints } from 'constants/breakpoints';
 
-import Heading from './Heading';
+import { Heading } from './Heading';
 
 const BooksList = ({ title, list }) => {
   return (
