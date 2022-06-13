@@ -126,6 +126,7 @@ const WrapperModal = styled.div`
   max-width: 280px;
   width: 100%;
   margin: 0 auto;
+  padding: 24px 0 110px;
   /* padding: 12px; */
   background-color: ${(p) => p.theme.colors.bgPrimary};
 
@@ -159,11 +160,11 @@ const ArrowBack = styled(CgArrowLongLeft)`
 const FormWrapper = styled.div`
  
   @media ${breakpoints.tablet} {
-    padding-bottom: 40px;
+    padding: 32px 0 40px;
   }
 
   @media ${breakpoints.desktop} {
-    padding-bottom: 80px;
+    padding: 40px 0 80px;
   }
 `;
 
