@@ -58,10 +58,15 @@ const Overlay = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 153px 0 70px;
+  overflow: auto;
+  pointer-events: auto;
 `;
 
 const Wrapper = styled.div`
+position: absolute;
+  top: 153px;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -73,9 +78,13 @@ const Wrapper = styled.div`
   background: ${(p) => p.theme.colors.bgSecondary};
   box-shadow: ${(p) => p.theme.shadows.block};
   @media ${breakpoints.tablet} {
+    top: 372px;
     width: 608px;
     height: 272px;
     padding: 40px;
+  }
+   @media ${breakpoints.desktop} {
+    top: 207px;
   }
 `;
 

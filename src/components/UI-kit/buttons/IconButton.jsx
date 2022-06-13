@@ -8,8 +8,8 @@ const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 26px;
-  height: 26px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
   background-color: ${(p) => p.theme.colors.accent};
   color: ${(p) => p.theme.colors.contrast};
