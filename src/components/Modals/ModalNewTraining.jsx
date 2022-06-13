@@ -1,10 +1,15 @@
 import React from 'react';
+import { useNavigate } from "react-router-dom";
 import styled from 'styled-components';
 import { MdOutlineThumbUpAlt } from 'react-icons/md';
 import { CommonButton } from './rating';
 
 const NewTrainingModal = ({ onClose }) => {
-  const startNewTraining = () => onClose();
+  const navigate = useNavigate();
+  const backToMain = () => {
+    navigate("/");
+    onClose();
+  };
   return (
     <Wrapper>
       <ThumbsUpIcon color="#A6ABB9" />
@@ -20,11 +25,11 @@ const NewTrainingModal = ({ onClose }) => {
             type="button"
             title="New training"
             variant="accent"
-            onClick={startNewTraining}
+            onClick={onClose}
           />
         </ButtonListItem>
         <ButtonListItem>
-          <CommonButton type="button" title="Back" onClick={onClose} />
+          <CommonButton type="button" title="Back" onClick={backToMain} />
         </ButtonListItem>
       </ButtonList>
     </Wrapper>
