@@ -7,6 +7,7 @@ import PublicLayout from 'layouts/PublicLayout';
 import PrivateRoute from 'hoc/PrivateRoute';
 import PublicRoute from 'hoc/PublicRoute';
 import LoginGoogle from 'pages/LoginGoogle';
+import Spinner from './UI-kit/spinner/Spinner';
 
 import { authOperations, authSelectors } from 'redux/auth';
 
@@ -25,7 +26,7 @@ const App = () => {
     dispatch(authOperations.refresh());
   }, [dispatch]);
 
-  if (isFetching) return <div>fetching...</div>;
+  if (isFetching) return <Spinner />;
 
   return (
     <Routes>
@@ -34,7 +35,7 @@ const App = () => {
           <Route
             index
             element={
-              <Suspense fallback={<div>fetching...</div>}>
+              <Suspense fallback={<Spinner />}>
                 <HomePage />
               </Suspense>
             }
@@ -43,7 +44,7 @@ const App = () => {
           <Route
             path="training"
             element={
-              <Suspense fallback={<div>fetching...</div>}>
+              <Suspense fallback={<Spinner />}>
                 <TrainingPage />
               </Suspense>
             }
@@ -52,7 +53,7 @@ const App = () => {
           <Route
             path="statistics"
             element={
-              <Suspense fallback={<div>fetching...</div>}>
+              <Suspense fallback={<Spinner />}>
                 <StatisticsPage />
               </Suspense>
             }
@@ -65,7 +66,7 @@ const App = () => {
           <Route
             path="register"
             element={
-              <Suspense fallback={<div>fetching...</div>}>
+              <Suspense fallback={<Spinner />}>
                 <RegisterPage />
               </Suspense>
             }
@@ -74,7 +75,7 @@ const App = () => {
           <Route
             path="login"
             element={
-              <Suspense fallback={<div>fetching...</div>}>
+              <Suspense fallback={<Spinner />}>
                 <LoginPage />
               </Suspense>
             }
@@ -83,7 +84,7 @@ const App = () => {
           <Route
             path="login/google"
             element={
-              <Suspense fallback={<div>fetching...</div>}>
+              <Suspense fallback={<Spinner />}>
                 <LoginGoogle />
               </Suspense>
             }
