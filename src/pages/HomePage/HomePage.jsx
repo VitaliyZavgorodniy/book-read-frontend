@@ -80,10 +80,6 @@ const HomePage = ({
 };
 
 const Wrapper = styled.div`
-  /* @media ${breakpoints.tablet} {
-    padding-left: 32px;
-    padding-right: 32px;
-  } */
 `;
 
 const LibraryWrapper = styled.div`
@@ -94,10 +90,12 @@ const LibraryWrapper = styled.div`
 const ButtonWrapper = styled.div`
   width: 130px;
   margin: 0 auto;
+  padding-top: 28px;
   padding-bottom: 128px;
 
   @media ${breakpoints.tablet} {
     width: 200px;
+    padding-top: 40px;
     padding-bottom: 299px;
   }
 
@@ -111,8 +109,6 @@ const AddWrapper = styled.div`
   transform: translateX(-50%);
   bottom: 12px;
   width: 52px;
-  /* margin: 0 auto; */
-  /* padding-bottom: 128px; */
 `;
 const Add = styled(AiOutlinePlus)`
   width: 16px;

@@ -53,17 +53,13 @@ const BooksList = ({ title, list }) => {
 
 const Section = styled.div`
   width: 280px;
-  /* margin-bottom: 20px; */
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
 
   @media ${breakpoints.tablet} {
     width: 704px;
-    margin-bottom: 40px;
   }
   @media ${breakpoints.desktop} {
     width: 1248px;
-    margin-bottom: 40px;
   }
 `;
 
