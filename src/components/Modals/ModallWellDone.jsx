@@ -2,27 +2,35 @@ import React from 'react';
 import styled from 'styled-components';
 import CommonButton from 'components/UI-kit/buttons/CommonButton';
 import { BiLike } from 'react-icons/bi';
+import Modal from 'hoc/Modal';
 
-const ModallWellDone = () => {
+const ModallWellDone = ({ onClose }) => {
   return (
-    <Item>
-      <ItemIcon>
-        <Icon />
-      </ItemIcon>
+    <Modal>
+      <Wrapper>
+        <ItemIcon>
+          <Icon />
+        </ItemIcon>
 
-      <ItemText>
-        <Text>Congratulations!</Text>
-        <Text>Another book read.</Text>
-      </ItemText>
+        <ItemText>
+          <Text>Congratulations!</Text>
+          <Text>Another book read.</Text>
+        </ItemText>
 
-      <ItemButton>
-        <CommonButton type="submit" title="Done" variant="accent" />
-      </ItemButton>
-    </Item>
+        <ItemButton>
+          <CommonButton
+            type="submit"
+            title="Done"
+            variant="accent"
+            onClick={onClose}
+          />
+        </ItemButton>
+      </Wrapper>
+    </Modal>
   );
 };
 
-const Item = styled.form`
+const Wrapper = styled.form`
   width: 394px;
   height: 256px;
   background-color: ${(p) => p.theme.colors.bgSecondary};
