@@ -60,8 +60,6 @@ const Overlay = styled.div`
   justify-content: center;
   overflow: auto;
   pointer-events: auto;
-  /* background-color: ${(p) => p.theme.colors.bgPrimary}; */
-  /* padding: 153px 0 70px; */
 `;
 
 const Wrapper = styled.div`
