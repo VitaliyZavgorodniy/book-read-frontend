@@ -8,8 +8,13 @@ import { breakpoints } from 'constants/breakpoints';
 import CommonInput from 'components/UI-kit/inputs/CommonInput';
 import CommonButton from 'components/UI-kit/buttons/CommonButton';
 
-
-const FormAddBook = ({ prediction, onSearch, onCreate, handleClose }) => {
+const FormAddBook = ({
+  prediction,
+  onSearch,
+  onCreate,
+  isModal,
+  handleClose,
+}) => {
   const [id, setID] = useState(null);
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
@@ -20,7 +25,7 @@ const FormAddBook = ({ prediction, onSearch, onCreate, handleClose }) => {
     debounce((query) => onSearch({ query }), 500),
     []
   );
-  
+
   const handleSearch = (e) => {
     setID(null);
     setTitle(e.target.value);
@@ -49,7 +54,7 @@ const FormAddBook = ({ prediction, onSearch, onCreate, handleClose }) => {
       year,
       pages,
     });
-    handleClose();
+    if (isModal) handleClose();
     return handleResetForm();
   };
 
@@ -73,7 +78,6 @@ const FormAddBook = ({ prediction, onSearch, onCreate, handleClose }) => {
 
   return (
     <Wrapper>
-             
       <InputList>
         <InputWrapper>
           <CommonInput
