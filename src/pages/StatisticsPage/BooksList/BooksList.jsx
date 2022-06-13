@@ -39,20 +39,38 @@ const BooksList = ({ books, onUpdateStats }) => {
   const renderList = () => {
     const elementHTML = books.map(
       ({ _id, isCompleted, title, author, year, pagesRead, pages }) => (
-        <BodyRow key={_id}>
-          <BodyCell>{isCompleted ? <IconCompleted /> : <Icon />}</BodyCell>
-          <BodyCell>{title}</BodyCell>
-          <BodyCell>{author}</BodyCell>
-          <BodyCell align="right">{year}</BodyCell>
-          <BodyCell>{isCompleted ? null : `${pagesRead} / ${pages}`}</BodyCell>
-          <BodyCell>
-            {isCompleted ? null : (
+        <Item key={_id}>
+          {isCompleted ? <IconCompleted /> : <Icon />}
+          <BookTitle>{title}</BookTitle>
+
+          <Row>
+            <Heading>Author</Heading>
+            <Text>{author}</Text>
+          </Row>
+
+          <Row>
+            <Heading>Year</Heading>
+            <Text>{year}</Text>
+          </Row>
+
+          <Row>
+            <Heading>Pages</Heading>
+            <Text>{pages}</Text>
+          </Row>
+
+          <Row>
+            <Heading>Read</Heading>
+            <Text>{pagesRead}</Text>
+          </Row>
+
+          {isCompleted ? null : (
+            <ButtonWrapper>
               <IconButton onClick={() => handleOpenModal(_id)}>
                 <AiOutlinePlus />
               </IconButton>
-            )}
-          </BodyCell>
-        </BodyRow>
+            </ButtonWrapper>
+          )}
+        </Item>
       )
     );
 
@@ -83,60 +101,58 @@ const BooksList = ({ books, onUpdateStats }) => {
         </Modal>
       )}
 
-      <Table>
-        <TableHead>
-          <HeadRow>
-            <HeadCell colSpan={2}>Book title</HeadCell>
-            <HeadCell>Author</HeadCell>
-            <HeadCell align="right">Year</HeadCell>
-            <HeadCell colSpan={2}>Progress</HeadCell>
-          </HeadRow>
-        </TableHead>
-        <TableBody>{books.length ? renderList() : null}</TableBody>
-      </Table>
+      <List>{books.length ? renderList() : null}</List>
     </Wrapper>
   );
 };
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  width: 280px;
+`;
 
-const Table = styled.table`
+const List = styled.ul`
   width: 100%;
 `;
 
-const TableHead = styled.thead`
-  width: 100%;
+const Item = styled.li`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
 `;
 
-const HeadRow = styled.tr`
-  border-top: 1px solid ${(p) => p.theme.colors.error};
+const BookTitle = styled.h3`
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
 `;
 
-const HeadCell = styled.th`
-  text-align: left;
-  border-top: 1px solid ${(p) => p.theme.colors.lineStat};
-  border-bottom: 1px solid ${(p) => p.theme.colors.lineStat};
-  padding: 12px 0;
+const Row = styled.p`
+  display: flex;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+`;
+
+const Heading = styled.div`
+  width: 80px;
   color: ${(p) => p.theme.colors.tertiary};
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 17px;
 `;
 
-const TableBody = styled.tbody``;
-
-const BodyRow = styled.tr``;
-
-const BodyCell = styled.td`
-  vertical-align: middle;
-  padding: 10px 0;
+const Text = styled.span`
   color: ${(p) => p.theme.colors.primary};
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 17px;
+`;
+
+const ButtonWrapper = styled.div`
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
 `;
 
 const Icon = styled(MdOutlineCheckBoxOutlineBlank)`
+  position: absolute;
+  top: 10px;
+  left: 10px;
   color: ${(p) => p.theme.colors.textLight};
   font-size: 24px;
 `;

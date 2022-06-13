@@ -53,9 +53,57 @@ const StatisticsPage = ({ status, training, stats, onLoadTraining }) => {
           <CountdownPanel title="Goals countdown" dateTo={training.endDate} />
         </Counters>
 
+        <Media
+          queries={{
+            other: '(max-width: 767px)',
+            tablet: breakpoints.tablet,
+            desktop: breakpoints.desktop,
+          }}
+        >
+          {({ other, tablet }) => (
+            <>
+              {other && (
+                <GoalsBoard
+                  data={[
+                    {
+                      id: 'books',
+                      label: 'Amount of books',
+                      value: training.books.length,
+                    },
+                    {
+                      id: 'days',
+                      label: 'Amount of days',
+                      value: handleDaysDifference(),
+                    },
+                    {
+                      accent: true,
+                      id: 'leftbooks',
+                      label: 'Books left',
+                      value: training.books.filter((book) => !book.isCompleted)
+                        .length,
+                    },
+                  ]}
+                />
+              )}
+            </>
+          )}
+        </Media>
+
         <BooksListWrapper>
-          <BooksTable />
-          <BooksList />
+          <Media
+            queries={{
+              other: '(max-width: 767px)',
+              tablet: breakpoints.tablet,
+              desktop: breakpoints.desktop,
+            }}
+          >
+            {({ other, tablet }) => (
+              <>
+                {other && <BooksList />}
+                {tablet && <BooksTable />}
+              </>
+            )}
+          </Media>
         </BooksListWrapper>
 
         {status && (
@@ -69,26 +117,41 @@ const StatisticsPage = ({ status, training, stats, onLoadTraining }) => {
       </WrapperLeft>
 
       <WrapperRight>
-        <GoalsBoard
-          data={[
-            {
-              id: 'books',
-              label: 'Amount of books',
-              value: training.books.length,
-            },
-            {
-              id: 'days',
-              label: 'Amount of days',
-              value: handleDaysDifference(),
-            },
-            {
-              accent: true,
-              id: 'leftbooks',
-              label: 'Books left',
-              value: training.books.filter((book) => !book.isCompleted).length,
-            },
-          ]}
-        />
+        <Media
+          queries={{
+            other: '(max-width: 767px)',
+            tablet: breakpoints.tablet,
+            desktop: breakpoints.desktop,
+          }}
+        >
+          {({ other, tablet }) => (
+            <>
+              {tablet && (
+                <GoalsBoard
+                  data={[
+                    {
+                      id: 'books',
+                      label: 'Amount of books',
+                      value: training.books.length,
+                    },
+                    {
+                      id: 'days',
+                      label: 'Amount of days',
+                      value: handleDaysDifference(),
+                    },
+                    {
+                      accent: true,
+                      id: 'leftbooks',
+                      label: 'Books left',
+                      value: training.books.filter((book) => !book.isCompleted)
+                        .length,
+                    },
+                  ]}
+                />
+              )}
+            </>
+          )}
+        </Media>
 
         {stats.length ? <StatisticTable items={stats} /> : null}
       </WrapperRight>
@@ -98,12 +161,22 @@ const StatisticsPage = ({ status, training, stats, onLoadTraining }) => {
 
 const Wrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+
+  @media ${breakpoints.tablet} {
+    flex-direction: row;
+    justify-content: space-around;
+  }
 `;
 
 const Counters = styled.div`
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+
+  @media ${breakpoints.tablet} {
+    flex-direction: row;
+    justify-content: space-around;
+  }
 `;
 
 const WrapperLeft = styled.div`
