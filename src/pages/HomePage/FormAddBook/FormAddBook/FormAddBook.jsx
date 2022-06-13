@@ -1,14 +1,17 @@
 import { useState, useEffect, useCallback } from 'react';
+
 import styled from 'styled-components';
 import debounce from 'lodash.debounce';
 import Media from 'react-media';
+// import { useMediaQuery } from 'react-responsive';
 
 import { breakpoints } from 'constants/breakpoints';
 
 import CommonInput from 'components/UI-kit/inputs/CommonInput';
 import CommonButton from 'components/UI-kit/buttons/CommonButton';
 
-const FormAddBook = ({ prediction, onSearch, onCreate }) => {
+
+const FormAddBook = ({ prediction, onSearch, onCreate, onClick }) => {
   const [id, setID] = useState(null);
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
@@ -20,6 +23,8 @@ const FormAddBook = ({ prediction, onSearch, onCreate }) => {
     []
   );
 
+  // const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
+  
   const handleSearch = (e) => {
     setID(null);
     setTitle(e.target.value);
@@ -39,7 +44,6 @@ const FormAddBook = ({ prediction, onSearch, onCreate }) => {
       onCreate({
         id,
       });
-
       return handleResetForm();
     }
 
@@ -72,6 +76,7 @@ const FormAddBook = ({ prediction, onSearch, onCreate }) => {
 
   return (
     <Wrapper>
+             
       <InputList>
         <InputWrapper>
           <CommonInput

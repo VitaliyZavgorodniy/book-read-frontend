@@ -12,7 +12,7 @@ const Heading = ({title}) => {
             {title === 'Already read' && (
               <>
                 <Cell>Rating</Cell>
-                <Cell $mode={title}>Comments</Cell>
+                <Cell $mode={title}>Resume</Cell>
               </>
             )}
           </BookListHeading>
@@ -37,17 +37,17 @@ const Cell = styled.h3`
 
   &:first-child {
     ${(props) => {
-      switch (props.$mode) {
-        case 'Already read':
-          return `
+    switch (props.$mode) {
+      case 'Already read':
+        return `
               margin-right: 147px;
         `;
-        default:
-          return `
+      default:
+        return `
               margin-right: 299px;
         `;
-      }
-}}
+    }
+  }}
      @media ${breakpoints.desktop} {
       ${(props) => {
         switch (props.$mode) {

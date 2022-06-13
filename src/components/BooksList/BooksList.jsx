@@ -10,17 +10,11 @@ const BooksList = ({ title, list }) => {
   return (
     <Section>
       <Title>{title}</Title>
-      <Media
-        query="(min-width: 768px)"
-        render={() => (
-          <Heading />
-        )}
-      />
-
+      <Media query="(min-width: 768px)" render={() => <Heading />} />
       <List>
         {list &&
           list.map((book) => (
-            <Item key={book.id}>
+            <Item key={book._id}>
               <Icon $mode={title} />
               <Paragraph>{book.title}</Paragraph>
               <Paragraph>
@@ -58,9 +52,17 @@ const BooksList = ({ title, list }) => {
 };
 
 const Section = styled.div`
-  margin-bottom: 20px;
+  width: 280px;
+  /* margin-bottom: 20px; */
+  margin-left: auto;
+  margin-right: auto;
 
   @media ${breakpoints.tablet} {
+    width: 704px;
+    margin-bottom: 40px;
+  }
+  @media ${breakpoints.desktop} {
+    width: 1248px;
     margin-bottom: 40px;
   }
 `;
@@ -76,7 +78,6 @@ const Title = styled.h2`
     margin-bottom: 24px;
   }
 `;
-
 const StarsIcon = styled(MdStarRate)`
   width: 17px;
   height: 17px;
@@ -89,9 +90,9 @@ const List = styled.ul`
 
 const Item = styled.li`
   position: relative;
-  width: 280px;
   margin-bottom: 16px;
-  padding: 20px 46px 28px 54px;
+  padding: 20px 20px 28px 54px;
+  background-color: ${(p) => p.theme.colors.bgSecondary};
   box-shadow: ${(p) => p.theme.shadows.booksItem};
 
   &:last-child {
@@ -99,13 +100,19 @@ const Item = styled.li`
   }
 
   @media ${breakpoints.tablet} {
+    margin-bottom: 8px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    /* justify-content: start; */
     align-items: center;
     width: auto;
     height: 62px;
-    padding: 11px 12px 11px 54px;
+    padding: 11px 20px 11px 60px;
+
+    &:last-child {
+      margin-bottom: 0px;
+    }
   }
 
   @media ${breakpoints.desktop} {
@@ -127,7 +134,7 @@ const Icon = styled(MdMenuBook)`
         `;
       default:
         return `
-          color: grey;
+          color: #A6ABB9;
         `;
     }
   }}
@@ -137,9 +144,9 @@ const Paragraph = styled.p`
   display: flex;
   align-items: center;
   margin-bottom: 14px;
-  font-size: 12px;
   font-weight: 500;
-  line-height: 15px;
+  font-size: 12px;
+  line-height: 1.22;
 
   &:last-child {
     margin-bottom: 0px;
@@ -149,6 +156,23 @@ const Paragraph = styled.p`
     max-width: 228px;
     margin-bottom: 0px;
     font-size: 14px;
+
+    &:first-child {
+      ${(props) => {
+        switch (props.$mode) {
+          case 'Already read':
+            return `
+              width: 124px;
+              margin-right: 32px;
+        `;
+          default:
+            return `
+              width: 276px;
+              margin-right: 32px;
+        `;
+        }
+      }}
+    }
   }
 `;
 
