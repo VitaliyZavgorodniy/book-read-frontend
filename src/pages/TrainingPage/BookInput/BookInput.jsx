@@ -63,6 +63,7 @@ const List = styled.ul`
   border-bottom-right-radius: 6px;
   background-color: ${(p) => p.theme.colors.bgPrimary};
   box-shadow: ${(p) => p.theme.shadows.primary};
+  z-index: 2;
 `;
 
 const Item = styled.li`

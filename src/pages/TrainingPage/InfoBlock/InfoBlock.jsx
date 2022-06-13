@@ -6,38 +6,56 @@ import { ReactComponent as Flag } from 'assets/icons/flag.svg';
 import { ReactComponent as Arrow } from 'assets/icons/arrow.svg';
 
 const InfoBlock = () => (
-  <StepsList>
-    <Step>
-      <StepNumber>Step 1.</StepNumber>
-      <Title>
-        <Library />
-        Add one ore more book for training
-      </Title>
-      <Text>
-        <Arrow />
-        Use search field to find books from your library
-      </Text>
-    </Step>
-    <Step>
-      <StepNumber>Step 2.</StepNumber>
-      <Title>
-        <Flag />
-        Set end date and time of your training
-      </Title>
-      <Text>
-        <Arrow />
-        Use date and time picker for choose when your training will end
-      </Text>
-      <Text>
-        <Arrow />
-        End date can't be more then 31 day and less then 1 day
-      </Text>
-    </Step>
-  </StepsList>
+  <Wrapper>
+    <StepsList>
+      <Step>
+        <StepNumber>Step 1.</StepNumber>
+        <Title>
+          <Library />
+          Add one ore more book for training
+        </Title>
+        <Text>
+          <Arrow />
+          Use search field to find books from your library
+        </Text>
+      </Step>
+      <Step>
+        <StepNumber>Step 2.</StepNumber>
+        <Title>
+          <Flag />
+          Set end date and time of your training
+        </Title>
+        <Text>
+          <Arrow />
+          Use date and time picker for choose when your training will end
+        </Text>
+        <Text>
+          <Arrow />
+          End date can't be more then 31 day and less then 1 day
+        </Text>
+      </Step>
+    </StepsList>
+  </Wrapper>
 );
 
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 280px;
+  padding: 42px 20px;
+  margin: 0 auto;
+  font-weight: 600;
+  background: ${(p) => p.theme.colors.bgSecondary};
+  box-shadow: ${(p) => p.theme.shadows.block};
+  @media ${breakpoints.tablet} {
+    width: 608px;
+    padding: 40px;
+  }
+`;
+
 const StepsList = styled.ul`
-  margin-bottom: 40px;
+  width: 100%;
 `;
 
 const Step = styled.li`
@@ -62,7 +80,6 @@ const StepNumber = styled.h2`
 `;
 
 const Title = styled.h3`
-  margin-bottom: 8px;
   font-size: 16px;
   line-height: 20px;
   color: ${(p) => p.theme.colors.primary};
@@ -73,6 +90,7 @@ const Title = styled.h3`
 
 const Text = styled.p`
   position: relative;
+  margin-top: 8px;
   padding-left: 52px;
   font-weight: 400;
   font-size: 14px;
