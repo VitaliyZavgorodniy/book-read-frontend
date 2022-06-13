@@ -11,7 +11,6 @@ const ModallWellDone = ({ onClose }) => {
         <ItemIcon>
           <Icon />
         </ItemIcon>
-
         <ItemText>
           <Text>Congratulations!</Text>
           <Text>Another book read.</Text>

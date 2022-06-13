@@ -14,7 +14,22 @@ const Quotes = () => {
   );
 };
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-top: 32px;
+  padding-bottom: 60px;
+
+  @media ${breakpoints.tablet} {
+    padding-top: 64px;
+    padding-bottom: 88px;
+  }
+  @media ${breakpoints.desktop} {
+    padding-top: 179px;
+    padding-bottom: 0;
+  }
+`;
 
 const Quotestext = styled.h1`
   margin: 0 auto;

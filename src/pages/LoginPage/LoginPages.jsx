@@ -1,4 +1,4 @@
-import Media from 'react-media';
+// import Media from 'react-media';
 import styled from 'styled-components';
 
 import { breakpoints } from 'constants/breakpoints';
@@ -50,6 +50,7 @@ const LoginBlock = styled.div`
       url(${(p) => p.theme.backgrounds.logTb});
   }
   @media ${breakpoints.desktop} {
+    // margin: 0;
     padding: 185px 74px 175px 75px;
     background-image: linear-gradient(
         to right,
