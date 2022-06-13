@@ -18,10 +18,18 @@ const Label = styled.label`
   margin-bottom: 12px;
 `;
 
-const Input = styled.textarea``;
+const Input = styled.textarea`
+display: block;
+padding: 8px;
+resize: none;
+width: 100%;
+height: 170px;
+border-radius: 4px;
+  `;
 
-Textaria.propTypes = {
+Textarea.propTypes = {
   value: PropTypes.string.isRequired,
 };
 
 export default Textarea;
+

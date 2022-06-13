@@ -1,11 +1,13 @@
 import React from 'react';
 import { useState } from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import { breakpoints } from 'constants/breakpoints';
 import CommonButton from 'components/UI-kit/buttons/CommonButton';
 import Textarea from 'components/UI-kit/inputs/Textarea';
 import StarRating from 'components/UI-kit/inputs/StarRating';
 
-const ReviewModal = ({ onClose }) => {
+const ModalAddReview = ({ onClose }) => {
     const [rating, setRating] = useState(0);
     const [resume, setResume] = useState("");
     const onFormSubmit = (e) => {
@@ -22,6 +24,7 @@ const onResumeChange = (e) => {
         setResume(value);    
   };
   return (
+    
     <Form onSubmit={onFormSubmit}>
       <Label>Choose rating of the book</Label>    
       <StarRating value={rating} onChange={setRating}/>
@@ -34,19 +37,28 @@ const onResumeChange = (e) => {
       />
       <ButtonList>
         <ButtonListItem>
-          <CommonButton type="button" title="Back" onClick={onClose}/>
+          <CommonButton type="button" title="Back"  onClick={onClose}/>
         </ButtonListItem>
         <ButtonListItem>
-          <CommonButton type="submit" title="Save" variant="accent"  />
+          <CommonButton type="submit" title="Save"  variant="accent"  />
         </ButtonListItem>
       </ButtonList>
-    </Form>
+      </Form>
+     
   );
 };
+
 const Form = styled.form`
-  width: 600px;
-  background-color: ${(p) => p.theme.colors.bgSecondary};
-  padding: 20px;
+width: 100%;
+padding: 20px;
+max-width: 280px;
+max-height: 395px;
+padding: 20px 20px 40px;
+background-color: ${(p) => p.theme.colors.bgSecondary};
+@media  ${breakpoints.tablet} {
+    max-width: 608px;
+    max-height: 399px;
+  }
 `;
 
 const Label = styled.label`
@@ -60,13 +72,22 @@ const Label = styled.label`
 const ButtonList = styled.ul`
   list-style: none;
   display: flex;
-  margin: 30px 160px;
+  align-items: space-between;
+  margin: 20px 160px;
+   @media ${breakpoints.tablet} {
+    margin: 28px 160px 20px;
+  }
 `;
 const ButtonListItem = styled.li`
+  width: 130px;
   margin-right: 30px;
   &:last-child {
     margin-right: 0;
   }
 `;
 
-export default ReviewModal;
+ModalAddReview.propTypes = {
+ onClose: PropTypes.func.isRequired,
+};
+export default ModalAddReview;
+

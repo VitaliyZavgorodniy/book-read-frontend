@@ -1,8 +1,15 @@
+import { useState } from 'react';
 import { MdMenuBook, MdStarRate } from 'react-icons/md';
 import styled from 'styled-components';
 import { breakpoints } from 'constants/breakpoints';
+import Modal from 'hoc/Modal';
+import ModalAddReview from 'components/Modals/ModalAddReview';
 
 const BooksList = ({ title, list }) => {
+  const [showModal, setShowModal] = useState(false);
+  const toggleModal = () => {
+    setShowModal((state) => !state);
+  };
   return (
     <Section>
       <Title>{title}</Title>
@@ -47,8 +54,13 @@ const BooksList = ({ title, list }) => {
                     <StarsIcon />
                   </Paragraph>
                   <Paragraph>
-                    <Button>Resume</Button>
+                    <Button onClick={toggleModal}>Resume</Button>
                   </Paragraph>
+                  {showModal && (
+                    <Modal onClose={toggleModal}>
+                      <ModalAddReview onClose={toggleModal} />
+                    </Modal>
+                  )}
                 </>
               )}
             </Item>
