@@ -1,8 +1,13 @@
+import { useState } from "react";
 import { MdMenuBook, MdStarRate } from 'react-icons/md';
 import styled from 'styled-components';
 import { breakpoints } from 'constants/breakpoints';
+import StarRating from "components/UI-kit/inputs/StarRating";
+
+
 
 const BooksList = ({ title, list }) => {
+  const [rating, setRating] = useState(0);
   return (
     <Section>
       <Title>{title}</Title>
@@ -17,7 +22,7 @@ const BooksList = ({ title, list }) => {
             <Cell $mode={title}>Comments</Cell>
           </>
         )}
-      </Heading>
+      </Heading>   
       <List>
         {list &&
           list.map((book) => (
@@ -40,15 +45,16 @@ const BooksList = ({ title, list }) => {
                 <>
                   <Paragraph>
                     <Span>Rating:</Span>
+                    <StarRating value={rating} onChange={ setRating }/>
+                    {/* <StarsIcon />
                     <StarsIcon />
                     <StarsIcon />
                     <StarsIcon />
-                    <StarsIcon />
-                    <StarsIcon />
+                    <StarsIcon /> */}
                   </Paragraph>
                   <Paragraph>
                     <Button>Resume</Button>
-                  </Paragraph>
+                  </Paragraph>                         
                 </>
               )}
             </Item>
@@ -251,3 +257,4 @@ const Button = styled.button`
 `;
 
 export default BooksList;
+
