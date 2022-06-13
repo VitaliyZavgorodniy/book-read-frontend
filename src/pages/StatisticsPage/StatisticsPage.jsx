@@ -172,8 +172,8 @@ const Wrapper = styled.div`
 const Counters = styled.div`
   display: flex;
   flex-direction: column;
-  height: 194px;
   justify-content: space-between;
+  height: 194px;
   margin: 0 auto;
   margin-bottom: 40px;
 

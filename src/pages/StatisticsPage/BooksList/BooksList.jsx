@@ -108,7 +108,6 @@ const BooksList = ({ books, onUpdateStats }) => {
 
 const Wrapper = styled.div`
   width: 280px;
-  width: 100%;
   margin: 0 auto;
 `;
 
