@@ -41,6 +41,14 @@ const BooksList = ({ books, onUpdateStats }) => {
       ({ _id, isCompleted, title, author, year, pagesRead, pages }) => (
         <Item key={_id}>
           {isCompleted ? <IconCompleted /> : <Icon />}
+          {isCompleted ? null : (
+            <ButtonWrapper>
+              <IconButton onClick={() => handleOpenModal(_id)}>
+                <AiOutlinePlus />
+              </IconButton>
+            </ButtonWrapper>
+          )}
+
           <BookTitle>{title}</BookTitle>
 
           <Row>
@@ -62,14 +70,6 @@ const BooksList = ({ books, onUpdateStats }) => {
             <Heading>Read</Heading>
             <Text>{pagesRead}</Text>
           </Row>
-
-          {isCompleted ? null : (
-            <ButtonWrapper>
-              <IconButton onClick={() => handleOpenModal(_id)}>
-                <AiOutlinePlus />
-              </IconButton>
-            </ButtonWrapper>
-          )}
         </Item>
       )
     );
@@ -108,10 +108,13 @@ const BooksList = ({ books, onUpdateStats }) => {
 
 const Wrapper = styled.div`
   width: 280px;
+  width: 100%;
+  margin: 0 auto;
 `;
 
 const List = styled.ul`
   width: 100%;
+  margin: 0 auto;
 `;
 
 const Item = styled.li`
@@ -119,12 +122,19 @@ const Item = styled.li`
   display: flex;
   flex-direction: column;
   padding: 20px;
+  padding-left: 34px;
+  border-top: 1px solid ${(p) => p.theme.colors.lineStat};
+
+  &:last-child {
+    border-bottom: 1px solid ${(p) => p.theme.colors.lineStat};
+  }
 `;
 
 const BookTitle = styled.h3`
   font-weight: 500;
   font-size: 12px;
   line-height: 15px;
+  margin-bottom: 12px;
 `;
 
 const Row = styled.p`
@@ -132,6 +142,11 @@ const Row = styled.p`
   font-weight: 500;
   font-size: 12px;
   line-height: 15px;
+  margin-bottom: 14px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 `;
 
 const Heading = styled.div`
@@ -145,19 +160,22 @@ const Text = styled.span`
 
 const ButtonWrapper = styled.div`
   position: absolute;
-  bottom: 10px;
-  right: 10px;
+  bottom: 20px;
+  right: 0;
 `;
 
 const Icon = styled(MdOutlineCheckBoxOutlineBlank)`
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 20px;
+  left: 0px;
   color: ${(p) => p.theme.colors.textLight};
   font-size: 24px;
 `;
 
 const IconCompleted = styled(MdOutlineCheckBox)`
+  position: absolute;
+  top: 20px;
+  left: 0px;
   color: ${(p) => p.theme.colors.accent};
   font-size: 24px;
 `;

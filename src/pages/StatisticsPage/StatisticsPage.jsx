@@ -172,10 +172,17 @@ const Wrapper = styled.div`
 const Counters = styled.div`
   display: flex;
   flex-direction: column;
+  height: 194px;
+  justify-content: space-between;
+  margin: 0 auto;
+  margin-bottom: 40px;
 
   @media ${breakpoints.tablet} {
     flex-direction: row;
     justify-content: space-around;
+    height: auto;
+    margin: auto;
+    margin-bottom: 0;
   }
 `;
 
@@ -190,8 +197,16 @@ const WrapperRight = styled.div`
 `;
 
 const BooksListWrapper = styled.div`
+  margin: 0 auto;
   margin-top: 44px;
-  width: 928px;
+
+  @media ${breakpoints.tablet} {
+    width: 928px;
+  }
+
+  @media ${breakpoints.desktop} {
+    width: 928px;
+  }
 `;
 
 export default StatisticsPage;
