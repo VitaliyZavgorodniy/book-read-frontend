@@ -54,12 +54,15 @@ const BooksList = ({ title, list }) => {
 const Section = styled.div`
   width: 280px;
   margin: 0 auto;
+  padding-top: 20px;
 
   @media ${breakpoints.tablet} {
     width: 704px;
+    padding-top: 40px;
   }
   @media ${breakpoints.desktop} {
     width: 1248px;
+    padding-top: 32px;
   }
 `;
 

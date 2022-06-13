@@ -2,8 +2,6 @@ import { useState, useEffect, useCallback } from 'react';
 
 import styled from 'styled-components';
 import debounce from 'lodash.debounce';
-import Media from 'react-media';
-// import { useMediaQuery } from 'react-responsive';
 
 import { breakpoints } from 'constants/breakpoints';
 
@@ -22,8 +20,6 @@ const FormAddBook = ({ prediction, onSearch, onCreate, onClick }) => {
     debounce((query) => onSearch({ query }), 500),
     []
   );
-
-  // const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   
   const handleSearch = (e) => {
     setID(null);

@@ -115,6 +115,9 @@ const Overlay = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
+  overflow: auto;
+  pointer-events: auto;
+  background-color: ${(p) => p.theme.colors.bgPrimary};
   padding: 84px 0 110px;
 `;
 const WrapperModal = styled.div`
@@ -127,17 +130,7 @@ const WrapperModal = styled.div`
   width: 100%;
   margin: 0 auto;
   padding: 24px 0 110px;
-  /* padding: 12px; */
   background-color: ${(p) => p.theme.colors.bgPrimary};
-
-  /* position: relative;
-  width: 280px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  outline: 1px solid black;
-  background: ${(p) => p.theme.colors.bgPrimary}; */
 `;
 const ButtonBack = styled.button`
   position: relative;
@@ -160,18 +153,23 @@ const ArrowBack = styled(CgArrowLongLeft)`
 const FormWrapper = styled.div`
  
   @media ${breakpoints.tablet} {
-    padding: 32px 0 40px;
+    padding-top: 32px;
   }
 
   @media ${breakpoints.desktop} {
-    padding: 40px 0 80px;
+    padding-top: 40px;
   }
 `;
 
 const LibraryWrapper = styled.div`
   position: relative;
-  padding-bottom: 28px;
-  padding-top: 20px;
+ @media ${breakpoints.tablet} {
+    padding-top: 32px;
+  }
+
+  @media ${breakpoints.desktop} {
+    padding-top: 80px;
+  }
 `;
 const ButtonWrapper = styled.div`
   width: 130px;
@@ -190,7 +188,7 @@ const ButtonWrapper = styled.div`
   }
 `;
 const AddWrapper = styled.div`
-  position: absolute;
+  position: sticky;
   left: 50%;
   transform: translateX(-50%);
   bottom: 12px;
