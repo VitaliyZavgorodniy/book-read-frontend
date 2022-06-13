@@ -107,7 +107,8 @@ const HomePage = ({
   );
 };
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+margin: 0 auto;`;
 const Overlay = styled.div`
   position: fixed;
   top: 0;
@@ -117,14 +118,25 @@ const Overlay = styled.div`
   padding: 84px 0 110px;
 `;
 const WrapperModal = styled.div`
-  position: relative;
+
+ position: absolute;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 280px;
+  width: 100%;
+  margin: 0 auto;
+  /* padding: 12px; */
+  background-color: ${(p) => p.theme.colors.bgPrimary};
+
+  /* position: relative;
   width: 280px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   outline: 1px solid black;
-  background: ${(p) => p.theme.colors.bgPrimary};
+  background: ${(p) => p.theme.colors.bgPrimary}; */
 `;
 const ButtonBack = styled.button`
   position: relative;
