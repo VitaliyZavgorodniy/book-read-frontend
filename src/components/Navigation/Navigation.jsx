@@ -17,7 +17,7 @@ const Navigation = () => (
 const Header = styled.header`
   position: sticky;
   top: 0;
-  z-index: 3;
+  z-index: 2;
   background-color: ${(p) => p.theme.colors.bgSecondary};
   box-shadow: ${(p) => p.theme.shadows.block};
 `;

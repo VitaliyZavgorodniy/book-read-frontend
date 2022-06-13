@@ -9,7 +9,7 @@ import CommonInput from 'components/UI-kit/inputs/CommonInput';
 import CommonButton from 'components/UI-kit/buttons/CommonButton';
 
 
-const FormAddBook = ({ prediction, onSearch, onCreate, onClick }) => {
+const FormAddBook = ({ prediction, onSearch, onCreate, handleClose }) => {
   const [id, setID] = useState(null);
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
@@ -49,6 +49,7 @@ const FormAddBook = ({ prediction, onSearch, onCreate, onClick }) => {
       year,
       pages,
     });
+    handleClose();
     return handleResetForm();
   };
 

@@ -17,6 +17,7 @@ import IconButton from 'components/UI-kit/buttons/IconButton';
 const modalRoot = document.querySelector('#modal-root');
 
 const HomePage = ({
+  handleClose,
   isFetching,
   totalBooks,
   completedBooks,
@@ -49,7 +50,7 @@ const HomePage = ({
                 <ButtonBack type="button" onClick={toggleModal}>
                   <ArrowBack />
                 </ButtonBack>
-                <FormAddBook />
+                <FormAddBook handleClose={toggleModal }/>
               </WrapperModal>
             </Overlay>,
             modalRoot
@@ -108,7 +109,8 @@ const HomePage = ({
 };
 
 const Wrapper = styled.div`
-margin: 0 auto;`;
+  margin: 0 auto;
+`;
 const Overlay = styled.div`
   position: fixed;
   top: 0;
@@ -121,8 +123,7 @@ const Overlay = styled.div`
   padding: 84px 0 110px;
 `;
 const WrapperModal = styled.div`
-
- position: absolute;
+  position: absolute;
   top: 60px;
   left: 50%;
   transform: translateX(-50%);
@@ -151,11 +152,9 @@ const ArrowBack = styled(CgArrowLongLeft)`
   color: ${(p) => p.theme.colors.accent};
 `;
 const FormWrapper = styled.div`
- 
   @media ${breakpoints.tablet} {
     padding-top: 32px;
   }
-
   @media ${breakpoints.desktop} {
     padding-top: 40px;
   }
@@ -163,10 +162,9 @@ const FormWrapper = styled.div`
 
 const LibraryWrapper = styled.div`
   position: relative;
- @media ${breakpoints.tablet} {
+  @media ${breakpoints.tablet} {
     padding-top: 32px;
   }
-
   @media ${breakpoints.desktop} {
     padding-top: 80px;
   }
@@ -182,7 +180,6 @@ const ButtonWrapper = styled.div`
     padding-top: 40px;
     padding-bottom: 299px;
   }
-
   @media ${breakpoints.desktop} {
     padding-bottom: 245px;
   }
