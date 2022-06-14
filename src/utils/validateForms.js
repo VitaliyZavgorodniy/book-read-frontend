@@ -21,6 +21,12 @@ export const validateRegister = (values) => {
   ) {
     errors.email = 'Invalid email address';
   }
+  else if (values.email.startsWith('-') || values.email.slice(-1) === '-') {
+    errors.email = 'The field cannot start with a hyphen or end with a hyphen';
+
+  } else if (values.email.length < 6 || values.email.length > 62) {
+    errors.email = 'The field can be entered from 7 to 63 characters inclusive';
+  }
 
   if (!values.password) {
     errors.password = 'Enter your password';
@@ -28,6 +34,11 @@ export const validateRegister = (values) => {
     errors.password = 'Must be 30 characters or less';
   } else if (values.password.length < 5) {
     errors.password = 'Must be 5 characters or more';
+  } else if (
+    values.password.startsWith('-') ||
+    values.password.startsWith('.')
+  ) {
+    errors.password = 'Поле може містити літери латиниці, цифри та знаки';
   }
 
   if (!values.confirm) {
@@ -36,7 +47,7 @@ export const validateRegister = (values) => {
     errors.confirm = 'Must be 30 characters or less';
   } else if (values.confirm !== values.password) {
     errors.confirm = 'The data is different from the password field data';
-  }
+  } 
   return errors;
 };
 
