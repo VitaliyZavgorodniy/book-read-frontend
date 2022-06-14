@@ -31,8 +31,6 @@ const LoginForm = ({ onLogin, isFetching }) => {
   const { values, handleSubmit, handleChange, handleBlur, touched, errors } =
     form;
 
-  console.log(values);
-
   const handleLink = () => {
     navigate('/register');
   };

@@ -8,7 +8,6 @@ import { breakpoints } from 'constants/breakpoints';
 import CommonInput from 'components/UI-kit/inputs/CommonInput';
 import CommonButton from 'components/UI-kit/buttons/CommonButton';
 
-
 const FormAddBook = ({ prediction, onSearch, onCreate, handleClose }) => {
   const [id, setID] = useState(null);
   const [title, setTitle] = useState('');
@@ -20,7 +19,7 @@ const FormAddBook = ({ prediction, onSearch, onCreate, handleClose }) => {
     debounce((query) => onSearch({ query }), 500),
     []
   );
-  
+
   const handleSearch = (e) => {
     setID(null);
     setTitle(e.target.value);
@@ -73,7 +72,6 @@ const FormAddBook = ({ prediction, onSearch, onCreate, handleClose }) => {
 
   return (
     <Wrapper>
-             
       <InputList>
         <InputWrapper>
           <CommonInput
@@ -82,9 +80,11 @@ const FormAddBook = ({ prediction, onSearch, onCreate, handleClose }) => {
             value={title}
             onChange={handleSearch}
           />
+          {prediction.length && title.length >= 3 && !id ? (
+            <Prediction>{renderPrediction()}</Prediction>
+          ) : null}
         </InputWrapper>
         <InputWrapper>
-          {' '}
           <CommonInput
             title="Author"
             placeholder="..."
@@ -95,7 +95,6 @@ const FormAddBook = ({ prediction, onSearch, onCreate, handleClose }) => {
         </InputWrapper>
 
         <InputWrapper>
-          {' '}
           <CommonInput
             title="Publication date"
             placeholder="..."
@@ -118,10 +117,6 @@ const FormAddBook = ({ prediction, onSearch, onCreate, handleClose }) => {
       <ButtonWrapper>
         <CommonButton title="Add" type="submit" onClick={handleSubmit} />
       </ButtonWrapper>
-
-      {prediction.length && title.length >= 3 && !id ? (
-        <Prediction>{renderPrediction()}</Prediction>
-      ) : null}
     </Wrapper>
   );
 };
@@ -160,6 +155,8 @@ const InputList = styled.ul`
   }
 `;
 const InputWrapper = styled.li`
+  position: relative;
+
   &:not(:last-child) {
     margin-bottom: 20px;
   }
@@ -209,7 +206,8 @@ const ButtonWrapper = styled.div`
 const Prediction = styled.ul`
   z-index: 10;
   position: absolute;
-  transform: translateY(100%);
+  top: 100%;
+  left: 0;
   display: flex;
   flex-direction: column;
   width: 100%;

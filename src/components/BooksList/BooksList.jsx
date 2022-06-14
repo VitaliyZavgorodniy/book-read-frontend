@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { MdMenuBook, MdStarRate } from 'react-icons/md';
 import styled from 'styled-components';
 import Media from 'react-media';
@@ -6,47 +7,131 @@ import { breakpoints } from 'constants/breakpoints';
 
 import { Heading } from './Heading';
 
-const BooksList = ({ title, list }) => {
+import StarratingInfo from 'components/StarratingInfo';
+import ReviewModal from 'components/Modals/ReviewModal';
+import Modal from 'hoc/Modal';
+
+const BooksList = ({ title, list, onReviewUpdate, onReviewAdd }) => {
+  const [isOpen, setOpen] = useState(false);
+  const [bookID, setBookID] = useState(null);
+  const [reviewID, setReviewID] = useState(null);
+  const [rating, setRating] = useState(0);
+  const [resume, setResume] = useState('');
+
+  const onFormSubmit = (e) => {
+    e.preventDefault();
+
+    if (reviewID) {
+      onReviewUpdate({
+        review: {
+          rating: rating,
+          text: resume,
+          id: reviewID,
+        },
+        bookID: bookID,
+      });
+      return setOpen(false);
+    }
+
+    onReviewAdd({
+      review: {
+        rating: rating,
+        text: resume,
+      },
+      bookID: bookID,
+    });
+
+    setOpen(false);
+  };
+
+  const handleOpenModal = (rating, text, reviewID, bookID) => {
+    if (reviewID) setReviewID(reviewID);
+    if (!reviewID) setReviewID(null);
+
+    if (rating && text) {
+      setBookID(bookID);
+      setRating(rating);
+      setResume(text);
+    } else {
+      setBookID(bookID);
+      setRating(0);
+      setResume('');
+    }
+
+    setOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setOpen(false);
+  };
+
+  const renderList = () => {
+    const elementHTML =
+      list &&
+      list.map((book) => {
+        return (
+          <Item key={book._id}>
+            <Icon $mode={title} />
+            <Paragraph>{book.title}</Paragraph>
+            <Paragraph>
+              <Span>Author:</Span>
+              {book.author}
+            </Paragraph>
+            <Paragraph>
+              <Span>Year:</Span>
+              {book.year}
+            </Paragraph>
+            <Paragraph>
+              <Span>Pages:</Span>
+              {book.pages}
+            </Paragraph>
+            {title === 'Already read' && (
+              <>
+                <Paragraph>
+                  <Span>Rating:</Span>
+                  <StarratingInfo value={book?.review?.rating} />
+                </Paragraph>
+                <Paragraph>
+                  <Button
+                    onClick={() =>
+                      handleOpenModal(
+                        book?.review?.rating,
+                        book?.review?.text,
+                        book?.review?._id,
+                        book?._id
+                      )
+                    }
+                  >
+                    Resume
+                  </Button>
+                </Paragraph>
+              </>
+            )}
+          </Item>
+        );
+      });
+
+    return elementHTML;
+  };
+
   return (
     <Section>
+      {isOpen && (
+        <Modal onClose={handleCloseModal}>
+          <ReviewModal
+            rating={rating}
+            text={resume}
+            closeModal={handleCloseModal}
+            setRating={setRating}
+            setResume={setResume}
+            onFormSubmit={onFormSubmit}
+          />
+        </Modal>
+      )}
+
       <Title>{title}</Title>
       <Media query="(min-width: 768px)" render={() => <Heading />} />
-      <List>
-        {list &&
-          list.map((book) => (
-            <Item key={book._id}>
-              <Icon $mode={title} />
-              <Paragraph>{book.title}</Paragraph>
-              <Paragraph>
-                <Span>Author:</Span>
-                {book.author}
-              </Paragraph>
-              <Paragraph>
-                <Span>Year:</Span>
-                {book.year}
-              </Paragraph>
-              <Paragraph>
-                <Span>Pages:</Span>
-                {book.pages}
-              </Paragraph>
-              {title === 'Already read' && (
-                <>
-                  <Paragraph>
-                    <Span>Rating:</Span>
-                    <StarsIcon />
-                    <StarsIcon />
-                    <StarsIcon />
-                    <StarsIcon />
-                    <StarsIcon />
-                  </Paragraph>
-                  <Paragraph>
-                    <Button>Resume</Button>
-                  </Paragraph>
-                </>
-              )}
-            </Item>
-          ))}
-      </List>
+      <List>{list.length ? renderList() : null}</List>
     </Section>
   );
 };
@@ -139,7 +224,7 @@ const Icon = styled(MdMenuBook)`
   }}
 `;
 
-const Paragraph = styled.p`
+const Paragraph = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 14px;

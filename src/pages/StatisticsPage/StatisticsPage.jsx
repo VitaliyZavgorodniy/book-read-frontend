@@ -50,7 +50,11 @@ const StatisticsPage = ({ status, training, stats, onLoadTraining }) => {
             title="Years countdown"
             dateTo={getCurrentEndYearDate()}
           />
-          <CountdownPanel title="Goals countdown" dateTo={training.endDate} />
+          <CountdownPanel
+            title="Goals countdown"
+            dateTo={training.endDate}
+            isStopped={!training.inProgress}
+          />
         </Counters>
 
         <Media

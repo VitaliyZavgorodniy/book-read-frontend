@@ -11,7 +11,7 @@ import { breakpoints } from 'constants/breakpoints';
 
 import BooksList from '../../components/BooksList';
 import InfoBlockIntro from './InfoBlockIntro';
-import FormAddBook from './FormAddBook/FormAddBook';
+import FormAddBook from './FormAddBook';
 import CommonButton from 'components/UI-kit/buttons/CommonButton';
 import IconButton from 'components/UI-kit/buttons/IconButton';
 const modalRoot = document.querySelector('#modal-root');
@@ -25,13 +25,16 @@ const HomePage = ({
   pendingBooks,
   onLibraryLoad,
 }) => {
+  const [modal, setModal] = useState(true);
+
   useEffect(() => {
     onLibraryLoad();
   }, []);
-  const [modal, setModal] = useState(true);
+
   const toggleModal = () => {
     setModal(!modal);
   };
+
   const navigate = useNavigate();
 
   return (
@@ -50,7 +53,7 @@ const HomePage = ({
                 <ButtonBack type="button" onClick={toggleModal}>
                   <ArrowBack />
                 </ButtonBack>
-                <FormAddBook handleClose={toggleModal }/>
+                <FormAddBook handleClose={toggleModal} />
               </WrapperModal>
             </Overlay>,
             modalRoot

@@ -48,6 +48,28 @@ const librarySlice = createSlice({
     [libraryOperations.searchBooks.rejected]: (state) => {
       state.isFetching = false;
     },
+
+    [libraryOperations.updateReview.pending]: (state) => {
+      state.isFetching = true;
+    },
+    [libraryOperations.updateReview.fulfilled]: (state, { payload }) => {
+      state.books = payload;
+      state.isFetching = false;
+    },
+    [libraryOperations.updateReview.rejected]: (state) => {
+      state.isFetching = false;
+    },
+
+    [libraryOperations.addReview.pending]: (state) => {
+      state.isFetching = true;
+    },
+    [libraryOperations.addReview.fulfilled]: (state, { payload }) => {
+      state.books = payload;
+      state.isFetching = false;
+    },
+    [libraryOperations.addReview.rejected]: (state) => {
+      state.isFetching = false;
+    },
   },
 });
 

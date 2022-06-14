@@ -36,7 +36,6 @@ const TrainingPage = ({
   const [goalDays, setGoalDays] = useState(0);
 
   useEffect(() => {
-    // console.log(status);
     if (status) navigate('/statistics');
   }, [status]);
 

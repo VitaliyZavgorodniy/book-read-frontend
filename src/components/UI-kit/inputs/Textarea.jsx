@@ -20,7 +20,7 @@ const Label = styled.label`
 
 const Input = styled.textarea``;
 
-Textaria.propTypes = {
+Textarea.propTypes = {
   value: PropTypes.string.isRequired,
 };
 
