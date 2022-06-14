@@ -13,7 +13,10 @@ const Modal = ({ children, onClose }) => {
     window.addEventListener('keydown', handleKeyDown);
     document.body.style.overflow = 'hidden';
 
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    return () => {
+      document.body.style.overflow = 'auto';
+      window.removeEventListener('keydown', handleKeyDown);
+    };
   }, []);
 
   const handleBackdropClick = (e) => {

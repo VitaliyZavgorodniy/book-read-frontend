@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { MdMenuBook, MdStarRate } from 'react-icons/md';
 import styled from 'styled-components';
 import Media from 'react-media';
@@ -17,9 +17,24 @@ const BooksList = ({ title, list, onReviewUpdate, onReviewAdd }) => {
   const [reviewID, setReviewID] = useState(null);
   const [rating, setRating] = useState(0);
   const [resume, setResume] = useState('');
+  const [ratingError, setRatingError] = useState('');
+  const [textError, setTextError] = useState('');
+
+  useEffect(() => {
+    setTextError('');
+    setRatingError('');
+  }, [rating, resume]);
 
   const onFormSubmit = (e) => {
     e.preventDefault();
+
+    if (resume.length < 10) {
+      return setTextError('Resume must be at least 10 characters');
+    }
+
+    if (ratingError < 1) {
+      return setRatingError('Choose rating');
+    }
 
     if (reviewID) {
       onReviewUpdate({
@@ -119,6 +134,8 @@ const BooksList = ({ title, list, onReviewUpdate, onReviewAdd }) => {
       {isOpen && (
         <Modal onClose={handleCloseModal}>
           <ReviewModal
+            ratingError={ratingError}
+            textError={textError}
             rating={rating}
             text={resume}
             closeModal={handleCloseModal}
