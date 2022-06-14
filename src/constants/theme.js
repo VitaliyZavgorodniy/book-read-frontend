@@ -29,7 +29,7 @@ export const theme = {
     primary: '4px 4px 8px rgba(36, 42, 55, 0.15)',
     block: '0px 2px 3px rgba(9, 30, 63, 0.1)',
     button: '0px 2px 4px rgba(0, 0, 0, 0.25)',
-    innerInput: 'inset 0 1px 2px #1D1D1B15;',
+    innerInput: 'inset 0 1px 2px rgba(29, 29, 27, 0.15)',
     booksItem: '0px 2px 3px rgba(9, 30, 63, 0.1)',
   },
   font: {

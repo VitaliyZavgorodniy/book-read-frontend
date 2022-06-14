@@ -84,6 +84,7 @@ const FormAddBook = ({
             title="Book title"
             placeholder="..."
             value={title}
+            autofocus
             onChange={handleSearch}
           />
         </InputWrapper>
