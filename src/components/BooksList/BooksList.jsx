@@ -178,77 +178,6 @@ const BooksList = ({ title, list, onReviewUpdate, onReviewAdd }) => {
         query="(min-width: 768px)"
         render={() => <Heading title={title} />}
       />
-
-      {/* <TableBody>
-        {list &&
-          list.map((book) => (
-            <BodyRow key={book._id} $mode={title}>
-              <BodyRowWrapper>
-                <BodyCell $mode={title}>
-                  {' '}
-                  <Icon $mode={title} />
-                  {book.title}
-                </BodyCell>
-                <BodyCell $mode={title}>
-                  <Media
-                    query="(max-width: 767px)"
-                    render={() => <Span>Author:</Span>}
-                  />
-
-                  {book.author}
-                </BodyCell>
-                <BodyCell $mode={title}>
-                  <Media
-                    query="(max-width: 767px)"
-                    render={() => <Span>Year:</Span>}
-                  />
-
-                  {book.year}
-                </BodyCell>
-                <BodyCell $mode={title}>
-                  <Media
-                    query="(max-width: 767px)"
-                    render={() => <Span>Pages:</Span>}
-                  />
-
-                  {book.pages}
-                </BodyCell>
-                {title === 'Already read' && (
-                  <>
-                    <BodyCell $mode={title}>
-                      <Media
-                        query="(max-width: 767px)"
-                        render={() => <Span>Rating:</Span>}
-                      />
-                      <StarratingInfo value={book?.review?.rating} />
-
-                      <StarsIcon />
-                      <StarsIcon />
-                      <StarsIcon />
-                      <StarsIcon />
-                      <StarsIcon />
-                    </BodyCell>
-                    <BodyCell $mode={title}>
-                      <Button
-                        onClick={() =>
-                          handleOpenModal(
-                            book?.review?.rating,
-                            book?.review?.text,
-                            book?.review?._id,
-                            book?._id
-                          )
-                        }
-                      >
-                        Resume
-                      </Button>
-                    </BodyCell>
-                  </>
-                )}
-              </BodyRowWrapper>
-            </BodyRow>
-          ))}
-      </TableBody> */}
-
       <TableBody>{list.length ? renderList() : null}</TableBody>
     </Section>
   );
@@ -513,8 +442,8 @@ const BodyCell = styled.div`
         switch (props.$mode) {
           case 'Already read':
             return `
-              width: 97px;
-              margin: 0 32px 0 0;
+              width: 120px;
+              margin: 0 9px 0 0;
         `;
           default:
             return ``;
@@ -527,8 +456,8 @@ const BodyCell = styled.div`
         switch (props.$mode) {
           case 'Already read':
             return `
-              width: 101px;
-              margin: 0 60px 0 0;
+              width: 121px;
+              margin: 0 40px 0 0;
         `;
           default:
             return ``;
