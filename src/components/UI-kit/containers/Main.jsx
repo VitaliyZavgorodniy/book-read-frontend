@@ -9,10 +9,15 @@ const Wrapper = styled.main`
   padding: 40px 16px 0;
   padding: 0 16px 0;
   background-color: ${(p) => p.theme.colors.bgPrimary};
-  
+
   @media ${breakpoints.tablet} {
     padding-left: 32px;
     padding-right: 32px;
+  }
+
+  @media ${breakpoints.desktop} {
+    padding-left: 16px;
+    padding-right: 16px;
   }
 `;
 
