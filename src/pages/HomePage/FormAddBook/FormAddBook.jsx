@@ -8,7 +8,13 @@ import { breakpoints } from 'constants/breakpoints';
 import CommonInput from 'components/UI-kit/inputs/CommonInput';
 import CommonButton from 'components/UI-kit/buttons/CommonButton';
 
-const FormAddBook = ({ prediction, onSearch, onCreate, handleClose }) => {
+const FormAddBook = ({
+  prediction,
+  onSearch,
+  onCreate,
+  isModal,
+  handleClose,
+}) => {
   const [id, setID] = useState(null);
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
@@ -48,7 +54,7 @@ const FormAddBook = ({ prediction, onSearch, onCreate, handleClose }) => {
       year,
       pages,
     });
-    handleClose();
+    if (isModal) handleClose();
     return handleResetForm();
   };
 
@@ -78,6 +84,7 @@ const FormAddBook = ({ prediction, onSearch, onCreate, handleClose }) => {
             title="Book title"
             placeholder="..."
             value={title}
+            autofocus
             onChange={handleSearch}
           />
           {prediction.length && title.length >= 3 && !id ? (

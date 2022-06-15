@@ -53,7 +53,7 @@ const HomePage = ({
                 <ButtonBack type="button" onClick={toggleModal}>
                   <ArrowBack />
                 </ButtonBack>
-                <FormAddBook handleClose={toggleModal} />
+                <FormAddBook isModal={modal} handleClose={toggleModal} />
               </WrapperModal>
             </Overlay>,
             modalRoot

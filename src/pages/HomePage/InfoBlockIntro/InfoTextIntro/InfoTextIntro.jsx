@@ -11,7 +11,7 @@ const InfoBlockIntro = () => (
       <StepNumber>Step 1.</StepNumber>
       <Title>
         <Library />
-        LibraryInfo Create your own library
+        Create your own library
       </Title>
       <Text>
         <Arrow />

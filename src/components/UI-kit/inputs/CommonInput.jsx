@@ -10,6 +10,7 @@ const CommonInput = ({
   onChange,
   error,
   disabled,
+  autofocus,
   ...props
 }) => (
   <Wrapper>
@@ -18,6 +19,7 @@ const CommonInput = ({
     </Label>
     <Input
       id={id}
+      autoFocus={autofocus ?? false}
       name={id}
       required={required}
       value={value}
@@ -76,6 +78,12 @@ const Input = styled.input`
     border: 1px solid ${(p) => p.theme.colors.textLight};
     background-color: ${(p) => p.theme.colors.bgPrimary};
     box-shadow: none;
+  }
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    cursor: pointer;
   }
 `;
 
