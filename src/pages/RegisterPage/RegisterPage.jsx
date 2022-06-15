@@ -131,6 +131,17 @@ const RegisterBlock = styled.div`
   background-size: contain;
   background-position: center;
 
+  @media (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    background-image: linear-gradient(
+        to right,
+        ${(p) => p.theme.colors.bgAlpha},
+        ${(p) => p.theme.colors.bgAlpha}
+      ),
+      url(${(p) => p.theme.backgrounds.regMb_2x});
+  }
+
   @media ${breakpoints.tablet} {
     padding: 64px 184px;
     background-image: linear-gradient(
@@ -139,6 +150,17 @@ const RegisterBlock = styled.div`
         ${(p) => p.theme.colors.bgAlpha}
       ),
       url(${(p) => p.theme.backgrounds.regTb});
+
+    @media (min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: linear-gradient(
+          to right,
+          ${(p) => p.theme.colors.bgAlpha},
+          ${(p) => p.theme.colors.bgAlpha}
+        ),
+        url(${(p) => p.theme.backgrounds.regTb_2x});
+    }
   }
   @media ${breakpoints.desktop} {
     padding: 90px 75px;
@@ -148,6 +170,17 @@ const RegisterBlock = styled.div`
         ${(p) => p.theme.colors.bgAlpha}
       ),
       url(${(p) => p.theme.backgrounds.regDs});
+
+    @media (min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: linear-gradient(
+          to right,
+          ${(p) => p.theme.colors.bgAlpha},
+          ${(p) => p.theme.colors.bgAlpha}
+        ),
+        url(${(p) => p.theme.backgrounds.regDs_2x});
+    }
   }
 `;
 

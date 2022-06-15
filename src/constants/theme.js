@@ -5,6 +5,13 @@ import bgRegTb from 'assets/images/bgRegTb.jpg'
 import bgLogDs from 'assets/images/bgLogDs.jpg';
 import bgRegDs from 'assets/images/bgRegDs.jpg';
 
+import bgLogMb_2x from 'assets/images/bgLogMb-2x.jpg'
+import bgRegMb_2x from 'assets/images/bgRegMb-2x.jpg'
+import bgLogTb_2x from 'assets/images/bgLogTb-2x.jpg'
+import bgRegTb_2x from 'assets/images/bgRegTb-2x.jpg'
+import bgLogDs_2x from 'assets/images/bgLogDs-2x.jpg';
+import bgRegDs_2x from 'assets/images/bgRegDs-2x.jpg';
+
 export const theme = {
   colors: {
     primary: '#242A37',
@@ -44,6 +51,13 @@ export const theme = {
     regMb: bgRegMb,
     regTb: bgRegTb,
     regDs: bgRegDs,
+
+    logMb_2x: bgLogMb_2x,
+    logTb_2x: bgLogTb_2x,
+    logDs_2x: bgLogDs_2x,
+    regMb_2x: bgRegMb_2x,
+    regTb_2x: bgRegTb_2x,
+    regDs_2x: bgRegDs_2x,
   },
   animations: {
     primary: '250ms ease-in-out',
