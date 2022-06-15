@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { MdMenuBook, MdStarRate } from 'react-icons/md';
+import { MdMenuBook } from 'react-icons/md';
 import styled from 'styled-components';
 import Media from 'react-media';
 
@@ -97,7 +97,6 @@ const BooksList = ({ title, list, onReviewUpdate, onReviewAdd }) => {
                   query="(max-width: 767px)"
                   render={() => <Span>Author:</Span>}
                 />
-
                 {book.author}
               </BodyCell>
               <BodyCell $mode={title}>
@@ -105,7 +104,6 @@ const BooksList = ({ title, list, onReviewUpdate, onReviewAdd }) => {
                   query="(max-width: 767px)"
                   render={() => <Span>Year:</Span>}
                 />
-
                 {book.year}
               </BodyCell>
               <BodyCell $mode={title}>
@@ -113,7 +111,6 @@ const BooksList = ({ title, list, onReviewUpdate, onReviewAdd }) => {
                   query="(max-width: 767px)"
                   render={() => <Span>Pages:</Span>}
                 />
-
                 {book.pages}
               </BodyCell>
               {title === 'Already read' && (
@@ -124,12 +121,6 @@ const BooksList = ({ title, list, onReviewUpdate, onReviewAdd }) => {
                       render={() => <Span>Rating:</Span>}
                     />
                     <StarratingInfo value={book?.review?.rating} />
-
-                    {/* <StarsIcon />
-                      <StarsIcon />
-                      <StarsIcon />
-                      <StarsIcon />
-                      <StarsIcon /> */}
                   </BodyCell>
                   <BodyCell $mode={title}>
                     <Button
@@ -208,11 +199,6 @@ const Title = styled.h2`
   @media ${breakpoints.desktop} {
     margin-bottom: 24px;
   }
-`;
-const StarsIcon = styled(MdStarRate)`
-  width: 17px;
-  height: 17px;
-  color: orange;
 `;
 
 const TableBody = styled.ul``;
