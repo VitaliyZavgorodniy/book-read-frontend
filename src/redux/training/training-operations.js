@@ -40,8 +40,6 @@ const updatePages = createAsyncThunk(
 
       const { data } = await axios.get('/training');
 
-      console.log({ data });
-
       return data.result;
     } catch (err) {
       return rejectWithValue(err?.response?.data);

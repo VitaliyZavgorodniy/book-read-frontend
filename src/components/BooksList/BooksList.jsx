@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { MdMenuBook, MdStarRate } from 'react-icons/md';
 import styled from 'styled-components';
 import Media from 'react-media';
@@ -6,9 +7,171 @@ import { breakpoints } from 'constants/breakpoints';
 
 import { Heading } from './Heading';
 
-const BooksList = ({ title, list }) => {
+import StarratingInfo from 'components/StarratingInfo';
+import ReviewModal from 'components/Modals/ReviewModal';
+import Modal from 'hoc/Modal';
+
+const BooksList = ({ title, list, onReviewUpdate, onReviewAdd }) => {
+  const [isOpen, setOpen] = useState(false);
+  const [bookID, setBookID] = useState(null);
+  const [reviewID, setReviewID] = useState(null);
+  const [rating, setRating] = useState(0);
+  const [resume, setResume] = useState('');
+  const [ratingError, setRatingError] = useState('');
+  const [textError, setTextError] = useState('');
+
+  useEffect(() => {
+    setTextError('');
+    setRatingError('');
+  }, [rating, resume]);
+
+  const onFormSubmit = (e) => {
+    e.preventDefault();
+
+    if (resume.length < 10) {
+      return setTextError('Resume must be at least 10 characters');
+    }
+
+    if (ratingError < 1) {
+      return setRatingError('Choose rating');
+    }
+
+    if (reviewID) {
+      onReviewUpdate({
+        review: {
+          rating: rating,
+          text: resume,
+          id: reviewID,
+        },
+        bookID: bookID,
+      });
+      return setOpen(false);
+    }
+
+    onReviewAdd({
+      review: {
+        rating: rating,
+        text: resume,
+      },
+      bookID: bookID,
+    });
+
+    setOpen(false);
+  };
+
+  const handleOpenModal = (rating, text, reviewID, bookID) => {
+    if (reviewID) setReviewID(reviewID);
+    if (!reviewID) setReviewID(null);
+
+    if (rating && text) {
+      setBookID(bookID);
+      setRating(rating);
+      setResume(text);
+    } else {
+      setBookID(bookID);
+      setRating(0);
+      setResume('');
+    }
+
+    setOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setOpen(false);
+  };
+
+  const renderList = () => {
+    const elementHTML =
+      list &&
+      list.map((book) => {
+        return (
+          <BodyRow key={book._id} $mode={title}>
+            <BodyRowWrapper>
+              <BodyCell $mode={title}>
+                {' '}
+                <Icon $mode={title} />
+                {book.title}
+              </BodyCell>
+              <BodyCell $mode={title}>
+                <Media
+                  query="(max-width: 767px)"
+                  render={() => <Span>Author:</Span>}
+                />
+
+                {book.author}
+              </BodyCell>
+              <BodyCell $mode={title}>
+                <Media
+                  query="(max-width: 767px)"
+                  render={() => <Span>Year:</Span>}
+                />
+
+                {book.year}
+              </BodyCell>
+              <BodyCell $mode={title}>
+                <Media
+                  query="(max-width: 767px)"
+                  render={() => <Span>Pages:</Span>}
+                />
+
+                {book.pages}
+              </BodyCell>
+              {title === 'Already read' && (
+                <>
+                  <BodyCell $mode={title}>
+                    <Media
+                      query="(max-width: 767px)"
+                      render={() => <Span>Rating:</Span>}
+                    />
+                    <StarratingInfo value={book?.review?.rating} />
+
+                    {/* <StarsIcon />
+                      <StarsIcon />
+                      <StarsIcon />
+                      <StarsIcon />
+                      <StarsIcon /> */}
+                  </BodyCell>
+                  <BodyCell $mode={title}>
+                    <Button
+                      onClick={() =>
+                        handleOpenModal(
+                          book?.review?.rating,
+                          book?.review?.text,
+                          book?.review?._id,
+                          book?._id
+                        )
+                      }
+                    >
+                      Resume
+                    </Button>
+                  </BodyCell>
+                </>
+              )}
+            </BodyRowWrapper>
+          </BodyRow>
+        );
+      });
+
+    return elementHTML;
+  };
+
   return (
     <Section>
+      {isOpen && (
+        <Modal onClose={handleCloseModal}>
+          <ReviewModal
+            ratingError={ratingError}
+            textError={textError}
+            rating={rating}
+            text={resume}
+            closeModal={handleCloseModal}
+            setRating={setRating}
+            setResume={setResume}
+            onFormSubmit={onFormSubmit}
+          />
+        </Modal>
+      )}
+
       <Title>{title}</Title>
 
       <Media
@@ -16,7 +179,7 @@ const BooksList = ({ title, list }) => {
         render={() => <Heading title={title} />}
       />
 
-      <TableBody>
+      {/* <TableBody>
         {list &&
           list.map((book) => (
             <BodyRow key={book._id} $mode={title}>
@@ -57,6 +220,7 @@ const BooksList = ({ title, list }) => {
                         query="(max-width: 767px)"
                         render={() => <Span>Rating:</Span>}
                       />
+                      <StarratingInfo value={book?.review?.rating} />
 
                       <StarsIcon />
                       <StarsIcon />
@@ -65,14 +229,27 @@ const BooksList = ({ title, list }) => {
                       <StarsIcon />
                     </BodyCell>
                     <BodyCell $mode={title}>
-                      <Button>Resume</Button>
+                      <Button
+                        onClick={() =>
+                          handleOpenModal(
+                            book?.review?.rating,
+                            book?.review?.text,
+                            book?.review?._id,
+                            book?._id
+                          )
+                        }
+                      >
+                        Resume
+                      </Button>
                     </BodyCell>
                   </>
                 )}
               </BodyRowWrapper>
             </BodyRow>
           ))}
-      </TableBody>
+      </TableBody> */}
+
+      <TableBody>{list.length ? renderList() : null}</TableBody>
     </Section>
   );
 };

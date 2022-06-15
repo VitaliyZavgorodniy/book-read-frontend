@@ -87,9 +87,11 @@ const FormAddBook = ({
             autofocus
             onChange={handleSearch}
           />
+          {prediction.length && title.length >= 3 && !id ? (
+            <Prediction>{renderPrediction()}</Prediction>
+          ) : null}
         </InputWrapper>
         <InputWrapper>
-          {' '}
           <CommonInput
             title="Author"
             placeholder="..."
@@ -100,7 +102,6 @@ const FormAddBook = ({
         </InputWrapper>
 
         <InputWrapper>
-          {' '}
           <CommonInput
             title="Publication date"
             placeholder="..."
@@ -123,10 +124,6 @@ const FormAddBook = ({
       <ButtonWrapper>
         <CommonButton title="Add" type="submit" onClick={handleSubmit} />
       </ButtonWrapper>
-
-      {prediction.length && title.length >= 3 && !id ? (
-        <Prediction>{renderPrediction()}</Prediction>
-      ) : null}
     </Wrapper>
   );
 };
@@ -165,6 +162,8 @@ const InputList = styled.ul`
   }
 `;
 const InputWrapper = styled.li`
+  position: relative;
+
   &:not(:last-child) {
     margin-bottom: 20px;
   }
@@ -214,7 +213,8 @@ const ButtonWrapper = styled.div`
 const Prediction = styled.ul`
   z-index: 10;
   position: absolute;
-  transform: translateY(100%);
+  top: 100%;
+  left: 0;
   display: flex;
   flex-direction: column;
   width: 100%;

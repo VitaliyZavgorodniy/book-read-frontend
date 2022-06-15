@@ -56,10 +56,50 @@ const searchBooks = createAsyncThunk(
   }
 );
 
+const addReview = createAsyncThunk(
+  'library/addReview',
+  async (review, { rejectWithValue }) => {
+    try {
+      const updated = await axios.post('/books/add-review', review);
+
+      const { data } = await axios.get('/library');
+
+      return data.result;
+    } catch (err) {
+      const errorMsg = err?.response?.data?.message;
+
+      if (errorMsg) notyf.error(errorMsg);
+
+      return rejectWithValue(err?.response?.data);
+    }
+  }
+);
+
+const updateReview = createAsyncThunk(
+  'library/updateReview',
+  async (review, { rejectWithValue }) => {
+    try {
+      const updated = await axios.post('/books/update-review', review);
+
+      const { data } = await axios.get('/library');
+
+      return data.result;
+    } catch (err) {
+      const errorMsg = err?.response?.data?.message;
+
+      if (errorMsg) notyf.error(errorMsg);
+
+      return rejectWithValue(err?.response?.data);
+    }
+  }
+);
+
 const operations = {
   fetch,
   createBook,
   searchBooks,
+  addReview,
+  updateReview,
 };
 
 export default operations;

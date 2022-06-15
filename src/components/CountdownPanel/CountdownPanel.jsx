@@ -7,7 +7,7 @@ import { DateTime as dt } from 'luxon';
 import { fromNumberPadStart } from 'utils/fromNumberPadStart';
 import { getTimeDifference } from 'utils/getTimeDifference';
 
-const CountdownPanel = ({ title, dateFrom, dateTo }) => {
+const CountdownPanel = ({ title, dateFrom, dateTo, isStopped = false }) => {
   const [countdown, setCountdown] = useState({
     days: 0,
     hours: 0,
@@ -32,24 +32,26 @@ const CountdownPanel = ({ title, dateFrom, dateTo }) => {
       });
 
     const interval = setInterval(() => {
-      const { isNegative } = getTimeDifference(dt.now(), formattedDateFrom);
+      if (!isStopped) {
+        const { isNegative } = getTimeDifference(dt.now(), formattedDateFrom);
 
-      if (isNegative) {
-        const timerExpires = getTimeDifference(dt.now(), formattedDateTo);
+        if (isNegative) {
+          const timerExpires = getTimeDifference(dt.now(), formattedDateTo);
 
-        if (!timerExpires?.isNegative) setCountdown(timerExpires);
-        else
-          setCountdown({
-            days: 0,
-            hours: 0,
-            minutes: 0,
-            seconds: 0,
-          });
+          if (!timerExpires?.isNegative) setCountdown(timerExpires);
+          else
+            setCountdown({
+              days: 0,
+              hours: 0,
+              minutes: 0,
+              seconds: 0,
+            });
+        }
       }
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [dateFrom, dateTo]);
+  }, [dateFrom, dateTo, isStopped]);
 
   const renderTimer = () => {
     const { days, hours, minutes, seconds } = countdown;
