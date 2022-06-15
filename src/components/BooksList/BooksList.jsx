@@ -32,7 +32,7 @@ const BooksList = ({ title, list, onReviewUpdate, onReviewAdd }) => {
       return setTextError('Resume must be at least 10 characters');
     }
 
-    if (ratingError < 1) {
+    if (rating < 1) {
       return setRatingError('Choose rating');
     }
 
