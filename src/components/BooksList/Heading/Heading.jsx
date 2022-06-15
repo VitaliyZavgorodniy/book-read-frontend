@@ -2,34 +2,33 @@ import styled from 'styled-components';
 
 import { breakpoints } from 'constants/breakpoints';
 
-export const Heading = ({title}) => {
-    return (
-        <BookListHeading>
-            <Cell>Book title</Cell>
-            <Cell>Author</Cell>
-            <Cell>Year</Cell>
-            <Cell>Pages</Cell>
-            {title === 'Already read' && (
-              <>
-                <Cell>Rating</Cell>
-                <Cell $mode={title}>Resume</Cell>
-              </>
-            )}
-          </BookListHeading>
-    )
-}
+export const Heading = ({ title }) => {
+  return (
+    <BookListHeading>
+      <Cell $mode={title}>Book title</Cell>
+      <Cell $mode={title}>Author</Cell>
+      <Cell $mode={title}>Year</Cell>
+      <Cell $mode={title}>Pages</Cell>
+      {title === 'Already read' && (
+        <>
+          <Cell $mode={title}>Rating</Cell>
+          <Cell $mode={title}></Cell>
+        </>
+      )}
+    </BookListHeading>
+  );
+};
 const BookListHeading = styled.div`
   @media ${breakpoints.tablet} {
     display: flex;
     margin-bottom: 8px;
-    padding: 0;
   }
-
   @media ${breakpoints.desktop} {
   }
 `;
-const Cell = styled.h3`
-  display: block;
+const Cell = styled.div`
+  display: flex;
+  align-items: flex-start;
   font-weight: 500;
   font-size: 14px;
   line-height: 1.21;
@@ -37,27 +36,27 @@ const Cell = styled.h3`
 
   &:first-child {
     ${(props) => {
-    switch (props.$mode) {
-      case 'Already read':
-        return `
-              margin-right: 147px;
+      switch (props.$mode) {
+        case 'Already read':
+          return `
+              width: 216px;
         `;
-      default:
-        return `
-              margin-right: 299px;
+        default:
+          return `
+              width: 368px;
         `;
-    }
-  }}
-     @media ${breakpoints.desktop} {
+      }
+    }}
+    @media ${breakpoints.desktop} {
       ${(props) => {
         switch (props.$mode) {
           case 'Already read':
             return `
-             margin-right: 292px;
+             width: 361px;
         `;
           default:
             return `
-              margin-right: 571px;
+             width: 640px;
         `;
         }
       }}
@@ -68,95 +67,11 @@ const Cell = styled.h3`
       switch (props.$mode) {
         case 'Already read':
           return `
-              margin-right: 79px;
+             width: 116px;
         `;
         default:
           return `
-               margin-right: 164px;
-        `;
-      }
-}}
-     @media ${breakpoints.desktop} {
-      ${(props) => {
-        switch (props.$mode) {
-          case 'Already read':
-            return `
-             margin-right: 218px;
-        `;
-          default:
-            return `
-              margin-right: 339px;
-        `;
-        }
-      }}
-    }
-  }
-  &:nth-child(3) {
-    ${(props) => {
-      switch (props.$mode) {
-        case 'Already read':
-          return `
-              margin-right: 28px;
-        `;
-        default:
-          return `
-               margin-right: 32px;
-        `;
-      }
-}}
-     @media ${breakpoints.desktop} {
-      ${(props) => {
-        switch (props.$mode) {
-          case 'Already read':
-            return `
-             margin-right: 65px;
-        `;
-          default:
-            return `
-              margin-right: 72px;
-        `;
-        }
-      }}
-    }
-  }
-  &:nth-child(4) {
-    ${(props) => {
-      switch (props.$mode) {
-        case 'Already read':
-          return `
-              margin-right: 27px;
-        `;
-        default:
-          return `
-               margin-right: 0;
-        `;
-      }
-}}
-     @media ${breakpoints.desktop} {
-      ${(props) => {
-        switch (props.$mode) {
-          case 'Already read':
-            return `
-             margin-right: 102px;
-        `;
-          default:
-            return `
-              margin-right: 0;
-        `;
-        }
-      }}
-    }
-  }
-  &:last-child {
-    ${(props) => {
-      switch (props.$mode) {
-        case 'Already read':
-          return `
-              content-visibility: hidden;
-        `;
-        default:
-          return `
-              content-visibility: visible;
+              width: 206px;
         `;
       }
     }}
@@ -165,13 +80,69 @@ const Cell = styled.h3`
         switch (props.$mode) {
           case 'Already read':
             return `
-              width: 150px;
-              content-visibility: hidden;
+            width: 266px;
         `;
           default:
             return `
-              width: auto;
-              content-visibility: visible;
+              width: 381px;
+        `;
+        }
+      }}
+    }
+  }
+  &:nth-child(3) {
+    justify-content: flex-start;
+    ${(props) => {
+      switch (props.$mode) {
+        case 'Already read':
+          return `
+              width: 72px;
+        `;
+        default:
+          return `
+              width: 66px;
+        `;
+      }
+    }}
+    @media ${breakpoints.desktop} {
+      ${(props) => {
+        switch (props.$mode) {
+          case 'Already read':
+            return `
+             width: 104px;
+        `;
+          default:
+            return `
+              width: 106px;
+        `;
+        }
+      }}
+    }
+  }
+  &:nth-child(4) {
+    justify-content: flex-start;
+    ${(props) => {
+      switch (props.$mode) {
+        case 'Already read':
+          return `
+              width: 80px;
+        `;
+        default:
+          return `
+               width: 44px;
+        `;
+      }
+    }}
+    @media ${breakpoints.desktop} {
+      ${(props) => {
+        switch (props.$mode) {
+          case 'Already read':
+            return `
+            width: 160px;
+        `;
+          default:
+            return `
+              width: 44px;
         `;
         }
       }}
