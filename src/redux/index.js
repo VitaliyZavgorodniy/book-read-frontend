@@ -20,6 +20,7 @@ import storage from 'redux-persist/lib/storage';
 import { authReducer } from './auth';
 import { libraryReducer } from './library';
 import { trainingReducer } from './training';
+import { reviewsReducer } from './reviews';
 
 const authPersistConfig = {
   key: 'auth',
@@ -38,6 +39,7 @@ const store = configureStore({
     auth: persistReducer(authPersistConfig, authReducer),
     library: libraryReducer,
     training: trainingReducer,
+    reviews: reviewsReducer,
   },
   middleware,
 });

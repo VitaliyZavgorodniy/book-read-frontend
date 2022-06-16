@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const FormInput = ({ name, required, title, error, field, ...props }) => (
   <Wrapper>
-    <Label htmlFor={name} isRequired={required}>
+    <Label htmlFor={name} isError={error}>
       {title}
     </Label>
     <Input name={name} id={name} {...field} {...props} />
@@ -25,7 +25,7 @@ const Label = styled.label`
 
   &::after {
     content: '*';
-    display: ${(p) => (p.isRequired ? 'inline' : 'none')};
+    display: ${(p) => (p.isError ? 'inline' : 'none')};
     margin-left: 3px;
     color: ${(p) => p.theme.colors.accent};
   }
