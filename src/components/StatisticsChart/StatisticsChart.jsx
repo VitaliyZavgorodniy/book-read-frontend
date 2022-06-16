@@ -157,10 +157,13 @@ const ChartBlock = styled.div`
   height: 290px;
   padding: 25px 22px;
   margin: 0 auto;
+  background-color: ${(p) => p.theme.colors.bgSecondary};
+  box-shadow: ${(p) => p.theme.shadows.chartItem};
+
   @media ${breakpoints.tablet} {
     width: 704px;
     height: 340px;
-    padding: 35px 49px;
+    padding: 35px 49px 50px 48px;
   }
   @media ${breakpoints.desktop} {
     width: 928px;

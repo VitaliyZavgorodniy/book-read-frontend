@@ -3,7 +3,7 @@ import { breakpoints } from 'constants/breakpoints';
 
 import BlockHeading from 'components/UI-kit/containers/BlockHeading';
 
-const GoalsBoard = ({ data }) => {
+const GoalsBoard = ({ data, padding }) => {
   const renderScores = () => {
     const elementHTML = data.map(({ id, label, value, accent }) => (
       <Item key={id}>
@@ -20,20 +20,22 @@ const GoalsBoard = ({ data }) => {
       <Heading>
         <BlockHeading title="My goals" />
       </Heading>
-      <List>{renderScores()}</List>
+      <List padding={padding}>{renderScores()}</List>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
   width: 280px;
-  background-color: ${(p) => p.theme.colors.bgSecondary};
   margin: 0 auto;
+  background-color: ${(p) => p.theme.colors.bgSecondary};
+  box-shadow: ${(p) => p.theme.shadows.booksItem};
 
   @media ${breakpoints.tablet} {
-    width: 704px;
     display: flex;
-    padding: 22px;
+    justify-content: space-between;
+    width: 704px;
+    padding: 20px 43px 26px 42px;
   }
 
   @media ${breakpoints.desktop} {
@@ -46,7 +48,8 @@ const Wrapper = styled.div`
 const Heading = styled.div`
   @media ${breakpoints.tablet} {
     width: 275px;
-    margin-right: 100px;
+    justify-content: space-between;
+    /* margin-right: 100px; */
   }
   @media ${breakpoints.desktop} {
     width: 100%;
@@ -56,11 +59,13 @@ const Heading = styled.div`
 
 const List = styled.ul`
   display: flex;
-  padding: 44px 0;
+
+  padding: ${(p) => (p.padding === 'sm' ? '32px' : '44px')} 0;
+
   justify-content: space-around;
 
   @media ${breakpoints.tablet} {
-    width: 240px;
+    width: 324px;
     justify-content: space-between;
     padding: 0;
   }
@@ -82,8 +87,8 @@ const Value = styled.p`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 60px;
-  height: 60px;
+  width: 63px;
+  height: 63px;
   background-color: ${(p) => p.theme.colors.bgLight};
   color: ${(p) =>
     p.accent ? p.theme.colors.accent : p.theme.colors.secondary};
@@ -107,17 +112,16 @@ const Value = styled.p`
 
 const Label = styled.p`
   width: 60px;
-  padding: 14px 0;
+  padding: 9px 3px 0 3px;
   color: ${(p) => p.theme.colors.tertiary};
   font-weight: 500;
-  font-size: 12px;
-  line-height: 17px;
+  font-size: 11px;
+  line-height: 1.22;
   text-align: center;
 
   @media ${breakpoints.tablet} {
-    padding: 4px 0;
-    font-size: 11px;
-    line-height: 13px;
+    width: 100px;
+    padding: 9px 0 0;
   }
   @media ${breakpoints.desktop} {
     width: 66px;
