@@ -128,7 +128,8 @@ const RegisterBlock = styled.div`
       ${(p) => p.theme.colors.bgAlpha}
     ),
     url(${(p) => p.theme.backgrounds.regMb});
-  background-size: contain;
+  background-size: cover;
+  background-repeat: no-repeat;
   background-position: center;
 
   @media (min-device-pixel-ratio: 2),
@@ -140,6 +141,8 @@ const RegisterBlock = styled.div`
         ${(p) => p.theme.colors.bgAlpha}
       ),
       url(${(p) => p.theme.backgrounds.regMb_2x});
+      background-size: cover;
+      background-repeat: no-repeat;
   }
 
   @media ${breakpoints.tablet} {
@@ -150,6 +153,8 @@ const RegisterBlock = styled.div`
         ${(p) => p.theme.colors.bgAlpha}
       ),
       url(${(p) => p.theme.backgrounds.regTb});
+      background-size: cover;
+      background-repeat: no-repeat;
 
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
@@ -160,6 +165,8 @@ const RegisterBlock = styled.div`
           ${(p) => p.theme.colors.bgAlpha}
         ),
         url(${(p) => p.theme.backgrounds.regTb_2x});
+        background-size: cover;
+        background-repeat: no-repeat;
     }
   }
   @media ${breakpoints.desktop} {
@@ -170,6 +177,8 @@ const RegisterBlock = styled.div`
         ${(p) => p.theme.colors.bgAlpha}
       ),
       url(${(p) => p.theme.backgrounds.regDs});
+      background-size: cover;
+      background-repeat: no-repeat;
 
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
@@ -180,6 +189,8 @@ const RegisterBlock = styled.div`
           ${(p) => p.theme.colors.bgAlpha}
         ),
         url(${(p) => p.theme.backgrounds.regDs_2x});
+        background-size: cover;
+        background-repeat: no-repeat;
     }
   }
 `;

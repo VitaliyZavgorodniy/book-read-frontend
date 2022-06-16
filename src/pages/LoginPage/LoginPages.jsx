@@ -37,7 +37,8 @@ const LoginBlock = styled.div`
       ${(p) => p.theme.colors.bgAlpha}
     ),
     url(${(p) => p.theme.backgrounds.logMb});
-  background-size: contain;
+    background-size: cover;
+    background-repeat: no-repeat;
   background-position: center;
 
   @media (min-device-pixel-ratio: 2),
@@ -49,6 +50,8 @@ const LoginBlock = styled.div`
         ${(p) => p.theme.colors.bgAlpha}
       ),
       url(${(p) => p.theme.backgrounds.logMb_2x});
+    background-size: cover;
+    background-repeat: no-repeat;
   }
 
   @media ${breakpoints.tablet} {
@@ -59,6 +62,8 @@ const LoginBlock = styled.div`
         ${(p) => p.theme.colors.bgAlpha}
       ),
       url(${(p) => p.theme.backgrounds.logTb});
+      background-size: cover;
+      background-repeat: no-repeat;
 
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
@@ -69,6 +74,8 @@ const LoginBlock = styled.div`
           ${(p) => p.theme.colors.bgAlpha}
         ),
         url(${(p) => p.theme.backgrounds.logTb_2x});
+      background-size: cover;
+      background-repeat: no-repeat;
     }
   }
   @media ${breakpoints.desktop} {
@@ -79,6 +86,8 @@ const LoginBlock = styled.div`
         ${(p) => p.theme.colors.bgAlpha}
       ),
       url(${(p) => p.theme.backgrounds.logDs});
+      background-size: cover;
+      background-repeat: no-repeat;
 
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
@@ -89,6 +98,8 @@ const LoginBlock = styled.div`
           ${(p) => p.theme.colors.bgAlpha}
         ),
         url(${(p) => p.theme.backgrounds.logDs_2x});
+      background-size: cover;
+      background-repeat: no-repeat;
     }
   }
 `;
