@@ -7,7 +7,9 @@ const FormInput = ({ name, required, title, error, field, ...props }) => (
       {title}
     </Label>
     <Input name={name} id={name} {...field} {...props} />
-    <ErrorMessage>{error}</ErrorMessage>
+    <ErrorPlug>
+      <ErrorMessage>{error}</ErrorMessage>
+    </ErrorPlug>
   </Wrapper>
 );
 
@@ -56,7 +58,9 @@ const Input = styled.input`
     opacity: 0.7;
   }
 `;
-
+const ErrorPlug = styled.div`
+  height: 22px;
+`;
 const ErrorMessage = styled.p`
   margin-top: 5px;
   color: ${(p) => p.theme.colors.error};
