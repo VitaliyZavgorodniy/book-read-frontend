@@ -6,7 +6,7 @@ import { Notyf } from 'notyf';
 
 import DateInput from 'components/UI-kit/inputs/DateInput';
 import BlockHeading from 'components/UI-kit/containers/BlockHeading';
-import GoalsBoard from 'components/GoalsBoard';
+import GoalsBoard from './GoalsBoard';
 import BooksList from './BooksList';
 import InfoBlock from './InfoBlock';
 
@@ -105,17 +105,17 @@ const TrainingPage = ({
           )}
         </ListWrapper>
 
-        <ButtonWrapper>
-          {goalBooks >= MIN_GOAL_BOOKS &&
-          goalDays >= MIN_GOAL_DAYS &&
-          goalDays <= MAX_GOAL_DAYS ? (
+        {goalBooks >= MIN_GOAL_BOOKS &&
+        goalDays >= MIN_GOAL_DAYS &&
+        goalDays <= MAX_GOAL_DAYS ? (
+          <ButtonWrapper>
             <CommonButton
               variant="accent"
               title="Start training"
               onClick={handleStartTraining}
             />
-          ) : null}
-        </ButtonWrapper>
+          </ButtonWrapper>
+        ) : null}
       </OptionsBlock>
 
       <BoardWrapper>
@@ -145,14 +145,16 @@ const Wrapper = styled.div`
   flex-direction: column-reverse;
   justify-content: space-between;
   margin: 0 auto;
-
+  padding: 20px 0;
   @media ${breakpoints.tablet} {
     max-width: 704px;
+    padding: 32px 0;
   }
 
   @media ${breakpoints.desktop} {
-    max-width: 1280px;
+    max-width: 100%;
     flex-direction: row;
+    padding: 40px 0;
   }
 `;
 
@@ -167,23 +169,23 @@ const OptionsBlock = styled.div`
 const Block = styled.div`
   display: flex;
   flex-direction: column-reverse;
-  padding: 10px 0;
-  margin-top: 20px;
+  padding: 20px 0;
 
   @media ${breakpoints.tablet} {
     flex-direction: row;
-    align-items: flex-end;
-    margin-top: 28px;
+    padding-top: 28px;
+    padding-bottom: 40px;
   }
 
   @media ${breakpoints.desktop} {
-    margin-top: 24px;
+    padding-top: 24px;
+    padding-bottom: 25px;
   }
 `;
 
 const ButtonWrapper = styled.div`
   width: 200px;
-  margin: 0 auto 32px auto;
+  margin: 40px auto 0 auto;
 `;
 
 const ElementWrapper = styled.div`
@@ -203,17 +205,6 @@ const ListWrapper = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  margin-top: 20px;
-  margin-bottom: 32px;
-
-  @media ${breakpoints.tablet} {
-    margin-top: 40px;
-    margin-bottom: 40px;
-  }
-
-  @media ${breakpoints.desktop} {
-    margin-top: 25px;
-  }
 `;
 
 const BoardWrapper = styled.div`
