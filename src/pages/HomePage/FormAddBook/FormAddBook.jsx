@@ -143,6 +143,7 @@ const Wrapper = styled.div`
     margin: 0;
     flex-direction: row;
     justify-content: start;
+    align-items: end;
   }
 `;
 const InputList = styled.ul`
@@ -191,15 +192,19 @@ const InputWrapper = styled.li`
       }
       &:first-child {
         width: 346px;
+        margin-bottom: 0;
       }
       &:nth-child(2) {
         width: 134px;
+        margin-bottom: 0;
       }
       &:nth-child(3) {
         width: 134px;
+        margin-bottom: 0;
       }
       &:nth-child(4) {
         width: 152px;
+        margin-bottom: 0;
       }
     }
   }
