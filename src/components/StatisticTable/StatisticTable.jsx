@@ -49,9 +49,24 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 280px;
   background-color: ${(p) => p.theme.colors.bgSecondary};
-  margin-top: 40px;
   padding: 18px 24px 14px;
+
+  @media ${breakpoints.tablet} {
+    width: 704px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 232px;
+    padding-right: 232px;
+  }
+  @media ${breakpoints.desktop} {
+    width: 288px;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 18px 24px 14px;
+  }
 `;
 
 const Heading = styled.div`

@@ -107,7 +107,7 @@ const Wrapper = styled.div`
 `;
 
 const Title = styled.h4`
-  margin-bottom: 8px;
+  margin-bottom: 9px;
   color: ${(p) => p.theme.colors.tertiary};
   font-weight: 500;
   font-size: 14px;
@@ -118,7 +118,7 @@ const Timer = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  padding: 8px 44px;
+  padding: 2px 44px 8px 44px;
   background-color: ${(p) => p.theme.colors.bgSecondary};
   box-shadow: ${(p) => p.theme.shadows.primary};
 `;

@@ -44,7 +44,8 @@ const StatisticsPage = ({ status, training, stats, onLoadTraining }) => {
 
   return (
     <Wrapper>
-      <WrapperLeft>
+      <WrapperUp>
+        {/* Counter's section */}
         <Counters>
           <CountdownPanel
             title="Years countdown"
@@ -57,42 +58,33 @@ const StatisticsPage = ({ status, training, stats, onLoadTraining }) => {
           />
         </Counters>
 
-        <Media
-          queries={{
-            other: '(max-width: 767px)',
-            tablet: breakpoints.tablet,
-            desktop: breakpoints.desktop,
-          }}
-        >
-          {({ other, tablet }) => (
-            <>
-              {other && (
-                <GoalsBoard
-                  data={[
-                    {
-                      id: 'books',
-                      label: 'Amount of books',
-                      value: training.books.length,
-                    },
-                    {
-                      id: 'days',
-                      label: 'Amount of days',
-                      value: handleDaysDifference(),
-                    },
-                    {
-                      accent: true,
-                      id: 'leftbooks',
-                      label: 'Books left',
-                      value: training.books.filter((book) => !book.isCompleted)
-                        .length,
-                    },
-                  ]}
-                />
-              )}
-            </>
-          )}
-        </Media>
+        {/* My goals section */}
+        <GoalsWrapper>
+          <GoalsBoard
+            data={[
+              {
+                id: 'books',
+                label: 'Amount of books',
+                value: training.books.length,
+              },
+              {
+                id: 'days',
+                label: 'Amount of days',
+                value: handleDaysDifference(),
+              },
+              {
+                accent: true,
+                id: 'leftbooks',
+                label: 'Books left',
+                value: training.books.filter((book) => !book.isCompleted)
+                  .length,
+              },
+            ]}
+            padding={'sm'}
+          />
+        </GoalsWrapper>
 
+        {/* BookList section */}
         <BooksListWrapper>
           <Media
             queries={{
@@ -109,7 +101,9 @@ const StatisticsPage = ({ status, training, stats, onLoadTraining }) => {
             )}
           </Media>
         </BooksListWrapper>
-
+      </WrapperUp>
+      <WrapperDown>
+        {/* Chart section */}
         {training.startDate && (
           <StatisticsChart
             startDate={training.startDate}
@@ -118,47 +112,12 @@ const StatisticsPage = ({ status, training, stats, onLoadTraining }) => {
             stats={stats}
           />
         )}
-      </WrapperLeft>
 
-      <WrapperRight>
-        <Media
-          queries={{
-            other: '(max-width: 767px)',
-            tablet: breakpoints.tablet,
-            desktop: breakpoints.desktop,
-          }}
-        >
-          {({ other, tablet }) => (
-            <>
-              {tablet && (
-                <GoalsBoard
-                  data={[
-                    {
-                      id: 'books',
-                      label: 'Amount of books',
-                      value: training.books.length,
-                    },
-                    {
-                      id: 'days',
-                      label: 'Amount of days',
-                      value: handleDaysDifference(),
-                    },
-                    {
-                      accent: true,
-                      id: 'leftbooks',
-                      label: 'Books left',
-                      value: training.books.filter((book) => !book.isCompleted)
-                        .length,
-                    },
-                  ]}
-                />
-              )}
-            </>
-          )}
-        </Media>
-
-        {stats.length ? <StatisticTable items={stats} /> : null}
-      </WrapperRight>
+        {/* Result-statistic section */}
+        <StatisticWrapper>
+          {stats.length ? <StatisticTable items={stats} /> : null}
+        </StatisticWrapper>
+      </WrapperDown>
     </Wrapper>
   );
 };
@@ -166,50 +125,94 @@ const StatisticsPage = ({ status, training, stats, onLoadTraining }) => {
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
+  padding: 20px 0 40px;
+  margin: 0 auto;
 
   @media ${breakpoints.tablet} {
-    flex-direction: row;
-    justify-content: space-around;
+  }
+  @media ${breakpoints.desktop} {
+    width: 1248px;
   }
 `;
-
+const WrapperUp = styled.div`
+  @media ${breakpoints.desktop} {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 329px;
+  }
+`;
+const WrapperDown = styled.div`
+  @media ${breakpoints.desktop} {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    width: 100%;
+  }
+`;
 const Counters = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 194px;
   margin: 0 auto;
-  margin-bottom: 40px;
 
   @media ${breakpoints.tablet} {
+    width: 612px;
     flex-direction: row;
-    justify-content: space-around;
     height: auto;
-    margin: auto;
-    margin-bottom: 0;
+    margin: 0 auto;
+  }
+  @media ${breakpoints.desktop} {
+    width: 928px;
+    height: 85px;
+    margin-right: 320px;
+    margin-left: 0;
+    padding-left: 137px;
+    padding-right: 137px;
+    justify-content: space-between;
   }
 `;
-
-const WrapperLeft = styled.div`
-  display: flex;
-  flex-direction: column;
+const GoalsWrapper = styled.div`
+  margin-top: 40px;
+  @media ${breakpoints.tablet} {
+    margin-top: 36px;
+  }
+  @media ${breakpoints.desktop} {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: 0;
+  }
 `;
-
-const WrapperRight = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
 const BooksListWrapper = styled.div`
-  margin: 0 auto;
-  margin-top: 44px;
+  margin-top: 20px;
 
   @media ${breakpoints.tablet} {
-    width: 928px;
+    width: 704px;
+    margin-top: 40px;
+    margin-bottom: 32px;
   }
 
   @media ${breakpoints.desktop} {
     width: 928px;
+    margin-top: 44px;
+    overflow-y: auto;
+  }
+`;
+const StatisticWrapper = styled.div`
+  box-shadow: ${(p) => p.theme.shadows.chartItem};
+  margin-top: 40px;
+
+  @media ${breakpoints.tablet} {
+    width: 704px;
+  }
+  @media ${breakpoints.desktop} {
+    width: 288px;
+    margin-top: 0;
   }
 `;
 

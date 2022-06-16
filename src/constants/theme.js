@@ -38,6 +38,7 @@ export const theme = {
     button: '0px 2px 4px rgba(0, 0, 0, 0.25)',
     innerInput: 'inset 0 1px 2px rgba(29, 29, 27, 0.15)',
     booksItem: '0px 2px 3px rgba(9, 30, 63, 0.1)',
+    chartItem: '0px 2px 3px rgba(9, 30, 63, 0.25)',
   },
   font: {
     familyPrimary: 'Montserrat, sans-serif',
