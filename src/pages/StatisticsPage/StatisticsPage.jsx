@@ -10,6 +10,7 @@ import StatisticTable from 'components/StatisticTable';
 import BooksTable from './BooksTable';
 import BooksList from './BooksList';
 import ModallWellDone from 'components/Modals/ModallWellDone';
+import NewTrainingModal from 'components/Modals/ModalNewTraining';
 
 import { getCurrentEndYearDate } from 'utils/getCurrentEndYearDate';
 import { getTimeDifference } from 'utils/getTimeDifference';
@@ -145,7 +146,6 @@ const StatisticsPage = ({
           {stats.length ? <StatisticTable items={stats} /> : null}
         </StatisticWrapper>
       </WrapperDown>
-
       {modal && <ModallWellDone onClose={onWellClose} />}
     </Wrapper>
   );
