@@ -160,18 +160,20 @@ const FormWrapper = styled.div`
   }
   @media ${breakpoints.desktop} {
     padding-top: 40px;
+    padding-left: 16px;
   }
 `;
 
 const LibraryWrapper = styled.div`
   position: relative;
   @media ${breakpoints.tablet} {
-    padding-top: 32px;
+    padding-top: 0;
   }
   @media ${breakpoints.desktop} {
     padding-top: 80px;
   }
 `;
+
 const ButtonWrapper = styled.div`
   width: 130px;
   margin: 0 auto;

@@ -37,8 +37,8 @@ const LoginBlock = styled.div`
       ${(p) => p.theme.colors.bgAlpha}
     ),
     url(${(p) => p.theme.backgrounds.logMb});
-    background-size: cover;
-    background-repeat: no-repeat;
+  background-size: cover;
+  background-repeat: no-repeat;
   background-position: center;
 
   @media (min-device-pixel-ratio: 2),
@@ -62,8 +62,8 @@ const LoginBlock = styled.div`
         ${(p) => p.theme.colors.bgAlpha}
       ),
       url(${(p) => p.theme.backgrounds.logTb});
-      background-size: cover;
-      background-repeat: no-repeat;
+    background-size: cover;
+    background-repeat: no-repeat;
 
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
@@ -79,6 +79,7 @@ const LoginBlock = styled.div`
     }
   }
   @media ${breakpoints.desktop} {
+    margin: 0;
     padding: 185px 74px 175px 75px;
     background-image: linear-gradient(
         to right,
@@ -86,8 +87,8 @@ const LoginBlock = styled.div`
         ${(p) => p.theme.colors.bgAlpha}
       ),
       url(${(p) => p.theme.backgrounds.logDs});
-      background-size: cover;
-      background-repeat: no-repeat;
+    background-size: cover;
+    background-repeat: no-repeat;
 
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),

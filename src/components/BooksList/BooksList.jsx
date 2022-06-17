@@ -147,7 +147,7 @@ const BooksList = ({ title, list, onReviewUpdate, onReviewAdd }) => {
   };
 
   return (
-    <Section>
+    <Section $mode={title}>
       {isOpen && (
         <Modal onClose={handleCloseModal}>
           <ReviewModal
@@ -186,6 +186,18 @@ const Section = styled.div`
   @media ${breakpoints.desktop} {
     width: 1248px;
     padding-top: 32px;
+    ${(props) => {
+      switch (props.$mode) {
+        case 'Already read':
+          return `
+          padding-top: 0;
+        `;
+        default:
+          return `
+          padding-top: 32px;
+        `;
+      }
+    }}
   }
 `;
 
