@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { breakpoints } from 'constants/breakpoints';
+
 import CommonButton from 'components/UI-kit/buttons/CommonButton';
 import { BiLike } from 'react-icons/bi';
 import Modal from 'hoc/Modal';
@@ -30,10 +32,14 @@ const ModallWellDone = ({ onClose }) => {
   );
 };
 
-const Wrapper = styled.form`
-  width: 394px;
+const Wrapper = styled.div`
+  width: 280px;
   height: 256px;
   background-color: ${(p) => p.theme.colors.bgSecondary};
+
+  @media ${breakpoints.tablet} {
+    width: 394px;
+  }
 `;
 const ItemIcon = styled.div`
   display: flex;

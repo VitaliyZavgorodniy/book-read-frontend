@@ -158,8 +158,6 @@ const Wrapper = styled.div`
   padding: 20px 0 40px;
   margin: 0 auto;
 
-  @media ${breakpoints.tablet} {
-  }
   @media ${breakpoints.desktop} {
     width: 1248px;
   }
