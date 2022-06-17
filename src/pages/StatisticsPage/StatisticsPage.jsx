@@ -15,10 +15,20 @@ import { getTimeDifference } from 'utils/getTimeDifference';
 
 import { timeFormatToDT } from 'utils/timeFormatToDT';
 
+import { useDispatch } from 'react-redux';
+
+import { authActions } from 'redux/auth';
+
 const StatisticsPage = ({ status, training, stats, onLoadTraining }) => {
+  const dispatch = useDispatch();
+
   useEffect(() => {
     onLoadTraining();
   }, []);
+
+  useEffect(() => {
+    if (!status) dispatch(authActions.setTrainingStatus(false));
+  }, [status]);
 
   const handleDaysDifference = (start) => {
     if (!start) {

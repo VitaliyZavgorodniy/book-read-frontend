@@ -16,6 +16,7 @@ const RegisterPage = lazy(() => import('pages/RegisterPage'));
 const LoginPage = lazy(() => import('pages/LoginPage'));
 const TrainingPage = lazy(() => import('pages/TrainingPage'));
 const StatisticsPage = lazy(() => import('pages/StatisticsPage'));
+const ReviewsPage = lazy(() => import('pages/ReviewsPage'));
 
 const App = () => {
   const dispatch = useDispatch();
@@ -55,6 +56,15 @@ const App = () => {
             element={
               <Suspense fallback={<Spinner />}>
                 <StatisticsPage />
+              </Suspense>
+            }
+          />
+
+          <Route
+            path="reviews"
+            element={
+              <Suspense fallback={<Spinner />}>
+                <ReviewsPage />
               </Suspense>
             }
           />

@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { breakpoints } from 'constants/breakpoints';
 
-import { NavMenu } from './NavMenu';
+import NavMenu from './NavMenu';
 import { LogoutButton } from './LogoutButton';
 import UserPanel from 'components/UserPanel';
 

@@ -3,6 +3,7 @@ const getUserAvatar = (state) => state.auth.avatarURL;
 const getIsFetching = (state) => state.auth.isFetching;
 const getToken = (state) => state.auth.token;
 const getIsLoggedIn = (state) => state.auth.isLoggedIn;
+const getUserTrainingStatus = (state) => state.auth.isOnTraining;
 
 const authSelectors = {
   getIsFetching,
@@ -10,6 +11,7 @@ const authSelectors = {
   getUserName,
   getUserAvatar,
   getIsLoggedIn,
+  getUserTrainingStatus,
 };
 
 export default authSelectors;

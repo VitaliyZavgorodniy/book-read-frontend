@@ -15,6 +15,9 @@ import { timeFormatToString } from 'utils/timeFormatToString';
 import { timeFormatToDT } from 'utils/timeFormatToDT';
 import BookInput from './BookInput';
 import CommonButton from 'components/UI-kit/buttons/CommonButton';
+import { useDispatch } from 'react-redux';
+
+import { authActions } from 'redux/auth';
 
 const MIN_GOAL_DAYS = 1;
 const MAX_GOAL_DAYS = 31;
@@ -27,6 +30,8 @@ const TrainingPage = ({
   onLoadTraining,
   onStart,
 }) => {
+  const dispatch = useDispatch();
+
   const navigate = useNavigate();
   const notyf = new Notyf();
 
@@ -36,7 +41,10 @@ const TrainingPage = ({
   const [goalDays, setGoalDays] = useState(0);
 
   useEffect(() => {
-    if (status) navigate('/statistics');
+    if (status) {
+      dispatch(authActions.setTrainingStatus(true));
+      navigate('/statistics');
+    }
   }, [status]);
 
   useEffect(() => {

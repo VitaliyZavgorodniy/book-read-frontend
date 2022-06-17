@@ -1,7 +1,20 @@
 import styled from 'styled-components';
 
-const CommonButton = ({ title, onClick, type, variant, size }) => (
-  <Button onClick={onClick} type={type} variant={variant} size={size}>
+const CommonButton = ({
+  title,
+  onClick,
+  type,
+  variant,
+  size,
+  disabled = false,
+}) => (
+  <Button
+    onClick={onClick}
+    disabled={disabled}
+    type={type}
+    variant={variant}
+    size={size}
+  >
     {title}
   </Button>
 );
@@ -23,6 +36,11 @@ const Button = styled.button`
 
   &:hover {
     cursor: pointer;
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: default;
   }
 `;
 

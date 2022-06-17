@@ -5,6 +5,7 @@ const initialState = {
   token: null,
   name: null,
   avatarURL: null,
+  isOnTraining: false,
   isFetching: false,
   isLoggedIn: false,
 };
@@ -15,6 +16,9 @@ const authSlice = createSlice({
   reducers: {
     refreshToken: (state, { payload }) => {
       state.token = payload;
+    },
+    setTrainingStatus: (state, { payload }) => {
+      state.isOnTraining = payload;
     },
   },
   extraReducers: {
@@ -39,6 +43,7 @@ const authSlice = createSlice({
       state.token = payload.token;
       state.name = payload.name;
       state.avatarURL = payload.avatarURL;
+      state.isOnTraining = payload.isOnTraining;
       state.isFetching = false;
       state.isLoggedIn = true;
     },
@@ -57,6 +62,7 @@ const authSlice = createSlice({
     [authOperations.refresh.fulfilled]: (state, { payload }) => {
       state.name = payload.name;
       state.avatarURL = payload.avatarURL;
+      state.isOnTraining = payload.isOnTraining;
       state.isLoggedIn = true;
       state.isFetching = false;
     },
