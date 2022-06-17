@@ -11,7 +11,7 @@ const ReviewsPage = ({ reviews, loadReviews }) => {
   const renderList = () =>
     reviews.map((book) => (
       <Item key={book._id}>
-        <BookDetails {...book} />
+        <BookDetails {...book} id={book._id} />
       </Item>
     ));
 

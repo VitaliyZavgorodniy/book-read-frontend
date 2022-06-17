@@ -25,8 +25,30 @@ const fetch = createAsyncThunk(
   }
 );
 
+const addBook = createAsyncThunk(
+  'reviews/fetch',
+  async (bookID, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.post('/books', bookID);
+
+      const {
+        data: { result },
+      } = await axios.get('/books/reviews');
+
+      return result;
+    } catch (err) {
+      const errorMsg = err?.response?.data?.message;
+
+      if (errorMsg) notyf.error(errorMsg);
+
+      return rejectWithValue(err?.response?.data);
+    }
+  }
+);
+
 const operations = {
   fetch,
+  addBook,
 };
 
 export default operations;

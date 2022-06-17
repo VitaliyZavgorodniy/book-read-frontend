@@ -1,15 +1,24 @@
 import styled from 'styled-components';
+import { breakpoints } from 'constants/breakpoints';
+import Media from 'react-media';
 
 import { IoIosStar } from 'react-icons/io';
 
 import StarratingInfo from 'components/StarratingInfo';
+import CommonButton from 'components/UI-kit/buttons/CommonButton';
 
-const BookDetails = ({ title, author, year, pages, reviews }) => {
+const BookDetails = ({
+  id,
+  title,
+  author,
+  year,
+  pages,
+  isOwned,
+  reviews,
+  addToLibrary,
+}) => {
   const calculateAvargeRating = () => {
-    console.log(reviews);
     const ratingSum = reviews.reduce((acc, { rating }) => acc + rating, 0);
-    console.log({ ratingSum });
-
     const avargeReating = ratingSum / reviews.length;
 
     return avargeReating.toFixed(1);
@@ -18,13 +27,19 @@ const BookDetails = ({ title, author, year, pages, reviews }) => {
   const renderReviews = () =>
     reviews.map(({ _id, rating, text, owner }) => (
       <Review key={_id}>
-        <User>
-          <UserImage src={owner.avatarURL} />
-          <UserName>{owner.name}</UserName>
+        <UserWrapper>
+          <User>
+            {owner.avatarURL ? (
+              <UserImage src={owner.avatarURL} />
+            ) : (
+              <UserCreds>{owner.name[0]}</UserCreds>
+            )}
+            <UserName>{owner.name}</UserName>
+          </User>
           <Rating>
             <StarratingInfo value={rating} />
           </Rating>
-        </User>
+        </UserWrapper>
 
         <ReviewText>{text}</ReviewText>
       </Review>
@@ -33,9 +48,16 @@ const BookDetails = ({ title, author, year, pages, reviews }) => {
   return (
     <Wrapper>
       <Info>
-        <AvargeRating>{calculateAvargeRating()}</AvargeRating>
-
         <Title>{title}</Title>
+        <ButtonWrapper>
+          <CommonButton
+            title="Add to library"
+            variant="accent"
+            disabled={isOwned}
+            onClick={() => addToLibrary({ id })}
+          />
+          <AvargeRating>{calculateAvargeRating()}</AvargeRating>
+        </ButtonWrapper>
         <Data>
           <DataTitle>Author</DataTitle>
           <DataText>{author}</DataText>
@@ -69,19 +91,30 @@ const Info = styled.div`
 `;
 
 const AvargeRating = styled.div`
-  position: absolute;
+  position: static;
   top: 10px;
   right: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 80px;
-  height: 80px;
+  width: 45px;
+  height: 45px;
   color: ${(p) => p.theme.colors.accent};
   box-shadow: ${(p) => p.theme.shadows.primary};
   font-weight: 700;
-  font-size: 40px;
+  font-size: 20px;
   line-height: 38px;
+  margin-left: 10px;
+
+  @media ${breakpoints.tablet} {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 80px;
+    height: 80px;
+    font-size: 40px;
+    line-height: 38px;
+  }
 `;
 
 const Title = styled.h2`
@@ -107,6 +140,13 @@ const ReviewsList = styled.ul`
   margin-top: 20px;
 `;
 
+const ButtonWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  width: 180px;
+  margin-bottom: 10px;
+`;
+
 const Review = styled.li`
   padding: 10px;
   background-color: ${(p) => p.theme.colors.bgPrimary};
@@ -116,6 +156,15 @@ const Review = styled.li`
 
   &:last-child {
     margin-bottom: 0;
+  }
+`;
+
+const UserWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  @media ${breakpoints.tablet} {
+    flex-direction: row;
   }
 `;
 
@@ -134,20 +183,33 @@ const UserName = styled.span`
   margin-left: 10px;
 `;
 
+const UserCreds = styled.p`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: ${(p) => p.theme.colors.primary};
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 17px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: ${(p) => p.theme.colors.lineStat};
+`;
+
 const Rating = styled.div`
   display: flex;
   align-items: center;
-  margin-left: 20px;
+  margin-top: 10px;
+
+  @media ${breakpoints.tablet} {
+    margin-top: 0;
+    margin-left: 20px;
+  }
 `;
 
 const ReviewText = styled.p`
   margin-top: 15px;
-`;
-
-const ActiveStar = styled(IoIosStar)`
-  color: ${(p) => p.theme.colors.accent};
-  margin-right: 3px;
-  font-size: 18px;
 `;
 
 export default BookDetails;
