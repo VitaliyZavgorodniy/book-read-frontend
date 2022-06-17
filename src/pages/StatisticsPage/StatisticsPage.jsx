@@ -29,18 +29,19 @@ const StatisticsPage = ({
   onClose,
 }) => {
   const [wellModal, setWellModal] = useState(false);
-  const [trainModal, setTrainModal] = useState(true);
+  const [trainModal, setTrainModal] = useState(false);
+
   const dispatch = useDispatch();
   useEffect(() => {
     onLoadTraining();
   }, []);
 
   useEffect(() => {
-    if (!status) dispatch(authActions.setTrainingStatus(false));
-  }, [status]);
-
-  useEffect(() => {
-    if (status === 'completed') setWellModal(true);
+    console.log(status);
+    if (!status) {
+      dispatch(authActions.setTrainingStatus(false));
+      setWellModal(true);
+    }
   }, [status]);
 
   const handleDaysDifference = (start) => {
