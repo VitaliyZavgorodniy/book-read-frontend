@@ -28,10 +28,9 @@ const StatisticsPage = ({
   onLoadTraining,
   onClose,
 }) => {
-  const [modal, setModal] = useState(true);
-
+  const [wellModal, setWellModal] = useState(false);
+  const [trainModal, setTrainModal] = useState(true);
   const dispatch = useDispatch();
-
   useEffect(() => {
     onLoadTraining();
   }, []);
@@ -41,7 +40,7 @@ const StatisticsPage = ({
   }, [status]);
 
   useEffect(() => {
-    if (status === 'completed') setModal(true);
+    if (status === 'completed') setWellModal(true);
   }, [status]);
 
   const handleDaysDifference = (start) => {
@@ -66,8 +65,9 @@ const StatisticsPage = ({
     return difference?.days;
   };
 
-  const onWellClose = () => {
-    setModal(false);
+  const onModalClose = () => {
+    setWellModal(false);
+    setTrainModal(false);
   };
 
   return (
@@ -146,7 +146,10 @@ const StatisticsPage = ({
           {stats.length ? <StatisticTable items={stats} /> : null}
         </StatisticWrapper>
       </WrapperDown>
-      {modal && <ModallWellDone onClose={onWellClose} />}
+
+      {/* Modals */}
+      {wellModal && <ModallWellDone onClose={onModalClose} />}
+      {trainModal && <NewTrainingModal onClose={onModalClose} />}
     </Wrapper>
   );
 };

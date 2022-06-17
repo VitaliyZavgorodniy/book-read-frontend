@@ -7,7 +7,7 @@ import { BiLike } from 'react-icons/bi';
 import CommonButton from 'components/UI-kit/buttons/CommonButton';
 import Modal from 'hoc/Modal';
 
-const NewTrainingModal = () => {
+const NewTrainingModal = ({ onClose }) => {
   return (
     <Modal>
       <Wrapper>
@@ -30,7 +30,7 @@ const NewTrainingModal = () => {
             />
           </ButtonListItem>
           <ButtonListItem>
-            <CommonButton type="button" title="Back" onClick={() => {}} />
+            <CommonButton type="button" title="Back" onClick={onClose} />
           </ButtonListItem>
         </ButtonList>
       </Wrapper>
@@ -39,7 +39,6 @@ const NewTrainingModal = () => {
 };
 
 const Wrapper = styled.div`
-  outline: 1px solid red;
   align-items: center;
   width: 280px;
   height: 358px;
