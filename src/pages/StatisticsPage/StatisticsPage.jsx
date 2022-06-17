@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { breakpoints } from 'constants/breakpoints';
 import Media from 'react-media';
@@ -9,6 +9,7 @@ import StatisticsChart from 'components/StatisticsChart';
 import StatisticTable from 'components/StatisticTable';
 import BooksTable from './BooksTable';
 import BooksList from './BooksList';
+import ModallWellDone from 'components/Modals/ModallWellDone';
 
 import { getCurrentEndYearDate } from 'utils/getCurrentEndYearDate';
 import { getTimeDifference } from 'utils/getTimeDifference';
@@ -19,7 +20,15 @@ import { useDispatch } from 'react-redux';
 
 import { authActions } from 'redux/auth';
 
-const StatisticsPage = ({ status, training, stats, onLoadTraining }) => {
+const StatisticsPage = ({
+  status,
+  training,
+  stats,
+  onLoadTraining,
+  onClose,
+}) => {
+  const [modal, setModal] = useState(true);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -28,6 +37,10 @@ const StatisticsPage = ({ status, training, stats, onLoadTraining }) => {
 
   useEffect(() => {
     if (!status) dispatch(authActions.setTrainingStatus(false));
+  }, [status]);
+
+  useEffect(() => {
+    if (status === 'completed') setModal(true);
   }, [status]);
 
   const handleDaysDifference = (start) => {
@@ -50,6 +63,10 @@ const StatisticsPage = ({ status, training, stats, onLoadTraining }) => {
     );
 
     return difference?.days;
+  };
+
+  const onWellClose = () => {
+    setModal(false);
   };
 
   return (
@@ -128,6 +145,8 @@ const StatisticsPage = ({ status, training, stats, onLoadTraining }) => {
           {stats.length ? <StatisticTable items={stats} /> : null}
         </StatisticWrapper>
       </WrapperDown>
+
+      {modal && <ModallWellDone onClose={onWellClose} />}
     </Wrapper>
   );
 };
