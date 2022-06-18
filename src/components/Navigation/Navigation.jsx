@@ -1,28 +1,29 @@
 import styled from 'styled-components';
-
 import { breakpoints } from 'constants/breakpoints';
 
-import { LogoLink } from './LogoLink';
-import { UserPanelBlock } from './UserPanelBlock';
+import LogoLink from 'components/LogoLink';
+import UserPanel from 'components/UserPanel';
+import LogoutButton from 'components/LogoutButton';
+import NavigationMenu from './NavigationMenu';
 
 const Navigation = () => (
-  <Header>
-    <HeaderContainer>
-      <LogoLink />
-      <UserPanelBlock />
-    </HeaderContainer>
-  </Header>
+  <Wrapper>
+    <LogoLink />
+
+    <ContainerNavigation>
+      <NavigationMenu />
+
+      <ContainerUser>
+        <UserPanel />
+      </ContainerUser>
+
+      <LogoutButton />
+    </ContainerNavigation>
+  </Wrapper>
 );
 
-const Header = styled.header`
-  position: sticky;
-  top: 0;
-  z-index: 2;
-  background-color: ${(p) => p.theme.colors.bgSecondary};
-  box-shadow: ${(p) => p.theme.shadows.block};
-`;
-
-const HeaderContainer = styled.div`
+const Wrapper = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -38,6 +39,21 @@ const HeaderContainer = styled.div`
   @media ${breakpoints.desktop} {
     max-width: 1280px;
     padding: 14px 16px 13px 16px;
+  }
+`;
+
+const ContainerNavigation = styled.nav`
+  display: flex;
+`;
+
+const ContainerUser = styled.div`
+  position: static;
+
+  @media ${breakpoints.tablet} {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 `;
 

@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import trainingOperations from './training-operations';
+import { authOperations } from 'redux/auth';
 
 const initialState = {
   books: [],
@@ -28,6 +29,16 @@ const trainingSlice = createSlice({
       state.isFetching = false;
     },
     [trainingOperations.fetch.rejected]: (state) => {
+      state.isFetching = false;
+    },
+
+    [authOperations.logout.fulfilled]: (state) => {
+      state.books = [];
+      state.startDate = '';
+      state.endDate = '';
+      state.pagesAmount = 0;
+      state.inProgress = false;
+      state.stats = [];
       state.isFetching = false;
     },
   },

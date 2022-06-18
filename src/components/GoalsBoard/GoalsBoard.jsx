@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { breakpoints } from 'constants/breakpoints';
 
-import BlockHeading from 'components/UI-kit/containers/BlockHeading';
+import Heading from 'components/UI-kit/containers/Heading';
 
 const GoalsBoard = ({ data, padding }) => {
   const renderScores = () => {
@@ -17,9 +17,9 @@ const GoalsBoard = ({ data, padding }) => {
 
   return (
     <Wrapper>
-      <Heading>
-        <BlockHeading title="My goals" />
-      </Heading>
+      <HeadingWrapper>
+        <Heading>My goals</Heading>
+      </HeadingWrapper>
       <List padding={padding}>{renderScores()}</List>
     </Wrapper>
   );
@@ -45,7 +45,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const Heading = styled.div`
+const HeadingWrapper = styled.div`
   @media ${breakpoints.tablet} {
     width: 275px;
     justify-content: space-between;

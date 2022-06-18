@@ -1,21 +1,11 @@
-import { useDispatch } from 'react-redux';
-import { authOperations } from '../../redux/auth';
-
 import styled from 'styled-components';
-
 import { breakpoints } from 'constants/breakpoints';
 
-export const LogoutButton = () => {
-  const dispatch = useDispatch();
-  return (
-    <Logout
-      type="button"
-      onClick={() => dispatch(authOperations.logout())}
-    >
-      Logout
-    </Logout>
-  );
-};
+const LogoutButton = ({ toggleModal }) => (
+  <Logout type="button" onClick={toggleModal}>
+    Logout
+  </Logout>
+);
 
 const Logout = styled.button`
   margin-left: 14px;
@@ -26,9 +16,16 @@ const Logout = styled.button`
   line-height: 1.21;
   text-decoration-line: underline;
   background-color: transparent;
-  cursor: pointer;
+  transition: ${(p) => p.theme.animations.primary} color;
+
+  &:hover {
+    cursor: pointer;
+    color: ${(p) => p.theme.colors.accent};
+  }
 
   @media ${breakpoints.tablet} {
     margin-left: 8px;
   }
 `;
+
+export default LogoutButton;

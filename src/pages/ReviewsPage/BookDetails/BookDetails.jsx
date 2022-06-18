@@ -17,11 +17,11 @@ const BookDetails = ({
   reviews,
   addToLibrary,
 }) => {
-  const calculateAvargeRating = () => {
+  const calculateAverageRating = () => {
     const ratingSum = reviews.reduce((acc, { rating }) => acc + rating, 0);
-    const avargeReating = ratingSum / reviews.length;
+    const averageReating = ratingSum / reviews.length;
 
-    return avargeReating.toFixed(1);
+    return averageReating.toFixed(1);
   };
 
   const renderReviews = () =>
@@ -56,7 +56,7 @@ const BookDetails = ({
             disabled={isOwned}
             onClick={() => addToLibrary({ id })}
           />
-          <AvargeRating>{calculateAvargeRating()}</AvargeRating>
+          <AverageRating>{calculateAverageRating()}</AverageRating>
         </ButtonWrapper>
         <Data>
           <DataTitle>Author</DataTitle>
@@ -90,7 +90,7 @@ const Info = styled.div`
   position: relative;
 `;
 
-const AvargeRating = styled.div`
+const AverageRating = styled.div`
   position: static;
   top: 10px;
   right: 10px;

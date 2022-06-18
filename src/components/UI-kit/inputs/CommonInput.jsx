@@ -28,7 +28,7 @@ const CommonInput = ({
       onChange={onChange}
       {...props}
     />
-    {error && <ErrorMessage>{error}</ErrorMessage>}
+    <ErrorMessage>{error}</ErrorMessage>
   </Wrapper>
 );
 
@@ -39,6 +39,7 @@ const Wrapper = styled.div`
 `;
 
 const Label = styled.label`
+  height: 17px;
   margin-bottom: 8px;
   color: ${(p) => p.theme.colors.tertiary};
   font-weight: 500;
@@ -79,11 +80,14 @@ const Input = styled.input`
     background-color: ${(p) => p.theme.colors.bgPrimary};
     box-shadow: none;
   }
+
   &:focus {
     outline: none;
   }
-  &:hover {
-    cursor: pointer;
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
   }
 `;
 
@@ -93,6 +97,7 @@ const ErrorMessage = styled.p`
   font-weight: 400;
   font-size: 12px;
   line-height: 17px;
+  height: 17px;
 `;
 
 CommonInput.propTypes = {

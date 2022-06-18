@@ -8,15 +8,17 @@ const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 52px;
-  height: 52px;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
   background-color: ${(p) => p.theme.colors.accent};
   color: ${(p) => p.theme.colors.contrast};
   font-size: 16px;
+  transition: ${(p) => p.theme.animations.primary} box-shadow;
 
   &:hover {
     cursor: pointer;
+    box-shadow: ${(p) => p.theme.shadows.accent};
   }
 `;
 

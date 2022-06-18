@@ -54,7 +54,7 @@ const Overlay = styled.div`
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  min-height: calc(100vh - 60px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -63,7 +63,7 @@ const Overlay = styled.div`
 `;
 
 const Wrapper = styled.div`
-position: absolute;
+  position: absolute;
   top: 153px;
   left: 50%;
   transform: translateX(-50%);
@@ -83,7 +83,7 @@ position: absolute;
     height: 272px;
     padding: 40px;
   }
-   @media ${breakpoints.desktop} {
+  @media ${breakpoints.desktop} {
     top: 207px;
   }
 `;

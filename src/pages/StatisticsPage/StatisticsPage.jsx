@@ -1,8 +1,12 @@
 import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { breakpoints } from 'constants/breakpoints';
 import Media from 'react-media';
 
+import { authActions } from 'redux/auth';
+
+import Container from 'components/UI-kit/containers/Container';
 import GoalsBoard from 'components/GoalsBoard';
 import CountdownPanel from 'components/CountdownPanel';
 import StatisticsChart from 'components/StatisticsChart';
@@ -16,10 +20,6 @@ import { getCurrentEndYearDate } from 'utils/getCurrentEndYearDate';
 import { getTimeDifference } from 'utils/getTimeDifference';
 
 import { timeFormatToDT } from 'utils/timeFormatToDT';
-
-import { useDispatch } from 'react-redux';
-
-import { authActions } from 'redux/auth';
 
 const StatisticsPage = ({
   status,
@@ -41,6 +41,10 @@ const StatisticsPage = ({
     if (!status) {
       dispatch(authActions.setTrainingStatus(false));
       setWellModal(true);
+    }
+    if (status) {
+      dispatch(authActions.setTrainingStatus(true));
+      setTrainModal(true);
     }
   }, [status]);
 
@@ -70,11 +74,28 @@ const StatisticsPage = ({
     setWellModal(false);
     setTrainModal(false);
   };
+  const dataGoals = [
+    {
+      id: 'books',
+      label: 'Amount of books',
+      value: training.books.length,
+    },
+    {
+      id: 'days',
+      label: 'Amount of days',
+      value: handleDaysDifference(),
+    },
+    {
+      accent: true,
+      id: 'leftbooks',
+      label: 'Books left',
+      value: training.books.filter((book) => !book.isCompleted).length,
+    },
+  ];
 
   return (
-    <Wrapper>
+    <Container>
       <WrapperUp>
-        {/* Counter's section */}
         <Counters>
           <CountdownPanel
             title="Years countdown"
@@ -87,33 +108,10 @@ const StatisticsPage = ({
           />
         </Counters>
 
-        {/* My goals section */}
         <GoalsWrapper>
-          <GoalsBoard
-            data={[
-              {
-                id: 'books',
-                label: 'Amount of books',
-                value: training.books.length,
-              },
-              {
-                id: 'days',
-                label: 'Amount of days',
-                value: handleDaysDifference(),
-              },
-              {
-                accent: true,
-                id: 'leftbooks',
-                label: 'Books left',
-                value: training.books.filter((book) => !book.isCompleted)
-                  .length,
-              },
-            ]}
-            padding={'sm'}
-          />
+          <GoalsBoard data={dataGoals} padding={'sm'} />
         </GoalsWrapper>
 
-        {/* BookList section */}
         <BooksListWrapper>
           <Media
             queries={{
@@ -132,7 +130,6 @@ const StatisticsPage = ({
         </BooksListWrapper>
       </WrapperUp>
       <WrapperDown>
-        {/* Chart section */}
         {training.startDate && (
           <StatisticsChart
             startDate={training.startDate}
@@ -142,16 +139,17 @@ const StatisticsPage = ({
           />
         )}
 
-        {/* Result-statistic section */}
-        <StatisticWrapper>
-          {stats.length ? <StatisticTable items={stats} /> : null}
-        </StatisticWrapper>
+        {stats.length ? (
+          <StatisticWrapper>
+            <StatisticTable items={stats} />
+          </StatisticWrapper>
+        ) : null}
       </WrapperDown>
 
       {/* Modals */}
       {wellModal && <ModallWellDone onClose={onModalClose} />}
       {trainModal && <NewTrainingModal onClose={onModalClose} />}
-    </Wrapper>
+    </Container>
   );
 };
 
@@ -175,6 +173,7 @@ const WrapperUp = styled.div`
     height: 329px;
   }
 `;
+
 const WrapperDown = styled.div`
   @media ${breakpoints.desktop} {
     display: flex;
@@ -184,6 +183,7 @@ const WrapperDown = styled.div`
     width: 100%;
   }
 `;
+
 const Counters = styled.div`
   display: flex;
   flex-direction: column;
@@ -197,6 +197,7 @@ const Counters = styled.div`
     height: auto;
     margin: 0 auto;
   }
+
   @media ${breakpoints.desktop} {
     width: 928px;
     height: 85px;
@@ -207,11 +208,14 @@ const Counters = styled.div`
     justify-content: space-between;
   }
 `;
+
 const GoalsWrapper = styled.div`
   margin-top: 40px;
+
   @media ${breakpoints.tablet} {
     margin-top: 36px;
   }
+
   @media ${breakpoints.desktop} {
     position: absolute;
     top: 0;
@@ -219,21 +223,24 @@ const GoalsWrapper = styled.div`
     margin-top: 0;
   }
 `;
+
 const BooksListWrapper = styled.div`
   margin-top: 20px;
 
   @media ${breakpoints.tablet} {
     width: 704px;
     margin-top: 40px;
-    margin-bottom: 32px;
+    /* margin-bottom: 32px; */
   }
 
   @media ${breakpoints.desktop} {
     width: 928px;
+    height: 313px;
     margin-top: 44px;
-    overflow-y: auto;
+    overflow-y: scroll;
   }
 `;
+
 const StatisticWrapper = styled.div`
   box-shadow: ${(p) => p.theme.shadows.chartItem};
   margin-top: 40px;
@@ -241,6 +248,7 @@ const StatisticWrapper = styled.div`
   @media ${breakpoints.tablet} {
     width: 704px;
   }
+
   @media ${breakpoints.desktop} {
     width: 288px;
     margin-top: 0;

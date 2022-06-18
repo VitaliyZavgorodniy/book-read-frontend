@@ -51,9 +51,13 @@ const authSlice = createSlice({
       state.isFetching = false;
     },
 
-    [authOperations.logout.fulfilled](state, action) {
+    [authOperations.logout.fulfilled]: (state) => {
       state.token = null;
       state.isLoggedIn = false;
+      state.name = null;
+      state.avatarURL = null;
+      state.isFetching = false;
+      state.isOnTraining = false;
     },
 
     [authOperations.refresh.pending]: (state) => {

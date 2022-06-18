@@ -9,11 +9,13 @@ import { AiOutlinePlus } from 'react-icons/ai';
 
 import { breakpoints } from 'constants/breakpoints';
 
+import Container from 'components/UI-kit/containers/Container';
 import BooksList from '../../components/BooksList';
 import InfoBlockIntro from './InfoBlockIntro';
 import FormAddBook from './FormAddBook';
 import CommonButton from 'components/UI-kit/buttons/CommonButton';
 import IconButton from 'components/UI-kit/buttons/IconButton';
+import Spinner from 'components/UI-kit/spinner/Spinner';
 const modalRoot = document.querySelector('#modal-root');
 
 const HomePage = ({
@@ -38,7 +40,7 @@ const HomePage = ({
   const navigate = useNavigate();
 
   return (
-    <Wrapper>
+    <Container>
       <Media
         queries={{
           small: { maxWidth: 767 },
@@ -60,14 +62,9 @@ const HomePage = ({
           )
         }
       </Media>
+      
       <Media queries={{ medium: { minWidth: 768 } }}>
-        {(matches) =>
-          matches.medium && (
-            <FormWrapper>
-              <FormAddBook />
-            </FormWrapper>
-          )
-        }
+        {({ medium }) => medium && <FormAddBook />}
       </Media>
 
       {totalBooks ? (
@@ -107,19 +104,16 @@ const HomePage = ({
       ) : (
         <InfoBlockIntro />
       )}
-    </Wrapper>
+    </Container>
   );
 };
 
-const Wrapper = styled.div`
-  margin: 0 auto;
-`;
 const Overlay = styled.div`
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  min-height: calc(100vh - 60px);
   overflow: auto;
   pointer-events: auto;
   background-color: ${(p) => p.theme.colors.bgPrimary};
@@ -154,15 +148,7 @@ const ArrowBack = styled(CgArrowLongLeft)`
   margin: 0 auto;
   color: ${(p) => p.theme.colors.accent};
 `;
-const FormWrapper = styled.div`
-  @media ${breakpoints.tablet} {
-    padding-top: 32px;
-  }
-  @media ${breakpoints.desktop} {
-    padding-top: 40px;
-    padding-left: 16px;
-  }
-`;
+const FormWrapper = styled.div``;
 
 const LibraryWrapper = styled.div`
   position: relative;

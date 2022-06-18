@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import styled from 'styled-components';
 
+import Container from 'components/UI-kit/containers/Container';
 import BookDetails from './BookDetails';
 
 const ReviewsPage = ({ reviews, loadReviews }) => {
@@ -16,15 +17,11 @@ const ReviewsPage = ({ reviews, loadReviews }) => {
     ));
 
   return (
-    <Wrapper>
+    <Container>
       <List>{reviews.length ? renderList() : null}</List>
-    </Wrapper>
+    </Container>
   );
 };
-
-const Wrapper = styled.div`
-  padding: 10px;
-`;
 
 const List = styled.ul``;
 

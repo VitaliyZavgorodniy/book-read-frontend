@@ -21,6 +21,7 @@ import { authReducer } from './auth';
 import { libraryReducer } from './library';
 import { trainingReducer } from './training';
 import { reviewsReducer } from './reviews';
+import { modalsReducer } from './modals';
 
 const authPersistConfig = {
   key: 'auth',
@@ -40,6 +41,7 @@ const store = configureStore({
     library: libraryReducer,
     training: trainingReducer,
     reviews: reviewsReducer,
+    modals: modalsReducer,
   },
   middleware,
 });

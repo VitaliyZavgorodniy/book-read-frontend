@@ -6,9 +6,10 @@ import { librarySelectors, libraryOperations } from 'redux/library';
 import { trainingSelectors, trainingOperations } from 'redux/training';
 
 const mapStateToProps = (state) => ({
+  isFetching: trainingSelectors.getFetching(state),
   pendingBooks: librarySelectors.getPendingBooks(state),
-  library: librarySelectors.getLibrary(state),
   status: trainingSelectors.getTrainingStatus(state),
+  library: librarySelectors.getLibrary(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

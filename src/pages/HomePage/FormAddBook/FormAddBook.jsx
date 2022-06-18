@@ -21,6 +21,11 @@ const FormAddBook = ({
   const [year, setYear] = useState('');
   const [pages, setPages] = useState('');
 
+  const [errorTitle, setErrorTitle] = useState('');
+  const [errorAuthor, setErrorAuthor] = useState('');
+  const [errorYear, setErrorYear] = useState('');
+  const [errorPages, setErrorPages] = useState('');
+
   const debouncedSearch = useCallback(
     debounce((query) => onSearch({ query }), 500),
     []
@@ -32,6 +37,13 @@ const FormAddBook = ({
     if (e.target.value.length > 3) debouncedSearch(e.target.value);
   };
 
+  useEffect(() => {
+    setErrorTitle('');
+    setErrorAuthor('');
+    setErrorYear('');
+    setErrorPages('');
+  }, [title, author, year, pages]);
+
   const handleResetForm = () => {
     setID(null);
     setTitle('');
@@ -41,6 +53,39 @@ const FormAddBook = ({
   };
 
   const handleSubmit = () => {
+    if (!title.trim()) {
+      return setErrorTitle("Title can't be empty");
+    }
+
+    if (title[0] === ' ') {
+      return setErrorTitle("Title can't start from space");
+    }
+
+    if (!author.trim()) {
+      return setErrorAuthor("Author can't be empty");
+    }
+
+    if (author[0] === ' ') {
+      return setErrorAuthor("Author can't start from space");
+    }
+
+    const currentYear = new Date().getFullYear();
+    if (Number(year) < 1800) {
+      return setErrorYear("Can't be less 1800");
+    }
+
+    if (Number(year) > currentYear) {
+      return setErrorYear(`Can't be more ${currentYear}`);
+    }
+
+    if (Number(pages) < 1) {
+      return setErrorPages("Can't be less 1");
+    }
+
+    if (Number(pages) > 1000) {
+      return setErrorPages("Can't be more 1000");
+    }
+
     if (id) {
       onCreate({
         id,
@@ -84,6 +129,7 @@ const FormAddBook = ({
             title="Book title"
             placeholder="..."
             value={title}
+            error={errorTitle}
             autofocus
             onChange={handleSearch}
           />
@@ -95,6 +141,7 @@ const FormAddBook = ({
           <CommonInput
             title="Author"
             placeholder="..."
+            error={errorAuthor}
             value={author}
             onChange={(e) => setAuthor(e.target.value)}
             disabled={id}
@@ -105,6 +152,8 @@ const FormAddBook = ({
           <CommonInput
             title="Publication date"
             placeholder="..."
+            type="number"
+            error={errorYear}
             value={year}
             onChange={(e) => setYear(e.target.value)}
             disabled={id}
@@ -115,6 +164,8 @@ const FormAddBook = ({
           <CommonInput
             title="Amount of pages"
             placeholder="..."
+            type="number"
+            error={errorPages}
             value={pages}
             onChange={(e) => setPages(e.target.value)}
             disabled={id}
@@ -135,6 +186,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
   @media ${breakpoints.tablet} {
     width: 704px;
   }
@@ -143,9 +195,10 @@ const Wrapper = styled.div`
     margin: 0;
     flex-direction: row;
     justify-content: start;
-    align-items: end;
+    align-items: center;
   }
 `;
+
 const InputList = styled.ul`
   width: 100%;
   display: flex;

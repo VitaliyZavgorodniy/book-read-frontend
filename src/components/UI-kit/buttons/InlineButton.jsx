@@ -15,8 +15,15 @@ const Button = styled.button`
     p.variant === 'accent' ? p.theme.colors.accent : p.theme.colors.primary};
   text-decoration: underline;
   background-color: transparent;
-  cursor: pointer;
+  transition: ${(p) => p.theme.animations.primary} color;
+
+  &:hover {
+    cursor: pointer;
+    color: ${(p) =>
+      p.variant === 'accent' ? p.theme.colors.secondary : p.theme.colors.accent};
+  }
 `;
+
 InlineButton.propTypes = {
   onClick: PropTypes.func.isRequired,
   label: PropTypes.string.isRequired,

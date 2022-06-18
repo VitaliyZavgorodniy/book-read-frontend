@@ -17,11 +17,19 @@ import { timeFormatToString } from 'utils/timeFormatToString';
 const BooksList = ({ books, onUpdateStats }) => {
   const [isOpenModal, setOpenModal] = useState(false);
   const [statsBook, setStatsBook] = useState(null);
-  const [statsPages, setStatsPages] = useState('');
+  const [statsPages, setStatsPages] = useState('1');
+  const [pagesError, setPagesError] = useState('');
 
   const handleStatUpdate = () => {
+    if (
+      Number(statsPages) < 1 ||
+      Number(statsPages) > statsBook.pages - statsBook.pagesRead
+    ) {
+      return setPagesError('Invalid pages amount');
+    }
+
     onUpdateStats({
-      bookId: statsBook,
+      bookId: statsBook._id,
       date: timeFormatToString(new Date()),
       pages: statsPages,
     });
@@ -31,8 +39,8 @@ const BooksList = ({ books, onUpdateStats }) => {
     setOpenModal(false);
   };
 
-  const handleOpenModal = (bookID) => {
-    setStatsBook(bookID);
+  const handleOpenModal = (bookData) => {
+    setStatsBook(bookData);
     setOpenModal(true);
   };
 
@@ -43,7 +51,9 @@ const BooksList = ({ books, onUpdateStats }) => {
           {isCompleted ? <IconCompleted /> : <Icon />}
           {isCompleted ? null : (
             <ButtonWrapper>
-              <IconButton onClick={() => handleOpenModal(_id)}>
+              <IconButton
+                onClick={() => handleOpenModal({ _id, pagesRead, pages })}
+              >
                 <AiOutlinePlus />
               </IconButton>
             </ButtonWrapper>
@@ -82,10 +92,14 @@ const BooksList = ({ books, onUpdateStats }) => {
       {isOpenModal && (
         <Modal onClose={() => setOpenModal(false)}>
           <ModalWrapper>
-            <Title>Training results</Title>
+            <Title>
+              Training results (Left: {statsBook.pages - statsBook.pagesRead})
+            </Title>
             <ItemWrapper>
               <CommonInput
+                type="number"
                 title="Amount of pages"
+                error={pagesError}
                 value={statsPages}
                 onChange={(e) => setStatsPages(e.target.value)}
               />
@@ -136,7 +150,7 @@ const BookTitle = styled.h3`
   margin-bottom: 12px;
 `;
 
-const Row = styled.p`
+const Row = styled.div`
   display: flex;
   font-weight: 500;
   font-size: 12px;

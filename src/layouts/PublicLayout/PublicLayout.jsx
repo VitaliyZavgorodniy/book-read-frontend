@@ -23,13 +23,13 @@ const Header = styled.header`
   box-shadow: ${(p) => p.theme.shadows.block};
 
   @media ${breakpoints.tablet} {
-      justify-content: start;
+    justify-content: start;
   }
 `;
 
 const Main = styled.main`
   position: relative;
-  min-height: 100vh;
+  min-height: calc(100vh - 60px);
 `;
 
 const Logo = styled.span`

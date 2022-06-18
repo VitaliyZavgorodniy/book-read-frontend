@@ -25,17 +25,23 @@ const Chart = ({
   data,
   pagesAmount,
   mode,
-  avargeData,
+  averageData,
   overallData,
 }) => {
-  const { factData, planData, dayPast } = mode === 0 ? avargeData : overallData;
+  const { factData, planData, dayPast } =
+    mode === 0 ? averageData : overallData;
 
   const totalPages = factData.reduce((acc, value) => acc + value, 0);
-  const avargePages = Math.floor(totalPages / dayPast);
+
+  const calculateAverage = () => {
+    if (totalPages <= 0) return 0;
+    if (dayPast <= 0) return totalPages;
+    return Math.floor(totalPages / dayPast);
+  };
 
   const text =
     mode === 0
-      ? `AVARGE PAGES / DAY ${avargePages}`
+      ? `AVARGE PAGES / DAY ${calculateAverage()}`
       : `PAGES AMOUNT ${pagesAmount}`;
 
   const userData = {

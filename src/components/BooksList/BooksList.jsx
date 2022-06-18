@@ -88,7 +88,6 @@ const BooksList = ({ title, list, onReviewUpdate, onReviewAdd }) => {
           <BodyRow key={book._id} $mode={title}>
             <BodyRowWrapper>
               <BodyCell $mode={title}>
-                {' '}
                 <Icon $mode={title} />
                 {book.title}
               </BodyCell>
@@ -124,6 +123,7 @@ const BooksList = ({ title, list, onReviewUpdate, onReviewAdd }) => {
                   </BodyCell>
                   <BodyCell $mode={title}>
                     <Button
+                      isActive={book?.review?._id}
                       onClick={() =>
                         handleOpenModal(
                           book?.review?.rating,
@@ -184,7 +184,7 @@ const Section = styled.div`
     padding-top: 40px;
   }
   @media ${breakpoints.desktop} {
-    width: 1248px;
+    width: 100%;
     padding-top: 32px;
     ${(props) => {
       switch (props.$mode) {
@@ -515,9 +515,15 @@ const Button = styled.button`
   margin: 0 auto;
   font-size: 14px;
   color: ${(p) => p.theme.colors.bgLight};
-  background-color: ${(p) => p.theme.colors.heading};
+  background-color: ${(p) =>
+    p.isActive ? p.theme.colors.accent : p.theme.colors.heading};
   box-shadow: ${(p) => p.theme.shadows.button};
-  cursor: pointer;
+  transition: ${(p) => p.theme.animations.primary} background-color;
+
+  &:hover {
+    cursor: pointer;
+    background-color: ${(p) => p.theme.colors.secondary};
+  }
 
   @media ${breakpoints.tablet} {
     width: 80px;

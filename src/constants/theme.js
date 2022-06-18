@@ -1,14 +1,14 @@
-import bgLogMb from 'assets/images/bgLogMb.jpg'
-import bgRegMb from 'assets/images/bgRegMb.jpg'
-import bgLogTb from 'assets/images/bgLogTb.jpg'
-import bgRegTb from 'assets/images/bgRegTb.jpg'
+import bgLogMb from 'assets/images/bgLogMb.jpg';
+import bgRegMb from 'assets/images/bgRegMb.jpg';
+import bgLogTb from 'assets/images/bgLogTb.jpg';
+import bgRegTb from 'assets/images/bgRegTb.jpg';
 import bgLogDs from 'assets/images/bgLogDs.jpg';
 import bgRegDs from 'assets/images/bgRegDs.jpg';
 
-import bgLogMb_2x from 'assets/images/bgLogMb-2x.jpg'
-import bgRegMb_2x from 'assets/images/bgRegMb-2x.jpg'
-import bgLogTb_2x from 'assets/images/bgLogTb-2x.jpg'
-import bgRegTb_2x from 'assets/images/bgRegTb-2x.jpg'
+import bgLogMb_2x from 'assets/images/bgLogMb-2x.jpg';
+import bgRegMb_2x from 'assets/images/bgRegMb-2x.jpg';
+import bgLogTb_2x from 'assets/images/bgLogTb-2x.jpg';
+import bgRegTb_2x from 'assets/images/bgRegTb-2x.jpg';
 import bgLogDs_2x from 'assets/images/bgLogDs-2x.jpg';
 import bgRegDs_2x from 'assets/images/bgRegDs-2x.jpg';
 
@@ -30,7 +30,7 @@ export const theme = {
     heading: '#6D7A8D',
     error: '#F32424',
     hover: '#D15807',
-    lineStat: '#E0E5EB'
+    lineStat: '#E0E5EB',
   },
   shadows: {
     primary: '4px 4px 8px rgba(36, 42, 55, 0.15)',
@@ -39,6 +39,7 @@ export const theme = {
     innerInput: 'inset 0 1px 2px rgba(29, 29, 27, 0.15)',
     booksItem: '0px 2px 3px rgba(9, 30, 63, 0.1)',
     chartItem: '0px 2px 3px rgba(9, 30, 63, 0.25)',
+    accent: '0px 2px 4px #D15807',
   },
   font: {
     familyPrimary: 'Montserrat, sans-serif',
@@ -61,6 +62,6 @@ export const theme = {
     regDs_2x: bgRegDs_2x,
   },
   animations: {
-    primary: '250ms ease-in-out',
+    primary: '200ms ease-in-out',
   },
 };
