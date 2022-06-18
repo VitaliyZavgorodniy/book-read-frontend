@@ -6,7 +6,6 @@ import Media from 'react-media';
 
 import { authActions } from 'redux/auth';
 
-import Container from 'components/UI-kit/containers/Container';
 import GoalsBoard from 'components/GoalsBoard';
 import CountdownPanel from 'components/CountdownPanel';
 import StatisticsChart from 'components/StatisticsChart';
@@ -74,8 +73,8 @@ const StatisticsPage = ({ status, training, stats, onLoadTraining }) => {
 
   return (
     <Container>
-      <WrapperUp>
-        <Counters>
+      <ContainerLeft>
+        <ContainerCounters>
           <CountdownPanel
             title="Years countdown"
             dateTo={getCurrentEndYearDate()}
@@ -85,13 +84,23 @@ const StatisticsPage = ({ status, training, stats, onLoadTraining }) => {
             dateTo={training.endDate}
             isStopped={!training.inProgress}
           />
-        </Counters>
+        </ContainerCounters>
 
-        <GoalsWrapper>
-          <GoalsBoard data={dataGoals} padding={'sm'} />
-        </GoalsWrapper>
+        <Media
+          queries={{
+            other: '(max-width: 767px)',
+          }}
+        >
+          {({ other }) =>
+            other && (
+              <ContainerGoals>
+                <GoalsBoard data={dataGoals} />
+              </ContainerGoals>
+            )
+          }
+        </Media>
 
-        <BooksListWrapper>
+        <ContainerBooks>
           <Media
             queries={{
               other: '(max-width: 767px)',
@@ -106,74 +115,113 @@ const StatisticsPage = ({ status, training, stats, onLoadTraining }) => {
               </>
             )}
           </Media>
-        </BooksListWrapper>
-      </WrapperUp>
-      <WrapperDown>
-        {training.startDate && (
-          <StatisticsChart
-            startDate={training.startDate}
-            daysAmount={handleDaysDifference(training.startDate)}
-            pagesAmount={training.pagesAmount}
-            stats={stats}
-          />
-        )}
+        </ContainerBooks>
 
-        {stats.length ? (
-          <StatisticWrapper>
+        {training.startDate && (
+          <ContainerStatistics>
+            <StatisticsChart
+              startDate={training.startDate}
+              daysAmount={handleDaysDifference(training.startDate)}
+              pagesAmount={training.pagesAmount}
+              stats={stats}
+            />
+          </ContainerStatistics>
+        )}
+      </ContainerLeft>
+
+      <ContainerRight>
+        <Media
+          queries={{
+            tablet: breakpoints.tablet,
+          }}
+        >
+          {({ tablet }) =>
+            tablet && (
+              <ContainerGoals>
+                <GoalsBoard data={dataGoals} padding={'sm'} />
+              </ContainerGoals>
+            )
+          }
+        </Media>
+
+        {stats.length && (
+          <ContainerStats>
             <StatisticTable items={stats} />
-          </StatisticWrapper>
-        ) : null}
-      </WrapperDown>
+          </ContainerStats>
+        )}
+      </ContainerRight>
     </Container>
   );
 };
 
-const WrapperUp = styled.div`
-  @media ${breakpoints.desktop} {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 329px;
-  }
-`;
-
-const WrapperDown = styled.div`
-  @media ${breakpoints.desktop} {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    width: 100%;
-  }
-`;
-
-const Counters = styled.div`
+const Container = styled.section`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  height: 194px;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: 320px;
   margin: 0 auto;
+  padding: 0 20px;
 
   @media ${breakpoints.tablet} {
-    width: 612px;
+    max-width: 768px;
+    padding: 0 32px;
+  }
+
+  @media ${breakpoints.desktop} {
     flex-direction: row;
-    height: auto;
-    margin: 0 auto;
+    justify-content: space-between;
+    max-width: 1280px;
+    padding: 0 16px;
+  }
+`;
+
+const ContainerLeft = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  @media ${breakpoints.tablet} {
+    width: 704px;
   }
 
   @media ${breakpoints.desktop} {
     width: 928px;
-    height: 85px;
-    margin-right: 320px;
-    margin-left: 0;
-    padding-left: 137px;
-    padding-right: 137px;
-    justify-content: space-between;
   }
 `;
 
-const GoalsWrapper = styled.div`
+const ContainerRight = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const ContainerCounters = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 194px;
+
+  @media ${breakpoints.tablet} {
+    flex-direction: row;
+    height: auto;
+    padding: 0 46px;
+  }
+
+  @media ${breakpoints.desktop} {
+    padding: 0 137px;
+  }
+`;
+
+const ContainerStatistics = styled.div`
+  margin-top: 30px;
+
+  @media ${breakpoints.desktop} {
+    margin-top: 40px;
+  }
+`;
+
+const ContainerGoals = styled.div`
   margin-top: 40px;
 
   @media ${breakpoints.tablet} {
@@ -181,41 +229,31 @@ const GoalsWrapper = styled.div`
   }
 
   @media ${breakpoints.desktop} {
-    position: absolute;
-    top: 0;
-    right: 0;
     margin-top: 0;
   }
 `;
 
-const BooksListWrapper = styled.div`
+const ContainerBooks = styled.div`
+  width: 100%;
   margin-top: 20px;
 
   @media ${breakpoints.tablet} {
-    width: 704px;
     margin-top: 40px;
-    /* margin-bottom: 32px; */
-  }
-
-  @media ${breakpoints.desktop} {
-    width: 928px;
-    height: 313px;
-    margin-top: 44px;
-    overflow-y: scroll;
   }
 `;
 
-const StatisticWrapper = styled.div`
-  box-shadow: ${(p) => p.theme.shadows.chartItem};
-  margin-top: 40px;
+const ContainerStats = styled.div`
+  width: 100%;
+  margin-top: 30px;
 
   @media ${breakpoints.tablet} {
-    width: 704px;
+    width: 368px;
+    margin-top: 40px;
   }
 
   @media ${breakpoints.desktop} {
-    width: 288px;
-    margin-top: 0;
+    width: 100%;
+    margin-top: 40px;
   }
 `;
 
