@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { authOperations } from 'redux/auth';
 
 const initialState = {
   isLogoutModalOpen: false,
@@ -10,6 +11,11 @@ const modalsSlice = createSlice({
   reducers: {
     toggleLogoutModal: (state) => {
       state.isLogoutModalOpen = !state.isLogoutModalOpen;
+    },
+  },
+  extraReducers: {
+    [authOperations.logout.fulfilled]: (state) => {
+      state.isLogoutModalOpen = false;
     },
   },
 });
