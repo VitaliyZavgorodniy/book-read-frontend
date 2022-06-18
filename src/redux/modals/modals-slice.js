@@ -3,6 +3,7 @@ import { authOperations } from 'redux/auth';
 
 const initialState = {
   isLogoutModalOpen: false,
+  isAddBookPopupOpen: true,
 };
 
 const modalsSlice = createSlice({
@@ -11,6 +12,9 @@ const modalsSlice = createSlice({
   reducers: {
     toggleLogoutModal: (state) => {
       state.isLogoutModalOpen = !state.isLogoutModalOpen;
+    },
+    toggleAddBookPopup: (state) => {
+      state.isAddBookPopupOpen = !state.isAddBookPopupOpen;
     },
   },
   extraReducers: {

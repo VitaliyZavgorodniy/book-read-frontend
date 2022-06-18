@@ -178,6 +178,12 @@ const Section = styled.section`
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  width: 280px;
+  margin: 0 auto;
+
+  @media ${breakpoints.tablet} {
+    width: 704px;
+  }
 
   @media ${breakpoints.desktop} {
     width: 928px;

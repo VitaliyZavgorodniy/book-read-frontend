@@ -147,7 +147,7 @@ const BooksList = ({ title, list, onReviewUpdate, onReviewAdd }) => {
   };
 
   return (
-    <Section $mode={title}>
+    <Wrapper $mode={title}>
       {isOpen && (
         <Modal onClose={handleCloseModal}>
           <ReviewModal
@@ -170,14 +170,14 @@ const BooksList = ({ title, list, onReviewUpdate, onReviewAdd }) => {
         render={() => <Heading title={title} />}
       />
       <TableBody>{list.length ? renderList() : null}</TableBody>
-    </Section>
+    </Wrapper>
   );
 };
 
-const Section = styled.div`
-  width: 280px;
+const Wrapper = styled.div`
+  width: 100%;
   margin: 0 auto;
-  padding-top: 20px;
+  padding-top: 0;
 
   @media ${breakpoints.tablet} {
     width: 704px;

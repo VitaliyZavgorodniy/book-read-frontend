@@ -1,9 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
-
 import styled from 'styled-components';
-import debounce from 'lodash.debounce';
-
 import { breakpoints } from 'constants/breakpoints';
+import debounce from 'lodash.debounce';
 
 import CommonInput from 'components/UI-kit/inputs/CommonInput';
 import CommonButton from 'components/UI-kit/buttons/CommonButton';
@@ -26,6 +24,7 @@ const FormAddBook = ({
   const [errorYear, setErrorYear] = useState('');
   const [errorPages, setErrorPages] = useState('');
 
+  // eslint-disable-next-line
   const debouncedSearch = useCallback(
     debounce((query) => onSearch({ query }), 500),
     []
@@ -107,8 +106,8 @@ const FormAddBook = ({
     setID(book._id);
     setTitle(book.title);
     setAuthor(book.author);
-    setYear(book.year);
-    setPages(book.pages);
+    setYear(String(book.year));
+    setPages(String(book.pages));
   };
 
   const renderPrediction = () => {
@@ -144,7 +143,7 @@ const FormAddBook = ({
             error={errorAuthor}
             value={author}
             onChange={(e) => setAuthor(e.target.value)}
-            disabled={id}
+            disabled={!!id}
           />
         </InputWrapper>
 
@@ -156,7 +155,7 @@ const FormAddBook = ({
             error={errorYear}
             value={year}
             onChange={(e) => setYear(e.target.value)}
-            disabled={id}
+            disabled={!!id}
           />
         </InputWrapper>
 
@@ -168,10 +167,11 @@ const FormAddBook = ({
             error={errorPages}
             value={pages}
             onChange={(e) => setPages(e.target.value)}
-            disabled={id}
+            disabled={!!id}
           />
         </InputWrapper>
       </InputList>
+
       <ButtonWrapper>
         <CommonButton title="Add" type="submit" onClick={handleSubmit} />
       </ButtonWrapper>
@@ -181,7 +181,7 @@ const FormAddBook = ({
 
 const Wrapper = styled.div`
   position: relative;
-  width: 280px;
+  width: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -215,12 +215,14 @@ const InputList = styled.ul`
     margin-right: 48px;
   }
 `;
+
 const InputWrapper = styled.li`
   position: relative;
 
   &:not(:last-child) {
     margin-bottom: 20px;
   }
+
   @media ${breakpoints.tablet} {
     margin-bottom: 0;
     &:first-child {
@@ -271,7 +273,7 @@ const ButtonWrapper = styled.div`
 const Prediction = styled.ul`
   z-index: 10;
   position: absolute;
-  top: 100%;
+  top: calc(100% - 20px);
   left: 0;
   display: flex;
   flex-direction: column;

@@ -1,166 +1,117 @@
 import { useState, useEffect } from 'react';
-import { createPortal } from 'react-dom';
-import { useNavigate } from 'react-router-dom';
-import Media from 'react-media';
-import styled from 'styled-components';
 
-import { CgArrowLongLeft } from 'react-icons/cg';
+import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import { breakpoints } from 'constants/breakpoints';
+import Media from 'react-media';
+
 import { AiOutlinePlus } from 'react-icons/ai';
 
-import { breakpoints } from 'constants/breakpoints';
-
-import Container from 'components/UI-kit/containers/Container';
-import BooksList from '../../components/BooksList';
 import InfoBlockIntro from './InfoBlockIntro';
 import FormAddBook from './FormAddBook';
+import Container from 'components/UI-kit/containers/Container';
+import BooksList from 'components/BooksList';
 import CommonButton from 'components/UI-kit/buttons/CommonButton';
-import IconButton from 'components/UI-kit/buttons/IconButton';
-import Spinner from 'components/UI-kit/spinner/Spinner';
-const modalRoot = document.querySelector('#modal-root');
+
+import Popup from 'hoc/Popup';
 
 const HomePage = ({
-  handleClose,
-  isFetching,
   totalBooks,
   completedBooks,
   readingBooks,
   pendingBooks,
   onLibraryLoad,
 }) => {
-  const [modal, setModal] = useState(true);
+  const navigate = useNavigate();
+
+  const [isOpen, setOpen] = useState(true);
 
   useEffect(() => {
     onLibraryLoad();
+    // eslint-disable-next-line
   }, []);
 
-  const toggleModal = () => {
-    setModal(!modal);
-  };
+  const handleModal = () => setOpen(!isOpen);
 
-  const navigate = useNavigate();
+  const renderModal = () => {
+    if (!isOpen) return null;
+
+    return (
+      <Popup onClose={handleModal}>
+        <FormAddBook />
+      </Popup>
+    );
+  };
 
   return (
     <Container>
-      <Media
-        queries={{
-          small: { maxWidth: 767 },
-        }}
-      >
-        {(matches) =>
-          matches.small &&
-          modal &&
-          createPortal(
-            <Overlay>
-              <WrapperModal>
-                <ButtonBack type="button" onClick={toggleModal}>
-                  <ArrowBack />
-                </ButtonBack>
-                <FormAddBook isModal={modal} handleClose={toggleModal} />
-              </WrapperModal>
-            </Overlay>,
-            modalRoot
-          )
-        }
-      </Media>
-      
-      <Media queries={{ medium: { minWidth: 768 } }}>
-        {({ medium }) => medium && <FormAddBook />}
-      </Media>
+      <Media query={breakpoints.maxTablet} render={renderModal} />
+      <Media query={breakpoints.tablet} render={() => <FormAddBook />} />
 
       {totalBooks ? (
-        <>
-          <LibraryWrapper>
-            {completedBooks.length ? (
-              <BooksList title="Already read" list={completedBooks} />
-            ) : null}
-            {readingBooks.length ? (
-              <BooksList title="Reading now" list={readingBooks} />
-            ) : null}
-            {pendingBooks.length ? (
-              <BooksList title="Going to read" list={pendingBooks} />
-            ) : null}
-
-            <ButtonWrapper>
-              <CommonButton
-                type="button"
-                title="My training"
-                variant="accent"
-                onClick={() => navigate('/training')}
-              />
-            </ButtonWrapper>
-
-            <Media
-              query="(max-width: 767px)"
-              render={() => (
-                <AddWrapper>
-                  <IconButton onClick={toggleModal}>
-                    <Add />
-                  </IconButton>
-                </AddWrapper>
-              )}
-            />
-          </LibraryWrapper>
-        </>
+        <ContainerLibrary>
+          {completedBooks.length ? (
+            <BooksList title="Already read" list={completedBooks} />
+          ) : null}
+          {readingBooks.length ? (
+            <BooksList title="Reading now" list={readingBooks} />
+          ) : null}
+          {pendingBooks.length ? (
+            <BooksList title="Going to read" list={pendingBooks} />
+          ) : null}
+        </ContainerLibrary>
       ) : (
-        <InfoBlockIntro />
+        <ContainerIntro>
+          <InfoBlockIntro />
+        </ContainerIntro>
       )}
+
+      {totalBooks ? (
+        <ContainerButton>
+          <CommonButton
+            type="button"
+            title="My training"
+            variant="accent"
+            onClick={() => navigate('/training')}
+          />
+        </ContainerButton>
+      ) : null}
+
+      <Media
+        query={breakpoints.maxTablet}
+        render={() => (
+          <ContainerAddButton>
+            <ButtonAdd onClick={handleModal}>
+              <Add />
+            </ButtonAdd>
+          </ContainerAddButton>
+        )}
+      />
     </Container>
   );
 };
 
-const Overlay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  min-height: calc(100vh - 60px);
-  overflow: auto;
-  pointer-events: auto;
-  background-color: ${(p) => p.theme.colors.bgPrimary};
-  padding: 84px 0 110px;
-`;
-const WrapperModal = styled.div`
-  position: absolute;
-  top: 60px;
-  left: 50%;
-  transform: translateX(-50%);
-  max-width: 280px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 24px 0 110px;
-  background-color: ${(p) => p.theme.colors.bgPrimary};
-`;
-const ButtonBack = styled.button`
-  position: relative;
-  width: 24px;
-  height: 12px;
-  margin-bottom: 32px;
-  margin-right: auto;
-  background-color: transparent;
-  cursor: pointer;
-`;
-const ArrowBack = styled(CgArrowLongLeft)`
-  position: absolute;
-  top: -10px;
-  left: 0;
-  width: 24px;
-  height: 32px;
-  margin: 0 auto;
-  color: ${(p) => p.theme.colors.accent};
-`;
-const FormWrapper = styled.div``;
+const ContainerLibrary = styled.div`
+  padding-top: 0;
 
-const LibraryWrapper = styled.div`
-  position: relative;
   @media ${breakpoints.tablet} {
-    padding-top: 0;
+    padding-top: 40px;
   }
+
   @media ${breakpoints.desktop} {
     padding-top: 80px;
   }
 `;
 
-const ButtonWrapper = styled.div`
+const ContainerIntro = styled.div`
+  padding-top: 64px;
+
+  @media ${breakpoints.tablet} {
+    padding-top: 40px;
+  }
+`;
+
+const ContainerButton = styled.div`
   width: 130px;
   margin: 0 auto;
   padding-top: 28px;
@@ -175,15 +126,33 @@ const ButtonWrapper = styled.div`
     padding-bottom: 245px;
   }
 `;
-const AddWrapper = styled.div`
-  position: sticky;
+
+const ContainerAddButton = styled.div`
+  position: absolute;
   left: 50%;
-  transform: translateX(-50%);
   bottom: 12px;
+  transform: translateX(-50%);
+`;
+
+const ButtonAdd = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background-color: ${(p) => p.theme.colors.accent};
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: ${(p) => p.theme.shadows.accent};
+  }
 `;
+
 const Add = styled(AiOutlinePlus)`
-  width: 16px;
-  height: 16px;
+  color: ${(p) => p.theme.colors.contrast};
+  font-size: 22px;
+  transition: ${(p) => p.theme.animations.primary} box-shadow;
 `;
+
 export default HomePage;

@@ -30,7 +30,7 @@ const Modal = ({ children, onClose }) => {
 };
 
 const Overlay = styled.div`
-  z-index: 1200;
+  z-index: 100;
   position: fixed;
   top: 0;
   left: 0;

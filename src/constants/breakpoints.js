@@ -1,5 +1,6 @@
 export const size = {
   mobile: '320px',
+  maxTablet: '767px',
   tablet: '768px',
   laptop: '1024px',
   desktop: '1280px',
@@ -7,6 +8,7 @@ export const size = {
 
 export const breakpoints = {
   mobile: `(min-width: ${size.mobile})`,
+  maxTablet: `(max-width: ${size.maxTablet})`,
   tablet: `(min-width: ${size.tablet})`,
   laptop: `(min-width: ${size.laptop})`,
   desktop: `(min-width: ${size.desktop})`,

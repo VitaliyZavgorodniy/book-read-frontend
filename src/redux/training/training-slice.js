@@ -20,12 +20,14 @@ const trainingSlice = createSlice({
       state.isFetching = true;
     },
     [trainingOperations.fetch.fulfilled]: (state, { payload }) => {
-      state.books = payload.books;
-      state.startDate = payload.startDate;
-      state.endDate = payload.endDate;
-      state.inProgress = payload.inProgress;
-      state.pagesAmount = payload.pagesAmount;
-      state.stats = payload.stats;
+      if (payload) {
+        state.books = payload.books;
+        state.startDate = payload.startDate;
+        state.endDate = payload.endDate;
+        state.inProgress = payload.inProgress;
+        state.pagesAmount = payload.pagesAmount;
+        state.stats = payload.stats;
+      }
       state.isFetching = false;
     },
     [trainingOperations.fetch.rejected]: (state) => {

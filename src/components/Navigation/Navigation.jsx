@@ -23,7 +23,7 @@ const Navigation = () => (
 );
 
 const Wrapper = styled.div`
-  position: relative;
+  /* position: relative; */
   display: flex;
   align-items: center;
   justify-content: space-between;

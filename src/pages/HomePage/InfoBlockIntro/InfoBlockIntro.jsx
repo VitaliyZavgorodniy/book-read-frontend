@@ -1,106 +1,97 @@
-import { useState } from 'react';
-import Media from 'react-media';
-import { createPortal } from 'react-dom';
 import styled from 'styled-components';
 import { breakpoints } from 'constants/breakpoints';
 
-import InfoTextIntro from './InfoTextIntro';
+import { ReactComponent as Library } from 'assets/icons/library.svg';
+import { ReactComponent as Flag } from 'assets/icons/flag.svg';
+import { ReactComponent as Arrow } from 'assets/icons/arrow.svg';
 
-const modalRoot = document.querySelector('#modal-root');
-
-const InfoBlockIntro = () => {
-  const [modal, setModal] = useState(true);
-  const toggleModal = () => {
-    setModal(false);
-  };
-  return (
-    <>
-      <Media
-        queries={{
-          small: { maxWidth: 767 },
-        }}
-      >
-        {(matches) =>
-          matches.small &&
-          modal &&
-          createPortal(
-            <Overlay>
-              <Wrapper>
-                <InfoTextIntro />
-                <Button type="button" onClick={toggleModal}>
-                  Ok
-                </Button>
-              </Wrapper>
-            </Overlay>,
-            modalRoot
-          )
-        }
-      </Media>
-      <Media queries={{ medium: { minWidth: 768 } }}>
-        {(matches) =>
-          matches.medium && (
-            <Wrapper>
-              <InfoTextIntro />
-            </Wrapper>
-          )
-        }
-      </Media>
-    </>
-  );
-};
-
-const Overlay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  min-height: calc(100vh - 60px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: auto;
-  pointer-events: auto;
-`;
+const InfoBlockIntro = () => (
+  <Wrapper>
+    <StepsList>
+      <Step>
+        <StepNumber>Step 1.</StepNumber>
+        <Title>
+          <Library />
+          Create your own library
+        </Title>
+        <Text>
+          <Arrow />
+          Add there books which you are going to read.
+        </Text>
+      </Step>
+      <Step>
+        <StepNumber>Step 2.</StepNumber>
+        <Title>
+          <Flag />
+          Create your first training
+        </Title>
+        <Text>
+          <Arrow />
+          Set a goal, choose period, start training.
+        </Text>
+      </Step>
+    </StepsList>
+  </Wrapper>
+);
 
 const Wrapper = styled.div`
-  position: absolute;
-  top: 153px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   width: 280px;
-  height: 425px;
-  padding: 42px 20px;
   margin: 0 auto;
-  font-weight: 600;
-  background: ${(p) => p.theme.colors.bgSecondary};
+  padding: 48px 20px;
+  background-color: ${(p) => p.theme.colors.bgSecondary};
   box-shadow: ${(p) => p.theme.shadows.block};
+
   @media ${breakpoints.tablet} {
-    top: 372px;
     width: 608px;
-    height: 272px;
     padding: 40px;
-  }
-  @media ${breakpoints.desktop} {
-    top: 207px;
   }
 `;
 
-const Button = styled.button`
-  cursor: pointer;
-  width: 127px;
-  height: 40px;
-  font-weight: 500;
+const StepsList = styled.ul`
+  margin-bottom: 40px;
+`;
+
+const Step = styled.li`
+  &:not(:last-child) {
+    margin-bottom: 21px;
+    @media ${breakpoints.tablet} {
+      margin-bottom: 24px;
+    }
+  }
+`;
+
+const StepNumber = styled.h2`
+  margin-bottom: 8px;
+  font-size: 18px;
+  line-height: 22px;
+  color: ${(p) => p.theme.colors.primary};
+  @media ${breakpoints.tablet} {
+    margin-bottom: 16px;
+    font-size: 16px;
+    line-height: 23px;
+  }
+`;
+
+const Title = styled.h3`
+  margin-bottom: 8px;
+  font-size: 16px;
+  line-height: 20px;
+  color: ${(p) => p.theme.colors.primary};
+  & svg {
+    margin-right: 12px;
+  }
+`;
+
+const Text = styled.p`
+  position: relative;
+  padding-left: 52px;
+  font-weight: 400;
   font-size: 14px;
-  line-height: 38px;
-  text-align: center;
-  background: ${(p) => p.theme.colors.accent};
-  color: ${(p) => p.theme.colors.bgSecondary};
-  box-shadow: ${(p) => p.theme.shadows.button};
-  &:hover {
-    background: ${(p) => p.theme.colors.hover};
+  line-height: 17px;
+  color: ${(p) => p.theme.colors.tertiary};
+  & svg {
+    position: absolute;
+    left: 34px;
   }
 `;
 

@@ -4,8 +4,6 @@ import { Notyf } from 'notyf';
 
 axios.defaults.baseURL = process.env.REACT_APP_BACKEND_LINK;
 
-const notyf = new Notyf();
-
 const fetch = createAsyncThunk(
   'training/fetch',
   async (_, { rejectWithValue }) => {
