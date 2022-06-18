@@ -184,7 +184,7 @@ const Section = styled.div`
     padding-top: 40px;
   }
   @media ${breakpoints.desktop} {
-    width: 1248px;
+    width: 100%;
     padding-top: 32px;
     ${(props) => {
       switch (props.$mode) {

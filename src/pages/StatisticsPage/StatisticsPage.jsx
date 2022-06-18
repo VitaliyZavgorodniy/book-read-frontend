@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { breakpoints } from 'constants/breakpoints';
 import Media from 'react-media';
 
+import Container from 'components/UI-kit/containers/Container';
 import GoalsBoard from 'components/GoalsBoard';
 import CountdownPanel from 'components/CountdownPanel';
 import StatisticsChart from 'components/StatisticsChart';
@@ -54,7 +55,7 @@ const StatisticsPage = ({ status, training, stats, onLoadTraining }) => {
   };
 
   return (
-    <Wrapper>
+    <Container>
       <WrapperUp>
         {/* Counter's section */}
         <Counters>
@@ -131,7 +132,7 @@ const StatisticsPage = ({ status, training, stats, onLoadTraining }) => {
           </StatisticWrapper>
         ) : null}
       </WrapperDown>
-    </Wrapper>
+    </Container>
   );
 };
 

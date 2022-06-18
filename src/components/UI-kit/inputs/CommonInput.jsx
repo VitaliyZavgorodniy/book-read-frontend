@@ -39,6 +39,7 @@ const Wrapper = styled.div`
 `;
 
 const Label = styled.label`
+  height: 17px;
   margin-bottom: 8px;
   color: ${(p) => p.theme.colors.tertiary};
   font-weight: 500;
@@ -88,10 +89,6 @@ const Input = styled.input`
   &::-webkit-inner-spin-button {
     -webkit-appearance: none;
   }
-
-  &:hover {
-    cursor: pointer;
-  }
 `;
 
 const ErrorMessage = styled.p`
@@ -100,7 +97,7 @@ const ErrorMessage = styled.p`
   font-weight: 400;
   font-size: 12px;
   line-height: 17px;
-  height: 18px;
+  height: 17px;
 `;
 
 CommonInput.propTypes = {

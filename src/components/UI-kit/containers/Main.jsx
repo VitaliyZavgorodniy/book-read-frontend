@@ -1,23 +1,21 @@
 import styled from 'styled-components';
 import { breakpoints } from 'constants/breakpoints';
 
-const Main = ({ children }) => <Wrapper>{children}</Wrapper>;
+const Main = ({ children }) => <Container>{children}</Container>;
 
-const Wrapper = styled.main`
-  width: 100%;
-  min-height: calc(100vh - 60px);
-  padding: 40px 16px 0;
-  padding: 0 16px 0;
+const Container = styled.main`
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: calc(100vh - 60px);
+  padding: 20px 0;
   background-color: ${(p) => p.theme.colors.bgPrimary};
 
   @media ${breakpoints.tablet} {
-    padding-left: 32px;
-    padding-right: 32px;
+    padding: 32px 0;
   }
 
   @media ${breakpoints.desktop} {
-    padding-left: 16px;
-    padding-right: 16px;
+    padding: 40px 0;
   }
 `;
 

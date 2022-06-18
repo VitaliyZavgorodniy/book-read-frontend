@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-const BlockHeading = ({ title }) => <Wrapper>{title}</Wrapper>;
+const Heading = ({ children }) => <Container>{children}</Container>;
 
-const Wrapper = styled.h2`
+const Container = styled.h2`
   width: 100%;
   padding: 18px;
   color: ${(p) => p.theme.colors.bgSecondary};
@@ -13,4 +13,4 @@ const Wrapper = styled.h2`
   background-color: ${(p) => p.theme.colors.bgTertiary};
 `;
 
-export default BlockHeading;
+export default Heading;
