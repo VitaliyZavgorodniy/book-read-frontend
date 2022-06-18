@@ -29,7 +29,7 @@ const BooksList = ({ books, onUpdateStats }) => {
     }
 
     onUpdateStats({
-      bookId: statsBook,
+      bookId: statsBook._id,
       date: timeFormatToString(new Date()),
       pages: statsPages,
     });

@@ -31,7 +31,7 @@ const InfoBlock = () => (
         </Text>
         <Text>
           <Arrow />
-          End date can't be more then 31 day and less then 1 day
+          End date can't be more than 31 day and less than 1 day
         </Text>
       </Step>
     </StepsList>

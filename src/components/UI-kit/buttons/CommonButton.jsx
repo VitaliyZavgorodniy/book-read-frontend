@@ -1,25 +1,36 @@
 import styled from 'styled-components';
+import { Bars } from 'react-loader-spinner';
+import { theme } from 'constants/theme';
 
 const CommonButton = ({
+  isFetching,
   title,
   onClick,
   type,
   variant,
   size,
   disabled = false,
-}) => (
-  <Button
-    onClick={onClick}
-    disabled={disabled}
-    type={type}
-    variant={variant}
-    size={size}
-  >
-    {title}
-  </Button>
-);
+}) => {
+  const settings =
+    variant === 'accent' ? theme.colors.contrast : theme.colors.primary;
+
+  return (
+    <Button
+      onClick={onClick}
+      disabled={disabled}
+      type={type}
+      variant={variant}
+      size={size}
+    >
+      {isFetching ? <Bars color={settings} height="25px" /> : title}
+    </Button>
+  );
+};
 
 const Button = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: ${(p) => (p.size === 'lg' ? '60px' : '40px')};
   padding: ${(p) => (p.size === 'lg' ? '20px' : '10px')};

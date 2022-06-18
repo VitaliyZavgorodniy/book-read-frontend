@@ -70,7 +70,7 @@ const BooksTable = ({ books, onUpdateStats }) => {
   };
 
   return (
-    <Wrapper>
+    <>
       {isOpenModal && (
         <Modal onClose={() => setOpenModal(false)}>
           <ModalWrapper>
@@ -109,7 +109,7 @@ const BooksTable = ({ books, onUpdateStats }) => {
         </TableHead>
         <TableBody>{books.length ? renderList() : null}</TableBody>
       </Table>
-    </Wrapper>
+    </>
   );
 };
 
@@ -117,6 +117,7 @@ const Wrapper = styled.div``;
 
 const Table = styled.table`
   width: 100%;
+  
 `;
 
 const TableHead = styled.thead`

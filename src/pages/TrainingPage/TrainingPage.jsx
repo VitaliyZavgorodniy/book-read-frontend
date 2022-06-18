@@ -26,6 +26,7 @@ const date = new Date();
 date.setDate(date.getDate() + 3);
 
 const TrainingPage = ({
+  isFetching,
   pendingBooks,
   status,
   onLoadLibrary,
@@ -85,7 +86,7 @@ const TrainingPage = ({
     );
 
     if (difference?.days <= MIN_GOAL_DAYS || difference?.days >= MAX_GOAL_DAYS)
-      return notyf.error('Days must be more then 1 and less then 31');
+      return notyf.error('Days must be more than 1 and less than 31');
 
     if (difference?.days >= MIN_GOAL_DAYS) {
       setGoalDays(difference?.days);
@@ -138,6 +139,7 @@ const TrainingPage = ({
 
         <ContainerButton>
           <CommonButton
+            isFetching={isFetching}
             variant="accent"
             title="Start training"
             onClick={handleStartTraining}

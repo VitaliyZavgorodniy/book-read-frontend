@@ -12,6 +12,7 @@ import App from 'components/App';
 import 'index.css';
 import 'fonts.css';
 import 'notyf/notyf.min.css';
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 
 const rootElement = document.getElementById('root');
 
