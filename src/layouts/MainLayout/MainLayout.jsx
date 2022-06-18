@@ -2,11 +2,17 @@ import { Outlet } from 'react-router-dom';
 
 import Navigation from 'components/Navigation/Navigation';
 import Main from 'components/UI-kit/containers/Main';
-import Container from 'components/UI-kit/containers/Container';
+import Header from 'components/Header';
+
+import LogoutModal from 'components/Modals/LogoutModal';
 
 const MainLayout = () => (
   <>
-    <Navigation />
+    <LogoutModal />
+
+    <Header>
+      <Navigation />
+    </Header>
     <Main>
       <Outlet />
     </Main>
