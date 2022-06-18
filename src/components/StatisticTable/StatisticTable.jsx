@@ -49,23 +49,17 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 280px;
+  width: 100%;
   background-color: ${(p) => p.theme.colors.bgSecondary};
-  padding: 18px 24px 14px;
+  box-shadow: ${(p) => p.theme.shadows.chartItem};
+  padding: 12px 20px;
 
   @media ${breakpoints.tablet} {
-    width: 704px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 232px;
-    padding-right: 232px;
+    padding: 22px 30px;
   }
+
   @media ${breakpoints.desktop} {
-    width: 288px;
-    height: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 18px 24px 14px;
+    padding: 18px 24px;
   }
 `;
 
