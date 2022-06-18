@@ -28,6 +28,7 @@ const StatisticsPage = ({ status, training, stats, onLoadTraining }) => {
 
   useEffect(() => {
     if (!status) dispatch(authActions.setTrainingStatus(false));
+    if (status) dispatch(authActions.setTrainingStatus(true));
   }, [status]);
 
   const handleDaysDifference = (start) => {
@@ -124,9 +125,11 @@ const StatisticsPage = ({ status, training, stats, onLoadTraining }) => {
         )}
 
         {/* Result-statistic section */}
-        <StatisticWrapper>
-          {stats.length ? <StatisticTable items={stats} /> : null}
-        </StatisticWrapper>
+        {stats.length ? (
+          <StatisticWrapper>
+            <StatisticTable items={stats} />
+          </StatisticWrapper>
+        ) : null}
       </WrapperDown>
     </Wrapper>
   );

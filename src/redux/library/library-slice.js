@@ -1,8 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import libraryOperations from './library-operations';
+import { authOperations } from 'redux/auth';
 
 const initialState = {
-  isFetching: false,
+  isFetching: true,
   books: {
     total: 0,
     pending: [],
@@ -69,6 +70,17 @@ const librarySlice = createSlice({
     },
     [libraryOperations.addReview.rejected]: (state) => {
       state.isFetching = false;
+    },
+
+    [authOperations.logout.fulfilled]: (state) => {
+      state.isFetching = true;
+      state.books = {
+        total: 0,
+        pending: [],
+        reading: [],
+        completed: [],
+      };
+      state.foundBooks = [];
     },
   },
 });

@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { breakpoints } from 'constants/breakpoints';
 
 import { ImStatsDots, ImList } from 'react-icons/im';
+import { MdMenuBook } from 'react-icons/md';
 
 import iconBook from 'assets/icons/book.svg';
 import iconHome from 'assets/icons/home.svg';
@@ -32,7 +33,9 @@ const NavMenu = ({ isOnTraining }) => {
               to="/statistics"
               style={({ isActive }) => (isActive ? activeStyle : null)}
             >
-              {styledIcon(<ImStatsDots />)}
+              <NavIconStyled>
+                <ImStatsDots />
+              </NavIconStyled>
             </NavLink>
           ) : (
             <NavLink
@@ -48,7 +51,9 @@ const NavMenu = ({ isOnTraining }) => {
             to="/reviews"
             style={({ isActive }) => (isActive ? activeStyle : null)}
           >
-            {styledIcon(<ImList />)}
+            <NavIconStyled>
+              <ImList />
+            </NavIconStyled>
           </NavLink>
         </NavItem>
         <NavItem>

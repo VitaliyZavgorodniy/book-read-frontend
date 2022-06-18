@@ -17,11 +17,19 @@ import { timeFormatToString } from 'utils/timeFormatToString';
 const BooksTable = ({ books, onUpdateStats }) => {
   const [isOpenModal, setOpenModal] = useState(false);
   const [statsBook, setStatsBook] = useState(null);
-  const [statsPages, setStatsPages] = useState('');
+  const [statsPages, setStatsPages] = useState('1');
+  const [pagesError, setPagesError] = useState('');
 
   const handleStatUpdate = () => {
+    if (
+      Number(statsPages) < 1 ||
+      Number(statsPages) > statsBook.pages - statsBook.pagesRead
+    ) {
+      return setPagesError('Invalid pages amount');
+    }
+
     onUpdateStats({
-      bookId: statsBook,
+      bookId: statsBook._id,
       date: timeFormatToString(new Date()),
       pages: statsPages,
     });
@@ -31,8 +39,8 @@ const BooksTable = ({ books, onUpdateStats }) => {
     setOpenModal(false);
   };
 
-  const handleOpenModal = (bookID) => {
-    setStatsBook(bookID);
+  const handleOpenModal = (bookData) => {
+    setStatsBook(bookData);
     setOpenModal(true);
   };
 
@@ -47,7 +55,9 @@ const BooksTable = ({ books, onUpdateStats }) => {
           <BodyCell>{isCompleted ? null : `${pagesRead} / ${pages}`}</BodyCell>
           <BodyCell>
             {isCompleted ? null : (
-              <IconButton onClick={() => handleOpenModal(_id)}>
+              <IconButton
+                onClick={() => handleOpenModal({ _id, pagesRead, pages })}
+              >
                 <AiOutlinePlus />
               </IconButton>
             )}
@@ -64,11 +74,16 @@ const BooksTable = ({ books, onUpdateStats }) => {
       {isOpenModal && (
         <Modal onClose={() => setOpenModal(false)}>
           <ModalWrapper>
-            <Title>Training results</Title>
+            <Title>
+              Training results (Left: {statsBook.pages - statsBook.pagesRead})
+            </Title>
             <ItemWrapper>
               <CommonInput
+                type="number"
                 title="Amount of pages"
+                error={pagesError}
                 value={statsPages}
+                placeholer="1"
                 onChange={(e) => setStatsPages(e.target.value)}
               />
             </ItemWrapper>

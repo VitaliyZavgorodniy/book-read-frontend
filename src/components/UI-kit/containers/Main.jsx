@@ -5,7 +5,7 @@ const Main = ({ children }) => <Wrapper>{children}</Wrapper>;
 
 const Wrapper = styled.main`
   width: 100%;
-  min-height: 100vh;
+  min-height: calc(100vh - 60px);
   padding: 40px 16px 0;
   padding: 0 16px 0;
   background-color: ${(p) => p.theme.colors.bgPrimary};

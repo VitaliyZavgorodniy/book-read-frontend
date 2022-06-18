@@ -35,7 +35,7 @@ const Overlay = styled.div`
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  min-height: calc(100vh - 60px);
   display: flex;
   justify-content: center;
   align-items: center;

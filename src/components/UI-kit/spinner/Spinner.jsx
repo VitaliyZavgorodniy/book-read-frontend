@@ -9,8 +9,8 @@ const Spinner = () => {
         height={100}
         width={100}
         strokeWidth={5}
-        color="red"
-        secondaryColor="yellow"
+        color="#FF6B08"
+        secondaryColor="#6D7A8D"
       />
     </Wrapper>
   );

@@ -14,6 +14,7 @@ import InfoBlockIntro from './InfoBlockIntro';
 import FormAddBook from './FormAddBook';
 import CommonButton from 'components/UI-kit/buttons/CommonButton';
 import IconButton from 'components/UI-kit/buttons/IconButton';
+import Spinner from 'components/UI-kit/spinner/Spinner';
 const modalRoot = document.querySelector('#modal-root');
 
 const HomePage = ({
@@ -119,7 +120,7 @@ const Overlay = styled.div`
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  min-height: calc(100vh - 60px);
   overflow: auto;
   pointer-events: auto;
   background-color: ${(p) => p.theme.colors.bgPrimary};

@@ -22,6 +22,8 @@ import { authActions } from 'redux/auth';
 const MIN_GOAL_DAYS = 1;
 const MAX_GOAL_DAYS = 31;
 const MIN_GOAL_BOOKS = 1;
+const date = new Date();
+date.setDate(date.getDate() + 3);
 
 const TrainingPage = ({
   pendingBooks,
@@ -35,7 +37,7 @@ const TrainingPage = ({
   const navigate = useNavigate();
   const notyf = new Notyf();
 
-  const [endDate, setEndDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(date);
   const [listedBooks, setListedBooks] = useState([]);
   const [goalBooks, setGoalBooks] = useState(0);
   const [goalDays, setGoalDays] = useState(0);

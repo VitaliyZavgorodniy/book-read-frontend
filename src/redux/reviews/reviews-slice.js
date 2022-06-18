@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import reviewsOperations from './reviews-operations';
+import { authOperations } from 'redux/auth';
 
 const initialState = {
   isFetching: false,
@@ -19,6 +20,11 @@ const reviewsSlice = createSlice({
     },
     [reviewsOperations.fetch.rejected]: (state) => {
       state.isFetching = false;
+    },
+
+    [authOperations.logout.fulfilled]: (state) => {
+      state.isFetching = false;
+      state.list = [];
     },
   },
 });

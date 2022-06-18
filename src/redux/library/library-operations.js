@@ -40,8 +40,6 @@ const createBook = createAsyncThunk(
   }
 );
 
-
-
 const searchBooks = createAsyncThunk(
   'library/searchBooks',
   async (query, { rejectWithValue }) => {
@@ -61,7 +59,6 @@ const searchBooks = createAsyncThunk(
 const addReview = createAsyncThunk(
   'library/addReview',
   async (review, { rejectWithValue }) => {
-    console.log({ addReview: review });
     try {
       const updated = await axios.post('/books/add-review', review);
 
@@ -81,7 +78,6 @@ const addReview = createAsyncThunk(
 const updateReview = createAsyncThunk(
   'library/updateReview',
   async (review, { rejectWithValue }) => {
-    console.log({ updateReview: review });
     try {
       const updated = await axios.post('/books/update-review', review);
 

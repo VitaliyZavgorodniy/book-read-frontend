@@ -33,9 +33,12 @@ const Button = styled.button`
   font-weight: 500;
   font-size: 14px;
   line-height: 17px;
+  transition: ${(p) => p.theme.animations.primary} box-shadow;
 
   &:hover {
     cursor: pointer;
+    box-shadow: ${(p) =>
+      p.variant === 'accent' ? p.theme.shadows.accent : p.theme.shadows.button};
   }
 
   &:disabled {

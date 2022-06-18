@@ -20,6 +20,7 @@ const Header = styled.header`
   z-index: 2;
   background-color: ${(p) => p.theme.colors.bgSecondary};
   box-shadow: ${(p) => p.theme.shadows.block};
+  height: 60px;
 `;
 
 const HeaderContainer = styled.div`

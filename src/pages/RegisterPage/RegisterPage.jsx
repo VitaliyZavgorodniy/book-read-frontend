@@ -81,7 +81,7 @@ const Overlay = styled.div`
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  min-height: calc(100vh - 60px);
   overflow: auto;
   background-color: white;
 `;
@@ -141,8 +141,8 @@ const RegisterBlock = styled.div`
         ${(p) => p.theme.colors.bgAlpha}
       ),
       url(${(p) => p.theme.backgrounds.regMb_2x});
-      background-size: cover;
-      background-repeat: no-repeat;
+    background-size: cover;
+    background-repeat: no-repeat;
   }
 
   @media ${breakpoints.tablet} {
@@ -153,8 +153,8 @@ const RegisterBlock = styled.div`
         ${(p) => p.theme.colors.bgAlpha}
       ),
       url(${(p) => p.theme.backgrounds.regTb});
-      background-size: cover;
-      background-repeat: no-repeat;
+    background-size: cover;
+    background-repeat: no-repeat;
 
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
@@ -165,8 +165,8 @@ const RegisterBlock = styled.div`
           ${(p) => p.theme.colors.bgAlpha}
         ),
         url(${(p) => p.theme.backgrounds.regTb_2x});
-        background-size: cover;
-        background-repeat: no-repeat;
+      background-size: cover;
+      background-repeat: no-repeat;
     }
   }
   @media ${breakpoints.desktop} {
@@ -177,8 +177,8 @@ const RegisterBlock = styled.div`
         ${(p) => p.theme.colors.bgAlpha}
       ),
       url(${(p) => p.theme.backgrounds.regDs});
-      background-size: cover;
-      background-repeat: no-repeat;
+    background-size: cover;
+    background-repeat: no-repeat;
 
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
@@ -189,8 +189,8 @@ const RegisterBlock = styled.div`
           ${(p) => p.theme.colors.bgAlpha}
         ),
         url(${(p) => p.theme.backgrounds.regDs_2x});
-        background-size: cover;
-        background-repeat: no-repeat;
+      background-size: cover;
+      background-repeat: no-repeat;
     }
   }
 `;

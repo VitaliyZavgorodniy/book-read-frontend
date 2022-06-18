@@ -15,7 +15,7 @@ const StatisticsChart = ({ daysAmount, pagesAmount, stats, startDate }) => {
 
   const daysArray = Array.from({ length: daysAmount }, (_, i) => i + 1);
 
-  const avargeData = () => {
+  const averageData = () => {
     const calculateFact = () => {
       const dtInterval = Interval.fromDateTimes(
         dt.fromISO(startDate),
@@ -50,9 +50,9 @@ const StatisticsChart = ({ daysAmount, pagesAmount, stats, startDate }) => {
     };
 
     const calculatePlan = () => {
-      const avargePages = Math.floor(pagesAmount / daysAmount);
+      const averagePages = Math.floor(pagesAmount / daysAmount);
 
-      const plan = daysArray.map(() => 1 * avargePages);
+      const plan = daysArray.map(() => 1 * averagePages);
 
       return plan;
     };
@@ -110,9 +110,9 @@ const StatisticsChart = ({ daysAmount, pagesAmount, stats, startDate }) => {
     };
 
     const calculatePlan = () => {
-      const avargePages = Math.floor(pagesAmount / daysAmount);
+      const averagePages = Math.floor(pagesAmount / daysAmount);
 
-      const plan = daysArray.map((item) => item * avargePages);
+      const plan = daysArray.map((item) => item * averagePages);
 
       return plan;
     };
@@ -134,7 +134,7 @@ const StatisticsChart = ({ daysAmount, pagesAmount, stats, startDate }) => {
     <ChartBlock>
       <ModeContainer>
         <ModeSelector isActive={mode === 0} onClick={() => setMode(0)}>
-          Avarge
+          Average
         </ModeSelector>
         <ModeSelector isActive={mode === 1} onClick={() => setMode(1)}>
           Overall
@@ -144,7 +144,7 @@ const StatisticsChart = ({ daysAmount, pagesAmount, stats, startDate }) => {
         mode={mode}
         labels={daysArray}
         pagesAmount={pagesAmount}
-        avargeData={avargeData()}
+        averageData={averageData()}
         overallData={overallData()}
       />
     </ChartBlock>
@@ -184,9 +184,12 @@ const ModeSelector = styled.button`
     p.isActive ? p.theme.colors.contrast : p.theme.colors.primary};
   background-color: ${(p) =>
     p.isActive ? p.theme.colors.accent : p.theme.bgLight};
+  transition: ${(p) => p.theme.animations.primary} box-shadow;
 
   &:hover {
     cursor: pointer;
+    box-shadow: ${(p) =>
+      p.isActive ? p.theme.shadows.accent : p.theme.shadows.button};
   }
 
   &:last-child {
