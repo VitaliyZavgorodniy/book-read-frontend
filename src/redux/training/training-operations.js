@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { Notyf } from 'notyf';
 
 axios.defaults.baseURL = process.env.REACT_APP_BACKEND_LINK;
 
@@ -9,7 +8,6 @@ const fetch = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const { data } = await axios.get('/training');
-
       return data.result;
     } catch (err) {
       return rejectWithValue(err?.response?.data);
@@ -31,14 +29,16 @@ const start = createAsyncThunk(
 );
 
 const updatePages = createAsyncThunk(
-  'training/fetch',
+  'training/updatePages',
   async (value, { rejectWithValue }) => {
     try {
-      const update = await axios.post('/training/add-pages', value);
+      const {
+        data: { result },
+      } = await axios.post('/training/add-pages', value);
 
       const { data } = await axios.get('/training');
 
-      return data.result;
+      return { ...data.result, ...result };
     } catch (err) {
       return rejectWithValue(err?.response?.data);
     }

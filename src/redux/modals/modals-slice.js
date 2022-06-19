@@ -1,9 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
+
 import { authOperations } from 'redux/auth';
 
 const initialState = {
   isLogoutModalOpen: false,
   isAddBookPopupOpen: true,
+  isReadBookModalOpen: false,
 };
 
 const modalsSlice = createSlice({

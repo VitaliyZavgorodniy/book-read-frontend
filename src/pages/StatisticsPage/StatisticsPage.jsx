@@ -12,6 +12,8 @@ import StatisticsChart from 'components/StatisticsChart';
 import StatisticTable from 'components/StatisticTable';
 import BooksTable from './BooksTable';
 import BooksList from './BooksList';
+import TrainingCompleteModal from 'components/Modals/TrainingCompleteModal';
+import BookCompletedModal from 'components/Modals/BookCompletedModal';
 
 import { getCurrentEndYearDate } from 'utils/getCurrentEndYearDate';
 import { getTimeDifference } from 'utils/getTimeDifference';
@@ -73,6 +75,9 @@ const StatisticsPage = ({ status, training, stats, onLoadTraining }) => {
 
   return (
     <Container>
+      <TrainingCompleteModal />
+      <BookCompletedModal />
+
       <ContainerLeft>
         <ContainerCounters>
           <CountdownPanel
