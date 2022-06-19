@@ -1,5 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { breakpoints } from 'constants/breakpoints';
+import Media from 'react-media';
 
 import Popup from 'hoc/Popup';
 
@@ -14,9 +16,7 @@ const AboutAppModal = ({ isNewUser, setNewUser }) => {
     navigate(link);
   };
 
-  if (isNewUser) return null;
-
-  return (
+  const renderModal = () => (
     <Popup>
       <InfoBlockAbout />
 
@@ -40,6 +40,10 @@ const AboutAppModal = ({ isNewUser, setNewUser }) => {
       </ContainerButtons>
     </Popup>
   );
+
+  if (isNewUser) return null;
+
+  return <Media query={breakpoints.maxTablet} render={renderModal} />;
 };
 
 const ContainerButtons = styled.div`
