@@ -20,10 +20,9 @@ import { timeFormatToString } from 'utils/timeFormatToString';
 import { timeFormatToDT } from 'utils/timeFormatToDT';
 
 const MIN_GOAL_DAYS = 1;
+const MIN_GOAL_MINUTES = 59;
 const MAX_GOAL_DAYS = 31;
 const MIN_GOAL_BOOKS = 1;
-const date = new Date();
-date.setDate(date.getDate() + 3);
 
 const TrainingPage = ({
   isFetching,
@@ -37,15 +36,10 @@ const TrainingPage = ({
   const navigate = useNavigate();
   const notyf = new Notyf();
 
-  const [endDate, setEndDate] = useState(date);
+  const [endDate, setEndDate] = useState(new Date());
   const [listedBooks, setListedBooks] = useState([]);
   const [goalBooks, setGoalBooks] = useState(0);
   const [goalDays, setGoalDays] = useState(0);
-
-  const isAvailable =
-    goalBooks >= MIN_GOAL_BOOKS &&
-    goalDays >= MIN_GOAL_DAYS &&
-    goalDays <= MAX_GOAL_DAYS;
 
   const boardData = [
     {
@@ -79,20 +73,32 @@ const TrainingPage = ({
     // eslint-disable-next-line
   }, [listedBooks]);
 
-  useEffect(() => {
+  const isDisabled = () => {
+    if (
+      goalBooks >= MIN_GOAL_BOOKS &&
+      goalDays >= MIN_GOAL_DAYS &&
+      goalDays <= MAX_GOAL_DAYS
+    )
+      return false;
+
+    return true;
+  };
+
+  const handleSetDate = (date) => {
     const difference = getTimeDifference(
       timeFormatToDT(new Date()),
-      timeFormatToDT(endDate)
+      timeFormatToDT(date)
     );
 
-    if (difference?.days <= MIN_GOAL_DAYS || difference?.days >= MAX_GOAL_DAYS)
+    if (
+      difference?.minutes < MIN_GOAL_MINUTES ||
+      difference?.days > MAX_GOAL_DAYS
+    )
       return notyf.error('Days must be more than 1 and less than 31');
 
-    if (difference?.days >= MIN_GOAL_DAYS) {
-      setGoalDays(difference?.days);
-    }
-    // eslint-disable-next-line
-  }, [endDate]);
+    setGoalDays(difference?.days === 0 ? 1 : difference?.days);
+    setEndDate(date);
+  };
 
   const handleAddBook = (book) => setListedBooks((state) => [...state, book]);
 
@@ -124,7 +130,7 @@ const TrainingPage = ({
             <DateInput
               title="End of training"
               value={endDate}
-              onChange={setEndDate}
+              onChange={handleSetDate}
             />
           </ContainerInput>
         </ContainerOptions>
@@ -143,7 +149,7 @@ const TrainingPage = ({
             variant="accent"
             title="Start training"
             onClick={handleStartTraining}
-            disabled={!isAvailable}
+            disabled={isDisabled()}
           />
         </ContainerButton>
       </Container>
