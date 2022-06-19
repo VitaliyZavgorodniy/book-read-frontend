@@ -12,10 +12,12 @@ import FormAddBook from './FormAddBook';
 import Container from 'components/UI-kit/containers/Container';
 import BooksList from 'components/BooksList';
 import CommonButton from 'components/UI-kit/buttons/CommonButton';
+import SkeletonHomePage from 'components/UI-kit/skeletons/SkeletonHomePage';
 
 import Popup from 'hoc/Popup';
 
 const HomePage = ({
+  isFetching,
   totalBooks,
   completedBooks,
   readingBooks,
@@ -24,7 +26,7 @@ const HomePage = ({
 }) => {
   const navigate = useNavigate();
 
-  const [isOpen, setOpen] = useState(true);
+  const [isOpen, setOpen] = useState(false);
 
   useEffect(() => {
     onLibraryLoad();
@@ -42,6 +44,8 @@ const HomePage = ({
       </Popup>
     );
   };
+
+  if (isFetching) return <SkeletonHomePage />;
 
   return (
     <Container>

@@ -3,7 +3,9 @@ import { breakpoints } from 'constants/breakpoints';
 
 import Heading from 'components/UI-kit/containers/Heading';
 
-const GoalsBoard = ({ data, padding }) => {
+const GoalsBoard = ({ data }) => {
+  const length = data.length;
+
   const renderScores = () => {
     const elementHTML = data.map(({ id, label, value, accent }) => (
       <Item key={id}>
@@ -17,63 +19,68 @@ const GoalsBoard = ({ data, padding }) => {
 
   return (
     <Wrapper>
-      <HeadingWrapper>
+      <ContainerHeading>
         <Heading>My goals</Heading>
-      </HeadingWrapper>
-      <List padding={padding}>{renderScores()}</List>
+      </ContainerHeading>
+      <List>{renderScores()}</List>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 280px;
-  margin: 0 auto;
+  padding: 0;
   background-color: ${(p) => p.theme.colors.bgSecondary};
   box-shadow: ${(p) => p.theme.shadows.booksItem};
 
   @media ${breakpoints.tablet} {
-    display: flex;
-    justify-content: space-between;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
     width: 704px;
-    padding: 20px 43px 26px 42px;
+    padding: 20px 42px;
   }
 
   @media ${breakpoints.desktop} {
+    display: flex;
+    flex-direction: column;
     width: 288px;
-    display: block;
     padding: 0;
   }
 `;
 
-const HeadingWrapper = styled.div`
+const ContainerHeading = styled.div`
+  width: 100%;
+
   @media ${breakpoints.tablet} {
     width: 275px;
-    justify-content: space-between;
-    /* margin-right: 100px; */
   }
+
   @media ${breakpoints.desktop} {
     width: 100%;
-    margin-right: 0;
   }
 `;
 
 const List = styled.ul`
   display: flex;
-
-  padding: ${(p) => (p.padding === 'sm' ? '32px' : '44px')} 0;
-
-  justify-content: space-around;
+  justify-content: space-evenly;
+  width: 100%;
+  padding: 32px 0;
 
   @media ${breakpoints.tablet} {
-    width: 324px;
     justify-content: space-between;
+    width: auto;
+    margin-left: 20px;
     padding: 0;
   }
 
   @media ${breakpoints.desktop} {
-    width: 100%;
-    padding: 48px 0;
     justify-content: space-evenly;
+    width: 100%;
+    margin: 0;
+    padding: 80px 0;
   }
 `;
 
@@ -81,6 +88,15 @@ const Item = styled.li`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media ${breakpoints.onlyTablet} {
+    justify-content: space-between;
+    margin-right: 12px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
 `;
 
 const Value = styled.p`

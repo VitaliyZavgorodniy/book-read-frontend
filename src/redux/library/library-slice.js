@@ -3,6 +3,8 @@ import libraryOperations from './library-operations';
 import { authOperations } from 'redux/auth';
 
 const initialState = {
+  isAddingBook: false,
+  isSearching: false,
   isFetching: true,
   books: {
     total: 0,
@@ -16,6 +18,11 @@ const initialState = {
 const librarySlice = createSlice({
   name: 'library',
   initialState,
+  reducers: {
+    clearPredictions: (state) => {
+      state.foundBooks = [];
+    },
+  },
   extraReducers: {
     [libraryOperations.fetch.pending]: (state) => {
       state.isFetching = true;
@@ -29,25 +36,27 @@ const librarySlice = createSlice({
     },
 
     [libraryOperations.createBook.pending]: (state) => {
-      state.isFetching = true;
+      state.isAddingBook = true;
     },
     [libraryOperations.createBook.fulfilled]: (state, { payload }) => {
-      state.books = payload;
-      state.isFetching = false;
+      state.books.pending = [...state.books.pending, payload];
+      state.isAddingBook = false;
     },
     [libraryOperations.createBook.rejected]: (state) => {
-      state.isFetching = false;
+      state.isAddingBook = false;
     },
 
     [libraryOperations.searchBooks.pending]: (state) => {
-      state.isFetching = true;
+      state.isSearching = true;
+      state.foundBooks = [];
     },
     [libraryOperations.searchBooks.fulfilled]: (state, { payload }) => {
       state.foundBooks = payload;
-      state.isFetching = false;
+      state.isSearching = false;
     },
     [libraryOperations.searchBooks.rejected]: (state) => {
-      state.isFetching = false;
+      state.isSearching = false;
+      state.foundBooks = [];
     },
 
     [libraryOperations.updateReview.pending]: (state) => {
@@ -73,7 +82,6 @@ const librarySlice = createSlice({
     },
 
     [authOperations.logout.fulfilled]: (state) => {
-      state.isFetching = true;
       state.books = {
         total: 0,
         pending: [],
@@ -85,4 +93,5 @@ const librarySlice = createSlice({
   },
 });
 
+export const libraryActions = librarySlice.actions;
 export default librarySlice.reducer;

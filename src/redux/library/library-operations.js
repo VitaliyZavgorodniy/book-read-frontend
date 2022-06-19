@@ -27,9 +27,11 @@ const createBook = createAsyncThunk(
   'library/creatBook',
   async (book, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post('/books', book);
+      const {
+        data: { result },
+      } = await axios.post('/books', book);
 
-      return data.result;
+      return result;
     } catch (err) {
       const errorMsg = err?.response?.data?.message;
 

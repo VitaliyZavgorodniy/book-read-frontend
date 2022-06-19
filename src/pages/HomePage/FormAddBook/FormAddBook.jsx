@@ -12,6 +12,9 @@ const FormAddBook = ({
   onCreate,
   isModal,
   handleClose,
+  isFetching,
+  isSearching,
+  clearSearch,
 }) => {
   const [id, setID] = useState(null);
   const [title, setTitle] = useState('');
@@ -35,6 +38,10 @@ const FormAddBook = ({
     setTitle(e.target.value);
     if (e.target.value.length > 3) debouncedSearch(e.target.value);
   };
+
+  useEffect(() => {
+    clearSearch();
+  }, [title]);
 
   useEffect(() => {
     setErrorTitle('');
@@ -129,10 +136,11 @@ const FormAddBook = ({
             placeholder="..."
             value={title}
             error={errorTitle}
+            isFetching={isSearching}
             autofocus
             onChange={handleSearch}
           />
-          {prediction.length && title.length >= 3 && !id ? (
+          {prediction.length && title.length >= 3 && !id && !isSearching ? (
             <Prediction>{renderPrediction()}</Prediction>
           ) : null}
         </InputWrapper>
@@ -143,7 +151,7 @@ const FormAddBook = ({
             error={errorAuthor}
             value={author}
             onChange={(e) => setAuthor(e.target.value)}
-            disabled={!!id}
+            disabled={!!id || isFetching}
           />
         </InputWrapper>
 
@@ -155,7 +163,7 @@ const FormAddBook = ({
             error={errorYear}
             value={year}
             onChange={(e) => setYear(e.target.value)}
-            disabled={!!id}
+            disabled={!!id || isFetching}
           />
         </InputWrapper>
 
@@ -167,13 +175,18 @@ const FormAddBook = ({
             error={errorPages}
             value={pages}
             onChange={(e) => setPages(e.target.value)}
-            disabled={!!id}
+            disabled={!!id || isFetching}
           />
         </InputWrapper>
       </InputList>
 
       <ButtonWrapper>
-        <CommonButton title="Add" type="submit" onClick={handleSubmit} />
+        <CommonButton
+          title="Add"
+          isFetching={isFetching}
+          type="submit"
+          onClick={handleSubmit}
+        />
       </ButtonWrapper>
     </Wrapper>
   );

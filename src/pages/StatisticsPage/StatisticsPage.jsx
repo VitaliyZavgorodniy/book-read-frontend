@@ -87,25 +87,19 @@ const StatisticsPage = ({ status, training, stats, onLoadTraining }) => {
         </ContainerCounters>
 
         <Media
-          queries={{
-            other: '(max-width: 767px)',
-          }}
-        >
-          {({ other }) =>
-            other && (
-              <ContainerGoals>
-                <GoalsBoard data={dataGoals} />
-              </ContainerGoals>
-            )
-          }
-        </Media>
+          query={breakpoints.maxDesktop}
+          render={() => (
+            <ContainerGoals>
+              <GoalsBoard data={dataGoals} />
+            </ContainerGoals>
+          )}
+        />
 
         <ContainerBooks>
           <Media
             queries={{
-              other: '(max-width: 767px)',
+              other: breakpoints.maxTablet,
               tablet: breakpoints.tablet,
-              desktop: breakpoints.desktop,
             }}
           >
             {({ other, tablet }) => (
@@ -131,24 +125,19 @@ const StatisticsPage = ({ status, training, stats, onLoadTraining }) => {
 
       <ContainerRight>
         <Media
-          queries={{
-            tablet: breakpoints.tablet,
-          }}
-        >
-          {({ tablet }) =>
-            tablet && (
-              <ContainerGoals>
-                <GoalsBoard data={dataGoals} padding={'sm'} />
-              </ContainerGoals>
-            )
-          }
-        </Media>
+          query={breakpoints.desktop}
+          render={() => (
+            <ContainerGoals>
+              <GoalsBoard data={dataGoals} />
+            </ContainerGoals>
+          )}
+        />
 
-        {stats.length && (
+        {stats.length ? (
           <ContainerStats>
             <StatisticTable items={stats} />
           </ContainerStats>
-        )}
+        ) : null}
       </ContainerRight>
     </Container>
   );

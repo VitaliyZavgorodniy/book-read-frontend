@@ -1,5 +1,8 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { theme } from 'constants/theme';
+
+import { Bars } from 'react-loader-spinner';
 
 const CommonInput = ({
   id,
@@ -8,6 +11,7 @@ const CommonInput = ({
   type,
   value,
   onChange,
+  isFetching,
   error,
   disabled,
   autofocus,
@@ -28,11 +32,17 @@ const CommonInput = ({
       onChange={onChange}
       {...props}
     />
+    {isFetching && (
+      <Loader>
+        <Bars width={20} height={20} color={theme.colors.accent} />
+      </Loader>
+    )}
     <ErrorMessage>{error}</ErrorMessage>
   </Wrapper>
 );
 
 const Wrapper = styled.div`
+  position: relative;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -89,6 +99,13 @@ const Input = styled.input`
   &::-webkit-inner-spin-button {
     -webkit-appearance: none;
   }
+`;
+
+const Loader = styled.div`
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
 `;
 
 const ErrorMessage = styled.p`

@@ -8,6 +8,9 @@ import PrivateRoute from 'hoc/PrivateRoute';
 import PublicRoute from 'hoc/PublicRoute';
 import LoginGoogle from 'pages/LoginGoogle';
 import Spinner from './UI-kit/spinner/Spinner';
+import Loading from 'components/Loading';
+
+import SkeletonHomePage from './UI-kit/skeletons/SkeletonHomePage';
 
 import { authOperations, authSelectors } from 'redux/auth';
 
@@ -27,7 +30,7 @@ const App = () => {
     dispatch(authOperations.refresh());
   }, [dispatch]);
 
-  if (isFetching) return <Spinner />;
+  if (isFetching) return <Loading />;
 
   return (
     <Routes>
@@ -36,7 +39,7 @@ const App = () => {
           <Route
             index
             element={
-              <Suspense fallback={<Spinner />}>
+              <Suspense fallback={<SkeletonHomePage />}>
                 <HomePage />
               </Suspense>
             }
