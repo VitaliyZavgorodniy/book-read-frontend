@@ -50,6 +50,7 @@ const LoginForm = ({ onLogin, isFetching }) => {
               placeholder="your@email.com"
               name="email"
               type="text"
+              autoComplete="username"
               disabled={isFetching}
               value={values.email}
               onChange={handleChange}
@@ -63,6 +64,7 @@ const LoginForm = ({ onLogin, isFetching }) => {
               required
               title="Password"
               placeholder="********"
+              autoComplete="current-password"
               name="password"
               type="password"
               disabled={isFetching}
@@ -77,6 +79,7 @@ const LoginForm = ({ onLogin, isFetching }) => {
 
           <ItemWrapper>
             <CommonButton
+              isFetching={isFetching}
               type="submit"
               title="Login"
               variant="accent"

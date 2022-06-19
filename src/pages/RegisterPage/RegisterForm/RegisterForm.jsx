@@ -70,6 +70,7 @@ const RegisterForm = ({ onRegister, isFetching }) => {
               title="Email"
               placeholder="your@email.com"
               name="email"
+              autoComplete="username"
               type="text"
               disabled={isFetching}
               value={values.email}
@@ -84,6 +85,7 @@ const RegisterForm = ({ onRegister, isFetching }) => {
               required
               title="Password"
               placeholder="********"
+              autoComplete="new-password"
               name="password"
               type="password"
               disabled={isFetching}
@@ -101,6 +103,7 @@ const RegisterForm = ({ onRegister, isFetching }) => {
               required
               title="Confirm password"
               placeholder="********"
+              autoComplete="new-password"
               name="confirm"
               type="password"
               disabled={isFetching}
@@ -114,6 +117,7 @@ const RegisterForm = ({ onRegister, isFetching }) => {
 
           <ItemWrapper>
             <CommonButton
+              isFetching={isFetching}
               type="submit"
               title="Register"
               variant="accent"

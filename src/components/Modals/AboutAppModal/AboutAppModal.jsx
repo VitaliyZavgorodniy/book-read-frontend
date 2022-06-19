@@ -1,31 +1,20 @@
-import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-
-import useLocalStorage from 'hooks/useLocalStorage';
 
 import Popup from 'hoc/Popup';
 
 import InfoBlockAbout from 'pages/RegisterPage/InfoBlockAbout';
 import CommonButton from 'components/UI-kit/buttons/CommonButton';
 
-const AboutAppModal = () => {
+const AboutAppModal = ({ isNewUser, setNewUser }) => {
   const navigate = useNavigate();
 
-  const [visited, setVisited] = useLocalStorage('visited', false);
-  const [isOpen, setOpen] = useState(true);
-
-  useEffect(() => {
-    if (visited) setOpen(false);
-  }, [visited]);
-
-  const handleLink = async (link) => {
-    await setVisited(true);
-    setOpen(!isOpen);
+  const handleLink = (link) => {
+    setNewUser();
     navigate(link);
   };
 
-  if (!isOpen && visited) return null;
+  if (isNewUser) return null;
 
   return (
     <Popup>

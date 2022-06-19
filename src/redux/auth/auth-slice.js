@@ -2,18 +2,24 @@ import { createSlice } from '@reduxjs/toolkit';
 import authOperations from './auth-operations';
 
 const initialState = {
+  isNewUser: false,
   token: null,
   name: null,
   avatarURL: null,
   isOnTraining: false,
   isFetching: false,
   isLoggedIn: false,
+  isLoading: false,
 };
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
+    setNewUser: (state) => {
+      console.log('isNewUser');
+      state.isNewUser = true;
+    },
     refreshToken: (state, { payload }) => {
       state.token = payload;
     },
@@ -58,20 +64,21 @@ const authSlice = createSlice({
       state.avatarURL = null;
       state.isFetching = false;
       state.isOnTraining = false;
+      state.isLoading = false;
     },
 
     [authOperations.refresh.pending]: (state) => {
-      state.isFetching = true;
+      state.isLoading = true;
     },
     [authOperations.refresh.fulfilled]: (state, { payload }) => {
       state.name = payload.name;
       state.avatarURL = payload.avatarURL;
       state.isOnTraining = payload.isOnTraining;
       state.isLoggedIn = true;
-      state.isFetching = false;
+      state.isLoading = false;
     },
     [authOperations.refresh.rejected]: (state) => {
-      state.isFetching = false;
+      state.isLoading = false;
     },
   },
 });

@@ -5,21 +5,24 @@ import { AnimatePresence } from 'framer-motion';
 
 import MainLayout from 'layouts/MainLayout';
 import PublicLayout from 'layouts/PublicLayout';
+
+import RegisterPage from 'pages/RegisterPage';
+import LoginPage from 'pages/LoginPage';
+import LoginGoogle from 'pages/LoginGoogle';
+
 import PrivateRoute from 'hoc/PrivateRoute';
 import PublicRoute from 'hoc/PublicRoute';
-import LoginGoogle from 'pages/LoginGoogle';
+
 import Spinner from 'components/UI-kit/spinner/Spinner';
 import Header from 'components/Header';
 import Loading from 'components/Loading';
 import Navigation from 'components/Navigation';
 
-import SkeletonHomePage from './UI-kit/skeletons/SkeletonHomePage';
+import SkeletonHomePage from 'components/UI-kit/skeletons/SkeletonHomePage';
 
 import { authOperations, authSelectors } from 'redux/auth';
 
 const HomePage = lazy(() => import('pages/HomePage'));
-const RegisterPage = lazy(() => import('pages/RegisterPage'));
-const LoginPage = lazy(() => import('pages/LoginPage'));
 const TrainingPage = lazy(() => import('pages/TrainingPage'));
 const StatisticsPage = lazy(() => import('pages/StatisticsPage'));
 const ReviewsPage = lazy(() => import('pages/ReviewsPage'));
@@ -28,13 +31,18 @@ const App = () => {
   const location = useLocation();
   const dispatch = useDispatch();
 
-  const isFetching = useSelector(authSelectors.getIsFetching);
+  const isFetching = useSelector(authSelectors.getIsLoadUser);
 
   useEffect(() => {
     dispatch(authOperations.refresh());
   }, [dispatch]);
 
-  if (isFetching) return <Loading />;
+  if (isFetching)
+    return (
+      <AnimatePresence>
+        <Loading />
+      </AnimatePresence>
+    );
 
   return (
     <>
@@ -84,32 +92,9 @@ const App = () => {
 
         <Route path="/" element={<PublicLayout />}>
           <Route path="" element={<PublicRoute />}>
-            <Route
-              path="register"
-              element={
-                <Suspense fallback={<Spinner />}>
-                  <RegisterPage />
-                </Suspense>
-              }
-            />
-
-            <Route
-              path="login"
-              element={
-                <Suspense fallback={<Spinner />}>
-                  <LoginPage />
-                </Suspense>
-              }
-            />
-
-            <Route
-              path="login/google"
-              element={
-                <Suspense fallback={<Spinner />}>
-                  <LoginGoogle />
-                </Suspense>
-              }
-            />
+            <Route path="register" element={<RegisterPage />} />
+            <Route path="login" element={<LoginPage />} />
+            <Route path="login/google" element={<LoginGoogle />} />
           </Route>
         </Route>
       </Routes>

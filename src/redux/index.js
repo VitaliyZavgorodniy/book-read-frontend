@@ -26,7 +26,7 @@ import { modalsReducer } from './modals';
 const authPersistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['token'],
+  whitelist: ['token', 'isNewUser'],
 };
 
 const serializableMiddleware = createSerializableStateInvariantMiddleware({
