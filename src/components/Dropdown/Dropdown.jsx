@@ -1,102 +1,10 @@
-// import { useState } from 'react';
-// import styled from 'styled-components';
-
-// function Dropdown({ selected, setSelected }) {
-//   const [isActive, setIsActive] = useState(false);
-//   const options = ['UA', 'En'];
-
-//   return (
-//     <Wrapper>
-//       <DropdownBtn onClick={(e) => setIsActive(!isActive)}>
-//         {selected}
-//         <Fas></Fas>
-//       </DropdownBtn>
-
-//       {isActive && (
-//         <DropdownContent>
-//           {options.map((option) => (
-//             <DropdownItem
-//               onClick={(e) => {
-//                 selected(option);
-//                 setIsActive(false);
-//               }}
-//             >
-//               {option}
-//             </DropdownItem>
-//           ))}
-//         </DropdownContent>
-//       )}
-//     </Wrapper>
-//   );
-// }
-
-// const Wrapper = styled.div`
-//   width: 35px;
-//   user-select: none;
-//   margin: 0 auto;
-//   position: relative;
-// `;
-// const DropdownBtn = styled.div`
-//   pading: 15px 20px;
-//   background: #fff;
-//   font-weight: 300;
-//   font-size: 14px;
-//   color: #333;
-//   display: flex;
-//   align-items: center;
-//   justify-content: space-between;
-//   cursor: pointer;
-//   &:hover {
-//     background: #f5f7fa;
-//     box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
-//   }
-// `;
-
-// const DropdownContent = styled.div`
-//   position: absolute;
-//   top: 110%;
-//   left: 0;
-//   padding: 10px;
-//   background: #fff;
-//   box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
-//   font-weight: 400;
-//   font-size: 14px;
-//   color: #333;
-//   width: 100%;
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   justify-content: space-between;
-// `;
-// const DropdownItem = styled.div`
-//   padding: 10px;
-//   cursor: pointer;
-//   transition: all 0.2s;
-
-//   &:hover {
-//     background: #f5f7fa;
-//     box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
-//   }
-// `;
-// const Fas = styled.span`
-//   width: 0;
-//   height: 0;
-//   border-left: 4px solid transparent;
-//   border-right: 4px solid transparent;
-//   border-top: 8px solid grey;
-// `;
-
-// export default Dropdown;
-
 import React from 'react';
 import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import cookies from 'js-cookie';
-
 import LanguageIcon from '@mui/icons-material/Language';
-
 // import '../../Styles/flags.css';
 import styled from 'styled-components';
 
@@ -105,7 +13,7 @@ import i18next from 'i18next';
 import classNames from 'classnames';
 
 export default function Dropdown() {
-  const options = ['UA', 'En'];
+  // const options = ['UA', 'En'];
   const languages = [
     {
       code: 'en',
@@ -213,8 +121,5 @@ export default function Dropdown() {
   );
 }
 const Flags = styled.div`
-  // position: absolute;
   right: 0;
-  // padding-right: 20px;
-  // padding-top: 20px;
 `;
