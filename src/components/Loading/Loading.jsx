@@ -1,9 +1,15 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
 import Spinner from 'components/UI-kit/spinner/Spinner';
 
 const Loading = () => (
-  <Wrapper>
+  <Wrapper
+    as={motion.section}
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+  >
     <Title>BR</Title>
     <Spinner />
   </Wrapper>

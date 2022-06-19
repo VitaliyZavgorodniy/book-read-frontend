@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { breakpoints } from 'constants/breakpoints';
 import Media from 'react-media';
+import { motion } from 'framer-motion';
 
 import { AiOutlinePlus } from 'react-icons/ai';
 

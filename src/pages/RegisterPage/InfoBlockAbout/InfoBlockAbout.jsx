@@ -48,18 +48,6 @@ const InfoBlockAbout = () => (
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
-  padding-top: 32px;
-  padding-bottom: 60px;
-
-  @media ${breakpoints.tablet} {
-    padding-top: 64px;
-    padding-bottom: 88px;
-  }
-  @media ${breakpoints.desktop} {
-    padding-top: 179px;
-    padding-bottom: 0;
-  }
 `;
 
 const Title = styled.h1`
@@ -122,9 +110,9 @@ const Arrow = styled(MdOutlineKeyboardArrowRight)`
   color: ${(p) => p.theme.colors.accent};
   font-size: 16px;
 
-   @media ${breakpoints.tablet} {
-  top: 50%;
-  transform: translateY(-50%);
+  @media ${breakpoints.tablet} {
+    top: 50%;
+    transform: translateY(-50%);
   }
 `;
 

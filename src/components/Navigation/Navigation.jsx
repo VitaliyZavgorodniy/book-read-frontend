@@ -6,27 +6,28 @@ import UserPanel from 'components/UserPanel';
 import LogoutButton from 'components/LogoutButton';
 import NavigationMenu from './NavigationMenu';
 
-const Navigation = () => (
-  <Wrapper>
+const Navigation = ({ isLogged }) => (
+  <Wrapper center={!isLogged}>
     <LogoLink />
 
-    <ContainerNavigation>
-      <NavigationMenu />
+    {isLogged && (
+      <ContainerNavigation>
+        <NavigationMenu />
 
-      <ContainerUser>
-        <UserPanel />
-      </ContainerUser>
+        <ContainerUser>
+          <UserPanel />
+        </ContainerUser>
 
-      <LogoutButton />
-    </ContainerNavigation>
+        <LogoutButton />
+      </ContainerNavigation>
+    )}
   </Wrapper>
 );
 
 const Wrapper = styled.div`
-  /* position: relative; */
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: ${(p) => (p.center ? 'center' : 'space-between')};
   max-width: 320px;
   padding: 14px 20px 13px 22px;
   margin: 0 auto;

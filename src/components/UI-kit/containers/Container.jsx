@@ -1,7 +1,18 @@
 import styled from 'styled-components';
 import { breakpoints } from 'constants/breakpoints';
 
-const Container = ({ children }) => <Wrapper>{children}</Wrapper>;
+import { motion } from 'framer-motion';
+
+const Container = ({ children }) => (
+  <Wrapper
+    as={motion.div}
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+  >
+    {children}
+  </Wrapper>
+);
 
 const Wrapper = styled.section`
   width: 100%;

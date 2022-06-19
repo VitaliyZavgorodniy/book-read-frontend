@@ -1,126 +1,81 @@
-import { useState } from 'react';
-import { createPortal } from 'react-dom';
-import { useNavigate } from 'react-router-dom';
 import Media from 'react-media';
 import styled from 'styled-components';
 
 import { breakpoints } from 'constants/breakpoints';
-import useLocalStorage from 'hooks/useLocalStorage';
 
 import RegsiterForm from './RegisterForm';
 import InfoBlockAbout from './InfoBlockAbout';
-import CommonButton from 'components/UI-kit/buttons/CommonButton';
 
-const modalRoot = document.querySelector('#modal-root');
+const RegisterPage = () => (
+  <Wrapper>
+    <ContainerBackground>
+      <RegsiterForm />
+    </ContainerBackground>
+    <Media
+      query={breakpoints.tablet}
+      render={() => (
+        <ContainerContent>
+          <InfoBlockAbout />
+        </ContainerContent>
+      )}
+    />
+  </Wrapper>
+);
 
-const RegisterPage = () => {
-  const [modal, setModal] = useState(true);
-
-  const [visited, setVisited] = useLocalStorage('visited', false);
-
-  const navigate = useNavigate();
-
-  const toggleModal = async (link) => {
-    await setVisited(true);
-    setModal(!modal);
-    navigate(link);
-  };
-  return (
-    <Wrapper>
-      <Media
-        queries={{
-          small: '(max-width: 767px)',
-        }}
-      >
-        {(matches) =>
-          matches.small &&
-          !visited &&
-          modal &&
-          createPortal(
-            <Overlay>
-              <Header>
-                <Logo>BR</Logo>
-              </Header>
-              <Content>
-                <InfoBlockAbout />
-                <ButtonBlockWrapper>
-                  <ButtonWrapper>
-                    <CommonButton
-                      type="button"
-                      title="Login"
-                      variant="transparent"
-                      onClick={() => toggleModal('/login')}
-                    />
-                  </ButtonWrapper>
-                  <ButtonWrapper>
-                    <CommonButton
-                      type="button"
-                      title="Register"
-                      variant="accent"
-                      onClick={() => toggleModal('/register')}
-                    />
-                  </ButtonWrapper>
-                </ButtonBlockWrapper>
-              </Content>
-            </Overlay>,
-            modalRoot
-          )
-        }
-      </Media>
-
-      <RegisterBlock>
-        <RegsiterForm />
-      </RegisterBlock>
-      <Media query="(min-width: 768px)" render={() => <InfoBlockAbout />} />
-    </Wrapper>
-  );
-};
-
-const Overlay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  min-height: calc(100vh - 60px);
-  overflow: auto;
-  background-color: white;
-`;
-const Header = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 60px;
-  box-shadow: ${(p) => p.theme.shadows.block};
-`;
-const Logo = styled.span`
-  color: ${(p) => p.theme.colors.primary};
-  font-family: ${(p) => p.theme.font.familyLogo};
-  font-size: 20px;
-  line-height: 27px;
-`;
-const Content = styled.div``;
-
-const Wrapper = styled.div`
-  position: relative;
+const Wrapper = styled.main`
+  overflow-x: hidden;
+  overflow-y: scroll;
   display: flex;
   flex-direction: column;
+  height: calc(100vh - 60px);
+
+  @media ${breakpoints.tablet} {
+    flex-direction: row;
+  }
 
   @media ${breakpoints.desktop} {
     flex-direction: row;
   }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
-const ButtonBlockWrapper = styled.div`
+
+const ContainerRegister = styled.section`
   display: flex;
-  justify-content: space-between;
-  width: 275px;
-  margin: 0 auto;
-  margin-bottom: 40px;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+
+  @media ${breakpoints.tablet} {
+    min-width: 0px;
+    padding: 65px 0;
+  }
+
+  @media ${breakpoints.desktop} {
+    min-width: 550px;
+    padding: 32px 0;
+  }
 `;
-const ButtonWrapper = styled.div`
-  width: 130px;
+
+const ContainerContent = styled.section`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 0;
+
+  @media ${breakpoints.tablet} {
+    padding: 60px 0;
+  }
+
+  @media ${breakpoints.desktop} {
+    padding: 32px 0;
+  }
 `;
-const RegisterBlock = styled.div`
-  margin: 0 auto;
+
+const ContainerBackground = styled(ContainerRegister)`
   background-color: ${(p) => p.theme.colors.bgAlpha};
   background-image: linear-gradient(
       to right,
@@ -146,15 +101,12 @@ const RegisterBlock = styled.div`
   }
 
   @media ${breakpoints.tablet} {
-    padding: 64px 184px;
     background-image: linear-gradient(
         to right,
         ${(p) => p.theme.colors.bgAlpha},
         ${(p) => p.theme.colors.bgAlpha}
       ),
       url(${(p) => p.theme.backgrounds.regTb});
-    background-size: cover;
-    background-repeat: no-repeat;
 
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
@@ -165,20 +117,15 @@ const RegisterBlock = styled.div`
           ${(p) => p.theme.colors.bgAlpha}
         ),
         url(${(p) => p.theme.backgrounds.regTb_2x});
-      background-size: cover;
-      background-repeat: no-repeat;
     }
   }
   @media ${breakpoints.desktop} {
-    padding: 90px 75px;
     background-image: linear-gradient(
         to right,
         ${(p) => p.theme.colors.bgAlpha},
         ${(p) => p.theme.colors.bgAlpha}
       ),
       url(${(p) => p.theme.backgrounds.regDs});
-    background-size: cover;
-    background-repeat: no-repeat;
 
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
@@ -189,8 +136,6 @@ const RegisterBlock = styled.div`
           ${(p) => p.theme.colors.bgAlpha}
         ),
         url(${(p) => p.theme.backgrounds.regDs_2x});
-      background-size: cover;
-      background-repeat: no-repeat;
     }
   }
 `;

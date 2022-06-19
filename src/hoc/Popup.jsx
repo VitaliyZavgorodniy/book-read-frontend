@@ -4,9 +4,11 @@ import { HiOutlineArrowNarrowLeft } from 'react-icons/hi';
 
 const Popup = ({ children, onClose }) => (
   <Wrapper>
-    <ButtonClose onClick={onClose}>
-      <Icon />
-    </ButtonClose>
+    {onClose && (
+      <ButtonClose onClick={onClose}>
+        <Icon />
+      </ButtonClose>
+    )}
 
     {children}
   </Wrapper>
@@ -15,12 +17,18 @@ const Popup = ({ children, onClose }) => (
 const Wrapper = styled.div`
   z-index: 5;
   position: fixed;
+  overflow-x: hidden;
+  overflow-y: scroll;
   left: 0;
   bottom: 0;
   width: 100vw;
   height: calc(100vh - 60px);
   padding: 68px 20px 0;
   background-color: ${(p) => p.theme.colors.bgPrimary};
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const ButtonClose = styled.button`

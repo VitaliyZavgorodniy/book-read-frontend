@@ -14,7 +14,9 @@ const Quotes = () => {
   );
 };
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  width: 400px;
+`;
 
 const Quotestext = styled.h1`
   margin: 0 auto;

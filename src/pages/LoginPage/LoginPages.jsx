@@ -1,35 +1,64 @@
-import Media from 'react-media';
 import styled from 'styled-components';
-
 import { breakpoints } from 'constants/breakpoints';
 
 import LoginForm from './LoginForm';
 import Quotes from './Quotes';
 
-const LoginPage = () => {
-  return (
-    <Wrapper>
-      <LoginBlock>
-        <LoginForm />
-      </LoginBlock>
-      <LoginText>
-        <Quotes />
-      </LoginText>
-    </Wrapper>
-  );
-};
+const LoginPage = () => (
+  <Wrapper>
+    <ContainerBackround>
+      <LoginForm />
+    </ContainerBackround>
+    <ContainerContent>
+      <Quotes />
+    </ContainerContent>
+  </Wrapper>
+);
 
-const Wrapper = styled.div`
+const Wrapper = styled.main`
   display: flex;
   flex-direction: column;
+  height: calc(100vh - 60px);
 
   @media ${breakpoints.desktop} {
     flex-direction: row;
   }
 `;
 
-const LoginBlock = styled.div`
-  margin: 0 auto;
+const ContainerLogin = styled.section`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+
+  @media ${breakpoints.tablet} {
+    min-width: 0px;
+    padding: 65px 0;
+  }
+
+  @media ${breakpoints.desktop} {
+    min-width: 550px;
+    padding: 32px 0;
+  }
+`;
+
+const ContainerContent = styled.section`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 0;
+
+  @media ${breakpoints.tablet} {
+    padding: 60px 0;
+  }
+
+  @media ${breakpoints.desktop} {
+    padding: 32px 0;
+  }
+`;
+
+const ContainerBackround = styled(ContainerLogin)`
   background-color: ${(p) => p.theme.colors.bgAlpha};
   background-image: linear-gradient(
       to right,
@@ -50,20 +79,15 @@ const LoginBlock = styled.div`
         ${(p) => p.theme.colors.bgAlpha}
       ),
       url(${(p) => p.theme.backgrounds.logMb_2x});
-    background-size: cover;
-    background-repeat: no-repeat;
   }
 
   @media ${breakpoints.tablet} {
-    padding: 64px 184px;
     background-image: linear-gradient(
         to right,
         ${(p) => p.theme.colors.bgAlpha},
         ${(p) => p.theme.colors.bgAlpha}
       ),
       url(${(p) => p.theme.backgrounds.logTb});
-    background-size: cover;
-    background-repeat: no-repeat;
 
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
@@ -74,21 +98,16 @@ const LoginBlock = styled.div`
           ${(p) => p.theme.colors.bgAlpha}
         ),
         url(${(p) => p.theme.backgrounds.logTb_2x});
-      background-size: cover;
-      background-repeat: no-repeat;
     }
   }
+
   @media ${breakpoints.desktop} {
-    margin: 0;
-    padding: 185px 74px 175px 75px;
     background-image: linear-gradient(
         to right,
         ${(p) => p.theme.colors.bgAlpha},
         ${(p) => p.theme.colors.bgAlpha}
       ),
       url(${(p) => p.theme.backgrounds.logDs});
-    background-size: cover;
-    background-repeat: no-repeat;
 
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
@@ -99,25 +118,8 @@ const LoginBlock = styled.div`
           ${(p) => p.theme.colors.bgAlpha}
         ),
         url(${(p) => p.theme.backgrounds.logDs_2x});
-      background-size: cover;
-      background-repeat: no-repeat;
     }
   }
 `;
-const LoginText = styled.div`
-  margin: 0 auto;
-  width: 229px;
-  padding-top: 4px;
-  padding-bottom: 48px;
 
-  @media ${breakpoints.tablet} {
-    width: 397px;
-    padding-top: 64px;
-    padding-bottom: 109px;
-  }
-  @media ${breakpoints.desktop} {
-    padding-top: 206px;
-    padding-bottom: 252px;
-  }
-`;
 export default LoginPage;
