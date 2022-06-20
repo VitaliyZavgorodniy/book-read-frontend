@@ -6,8 +6,8 @@ import { AnimatePresence } from 'framer-motion';
 import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "constants/themes"
 import { useDarkMode } from "hooks/useDarkMode"
-import ThemeToggle from 'components/UI-kit/buttons/ThemeToggleButtton';
 import { GlobalStyles } from 'constants/globalStyles';
+import ThemeToggle from 'components/UI-kit/buttons/ThemeToggleButtton';
 
 import MainLayout from 'layouts/MainLayout';
 import PublicLayout from 'layouts/PublicLayout';
