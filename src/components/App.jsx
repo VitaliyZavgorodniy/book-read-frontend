@@ -19,6 +19,9 @@ import Loading from 'components/Loading';
 import Navigation from 'components/Navigation';
 
 import SkeletonHomePage from 'components/UI-kit/skeletons/SkeletonHomePage';
+import SkeletonTrainingPage from 'components/UI-kit/skeletons/SkeletonTrainingPage';
+import SkeletonStatisticsPage from 'components/UI-kit/skeletons/SkeletonStatisticsPage';
+import SkeletonReviewPage from 'components/UI-kit/skeletons/SkeletonReviewPage';
 
 import { authOperations, authSelectors } from 'redux/auth';
 
@@ -64,7 +67,7 @@ const App = () => {
             <Route
               path="training"
               element={
-                <Suspense fallback={<Spinner />}>
+                <Suspense fallback={<SkeletonTrainingPage />}>
                   <TrainingPage />
                 </Suspense>
               }
@@ -73,7 +76,7 @@ const App = () => {
             <Route
               path="statistics"
               element={
-                <Suspense fallback={<Spinner />}>
+                <Suspense fallback={<SkeletonStatisticsPage />}>
                   <StatisticsPage />
                 </Suspense>
               }
@@ -82,7 +85,7 @@ const App = () => {
             <Route
               path="reviews"
               element={
-                <Suspense fallback={<Spinner />}>
+                <Suspense fallback={<SkeletonReviewPage />}>
                   <ReviewsPage />
                 </Suspense>
               }

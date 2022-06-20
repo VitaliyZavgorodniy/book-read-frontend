@@ -14,13 +14,14 @@ import BooksTable from './BooksTable';
 import BooksList from './BooksList';
 import TrainingCompleteModal from 'components/Modals/TrainingCompleteModal';
 import BookCompletedModal from 'components/Modals/BookCompletedModal';
+import SkeletonStatisticsPage from 'components/UI-kit/skeletons/SkeletonStatisticsPage';
 
 import { getCurrentEndYearDate } from 'utils/getCurrentEndYearDate';
 import { getTimeDifference } from 'utils/getTimeDifference';
 
 import { timeFormatToDT } from 'utils/timeFormatToDT';
 
-const StatisticsPage = ({ status, training, stats, onLoadTraining }) => {
+const StatisticsPage = ({ status, training, stats, onLoadTraining, isFetching }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -72,6 +73,8 @@ const StatisticsPage = ({ status, training, stats, onLoadTraining }) => {
       value: training.books.filter((book) => !book.isCompleted).length,
     },
   ];
+
+  if (isFetching) return <SkeletonStatisticsPage />;
 
   return (
     <Container>

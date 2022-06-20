@@ -9,6 +9,7 @@ const mapStateToProps = (state) => ({
   training: trainingSelectors.getTraining(state),
   stats: trainingSelectors.getTrainingStats(state),
   books: trainingSelectors.getBooksList(state),
+  isFetching: trainingSelectors.getFetching(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -30,7 +30,6 @@ const createBook = createAsyncThunk(
       const {
         data: { result },
       } = await axios.post('/books', book);
-
       return result;
     } catch (err) {
       const errorMsg = err?.response?.data?.message;
