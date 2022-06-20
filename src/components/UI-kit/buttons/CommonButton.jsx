@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Bars } from 'react-loader-spinner';
-import { theme } from 'constants/theme';
+import {lightTheme as theme} from 'constants/themes';
 
 const CommonButton = ({
   isFetching,
@@ -11,7 +11,7 @@ const CommonButton = ({
   size,
   disabled = false,
 }) => {
-  const settings =
+  const settings =  
     variant === 'accent' ? theme.colors.contrast : theme.colors.primary;
 
   return (
@@ -31,7 +31,7 @@ const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 100%; 
   height: ${(p) => (p.size === 'lg' ? '60px' : '40px')};
   padding: ${(p) => (p.size === 'lg' ? '20px' : '10px')};
   background-color: ${(p) =>

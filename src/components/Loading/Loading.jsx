@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import { theme } from 'constants/themes';
 
 import Spinner from 'components/UI-kit/spinner/Spinner';
 
@@ -22,13 +23,13 @@ const Wrapper = styled.section`
   align-items: center;
   height: 100vh;
   width: 100vw;
-  background-color: ${(p) => p.theme.colors.bgPrimary};
+  background-color: theme.colors.bgPrimary;
 `;
 
 const Title = styled.h1`
   margin-bottom: 40px;
-  color: ${(p) => p.theme.colors.primary};
-  font-family: ${(p) => p.theme.font.familyLogo};
+  color: theme.colors.primary;
+  font-family: theme.font.familyLogo;
   font-size: 72px;
   line-height: 27px;
 `;
