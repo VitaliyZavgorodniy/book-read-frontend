@@ -3,9 +3,8 @@ import styled from 'styled-components';
 
 import Container from 'components/UI-kit/containers/Container';
 import BookDetails from './BookDetails';
-import SkeletonReviewPage from 'components/UI-kit/skeletons/SkeletonReviewPage';
 
-const ReviewsPage = ({ isFetching, reviews, loadReviews }) => {
+const ReviewsPage = ({ reviews, loadReviews }) => {
   useEffect(() => {
     loadReviews();
   }, []);
@@ -16,8 +15,6 @@ const ReviewsPage = ({ isFetching, reviews, loadReviews }) => {
         <BookDetails {...book} id={book._id} />
       </Item>
     ));
-
-  if (isFetching) return <SkeletonReviewPage />;
 
   return (
     <Container>
