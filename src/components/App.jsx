@@ -6,6 +6,12 @@ import { AnimatePresence } from 'framer-motion';
 import MainLayout from 'layouts/MainLayout';
 import PublicLayout from 'layouts/PublicLayout';
 
+import { ThemeProvider } from "styled-components";
+import { lightTheme, darkTheme } from "constants/themes"
+import { useDarkMode } from "hooks/useDarkMode"
+import { GlobalStyles } from 'constants/globalStyles';
+import ThemeToggle from 'components/UI-kit/buttons/ThemeToggleButtton';
+
 import RegisterPage from 'pages/RegisterPage';
 import LoginPage from 'pages/LoginPage';
 import LoginGoogle from 'pages/LoginGoogle';
@@ -34,6 +40,10 @@ const App = () => {
   const location = useLocation();
   const dispatch = useDispatch();
 
+  const [theme, themeToggler] = useDarkMode();
+
+  const themeMode = theme === 'light' ? lightTheme : darkTheme;
+
   const isFetching = useSelector(authSelectors.getIsLoadUser);
 
   useEffect(() => {
@@ -48,7 +58,8 @@ const App = () => {
     );
 
   return (
-    <>
+    <ThemeProvider theme={themeMode}>
+      <GlobalStyles/>
       <Header>
         <Navigation />
       </Header>
@@ -101,7 +112,7 @@ const App = () => {
           </Route>
         </Route>
       </Routes>
-    </>
+    </ThemeProvider>
   );
 };
 
