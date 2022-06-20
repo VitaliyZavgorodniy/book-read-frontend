@@ -40,6 +40,7 @@ const librarySlice = createSlice({
     },
     [libraryOperations.createBook.fulfilled]: (state, { payload }) => {
       state.books.pending = [...state.books.pending, payload];
+      state.books.total = state.books.total + 1;
       state.isAddingBook = false;
     },
     [libraryOperations.createBook.rejected]: (state) => {
