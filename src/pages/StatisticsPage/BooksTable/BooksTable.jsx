@@ -113,6 +113,8 @@ const BooksTable = ({ books, onUpdateStats }) => {
   );
 };
 
+const Wrapper = styled.div``;
+
 const Table = styled.table`
   width: 100%;
   

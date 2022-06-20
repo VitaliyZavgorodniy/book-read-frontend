@@ -41,7 +41,7 @@ const FormAddBook = ({
 
   useEffect(() => {
     clearSearch();
-  }, [title, clearSearch]);
+  }, [title]);
 
   useEffect(() => {
     setErrorTitle('');

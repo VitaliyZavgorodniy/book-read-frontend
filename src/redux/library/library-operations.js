@@ -62,6 +62,7 @@ const addReview = createAsyncThunk(
   'library/addReview',
   async (review, { rejectWithValue }) => {
     try {
+      const updated = await axios.post('/books/add-review', review);
 
       const { data } = await axios.get('/library');
 
@@ -80,6 +81,7 @@ const updateReview = createAsyncThunk(
   'library/updateReview',
   async (review, { rejectWithValue }) => {
     try {
+      const updated = await axios.post('/books/update-review', review);
 
       const { data } = await axios.get('/library');
 
