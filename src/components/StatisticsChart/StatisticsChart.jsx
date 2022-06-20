@@ -102,7 +102,7 @@ const StatisticsChart = ({ daysAmount, pagesAmount, stats, startDate }) => {
       });
 
       let result = fact.reduce(
-        (r, c, i) => (r.push(i ? c + r[i - 1] : c)),
+        (r, c, i) => (r.push(i ? c + r[i - 1] : c), r),
         []
       );
 
