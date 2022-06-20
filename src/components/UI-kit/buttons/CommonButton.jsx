@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Bars } from 'react-loader-spinner';
-import { theme } from 'constants/theme';
+import { theme } from 'constants/themes';
 
 const CommonButton = ({
   isFetching,
