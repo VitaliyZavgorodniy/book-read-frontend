@@ -29,8 +29,6 @@ const addBook = createAsyncThunk(
   'reviews/fetch',
   async (bookID, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post('/books', bookID);
-
       const {
         data: { result },
       } = await axios.get('/books/reviews');

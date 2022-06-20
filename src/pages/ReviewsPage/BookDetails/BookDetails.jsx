@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 import { breakpoints } from 'constants/breakpoints';
-import Media from 'react-media';
 
-import { IoIosStar } from 'react-icons/io';
 
 import StarratingInfo from 'components/StarratingInfo';
 import CommonButton from 'components/UI-kit/buttons/CommonButton';

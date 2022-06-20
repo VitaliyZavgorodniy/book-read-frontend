@@ -7,7 +7,7 @@ import BookDetails from './BookDetails';
 const ReviewsPage = ({ reviews, loadReviews }) => {
   useEffect(() => {
     loadReviews();
-  }, []);
+  }, [loadReviews]);
 
   const renderList = () =>
     reviews.map((book) => (
