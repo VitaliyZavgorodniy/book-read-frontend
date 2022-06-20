@@ -27,8 +27,8 @@ const Wrapper = styled.section`
 
 const Title = styled.h1`
   margin-bottom: 40px;
-  color: ${p => p.theme.colors.primary};
-  font-family: ${p => p.theme.font.familyLogo};
+  color: theme.colors.primary;
+  font-family: theme.font.familyLogo;
   font-size: 72px;
   line-height: 27px;
 `;
