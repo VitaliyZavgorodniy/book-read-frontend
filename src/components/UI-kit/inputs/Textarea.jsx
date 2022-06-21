@@ -28,6 +28,8 @@ const Input = styled.textarea`
   resize: none;
   padding: 8px;
   border: 1px solid ${(p) => p.theme.colors.textLight};
+  background-color: ${p => p.theme.colors.bgSecondary};
+  color: ${p => p.theme.colors.text};
 `;
 
 const Error = styled.p`

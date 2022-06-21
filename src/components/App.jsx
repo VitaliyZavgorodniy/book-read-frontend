@@ -3,6 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 
+import { ThemeProvider } from "styled-components";
+import { lightTheme, darkTheme } from "constants/themes"
+import { useDarkMode } from "hooks/useDarkMode"
+import { GlobalStyles } from 'constants/globalStyles';
+import ThemeToggle from 'components/UI-kit/buttons/ThemeToggleButtton';
+
 import MainLayout from 'layouts/MainLayout';
 import PublicLayout from 'layouts/PublicLayout';
 
@@ -34,6 +40,10 @@ const App = () => {
   const location = useLocation();
   const dispatch = useDispatch();
 
+  const [theme, themeToggler] = useDarkMode();
+
+  const themeMode = theme === 'light' ? lightTheme : darkTheme;
+
   const isFetching = useSelector(authSelectors.getIsLoadUser);
 
   useEffect(() => {
@@ -44,13 +54,15 @@ const App = () => {
     return (
       <AnimatePresence>
         <Loading />
-      </AnimatePresence>
+        </AnimatePresence>
     );
 
   return (
-    <>
+    <ThemeProvider theme={themeMode}>
+      <GlobalStyles/>
       <Header>
         <Navigation />
+        <ThemeToggle theme={theme} toggleTheme={themeToggler}  />
       </Header>
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<MainLayout />}>
@@ -100,8 +112,8 @@ const App = () => {
             <Route path="login/google" element={<LoginGoogle />} />
           </Route>
         </Route>
-      </Routes>
-    </>
+        </Routes>
+        </ThemeProvider>
   );
 };
 

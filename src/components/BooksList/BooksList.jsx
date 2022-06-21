@@ -289,6 +289,7 @@ const BodyCell = styled.div`
   font-weight: 500;
   font-size: 12px;
   line-height: 1.22;
+  color: ${p => p.theme.colors.text};
 
   &:last-child {
     margin-bottom: 0px;

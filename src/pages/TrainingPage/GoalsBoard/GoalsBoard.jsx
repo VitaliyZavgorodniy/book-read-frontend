@@ -110,6 +110,7 @@ const Label = styled.p`
   width: 70px;
   padding: 14px 0;
   color: ${(p) => p.theme.colors.tertiary};
+  background-color: ${(p) => p.theme.colors.body};
   font-weight: 500;
   font-size: 14px;
   line-height: 17px;

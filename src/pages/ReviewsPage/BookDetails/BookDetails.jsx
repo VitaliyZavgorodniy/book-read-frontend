@@ -181,6 +181,7 @@ const UserImage = styled.img`
 
 const UserName = styled.span`
   margin-left: 10px;
+  color: ${(p) => p.theme.colors.text};
 `;
 
 const UserCreds = styled.p`
@@ -210,6 +211,7 @@ const Rating = styled.div`
 
 const ReviewText = styled.p`
   margin-top: 15px;
+  color: ${(p) => p.theme.colors.text};
 `;
 
 export default BookDetails;

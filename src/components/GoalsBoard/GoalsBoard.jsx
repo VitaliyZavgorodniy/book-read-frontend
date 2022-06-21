@@ -5,7 +5,7 @@ import Heading from 'components/UI-kit/containers/Heading';
 
 const GoalsBoard = ({ data }) => {
   const length = data.length;
-
+  
   const renderScores = () => {
     const elementHTML = data.map(({ id, label, value, accent }) => (
       <Item key={id}>
