@@ -49,11 +49,9 @@ const App = () => {
 
   if (isFetching)
     return (
-      <ThemeProvider theme={lightTheme}>
       <AnimatePresence>
         <Loading />
         </AnimatePresence>
-        </ThemeProvider>
     );
 
   return (

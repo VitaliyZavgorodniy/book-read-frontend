@@ -22,13 +22,13 @@ const Wrapper = styled.section`
   align-items: center;
   height: 100vh;
   width: 100vw;
-  background-color: ${p => p.theme.colors.bgPrimary};
+  background-color: '#F6F7FB';
 `;
 
 const Title = styled.h1`
   margin-bottom: 40px;
-  color: theme.colors.primary;
-  font-family: theme.font.familyLogo;
+  color: '#bac5d9';
+  font-family: 'Abril Fatface, curcive';
   font-size: 72px;
   line-height: 27px;
 `;
